@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>&lt;How to create hexo github page&gt;</title>
+      <link href="/2019/01/26/how-to-create-hexo-github-page/"/>
+      <url>/2019/01/26/how-to-create-hexo-github-page/</url>
+      
+        <content type="html"><![CDATA[<h3 id="install-Node-js"><a href="#install-Node-js" class="headerlink" title="install Node.js"></a>install Node.js</h3><pre><code>$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh</code></pre><h3 id="install-hexo"><a href="#install-hexo" class="headerlink" title="install hexo"></a>install hexo</h3><pre><code>$ npm install hexo-cli -g$ hexo init blog # blog = &lt;file name&gt;$ cd blog</code></pre><h3 id="set-theme"><a href="#set-theme" class="headerlink" title="set theme"></a>set theme</h3><pre><code>$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus$ vi _config.yml</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: cactus</span><br></pre></td></tr></table></figure><h3 id="setting-deploy-config"><a href="#setting-deploy-config" class="headerlink" title="setting deploy config."></a>setting deploy config.</h3><pre><code>$ npm install hexo-deployer-git --save$ vi _config.yml</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/HenryPaik1/HenryPaik1.github.io.git</span><br></pre></td></tr></table></figure><h3 id="apply-modification-amp-run-hexo-server"><a href="#apply-modification-amp-run-hexo-server" class="headerlink" title="apply modification &amp; run hexo server"></a>apply modification &amp; run hexo server</h3><pre><code>$ hexo g$ hexo s</code></pre><h3 id="sync-github"><a href="#sync-github" class="headerlink" title="sync github"></a>sync github</h3><pre><code>$ hexo d</code></pre><p><strong>refernce:</strong><br><a href="https://github.com/probberechts/hexo-theme-cactus" target="_blank" rel="noopener">https://github.com/probberechts/hexo-theme-cactus</a><br><a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">https://hexo.io/docs/commands</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

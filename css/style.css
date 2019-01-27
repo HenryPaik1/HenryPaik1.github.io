@@ -592,10 +592,8 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 5px;
-  filter: grayscale(100%);
   background-size: 50px 50px;
   background-repeat: no-repeat;
-  -webkit-filter: grayscale(100%);
 }
 #header #nav {
   color: #2bbc8a;
@@ -635,10 +633,6 @@ body {
 }
 #header #nav ul li:last-child a {
   margin-right: 0;
-}
-#header:hover #logo {
-  filter: none;
-  -webkit-filter: none;
 }
 @media screen and (max-width: 480px) {
   #header #title {
