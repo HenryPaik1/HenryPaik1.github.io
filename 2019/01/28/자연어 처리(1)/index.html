@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="자연어 처리(1) 말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stemming:">
+    <meta name="description" content="index자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stem">
 <meta name="keywords" content="text,preprocessing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;자연어 처리(1)&gt;">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/index.html">
 <meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
-<meta property="og:description" content="자연어 처리(1) 말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stemming:">
+<meta property="og:description" content="index자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stem">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_45_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_65_0.png">
-<meta property="og:updated_time" content="2019-01-28T07:13:55.013Z">
+<meta property="og:updated_time" content="2019-01-28T17:04:05.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;자연어 처리(1)&gt;">
-<meta name="twitter:description" content="자연어 처리(1) 말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stemming:">
+<meta name="twitter:description" content="index자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stem">
 <meta name="twitter:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png">
     
     
@@ -81,7 +81,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/01/28/how-to-create-jupyer/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/01/28/insatlling_virtual_env/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2019/01/26/how-to-create-hexo-github-page/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -111,7 +111,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#자연어-처리-1"><span class="toc-number">1.</span> <span class="toc-text">자연어 처리(1)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법1"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">사용법1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법2"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">사용법2)</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#1-말뭉치-corpus"><span class="toc-number">2.</span> <span class="toc-text">1. 말뭉치(corpus)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-토큰생성-tokenizing"><span class="toc-number">3.</span> <span class="toc-text">2. 토큰생성(tokenizing)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sentence-unit"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">sentence unit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#word-unit"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">word unit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-형태소-분석"><span class="toc-number">4.</span> <span class="toc-text">3. 형태소 분석</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stemming"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">stemming</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemmatizing"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">lemmatizing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging"><span class="toc-number">4.0.0.3.</span> <span class="toc-text">pos tagging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging-text-pre-processing-연습"><span class="toc-number">4.0.0.4.</span> <span class="toc-text">pos tagging: text pre-processing 연습</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-text-class"><span class="toc-number">5.</span> <span class="toc-text">4. text class</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-FreqDist"><span class="toc-number">6.</span> <span class="toc-text">5. FreqDist</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법1-1"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">사용법1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법2-1"><span class="toc-number">6.0.0.2.</span> <span class="toc-text">사용법2)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-wordcloud"><span class="toc-number">7.</span> <span class="toc-text">6. wordcloud</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#index"><span class="toc-number">1.</span> <span class="toc-text">index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contents"><span class="toc-number">2.</span> <span class="toc-text">Contents</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-말뭉치-corpus"><span class="toc-number">2.1.</span> <span class="toc-text">1. 말뭉치(corpus)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-토큰생성-tokenizing"><span class="toc-number">2.2.</span> <span class="toc-text">2. 토큰생성(tokenizing)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sentence-unit"><span class="toc-number">2.2.1.</span> <span class="toc-text">sentence unit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#word-unit"><span class="toc-number">2.2.2.</span> <span class="toc-text">word unit</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-형태소-분석"><span class="toc-number">2.3.</span> <span class="toc-text">3. 형태소 분석</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stemming"><span class="toc-number">2.3.1.</span> <span class="toc-text">stemming</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemmatizing"><span class="toc-number">2.3.2.</span> <span class="toc-text">lemmatizing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging"><span class="toc-number">2.3.3.</span> <span class="toc-text">pos tagging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging-text-pre-processing-연습"><span class="toc-number">2.3.4.</span> <span class="toc-text">pos tagging: text pre-processing 연습</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-text-class"><span class="toc-number">2.4.</span> <span class="toc-text">4. text class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-FreqDist"><span class="toc-number">2.5.</span> <span class="toc-text">5. FreqDist</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법1"><span class="toc-number">2.5.1.</span> <span class="toc-text">사용법1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법2"><span class="toc-number">2.5.2.</span> <span class="toc-text">사용법2)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-wordcloud"><span class="toc-number">2.6.</span> <span class="toc-text">6. wordcloud</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -160,7 +160,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="자연어-처리-1"><a href="#자연어-처리-1" class="headerlink" title="자연어 처리(1)"></a>자연어 처리(1)</h1><ol>
+    <h2 id="index"><a href="#index" class="headerlink" title="index"></a>index</h2><p>자연어 처리(1)</p>
+<ol>
 <li>말뭉치(corpus)</li>
 <li>토큰생성(tokenizing)</li>
 </ol>
@@ -231,10 +232,12 @@
 <li><code>freq(&quot;word&quot;)</code>: 확률</li>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
 </ul>
-<h4 id="사용법1"><a href="#사용법1" class="headerlink" title="사용법1)"></a>사용법1)</h4><ul>
+<p>5.1 사용법1)</p>
+<ul>
 <li><code>Text</code> class의 vocab으로 추출</li>
 </ul>
-<h4 id="사용법2"><a href="#사용법2" class="headerlink" title="사용법2)"></a>사용법2)</h4><ul>
+<p>5.2 사용법2)</p>
+<ul>
 <li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
@@ -249,7 +252,7 @@
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
 <hr>
-<h1 id="1-말뭉치-corpus"><a href="#1-말뭉치-corpus" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><h3 id="1-말뭉치-corpus"><a href="#1-말뭉치-corpus" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.book <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
 <pre><code>*** Introductory Examples for the NLTK Book ***
@@ -300,7 +303,7 @@ TWO LITTLE RIDDLES IN RHYME
      From house to house he goes,
      A me
 </code></pre><hr>
-<h1 id="2-토큰생성-tokenizing"><a href="#2-토큰생성-tokenizing" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h1><h4 id="sentence-unit"><a href="#sentence-unit" class="headerlink" title="sentence unit"></a>sentence unit</h4><ul>
+<h3 id="2-토큰생성-tokenizing"><a href="#2-토큰생성-tokenizing" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h3><h4 id="sentence-unit"><a href="#sentence-unit" class="headerlink" title="sentence unit"></a>sentence unit</h4><ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> sent_tokenize</span><br><span class="line">sent_tokenize(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
@@ -326,7 +329,7 @@ TWO LITTLE RIDDLES IN RHYME
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> RegexpTokenizer</span><br><span class="line">pattern = <span class="string">"[\w]+"</span></span><br><span class="line">retokenize = RegexpTokenizer(pattern)</span><br><span class="line">retokenize.tokenize(raw[<span class="number">50</span>:<span class="number">100</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>[&apos;918&apos;, &apos;TWO&apos;, &apos;LITTLE&apos;, &apos;RIDDLES&apos;, &apos;IN&apos;, &apos;RHYME&apos;, &apos;T&apos;]
 </code></pre><hr>
-<h1 id="3-형태소-분석"><a href="#3-형태소-분석" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h1><ul>
+<h3 id="3-형태소-분석"><a href="#3-형태소-분석" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h3><ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
 <li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
@@ -437,7 +440,7 @@ TWO LITTLE RIDDLES IN RHYME
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenizer</span><span class="params">(doc)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">"/"</span>.join(p) <span class="keyword">for</span> p <span class="keyword">in</span> tagged_list]</span><br><span class="line"></span><br><span class="line">tokenizer(sentence)</span><br></pre></td></tr></table></figure>
 <pre><code>[&apos;And/CC&apos;, &apos;green/JJ&apos;, &apos;ribbons/NNS&apos;, &apos;,/,&apos;, &apos;very/RB&apos;, &apos;fair/JJ&apos;, &apos;./.&apos;]
 </code></pre><hr>
-<h1 id="4-text-class"><a href="#4-text-class" class="headerlink" title="4. text class"></a>4. text class</h1><ul>
+<h3 id="4-text-class"><a href="#4-text-class" class="headerlink" title="4. text class"></a>4. text class</h3><ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
 <li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
@@ -476,16 +479,16 @@ nd friend very mutually attached and Emma doing just what she liked highly est
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text.similar(<span class="string">'Emma'</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>she it he i harriet you her jane him that
 </code></pre><hr>
-<h1 id="5-FreqDist"><a href="#5-FreqDist" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h1><ul>
+<h3 id="5-FreqDist"><a href="#5-FreqDist" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h3><ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
 <li>return: <code>{&#39;word&#39;: frequency}</code></li>
 </ul>
-<h4 id="사용법1-1"><a href="#사용법1-1" class="headerlink" title="사용법1)"></a>사용법1)</h4><ul>
+<h4 id="사용법1"><a href="#사용법1" class="headerlink" title="사용법1)"></a>사용법1)</h4><ul>
 <li><code>Text</code> class의 vocab으로 추출</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fd = text.vocab()</span><br><span class="line">type(fd)</span><br></pre></td></tr></table></figure>
 <pre><code>nltk.probability.FreqDist
-</code></pre><h4 id="사용법2-1"><a href="#사용법2-1" class="headerlink" title="사용법2)"></a>사용법2)</h4><ul>
+</code></pre><h4 id="사용법2"><a href="#사용법2" class="headerlink" title="사용법2)"></a>사용법2)</h4><ul>
 <li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
@@ -517,7 +520,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
  (&apos;Knightley&apos;, 389),
  (&apos;Elton&apos;, 385)]
 </code></pre><hr>
-<h1 id="6-wordcloud"><a href="#6-wordcloud" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h1><ul>
+<h3 id="6-wordcloud"><a href="#6-wordcloud" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h3><ul>
 <li><code>FreqDist</code> 활용</li>
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
@@ -552,7 +555,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#자연어-처리-1"><span class="toc-number">1.</span> <span class="toc-text">자연어 처리(1)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법1"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">사용법1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법2"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">사용법2)</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#1-말뭉치-corpus"><span class="toc-number">2.</span> <span class="toc-text">1. 말뭉치(corpus)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-토큰생성-tokenizing"><span class="toc-number">3.</span> <span class="toc-text">2. 토큰생성(tokenizing)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sentence-unit"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">sentence unit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#word-unit"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">word unit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-형태소-분석"><span class="toc-number">4.</span> <span class="toc-text">3. 형태소 분석</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stemming"><span class="toc-number">4.0.0.1.</span> <span class="toc-text">stemming</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemmatizing"><span class="toc-number">4.0.0.2.</span> <span class="toc-text">lemmatizing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging"><span class="toc-number">4.0.0.3.</span> <span class="toc-text">pos tagging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging-text-pre-processing-연습"><span class="toc-number">4.0.0.4.</span> <span class="toc-text">pos tagging: text pre-processing 연습</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-text-class"><span class="toc-number">5.</span> <span class="toc-text">4. text class</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-FreqDist"><span class="toc-number">6.</span> <span class="toc-text">5. FreqDist</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법1-1"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">사용법1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법2-1"><span class="toc-number">6.0.0.2.</span> <span class="toc-text">사용법2)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-wordcloud"><span class="toc-number">7.</span> <span class="toc-text">6. wordcloud</span></a></li>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#index"><span class="toc-number">1.</span> <span class="toc-text">index</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contents"><span class="toc-number">2.</span> <span class="toc-text">Contents</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-말뭉치-corpus"><span class="toc-number">2.1.</span> <span class="toc-text">1. 말뭉치(corpus)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-토큰생성-tokenizing"><span class="toc-number">2.2.</span> <span class="toc-text">2. 토큰생성(tokenizing)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sentence-unit"><span class="toc-number">2.2.1.</span> <span class="toc-text">sentence unit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#word-unit"><span class="toc-number">2.2.2.</span> <span class="toc-text">word unit</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-형태소-분석"><span class="toc-number">2.3.</span> <span class="toc-text">3. 형태소 분석</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#stemming"><span class="toc-number">2.3.1.</span> <span class="toc-text">stemming</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lemmatizing"><span class="toc-number">2.3.2.</span> <span class="toc-text">lemmatizing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging"><span class="toc-number">2.3.3.</span> <span class="toc-text">pos tagging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pos-tagging-text-pre-processing-연습"><span class="toc-number">2.3.4.</span> <span class="toc-text">pos tagging: text pre-processing 연습</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-text-class"><span class="toc-number">2.4.</span> <span class="toc-text">4. text class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-FreqDist"><span class="toc-number">2.5.</span> <span class="toc-text">5. FreqDist</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법1"><span class="toc-number">2.5.1.</span> <span class="toc-text">사용법1)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#사용법2"><span class="toc-number">2.5.2.</span> <span class="toc-text">사용법2)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-wordcloud"><span class="toc-number">2.6.</span> <span class="toc-text">6. wordcloud</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
