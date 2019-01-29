@@ -4,11 +4,38 @@
   
     
     <entry>
-      <title>&lt;Create jupyter.md and post it&gt;</title>
+      <title>Customize hexo theme using .ejs</title>
+      <link href="/2019/01/29/theme-tweak/"/>
+      <url>/2019/01/29/theme-tweak/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Example-Picture"><a href="#Example-Picture" class="headerlink" title="Example Picture"></a>Example Picture</h2><p><img src="/images/modifyejs.png" alt=""></p><h2 id="1-Change-‘Writing’-to-‘Recent-Posts’"><a href="#1-Change-‘Writing’-to-‘Recent-Posts’" class="headerlink" title="1. Change ‘Writing’ to ‘Recent Posts’"></a>1. Change ‘Writing’ to ‘Recent Posts’</h2><p><code>index.articles</code> indicates “writing”.<br>Need to change variable <code>index.articles</code> to “Recent Post”</p><pre><code>#path: themes&gt;cactus&gt;layout&gt;index.ejs&lt;section id=&quot;writing&quot;&gt;  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) { %&gt;</code></pre><p> <code>default.yml</code> save variables.<br> modified code:</p><pre><code>#path: themes&gt;cactus&gt;languages&gt;default.yml index:   find_me_on: Find me on   enum_comma: &apos;,&apos;   enum_and: and   articles: wrting # change to -&gt; Recent Posts   projects: Projects   topics: Topics   most_recent: Most recent</code></pre><h2 id="2-Display-Categories-on-the-first-page"><a href="#2-Display-Categories-on-the-first-page" class="headerlink" title="2. Display Categories on the first page"></a>2. Display Categories on the first page</h2><p>Note. prerequisite: categories page        $ hexo new page categoriesand adding <code>type:categories</code> to <code>source&gt;categories&gt;index.md</code></p><p>Need to insert following code:</p><pre><code>#path: themes&gt;cactus&gt;layout&gt;index.ejs&lt;section id=&quot;categories&quot; class=&quot;left&quot;&gt;  &lt;div class=&quot;category-list-title&quot;&gt;      &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;categories&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;nav.category&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;      &lt;% var visibleCategories = 0 %&gt;      &lt;% site.categories.each(function(cat){ %&gt;        &lt;% if (cat.length) { %&gt;          &lt;% visibleCategories += 1 %&gt;        &lt;% } %&gt;      &lt;% }) %&gt;      &lt;%- _p(&apos;counter.categories&apos;, visibleCategories) %&gt;  &lt;/div&gt;  &lt;div class=&quot;category-list&quot;&gt;    &lt;%- list_categories() %&gt;  &lt;/div&gt;&lt;/section&gt;</code></pre><p>after the code below:</p><pre><code>&lt;section id=&quot;writing&quot;&gt;  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) { %&gt;  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.topics&apos;) %&gt;&lt;/span&gt;  &lt;span class=&quot;widget tagcloud&quot;&gt;    &lt;%- tagcloud(theme.tags_overview) %&gt;  &lt;/span&gt;  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.most_recent&apos;) %&gt;&lt;/span&gt;  &lt;% } %&gt;  &lt;ul class=&quot;post-list&quot;&gt;    &lt;% var field_sort = theme.posts_overview.sort_updated ? &apos;updated&apos; : &apos;date&apos; %&gt;    &lt;% if (theme.posts_overview.show_all_posts) { %&gt;      &lt;% var show_posts = page.posts.sort(field_sort, &apos;desc&apos;) %&gt;    &lt;% } else { %&gt;      &lt;% var show_posts = site.posts.sort(field_sort, &apos;desc&apos;).limit(theme.posts_overview.post_count || 5) %&gt;    &lt;% } %&gt;    &lt;% show_posts.each(function(post, i){ %&gt;      &lt;li class=&quot;post-item&quot;&gt;        &lt;%- partial(&apos;_partial/post/date&apos;, { post: post, class_name: &apos;meta&apos; }) %&gt;        &lt;span&gt;&lt;%- partial(&apos;_partial/post/title&apos;, { post: post, index: true, class_name: &apos;&apos; }) %&gt;&lt;/span&gt;      &lt;/li&gt;    &lt;% }); %&gt;  &lt;/ul&gt;  &lt;% if (theme.posts_overview.show_all_posts) { %&gt;    &lt;%- partial(&apos;_partial/pagination&apos;) %&gt;  &lt;% } %&gt;&lt;/section&gt;</code></pre><h2 id="3-Make-the-logo-stay-bright"><a href="#3-Make-the-logo-stay-bright" class="headerlink" title="3. Make the logo stay bright"></a>3. Make the logo stay bright</h2><p>Corret the code as below</p><pre><code>#path: theme&gt;cactus&gt;source&gt;css&gt;_partial&gt;header.styl#logo  display: inline-block  float: left  margin-right: 20px  width: $logo-width  height: $logo-height  border-radius: 5px  # delete -&gt; filter: grayscale(100%)  background-size: $logo-width $logo-height  background-repeat: no-repeat  # delete -&gt; -webkit-filter: grayscale(100%)</code></pre><p>and delete the code below:</p><pre><code>#header:hover  #logo    filter: none    -webkit-filter: none</code></pre><h2 id="4-Place-Categoy-amp-Recent-Posts-side-by-side"><a href="#4-Place-Categoy-amp-Recent-Posts-side-by-side" class="headerlink" title="4. Place Categoy &amp; Recent Posts side by side"></a>4. Place Categoy &amp; Recent Posts side by side</h2><p>prerequisite: add class ‘.left’, ‘right’ to each section<br>Correct the code <code>.content</code> as below:</p><pre><code>#path: themes&gt;cactus&gt;source&gt;CSS&gt;style.styl.content  position: relative  flex-wrap: wrap  flex-direction: row  min-height: 100%.left  float: left.right  float: right</code></pre><h2 id="5-Mange-font-color"><a href="#5-Mange-font-color" class="headerlink" title="5. Mange font color"></a>5. Mange font color</h2><p>path: themes&gt;cactus&gt;source&gt;css&gt;style.styl</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Create and post jupyter.md</title>
       <link href="/2019/01/28/how-to-create-jupyer/"/>
       <url>/2019/01/28/how-to-create-jupyer/</url>
       
-        <content type="html"><![CDATA[<h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3><pre><code>$ cd \path\to\file.md$ cp file.md \blog\soucre\_post\$ jupyer nbconvert --to markdown file.ipynb$ vi file.md</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># add following:</span><br><span class="line">title: &quot;jupyer notebook post&quot;</span><br><span class="line">date: 2019-01-28 00:00:00</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd \path\to\file.md</span><br><span class="line">$ cp file.md \blog\soucre\_post\</span><br><span class="line">$ jupyer nbconvert --to markdown file.ipynb</span><br><span class="line">$ vi file.md</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># add following:</span><br><span class="line">title: &quot;jupyer notebook post&quot;</span><br><span class="line">date: 2019-01-28 00:00:00</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -29,7 +56,7 @@
     
     
     <entry>
-      <title>&lt;install virtual python env&gt;</title>
+      <title>Install virtual python env</title>
       <link href="/2019/01/28/insatlling_virtual_env/"/>
       <url>/2019/01/28/insatlling_virtual_env/</url>
       
@@ -56,7 +83,7 @@
     
     
     <entry>
-      <title>&lt;자연어 처리(1)&gt;</title>
+      <title>자연어 처리(1)</title>
       <link href="/2019/01/28/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC(1)/"/>
       <url>/2019/01/28/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC(1)/</url>
       
@@ -85,7 +112,7 @@
     
     
     <entry>
-      <title>&lt;Create hexo github page&gt;</title>
+      <title>Create hexo github page</title>
       <link href="/2019/01/26/how-to-create-hexo-github-page/"/>
       <url>/2019/01/26/how-to-create-hexo-github-page/</url>
       
