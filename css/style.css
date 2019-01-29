@@ -416,7 +416,7 @@ body table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 16px;
+  font-size: 12px;
   overflow: auto;
   display: block;
 }
@@ -425,7 +425,7 @@ body th {
   border-bottom: 1px dashed $color-code-border;
   color: #dce9be;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 13px;
 }
 body td {
   padding: 9px 8px 0;
@@ -455,7 +455,7 @@ body {
   color: #72e0d1;
   font-display: swap;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   font-family: "Menlo", "Meslo LG", monospace;
   line-height: 1.725;
   text-rendering: geometricPrecision;

@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2019/01/30/how-to-create-jupyer/"/>
+      <url>/2019/01/30/how-to-create-jupyer/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Customize hexo theme using .ejs</title>
       <link href="/2019/01/29/theme-tweak/"/>
       <url>/2019/01/29/theme-tweak/</url>
@@ -23,31 +36,6 @@
             <tag> hexo </tag>
             
             <tag> github </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Create and post jupyter.md</title>
-      <link href="/2019/01/28/how-to-create-jupyer/"/>
-      <url>/2019/01/28/how-to-create-jupyer/</url>
-      
-        <content type="html"><![CDATA[<h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd \path\to\file.md</span><br><span class="line">$ cp file.md \blog\soucre\_post\</span><br><span class="line">$ jupyer nbconvert --to markdown file.ipynb</span><br><span class="line">$ vi file.md</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># add following:</span><br><span class="line">title: &quot;jupyer notebook post&quot;</span><br><span class="line">date: 2019-01-28 00:00:00</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> github </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
             
         </tags>
       
