@@ -445,14 +445,14 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  border-top: 2px solid #efffcd;
+  border-top: 2px solid #d7fff1;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
 }
 body {
   height: 100%;
   background-color: #555152;
-  color: #efffcd;
+  color: #d7fff1;
   font-display: swap;
   font-weight: 400;
   font-size: 14px;
@@ -482,9 +482,9 @@ body {
   -webkit-hyphens: manual;
 }
 .content a {
-  color: #efffcd;
+  color: #d7fff1;
   text-decoration: none;
-  background-image: linear-gradient(transparent, transparent 5px, #efffcd 5px, #efffcd);
+  background-image: linear-gradient(transparent, transparent 5px, #d7fff1 5px, #d7fff1);
   background-position: bottom;
   background-size: 100% 6px;
   background-repeat: repeat-x;
@@ -579,7 +579,7 @@ body {
 #header .h1 {
   margin-top: 0;
   margin-bottom: 0;
-  color: #efffcd;
+  color: #d7fff1;
   letter-spacing: 0.01em;
   font-weight: 700;
   font-style: normal;
@@ -814,7 +814,7 @@ body {
   display: none;
 }
 #header-post #toc .toc-level-2 {
-  color: #efffcd;
+  color: #d7fff1;
   font-size: 0.8rem;
 }
 #header-post #toc .toc-level-2:before {
@@ -986,7 +986,7 @@ body {
   display: none;
 }
 #footer-post #toc-footer .toc-level-2 {
-  color: #efffcd;
+  color: #d7fff1;
   font-size: 0.8rem;
 }
 #footer-post #toc-footer .toc-level-2:before {
@@ -1108,7 +1108,7 @@ article .content blockquote {
   margin: 1rem 10px;
   padding: 0.5em 10px;
   background: inherit;
-  color: #2bbc8a;
+  color: #ffeee4;
   quotes: "\201C" "\201D" "\2018" "\2019";
   font-weight: bold;
 }
@@ -1117,7 +1117,7 @@ article .content blockquote p {
 }
 article .content blockquote:before {
   margin-right: 0.25em;
-  color: #2bbc8a;
+  color: #ffeee4;
   content: "\201C";
   vertical-align: -0.4em;
   font-size: 2em;
@@ -1279,14 +1279,14 @@ article .content .caption {
   text-align: center;
 }
 .pagination .page-number {
-  color: #efffcd;
+  color: #d7fff1;
   font-size: 0.8rem;
 }
 .pagination a {
   padding: 4px 6px;
   border-radius: 5px;
   background-image: none;
-  color: #efffcd;
+  color: #d7fff1;
   text-decoration: none;
 }
 .pagination a:hover {
@@ -1302,7 +1302,7 @@ article .content .caption {
   border: solid 1px #2bbc8a;
   border-radius: 5px;
   background-color: #555152;
-  color: #efffcd;
+  color: #d7fff1;
   font-size: 1.2rem;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -1319,7 +1319,7 @@ article .content .caption {
 }
 #search-result a.search-result-title {
   background-image: none;
-  color: #efffcd;
+  color: #d7fff1;
   text-transform: capitalize;
   font-weight: bold;
   line-height: 1.2;
@@ -1339,7 +1339,7 @@ article .content .caption {
 .search-no-result {
   display: none;
   padding-bottom: 0.5em;
-  color: #efffcd;
+  color: #d7fff1;
 }
 #tag-cloud .tag-cloud-title {
   color: #f5d67b;
