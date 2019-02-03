@@ -96,10 +96,57 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/31/recap-svd/" data-id="cjrp1uzaw000alf09ku4lksij" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/31/recap-svd/" data-id="cjrp1vylb000enm09ve73bv4k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-brack-install" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/31/brack-install/" class="article-date">
+  <time datetime="2019-01-30T21:57:49.000Z" itemprop="datePublished">2019-01-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/31/brack-install/">&lt;Linux&gt; &#34;Brackets&#34;(Snippets) Install(Trouble shooting)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>Download Brackets file from: <a href="https://github.com/adobe/brackets/releases" target="_blank" rel="noopener">https://github.com/adobe/brackets/releases</a><br>my Brackets ver. : 1.13.64-bit<br><em>It has problem with libcurl3 module which should be replaced with libcurl4.</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp ~/Downloads/Brackets.Release.1.13.64-bit.deb ~/[path]/ #path: dir you wanna install Brackets in</span><br><span class="line">$ cd [path]</span><br></pre></td></tr></table></figure></p>
+<h1 id="Replace-libcurl3-with-liburl4"><a href="#Replace-libcurl3-with-liburl4" class="headerlink" title="Replace libcurl3 with liburl4"></a>Replace libcurl3 with liburl4</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg-deb -R ./Brackets.Release.1.13.64-bit.deb Brackets</span><br><span class="line">$ vi Brackets/DEBIAN/control</span><br></pre></td></tr></table></figure>
+<p>and <strong>replace <code>libcurl3</code> with <code>libcurl4</code></strong></p>
+<h1 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg-deb -b Brackets Brackets-fixed.deb</span><br><span class="line">$ sudo dpkg -i Brackets-fixed.deb</span><br></pre></td></tr></table></figure>
+<p>Maybe you encounter a warning message, but it doesn’t matter.<br>Brackets works well.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="cjrp1vykk0003nm0937zqf8xk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bracket/">Bracket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Snippets/">Snippets</a></li></ul>
 
     </footer>
   </div>
@@ -272,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="cjrp1uz9w0000lf094m3ppuhf" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="cjrp1vykc0001nm092xej4ycd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
@@ -324,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="cjrp1uzb8000flf0964emfxiq" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="cjrp1vyld000fnm099xk2telq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -368,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="cjrp1uzaf0005lf09tftpuv10" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="cjrp1vykx0009nm09vtm7g7c3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -427,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="cjrp1uzat0008lf09981c79b9" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="cjrp1vyl5000bnm09c6b18evx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/">Python3</a></li></ul>
@@ -833,7 +880,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="cjrp1uzb3000elf094561je68" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="cjrp1vylg000inm09mr0lqtsi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Text/">Text</a></li></ul>
@@ -889,7 +936,7 @@ $ hexo s
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="cjrp1uza70002lf098enyd56i" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="cjrp1vyks0006nm09w54gn54s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -921,7 +968,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
     </div>
   </div>
 
@@ -931,7 +978,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+      <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
     </div>
   </div>
 
@@ -957,6 +1004,10 @@ $ hexo s
           </li>
         
           <li>
+            <a href="/2019/01/31/brack-install/">&lt;Linux&gt; &#34;Brackets&#34;(Snippets) Install(Trouble shooting)</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
           </li>
         
@@ -966,10 +1017,6 @@ $ hexo s
         
           <li>
             <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/28/insatlling_virtual_env/">&lt;Linux&gt; Install virtual python env</a>
           </li>
         
       </ul>

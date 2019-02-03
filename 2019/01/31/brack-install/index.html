@@ -5,20 +5,20 @@
   
 
   
-  <title>brack-install | G00D Morning &#34;Data&#34;</title>
+  <title>&lt;Linux&gt; &#34;Brackets&#34;(Snippets) Install(Trouble shooting) | G00D Morning &#34;Data&#34;</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="code snippesttrouble shooting과 ingnore">
-<meta name="keywords" content="Study">
+  <meta name="description" content="InstallDownload Brackets file from: https://github.com/adobe/brackets/releasesmy Brackets ver. : 1.13.64-bitIt has problem with libcurl3 module which should be replaced with libcurl4.12$ cp ~/Download">
+<meta name="keywords" content="Bracket,Snippets">
 <meta property="og:type" content="article">
-<meta property="og:title" content="brack-install">
+<meta property="og:title" content="&lt;Linux&gt; &quot;Brackets&quot;(Snippets) Install(Trouble shooting)">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/31/brack-install/index.html">
 <meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
-<meta property="og:description" content="code snippesttrouble shooting과 ingnore">
+<meta property="og:description" content="InstallDownload Brackets file from: https://github.com/adobe/brackets/releasesmy Brackets ver. : 1.13.64-bitIt has problem with libcurl3 module which should be replaced with libcurl4.12$ cp ~/Download">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-03T07:15:32.470Z">
+<meta property="og:updated_time" content="2019-02-03T15:17:38.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="brack-install">
-<meta name="twitter:description" content="code snippesttrouble shooting과 ingnore">
+<meta name="twitter:title" content="&lt;Linux&gt; &quot;Brackets&quot;(Snippets) Install(Trouble shooting)">
+<meta name="twitter:description" content="InstallDownload Brackets file from: https://github.com/adobe/brackets/releasesmy Brackets ver. : 1.13.64-bitIt has problem with libcurl3 module which should be replaced with libcurl4.12$ cp ~/Download">
   
     <link rel="alternate" href="/atom.xml" title="G00D Morning &#34;Data&#34;" type="application/atom+xml">
   
@@ -72,7 +72,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      brack-install
+      &lt;Linux&gt; &#34;Brackets&#34;(Snippets) Install(Trouble shooting)
     </h1>
   
 
@@ -91,15 +91,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>code snippest<br>trouble shooting과 ingnore</p>
+        <h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>Download Brackets file from: <a href="https://github.com/adobe/brackets/releases" target="_blank" rel="noopener">https://github.com/adobe/brackets/releases</a><br>my Brackets ver. : 1.13.64-bit<br><em>It has problem with libcurl3 module which should be replaced with libcurl4.</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp ~/Downloads/Brackets.Release.1.13.64-bit.deb ~/[path]/ #path: dir you wanna install Brackets in</span><br><span class="line">$ cd [path]</span><br></pre></td></tr></table></figure></p>
+<h1 id="Replace-libcurl3-with-liburl4"><a href="#Replace-libcurl3-with-liburl4" class="headerlink" title="Replace libcurl3 with liburl4"></a>Replace libcurl3 with liburl4</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg-deb -R ./Brackets.Release.1.13.64-bit.deb Brackets</span><br><span class="line">$ vi Brackets/DEBIAN/control</span><br></pre></td></tr></table></figure>
+<p>and <strong>replace <code>libcurl3</code> with <code>libcurl4</code></strong></p>
+<h1 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg-deb -b Brackets Brackets-fixed.deb</span><br><span class="line">$ sudo dpkg -i Brackets-fixed.deb</span><br></pre></td></tr></table></figure>
+<p>Maybe you encounter a warning message, but it doesn’t matter.<br>Brackets works well.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="cjrok6ee70002n809veqeeowx" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="cjrp1vykk0003nm0937zqf8xk" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bracket/">Bracket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Snippets/">Snippets</a></li></ul>
 
     </footer>
   </div>
@@ -135,7 +139,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
     </div>
   </div>
 
@@ -145,7 +149,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
     </div>
   </div>
 
@@ -155,7 +159,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+      <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
     </div>
   </div>
 
@@ -181,7 +185,7 @@
           </li>
         
           <li>
-            <a href="/2019/01/31/brack-install/">brack-install</a>
+            <a href="/2019/01/31/brack-install/">&lt;Linux&gt; &#34;Brackets&#34;(Snippets) Install(Trouble shooting)</a>
           </li>
         
           <li>

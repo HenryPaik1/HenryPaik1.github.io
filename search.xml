@@ -31,6 +31,33 @@
     
     
     <entry>
+      <title>&lt;Linux&gt; &quot;Brackets&quot;(Snippets) Install(Trouble shooting)</title>
+      <link href="/2019/01/31/brack-install/"/>
+      <url>/2019/01/31/brack-install/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>Download Brackets file from: <a href="https://github.com/adobe/brackets/releases" target="_blank" rel="noopener">https://github.com/adobe/brackets/releases</a><br>my Brackets ver. : 1.13.64-bit<br><em>It has problem with libcurl3 module which should be replaced with libcurl4.</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp ~/Downloads/Brackets.Release.1.13.64-bit.deb ~/[path]/ #path: dir you wanna install Brackets in</span><br><span class="line">$ cd [path]</span><br></pre></td></tr></table></figure></p><h1 id="Replace-libcurl3-with-liburl4"><a href="#Replace-libcurl3-with-liburl4" class="headerlink" title="Replace libcurl3 with liburl4"></a>Replace libcurl3 with liburl4</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg-deb -R ./Brackets.Release.1.13.64-bit.deb Brackets</span><br><span class="line">$ vi Brackets/DEBIAN/control</span><br></pre></td></tr></table></figure><p>and <strong>replace <code>libcurl3</code> with <code>libcurl4</code></strong></p><h1 id="Rebuild"><a href="#Rebuild" class="headerlink" title="Rebuild"></a>Rebuild</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg-deb -b Brackets Brackets-fixed.deb</span><br><span class="line">$ sudo dpkg -i Brackets-fixed.deb</span><br></pre></td></tr></table></figure><p>Maybe you encounter a warning message, but it doesn’t matter.<br>Brackets works well.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Bracket </tag>
+            
+            <tag> Snippets </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>&lt;Recap&gt; 모수추정</title>
       <link href="/2019/01/30/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8/"/>
       <url>/2019/01/30/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8/</url>
