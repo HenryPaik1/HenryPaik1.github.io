@@ -7,18 +7,18 @@
   
   <title>&lt;hexo&gt; Create hexo github page | G00D Morning &#34;Data&#34;</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="install Node.js $ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh   install hexo $ npm install hexo-cli -g $ hexo init blog # blog = &amp;lt;file name&amp;gt; $ cd blog   set t">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="install Node.js$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh install hexo$ npm install hexo-cli -g $ hexo init blog # blog = &amp;lt;file name&amp;gt; $ cd blog set theme$ g">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;hexo&gt; Create hexo github page">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/index.html">
 <meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
-<meta property="og:description" content="install Node.js $ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh   install hexo $ npm install hexo-cli -g $ hexo init blog # blog = &amp;lt;file name&amp;gt; $ cd blog   set t">
+<meta property="og:description" content="install Node.js$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh install hexo$ npm install hexo-cli -g $ hexo init blog # blog = &amp;lt;file name&amp;gt; $ cd blog set theme$ g">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-29T21:31:31.031Z">
+<meta property="og:updated_time" content="2019-02-03T07:16:54.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;hexo&gt; Create hexo github page">
-<meta name="twitter:description" content="install Node.js $ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh   install hexo $ npm install hexo-cli -g $ hexo init blog # blog = &amp;lt;file name&amp;gt; $ cd blog   set t">
+<meta name="twitter:description" content="install Node.js$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh install hexo$ npm install hexo-cli -g $ hexo init blog # blog = &amp;lt;file name&amp;gt; $ cd blog set theme$ g">
   
     <link rel="alternate" href="/atom.xml" title="G00D Morning &#34;Data&#34;" type="application/atom+xml">
   
@@ -72,7 +72,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/github/">github</a>
+    <a class="article-category-link" href="/categories/Github/">Github</a>
   </div>
 
   </div>
@@ -91,42 +91,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="install-nodejs"><a class="markdownIt-Anchor" href="#install-nodejs"></a> install Node.js</h3>
-<pre><code>$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
-</code></pre>
-<h3 id="install-hexo"><a class="markdownIt-Anchor" href="#install-hexo"></a> install hexo</h3>
-<pre><code>$ npm install hexo-cli -g
+        <h3 id="install-Node-js"><a href="#install-Node-js" class="headerlink" title="install Node.js"></a>install Node.js</h3><pre><code>$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
+</code></pre><h3 id="install-hexo"><a href="#install-hexo" class="headerlink" title="install hexo"></a>install hexo</h3><pre><code>$ npm install hexo-cli -g
 $ hexo init blog # blog = &lt;file name&gt;
 $ cd blog
-</code></pre>
-<h3 id="set-theme"><a class="markdownIt-Anchor" href="#set-theme"></a> set theme</h3>
-<pre><code>$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus
+</code></pre><h3 id="set-theme"><a href="#set-theme" class="headerlink" title="set theme"></a>set theme</h3><pre><code>$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus
 $ vi _config.yml
-</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: cactus</span><br></pre></td></tr></table></figure>
-<h3 id="setting-deploy-config"><a class="markdownIt-Anchor" href="#setting-deploy-config"></a> setting deploy config.</h3>
-<pre><code>$ npm install hexo-deployer-git --save
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: cactus</span><br></pre></td></tr></table></figure>
+<h3 id="setting-deploy-config"><a href="#setting-deploy-config" class="headerlink" title="setting deploy config."></a>setting deploy config.</h3><pre><code>$ npm install hexo-deployer-git --save
 $ vi _config.yml
-</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/HenryPaik1/HenryPaik1.github.io.git</span><br></pre></td></tr></table></figure>
-<h3 id="apply-modification-run-hexo-server"><a class="markdownIt-Anchor" href="#apply-modification-run-hexo-server"></a> apply modification &amp; run hexo server</h3>
-<pre><code>$ hexo g
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/HenryPaik1/HenryPaik1.github.io.git</span><br></pre></td></tr></table></figure>
+<h3 id="apply-modification-amp-run-hexo-server"><a href="#apply-modification-amp-run-hexo-server" class="headerlink" title="apply modification &amp; run hexo server"></a>apply modification &amp; run hexo server</h3><pre><code>$ hexo g
 $ hexo s
-</code></pre>
-<h3 id="sync-github"><a class="markdownIt-Anchor" href="#sync-github"></a> sync github</h3>
-<pre><code>$ hexo d
-</code></pre>
-<p><strong>refernce:</strong><br>
-<a href="https://github.com/probberechts/hexo-theme-cactus" target="_blank" rel="noopener">https://github.com/probberechts/hexo-theme-cactus</a><br>
-<a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">https://hexo.io/docs/commands</a></p>
+</code></pre><h3 id="sync-github"><a href="#sync-github" class="headerlink" title="sync github"></a>sync github</h3><pre><code>$ hexo d
+</code></pre><p><strong>refernce:</strong><br><a href="https://github.com/probberechts/hexo-theme-cactus" target="_blank" rel="noopener">https://github.com/probberechts/hexo-theme-cactus</a><br><a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">https://hexo.io/docs/commands</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="cjrok6eeg0005n809n4okn399" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="cjrp1uza70002lf098enyd56i" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 
     </footer>
   </div>
@@ -157,7 +143,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
     </div>
   </div>
 
@@ -167,7 +153,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
     </div>
   </div>
 
@@ -177,7 +163,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
     </div>
   </div>
 
@@ -203,10 +189,6 @@ $ hexo s
           </li>
         
           <li>
-            <a href="/2019/01/31/brack-install/">brack-install</a>
-          </li>
-        
-          <li>
             <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
           </li>
         
@@ -216,6 +198,10 @@ $ hexo s
         
           <li>
             <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/insatlling_virtual_env/">&lt;Linux&gt; Install virtual python env</a>
           </li>
         
       </ul>

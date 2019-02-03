@@ -7,21 +7,21 @@
   
   <title>&lt;DS&gt; 자연어 처리(1) | G00D Morning &#34;Data&#34;</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="index 자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit  sent_tokenize: return sentence   word unit  word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출">
+  <meta name="description" content="index자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize= TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stemm">
 <meta name="keywords" content="Text,Preprocessing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;DS&gt; 자연어 처리(1)">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/index.html">
 <meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
-<meta property="og:description" content="index 자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit  sent_tokenize: return sentence   word unit  word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출">
+<meta property="og:description" content="index자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize= TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stemm">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_45_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_65_0.png">
-<meta property="og:updated_time" content="2019-01-30T13:17:46.066Z">
+<meta property="og:updated_time" content="2019-02-03T07:17:24.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;DS&gt; 자연어 처리(1)">
-<meta name="twitter:description" content="index 자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit  sent_tokenize: return sentence   word unit  word_tokenize = TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출">
+<meta name="twitter:description" content="index자연어 처리(1)  말뭉치(corpus) 토큰생성(tokenizing)   sentence unit sent_tokenize: return sentence   word unit word_tokenize= TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer     형태소 분석   어간 추출 stemm">
 <meta name="twitter:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png">
   
     <link rel="alternate" href="/atom.xml" title="G00D Morning &#34;Data&#34;" type="application/atom+xml">
@@ -95,34 +95,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="index"><a class="markdownIt-Anchor" href="#index"></a> index</h2>
-<p>자연어 처리(1)</p>
+        <h2 id="index"><a href="#index" class="headerlink" title="index"></a>index</h2><p>자연어 처리(1)</p>
 <ol>
 <li>말뭉치(corpus)</li>
 <li>토큰생성(tokenizing)</li>
 </ol>
 <ul>
-<li>sentence unit
-<ul>
+<li>sentence unit<ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
 </li>
-<li>word unit
-<ul>
-<li><code>word_tokenize</code><br>
-= <code>TreebankWordTokenizer</code></li>
+<li>word unit<ul>
+<li><code>word_tokenize</code><br>= <code>TreebankWordTokenizer</code></li>
 <li><code>WordPunctTokenizer</code></li>
 <li><code>RegexpTokenizer</code></li>
 </ul>
 </li>
 </ul>
-<ol start="3">
+<ol>
 <li>형태소 분석</li>
 </ol>
 <ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
-<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.
-<ul>
+<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
 </ul>
 </li>
@@ -131,8 +126,7 @@
 <p>cf. pos tagging</p>
 <ul>
 <li>품사 POS 구분: 낱말을 문법적 기능, 형태, 뜻에 따라 구분</li>
-<li>NLTK는 Penn Treebank Tagset 채택
-<ul>
+<li>NLTK는 Penn Treebank Tagset 채택<ul>
 <li>NNP: 단수 고유명사</li>
 <li>VB: 동사</li>
 <li>VBP: 동사 현재형</li>
@@ -145,31 +139,29 @@
 <p>cf. pos tagging: text pre-processing 연습</p>
 <ul>
 <li>scikit-learn 자연어 분석시 “같은 토큰/다른 품사” = 다른 토큰</li>
-<li>처리방법
-<ul>
+<li>처리방법<ul>
 <li>convert to “토큰/품사”</li>
 </ul>
 </li>
 </ul>
-<ol start="4">
+<ol>
 <li>text class</li>
 </ol>
 <ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
-<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화
-<ul>
+<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
 </ul>
 </li>
 <li><code>concordance</code>: lines 입력 갯수만큼 해당 문장 display</li>
 <li><code>similar</code>: 해당 단어와 비슷한 문맥에서 사용된 단어</li>
 </ul>
-<ol start="5">
+<ol>
 <li>FreqDist</li>
 </ol>
 <ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
-<li>return: <code>{'word': frequency}</code></li>
+<li>return: <code>{&#39;word&#39;: frequency}</code></li>
 <li><code>N()</code>: 전체 단어수</li>
 <li><code>freq(&quot;word&quot;)</code>: 확률</li>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
@@ -180,14 +172,13 @@
 </ul>
 <p>5.2 사용법2)</p>
 <ul>
-<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성
-<ul>
+<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
 </li>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
 </ul>
-<ol start="6">
+<ol>
 <li>wordcloud</li>
 </ol>
 <ul>
@@ -195,16 +186,13 @@
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
 <hr>
-<h2 id="contents"><a class="markdownIt-Anchor" href="#contents"></a> Contents</h2>
-<h3 id="1-말뭉치corpus"><a class="markdownIt-Anchor" href="#1-말뭉치corpus"></a> 1. 말뭉치(corpus)</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><h3 id="1-말뭉치-corpus"><a href="#1-말뭉치-corpus" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>True
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.book <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.book <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
 <pre><code>*** Introductory Examples for the NLTK Book ***
 Loading text1, ..., text9 and sent1, ..., sent9
 Type the name of the text or sentence to view it.
-Type: 'texts()' or 'sents()' to list the materials.
+Type: &#39;texts()&#39; or &#39;sents()&#39; to list the materials.
 text1: Moby Dick by Herman Melville 1851
 text2: Sense and Sensibility by Jane Austen 1811
 text3: The Book of Genesis
@@ -214,35 +202,33 @@ text6: Monty Python and the Holy Grail
 text7: Wall Street Journal
 text8: Personals Corpus
 text9: The Man Who Was Thursday by G . K . Chesterton 1908
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.corpus.gutenberg.fileids()</span><br></pre></td></tr></table></figure>
-<pre><code>['austen-emma.txt',
- 'austen-persuasion.txt',
- 'austen-sense.txt',
- 'bible-kjv.txt',
- 'blake-poems.txt',
- 'bryant-stories.txt',
- 'burgess-busterbrown.txt',
- 'carroll-alice.txt',
- 'chesterton-ball.txt',
- 'chesterton-brown.txt',
- 'chesterton-thursday.txt',
- 'edgeworth-parents.txt',
- 'melville-moby_dick.txt',
- 'milton-paradise.txt',
- 'shakespeare-caesar.txt',
- 'shakespeare-hamlet.txt',
- 'shakespeare-macbeth.txt',
- 'whitman-leaves.txt']
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raw = nltk.corpus.gutenberg.raw(<span class="string">'bryant-stories.txt'</span>)</span><br><span class="line">print(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.corpus.gutenberg.fileids()</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;austen-emma.txt&#39;,
+ &#39;austen-persuasion.txt&#39;,
+ &#39;austen-sense.txt&#39;,
+ &#39;bible-kjv.txt&#39;,
+ &#39;blake-poems.txt&#39;,
+ &#39;bryant-stories.txt&#39;,
+ &#39;burgess-busterbrown.txt&#39;,
+ &#39;carroll-alice.txt&#39;,
+ &#39;chesterton-ball.txt&#39;,
+ &#39;chesterton-brown.txt&#39;,
+ &#39;chesterton-thursday.txt&#39;,
+ &#39;edgeworth-parents.txt&#39;,
+ &#39;melville-moby_dick.txt&#39;,
+ &#39;milton-paradise.txt&#39;,
+ &#39;shakespeare-caesar.txt&#39;,
+ &#39;shakespeare-hamlet.txt&#39;,
+ &#39;shakespeare-macbeth.txt&#39;,
+ &#39;whitman-leaves.txt&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raw = nltk.corpus.gutenberg.raw(<span class="string">'bryant-stories.txt'</span>)</span><br><span class="line">print(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>[Stories to Tell to Children by Sara Cone Bryant 1918]
 
 
 TWO LITTLE RIDDLES IN RHYME
 
 
-     There's a garden that I ken,
+     There&#39;s a garden that I ken,
      Full of little gentlemen;
      Little caps of blue they wear,
      And green ribbons, very fair.
@@ -250,112 +236,93 @@ TWO LITTLE RIDDLES IN RHYME
 
      From house to house he goes,
      A me
-</code></pre>
-<hr>
-<h3 id="2-토큰생성tokenizing"><a class="markdownIt-Anchor" href="#2-토큰생성tokenizing"></a> 2. 토큰생성(tokenizing)</h3>
-<h4 id="sentence-unit"><a class="markdownIt-Anchor" href="#sentence-unit"></a> sentence unit</h4>
-<ul>
+</code></pre><hr>
+<h3 id="2-토큰생성-tokenizing"><a href="#2-토큰생성-tokenizing" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h3><h4 id="sentence-unit"><a href="#sentence-unit" class="headerlink" title="sentence unit"></a>sentence unit</h4><ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> sent_tokenize</span><br><span class="line">sent_tokenize(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>[&quot;[Stories to Tell to Children by Sara Cone Bryant 1918] \r\n\r\n\r\nTWO LITTLE RIDDLES IN RHYME\r\n\r\n\r\n     There's a garden that I ken,\r\n     Full of little gentlemen;\r\n     Little caps of blue they wear,\r\n     And green ribbons, very fair.&quot;,
- '(Flax.)',
- 'From house to house he goes,\r\n     A me']
-</code></pre>
-<h4 id="word-unit"><a class="markdownIt-Anchor" href="#word-unit"></a> word unit</h4>
-<ul>
-<li><code>word_tokenize</code><br>
-= <code>TreebankWordTokenizer</code></li>
+<pre><code>[&quot;[Stories to Tell to Children by Sara Cone Bryant 1918] \r\n\r\n\r\nTWO LITTLE RIDDLES IN RHYME\r\n\r\n\r\n     There&#39;s a garden that I ken,\r\n     Full of little gentlemen;\r\n     Little caps of blue they wear,\r\n     And green ribbons, very fair.&quot;,
+ &#39;(Flax.)&#39;,
+ &#39;From house to house he goes,\r\n     A me&#39;]
+</code></pre><h4 id="word-unit"><a href="#word-unit" class="headerlink" title="word unit"></a>word unit</h4><ul>
+<li><code>word_tokenize</code><br>= <code>TreebankWordTokenizer</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> word_tokenize</span><br><span class="line">word_tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>['this', &quot;'s&quot;, ',', 'a', ',', 'test', '!', 'ha', '.']
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> TreebankWordTokenizer</span><br><span class="line">tree = TreebankWordTokenizer()</span><br><span class="line">tree.tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>['this', &quot;'s&quot;, ',', 'a', ',', 'test', '!', 'ha', '.']
-</code></pre>
-<ul>
+<pre><code>[&#39;this&#39;, &quot;&#39;s&quot;, &#39;,&#39;, &#39;a&#39;, &#39;,&#39;, &#39;test&#39;, &#39;!&#39;, &#39;ha&#39;, &#39;.&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> TreebankWordTokenizer</span><br><span class="line">tree = TreebankWordTokenizer()</span><br><span class="line">tree.tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;this&#39;, &quot;&#39;s&quot;, &#39;,&#39;, &#39;a&#39;, &#39;,&#39;, &#39;test&#39;, &#39;!&#39;, &#39;ha&#39;, &#39;.&#39;]
+</code></pre><ul>
 <li><code>WordPunctTokenizer</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> WordPunctTokenizer</span><br><span class="line">punct = WordPunctTokenizer()</span><br><span class="line">punct.tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>['this', &quot;'&quot;, 's', ',', 'a', ',', 'test', '!', 'ha', '.']
-</code></pre>
-<ul>
+<pre><code>[&#39;this&#39;, &quot;&#39;&quot;, &#39;s&#39;, &#39;,&#39;, &#39;a&#39;, &#39;,&#39;, &#39;test&#39;, &#39;!&#39;, &#39;ha&#39;, &#39;.&#39;]
+</code></pre><ul>
 <li><code>RegexpTokenizer</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> RegexpTokenizer</span><br><span class="line">pattern = <span class="string">"[\w]+"</span></span><br><span class="line">retokenize = RegexpTokenizer(pattern)</span><br><span class="line">retokenize.tokenize(raw[<span class="number">50</span>:<span class="number">100</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>['918', 'TWO', 'LITTLE', 'RIDDLES', 'IN', 'RHYME', 'T']
-</code></pre>
-<hr>
-<h3 id="3-형태소-분석"><a class="markdownIt-Anchor" href="#3-형태소-분석"></a> 3. 형태소 분석</h3>
-<ul>
+<pre><code>[&#39;918&#39;, &#39;TWO&#39;, &#39;LITTLE&#39;, &#39;RIDDLES&#39;, &#39;IN&#39;, &#39;RHYME&#39;, &#39;T&#39;]
+</code></pre><hr>
+<h3 id="3-형태소-분석"><a href="#3-형태소-분석" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h3><ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
-<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.
-<ul>
+<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
 </ul>
 </li>
 <li>품사 부착 part-of-speech tagging</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words = retokenize.tokenize(raw[<span class="number">1300</span>:<span class="number">2000</span>])</span><br></pre></td></tr></table></figure>
-<h4 id="stemming"><a class="markdownIt-Anchor" href="#stemming"></a> stemming</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> PorterStemmer</span><br><span class="line">st = PorterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>[('said', 'said'),
- ('a', 'a'),
- ('little', 'littl'),
- ('soft', 'soft'),
- ('cheery', 'cheeri'),
- ('voice', 'voic'),
- ('and', 'and'),
- ('I', 'I'),
- ('want', 'want'),
- ('to', 'to'),
- ('come', 'come'),
- ('in', 'in'),
- ('N', 'N'),
- ('no', 'no'),
- ('said', 'said')]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> LancasterStemmer</span><br><span class="line">st = LancasterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>[('said', 'said'),
- ('a', 'a'),
- ('little', 'littl'),
- ('soft', 'soft'),
- ('cheery', 'cheery'),
- ('voice', 'voic'),
- ('and', 'and'),
- ('I', 'i'),
- ('want', 'want'),
- ('to', 'to'),
- ('come', 'com'),
- ('in', 'in'),
- ('N', 'n'),
- ('no', 'no'),
- ('said', 'said')]
-</code></pre>
-<h4 id="lemmatizing"><a class="markdownIt-Anchor" href="#lemmatizing"></a> lemmatizing</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> WordNetLemmatizer</span><br><span class="line">lm = WordNetLemmatizer()</span><br><span class="line">[(w, lm.lemmatize(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>[('said', 'said'),
- ('a', 'a'),
- ('little', 'little'),
- ('soft', 'soft'),
- ('cheery', 'cheery'),
- ('voice', 'voice'),
- ('and', 'and'),
- ('I', 'I'),
- ('want', 'want'),
- ('to', 'to'),
- ('come', 'come'),
- ('in', 'in'),
- ('N', 'N'),
- ('no', 'no'),
- ('said', 'said')]
-</code></pre>
-<hr>
-<h4 id="pos-tagging"><a class="markdownIt-Anchor" href="#pos-tagging"></a> pos tagging</h4>
-<ul>
+<h4 id="stemming"><a href="#stemming" class="headerlink" title="stemming"></a>stemming</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> PorterStemmer</span><br><span class="line">st = PorterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;said&#39;, &#39;said&#39;),
+ (&#39;a&#39;, &#39;a&#39;),
+ (&#39;little&#39;, &#39;littl&#39;),
+ (&#39;soft&#39;, &#39;soft&#39;),
+ (&#39;cheery&#39;, &#39;cheeri&#39;),
+ (&#39;voice&#39;, &#39;voic&#39;),
+ (&#39;and&#39;, &#39;and&#39;),
+ (&#39;I&#39;, &#39;I&#39;),
+ (&#39;want&#39;, &#39;want&#39;),
+ (&#39;to&#39;, &#39;to&#39;),
+ (&#39;come&#39;, &#39;come&#39;),
+ (&#39;in&#39;, &#39;in&#39;),
+ (&#39;N&#39;, &#39;N&#39;),
+ (&#39;no&#39;, &#39;no&#39;),
+ (&#39;said&#39;, &#39;said&#39;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> LancasterStemmer</span><br><span class="line">st = LancasterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;said&#39;, &#39;said&#39;),
+ (&#39;a&#39;, &#39;a&#39;),
+ (&#39;little&#39;, &#39;littl&#39;),
+ (&#39;soft&#39;, &#39;soft&#39;),
+ (&#39;cheery&#39;, &#39;cheery&#39;),
+ (&#39;voice&#39;, &#39;voic&#39;),
+ (&#39;and&#39;, &#39;and&#39;),
+ (&#39;I&#39;, &#39;i&#39;),
+ (&#39;want&#39;, &#39;want&#39;),
+ (&#39;to&#39;, &#39;to&#39;),
+ (&#39;come&#39;, &#39;com&#39;),
+ (&#39;in&#39;, &#39;in&#39;),
+ (&#39;N&#39;, &#39;n&#39;),
+ (&#39;no&#39;, &#39;no&#39;),
+ (&#39;said&#39;, &#39;said&#39;)]
+</code></pre><h4 id="lemmatizing"><a href="#lemmatizing" class="headerlink" title="lemmatizing"></a>lemmatizing</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> WordNetLemmatizer</span><br><span class="line">lm = WordNetLemmatizer()</span><br><span class="line">[(w, lm.lemmatize(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;said&#39;, &#39;said&#39;),
+ (&#39;a&#39;, &#39;a&#39;),
+ (&#39;little&#39;, &#39;little&#39;),
+ (&#39;soft&#39;, &#39;soft&#39;),
+ (&#39;cheery&#39;, &#39;cheery&#39;),
+ (&#39;voice&#39;, &#39;voice&#39;),
+ (&#39;and&#39;, &#39;and&#39;),
+ (&#39;I&#39;, &#39;I&#39;),
+ (&#39;want&#39;, &#39;want&#39;),
+ (&#39;to&#39;, &#39;to&#39;),
+ (&#39;come&#39;, &#39;come&#39;),
+ (&#39;in&#39;, &#39;in&#39;),
+ (&#39;N&#39;, &#39;N&#39;),
+ (&#39;no&#39;, &#39;no&#39;),
+ (&#39;said&#39;, &#39;said&#39;)]
+</code></pre><hr>
+<h4 id="pos-tagging"><a href="#pos-tagging" class="headerlink" title="pos tagging"></a>pos tagging</h4><ul>
 <li>품사 POS 구분: 낱말을 문법적 기능, 형태, 뜻에 따라 구분</li>
-<li>NLTK는 Penn Treebank Tagset 채택
-<ul>
+<li>NLTK는 Penn Treebank Tagset 채택<ul>
 <li>NNP: 단수 고유명사</li>
 <li>VB: 동사</li>
 <li>VBP: 동사 현재형</li>
@@ -366,60 +333,49 @@ TWO LITTLE RIDDLES IN RHYME
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> pos_tag</span><br><span class="line">sentence = sent_tokenize(raw[<span class="number">203</span>:<span class="number">400</span>])[<span class="number">0</span>]</span><br><span class="line">sentence</span><br></pre></td></tr></table></figure>
-<pre><code>'And green ribbons, very fair.'
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word = word_tokenize(sentence)</span><br><span class="line">word</span><br></pre></td></tr></table></figure>
-<pre><code>['And', 'green', 'ribbons', ',', 'very', 'fair', '.']
-</code></pre>
-<ul>
+<pre><code>&#39;And green ribbons, very fair.&#39;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word = word_tokenize(sentence)</span><br><span class="line">word</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;And&#39;, &#39;green&#39;, &#39;ribbons&#39;, &#39;,&#39;, &#39;very&#39;, &#39;fair&#39;, &#39;.&#39;]
+</code></pre><ul>
 <li><code>pos_tag</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tagged_list = pos_tag(word)</span><br><span class="line">tagged_list</span><br></pre></td></tr></table></figure>
-<pre><code>[('And', 'CC'),
- ('green', 'JJ'),
- ('ribbons', 'NNS'),
- (',', ','),
- ('very', 'RB'),
- ('fair', 'JJ'),
- ('.', '.')]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.help.upenn_tagset(<span class="string">'JJ'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;And&#39;, &#39;CC&#39;),
+ (&#39;green&#39;, &#39;JJ&#39;),
+ (&#39;ribbons&#39;, &#39;NNS&#39;),
+ (&#39;,&#39;, &#39;,&#39;),
+ (&#39;very&#39;, &#39;RB&#39;),
+ (&#39;fair&#39;, &#39;JJ&#39;),
+ (&#39;.&#39;, &#39;.&#39;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.help.upenn_tagset(<span class="string">'JJ'</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>JJ: adjective or numeral, ordinal
     third ill-mannered pre-war regrettable oiled calamitous first separable
     ectoplasmic battery-powered participatory fourth still-to-be-named
     multilingual multi-disciplinary ...
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>filtering</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cc_list = [t[<span class="number">0</span>] <span class="keyword">for</span> t <span class="keyword">in</span> tagged_list <span class="keyword">if</span> t[<span class="number">1</span>] == <span class="string">"CC"</span>]</span><br><span class="line">cc_list</span><br></pre></td></tr></table></figure>
-<pre><code>['And']
-</code></pre>
-<ul>
+<pre><code>[&#39;And&#39;]
+</code></pre><ul>
 <li><code>untag</code>: return word</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> untag</span><br><span class="line">untag(tagged_list)</span><br></pre></td></tr></table></figure>
-<pre><code>['And', 'green', 'ribbons', ',', 'very', 'fair', '.']
-</code></pre>
-<hr>
-<h4 id="pos-tagging-text-pre-processing-연습"><a class="markdownIt-Anchor" href="#pos-tagging-text-pre-processing-연습"></a> pos tagging: text pre-processing 연습</h4>
-<ul>
+<pre><code>[&#39;And&#39;, &#39;green&#39;, &#39;ribbons&#39;, &#39;,&#39;, &#39;very&#39;, &#39;fair&#39;, &#39;.&#39;]
+</code></pre><hr>
+<h4 id="pos-tagging-text-pre-processing-연습"><a href="#pos-tagging-text-pre-processing-연습" class="headerlink" title="pos tagging: text pre-processing 연습"></a>pos tagging: text pre-processing 연습</h4><ul>
 <li>scikit-learn 자연어 분석시 “같은 토큰/다른 품사” = 다른 토큰</li>
-<li>처리방법
-<ul>
+<li>처리방법<ul>
 <li>convert to “토큰/품사”</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenizer</span><span class="params">(doc)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">"/"</span>.join(p) <span class="keyword">for</span> p <span class="keyword">in</span> tagged_list]</span><br><span class="line"></span><br><span class="line">tokenizer(sentence)</span><br></pre></td></tr></table></figure>
-<pre><code>['And/CC', 'green/JJ', 'ribbons/NNS', ',/,', 'very/RB', 'fair/JJ', './.']
-</code></pre>
-<hr>
-<h3 id="4-text-class"><a class="markdownIt-Anchor" href="#4-text-class"></a> 4. text class</h3>
-<ul>
+<pre><code>[&#39;And/CC&#39;, &#39;green/JJ&#39;, &#39;ribbons/NNS&#39;, &#39;,/,&#39;, &#39;very/RB&#39;, &#39;fair/JJ&#39;, &#39;./.&#39;]
+</code></pre><hr>
+<h3 id="4-text-class"><a href="#4-text-class" class="headerlink" title="4. text class"></a>4. text class</h3><ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
-<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화
-<ul>
+<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
 </ul>
 </li>
@@ -433,8 +389,7 @@ TWO LITTLE RIDDLES IN RHYME
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text.plot(<span class="number">30</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p><img src="/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png" alt="png"></p>
 <ul>
-<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화
-<ul>
+<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
 </ul>
 </li>
@@ -451,30 +406,23 @@ TWO LITTLE RIDDLES IN RHYME
 f both daughters but particularly of Emma Between _them_ it was more the intim
 nd friend very mutually attached and Emma doing just what she liked highly est
  by her own The real evils indeed of Emma s situation were the power of having
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><code>similar</code>: 해당 단어와 비슷한 문맥에서 사용된 단어</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text.similar(<span class="string">'Emma'</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>she it he i harriet you her jane him that
-</code></pre>
-<hr>
-<h3 id="5-freqdist"><a class="markdownIt-Anchor" href="#5-freqdist"></a> 5. FreqDist</h3>
-<ul>
+</code></pre><hr>
+<h3 id="5-FreqDist"><a href="#5-FreqDist" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h3><ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
-<li>return: <code>{'word': frequency}</code></li>
+<li>return: <code>{&#39;word&#39;: frequency}</code></li>
 </ul>
-<h4 id="사용법1"><a class="markdownIt-Anchor" href="#사용법1"></a> 사용법1)</h4>
-<ul>
+<h4 id="사용법1"><a href="#사용법1" class="headerlink" title="사용법1)"></a>사용법1)</h4><ul>
 <li><code>Text</code> class의 vocab으로 추출</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fd = text.vocab()</span><br><span class="line">type(fd)</span><br></pre></td></tr></table></figure>
 <pre><code>nltk.probability.FreqDist
-</code></pre>
-<h4 id="사용법2"><a class="markdownIt-Anchor" href="#사용법2"></a> 사용법2)</h4>
-<ul>
-<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성
-<ul>
+</code></pre><h4 id="사용법2"><a href="#사용법2" class="headerlink" title="사용법2)"></a>사용법2)</h4><ul>
+<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
 </li>
@@ -484,34 +432,28 @@ nd friend very mutually attached and Emma doing just what she liked highly est
     Motown Venneboerger Czestochwa Ranzer Conchita Trumplane Christos
     Oceanside Escobar Kreisler Sawyer Cougar Yvette Ervin ODI Darryl CTCA
     Shannon A.K.C. Meltex Liverpool ...
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emma_tokens = pos_tag(retokenize.tokenize(raw))</span><br><span class="line">len(emma_tokens), emma_tokens[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>(161983, ('Emma', 'NN'))
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> FreqDist</span><br><span class="line"></span><br><span class="line">stopwords = [<span class="string">'Mr.'</span>, <span class="string">'Mrs.'</span>, <span class="string">'Miss'</span>, <span class="string">'Mr'</span>, <span class="string">'Mrs'</span>, <span class="string">'Dear'</span>]</span><br><span class="line">names_list = [t[<span class="number">0</span>] <span class="keyword">for</span> t <span class="keyword">in</span> emma_tokens <span class="keyword">if</span> t[<span class="number">1</span>] == <span class="string">"NNP"</span> <span class="keyword">and</span> t[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> stopwords]</span><br><span class="line">fd_names = FreqDist(names_list)</span><br><span class="line">fd_names</span><br></pre></td></tr></table></figure>
-<pre><code>FreqDist({'Emma': 830, 'Harriet': 491, 'Weston': 439, 'Knightley': 389, 'Elton': 385, 'Woodhouse': 304, 'Jane': 299, 'Fairfax': 241, 'Churchill': 223, 'Frank': 208, ...})
-</code></pre>
-<hr>
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emma_tokens = pos_tag(retokenize.tokenize(raw))</span><br><span class="line">len(emma_tokens), emma_tokens[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>(161983, (&#39;Emma&#39;, &#39;NN&#39;))
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> FreqDist</span><br><span class="line"></span><br><span class="line">stopwords = [<span class="string">'Mr.'</span>, <span class="string">'Mrs.'</span>, <span class="string">'Miss'</span>, <span class="string">'Mr'</span>, <span class="string">'Mrs'</span>, <span class="string">'Dear'</span>]</span><br><span class="line">names_list = [t[<span class="number">0</span>] <span class="keyword">for</span> t <span class="keyword">in</span> emma_tokens <span class="keyword">if</span> t[<span class="number">1</span>] == <span class="string">"NNP"</span> <span class="keyword">and</span> t[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> stopwords]</span><br><span class="line">fd_names = FreqDist(names_list)</span><br><span class="line">fd_names</span><br></pre></td></tr></table></figure>
+<pre><code>FreqDist({&#39;Emma&#39;: 830, &#39;Harriet&#39;: 491, &#39;Weston&#39;: 439, &#39;Knightley&#39;: 389, &#39;Elton&#39;: 385, &#39;Woodhouse&#39;: 304, &#39;Jane&#39;: 299, &#39;Fairfax&#39;: 241, &#39;Churchill&#39;: 223, &#39;Frank&#39;: 208, ...})
+</code></pre><hr>
 <ul>
 <li><code>N()</code>: 전체 단어수</li>
 <li><code>freq(&quot;word&quot;)</code>: 확률</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd_names.N(), fd_names[<span class="string">'Emma'</span>], fd_names.freq(<span class="string">'Emma'</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>(7863, 830, 0.10555767518758744)
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd_names.most_common(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>[('Emma', 830),
- ('Harriet', 491),
- ('Weston', 439),
- ('Knightley', 389),
- ('Elton', 385)]
-</code></pre>
-<hr>
-<h3 id="6-wordcloud"><a class="markdownIt-Anchor" href="#6-wordcloud"></a> 6. wordcloud</h3>
-<ul>
+<pre><code>[(&#39;Emma&#39;, 830),
+ (&#39;Harriet&#39;, 491),
+ (&#39;Weston&#39;, 439),
+ (&#39;Knightley&#39;, 389),
+ (&#39;Elton&#39;, 385)]
+</code></pre><hr>
+<h3 id="6-wordcloud"><a href="#6-wordcloud" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h3><ul>
 <li><code>FreqDist</code> 활용</li>
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
@@ -521,7 +463,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="cjrok6eez000in809o2a2vjge" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="cjrp1uzb3000elf094561je68" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Text/">Text</a></li></ul>
@@ -560,7 +502,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
     </div>
   </div>
 
@@ -570,7 +512,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
     </div>
   </div>
 
@@ -580,7 +522,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
     </div>
   </div>
 
@@ -606,10 +548,6 @@ nd friend very mutually attached and Emma doing just what she liked highly est
           </li>
         
           <li>
-            <a href="/2019/01/31/brack-install/">brack-install</a>
-          </li>
-        
-          <li>
             <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
           </li>
         
@@ -619,6 +557,10 @@ nd friend very mutually attached and Emma doing just what she liked highly est
         
           <li>
             <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/insatlling_virtual_env/">&lt;Linux&gt; Install virtual python env</a>
           </li>
         
       </ul>

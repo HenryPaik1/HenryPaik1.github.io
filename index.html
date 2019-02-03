@@ -72,7 +72,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Data-science/">Data science</a>►<a class="article-category-link" href="/categories/Data-science/Math/">Math</a>
+    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
   </div>
 
   </div>
@@ -91,56 +91,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>NG 자료<br>
-유저와 영화 관계로 설명</p>
+        <p>NG 자료<br>유저와 영화 관계로 설명</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/31/recap-svd/" data-id="cjrok6eet000en809emfknmaz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-brack-install" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/31/brack-install/" class="article-date">
-  <time datetime="2019-01-30T21:57:49.000Z" itemprop="datePublished">2019-01-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/31/brack-install/">brack-install</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>code snippest<br>trouble shooting과 ingnore</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="cjrok6ee70002n809veqeeowx" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/31/recap-svd/" data-id="cjrp1uzaw000alf09ku4lksij" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -316,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="cjrok6edw0000n8093nskskm3" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="cjrp1uz9w0000lf094m3ppuhf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
@@ -354,39 +310,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="example-picture"><a class="markdownIt-Anchor" href="#example-picture"></a> Example Picture</h2>
-<p><img src="/images/modifyejs.png" alt=""></p>
-<h2 id="1-change-writing-to-recent-posts"><a class="markdownIt-Anchor" href="#1-change-writing-to-recent-posts"></a> 1. Change ‘Writing’ to ‘Recent Posts’</h2>
-<p><code>index.articles</code> indicates “writing”.<br><br>
-Need to change variable <code>index.articles</code> to “Recent Post”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br></pre></td></tr></table></figure>
-<p><code>default.yml</code> save variables.<br><br>
-modified code:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;languages&gt;default.yml</span><br><span class="line"> index:</span><br><span class="line">   find_me_on: Find me on</span><br><span class="line">   enum_comma: &apos;,&apos;</span><br><span class="line">   enum_and: and</span><br><span class="line">   articles: wrting # change to -&gt; Recent Posts</span><br><span class="line">   projects: Projects</span><br><span class="line">   topics: Topics</span><br><span class="line">   most_recent: Most recent</span><br></pre></td></tr></table></figure>
-<h2 id="2-display-categories-on-the-first-page"><a class="markdownIt-Anchor" href="#2-display-categories-on-the-first-page"></a> 2. Display Categories on the first page</h2>
-<p>Note. prerequisite: categories page<br>
-$ hexo new page categories<br>
-and adding <code>type:categories</code> to <code>source&gt;categories&gt;index.md</code></p>
-<p>Need to insert following code:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;categories&quot; class=&quot;left&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;category-list-title&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;categories&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;nav.category&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">      &lt;% var visibleCategories = 0 %&gt;</span><br><span class="line">      &lt;% site.categories.each(function(cat)&#123; %&gt;</span><br><span class="line">        &lt;% if (cat.length) &#123; %&gt;</span><br><span class="line">          &lt;% visibleCategories += 1 %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br><span class="line">      &lt;% &#125;) %&gt;</span><br><span class="line">      &lt;%- _p(&apos;counter.categories&apos;, visibleCategories) %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;category-list&quot;&gt;</span><br><span class="line">    &lt;%- list_categories() %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<p>after the code below:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.topics&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;widget tagcloud&quot;&gt;</span><br><span class="line">    &lt;%- tagcloud(theme.tags_overview) %&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.most_recent&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  &lt;ul class=&quot;post-list&quot;&gt;</span><br><span class="line">    &lt;% var field_sort = theme.posts_overview.sort_updated ? &apos;updated&apos; : &apos;date&apos; %&gt;</span><br><span class="line">    &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = page.posts.sort(field_sort, &apos;desc&apos;) %&gt;</span><br><span class="line">    &lt;% &#125; else &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = site.posts.sort(field_sort, &apos;desc&apos;).limit(theme.posts_overview.post_count || 5) %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% show_posts.each(function(post, i)&#123; %&gt;</span><br><span class="line">      &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">        &lt;%- partial(&apos;_partial/post/date&apos;, &#123; post: post, class_name: &apos;meta&apos; &#125;) %&gt;</span><br><span class="line">        &lt;span&gt;&lt;%- partial(&apos;_partial/post/title&apos;, &#123; post: post, index: true, class_name: &apos;&apos; &#125;) %&gt;&lt;/span&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">    &lt;% &#125;); %&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">    &lt;%- partial(&apos;_partial/pagination&apos;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="3-make-the-logo-stay-bright"><a class="markdownIt-Anchor" href="#3-make-the-logo-stay-bright"></a> 3. Make the logo stay bright</h2>
-<p>Corret the code as below</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#path: theme&gt;cactus&gt;source&gt;css&gt;_partial&gt;header.styl</span><br><span class="line">#logo</span><br><span class="line">  display: inline-block</span><br><span class="line">  float: left</span><br><span class="line">  margin-right: 20px</span><br><span class="line">  width: $logo-width</span><br><span class="line">  height: $logo-height</span><br><span class="line">  border-radius: 5px</span><br><span class="line">  # delete -&gt; filter: grayscale(100%)</span><br><span class="line">  background-size: $logo-width $logo-height</span><br><span class="line">  background-repeat: no-repeat</span><br><span class="line">  # delete -&gt; -webkit-filter: grayscale(100%)</span><br></pre></td></tr></table></figure>
-<p>and delete the code below:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#header:hover</span><br><span class="line">  #logo</span><br><span class="line">    filter: none</span><br><span class="line">    -webkit-filter: none</span><br></pre></td></tr></table></figure>
-<h2 id="4-place-categoy-recent-posts-side-by-side"><a class="markdownIt-Anchor" href="#4-place-categoy-recent-posts-side-by-side"></a> 4. Place Categoy &amp; Recent Posts side by side</h2>
-<p>prerequisite: add class ‘.left’, ‘right’ to each section<br><br>
-Correct the code <code>.content</code> as below:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;source&gt;CSS&gt;style.styl</span><br><span class="line">.content</span><br><span class="line">  position: relative</span><br><span class="line">  flex-wrap: wrap</span><br><span class="line">  flex-direction: row</span><br><span class="line">  min-height: 100%</span><br><span class="line">.left</span><br><span class="line">  float: left</span><br><span class="line">.right</span><br><span class="line">  float: right</span><br></pre></td></tr></table></figure>
-<h2 id="5-mange-font-color"><a class="markdownIt-Anchor" href="#5-mange-font-color"></a> 5. Mange font color</h2>
-<p>path: themes&gt;cactus&gt;source&gt;css&gt;style.styl</p>
+        <h2 id="Example-Picture"><a href="#Example-Picture" class="headerlink" title="Example Picture"></a>Example Picture</h2><p><img src="/images/modifyejs.png" alt=""></p>
+<h2 id="1-Change-‘Writing’-to-‘Recent-Posts’"><a href="#1-Change-‘Writing’-to-‘Recent-Posts’" class="headerlink" title="1. Change ‘Writing’ to ‘Recent Posts’"></a>1. Change ‘Writing’ to ‘Recent Posts’</h2><p><code>index.articles</code> indicates “writing”.&lt;/br&gt;<br>Need to change variable <code>index.articles</code> to “Recent Post”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p> <code>default.yml</code> save variables.&lt;/br&gt;<br> modified code:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;languages&gt;default.yml</span><br><span class="line"> index:</span><br><span class="line">   find_me_on: Find me on</span><br><span class="line">   enum_comma: &apos;,&apos;</span><br><span class="line">   enum_and: and</span><br><span class="line">   articles: wrting # change to -&gt; Recent Posts</span><br><span class="line">   projects: Projects</span><br><span class="line">   topics: Topics</span><br><span class="line">   most_recent: Most recent</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-Display-Categories-on-the-first-page"><a href="#2-Display-Categories-on-the-first-page" class="headerlink" title="2. Display Categories on the first page"></a>2. Display Categories on the first page</h2><p>Note. prerequisite: categories page<br>        $ hexo new page categories<br>and adding <code>type:categories</code> to <code>source&gt;categories&gt;index.md</code></p>
+<p>Need to insert following code:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;categories&quot; class=&quot;left&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;category-list-title&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;categories&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;nav.category&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">      &lt;% var visibleCategories = 0 %&gt;</span><br><span class="line">      &lt;% site.categories.each(function(cat)&#123; %&gt;</span><br><span class="line">        &lt;% if (cat.length) &#123; %&gt;</span><br><span class="line">          &lt;% visibleCategories += 1 %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br><span class="line">      &lt;% &#125;) %&gt;</span><br><span class="line">      &lt;%- _p(&apos;counter.categories&apos;, visibleCategories) %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;category-list&quot;&gt;</span><br><span class="line">    &lt;%- list_categories() %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
+<p>after the code below:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.topics&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;widget tagcloud&quot;&gt;</span><br><span class="line">    &lt;%- tagcloud(theme.tags_overview) %&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.most_recent&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  &lt;ul class=&quot;post-list&quot;&gt;</span><br><span class="line">    &lt;% var field_sort = theme.posts_overview.sort_updated ? &apos;updated&apos; : &apos;date&apos; %&gt;</span><br><span class="line">    &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = page.posts.sort(field_sort, &apos;desc&apos;) %&gt;</span><br><span class="line">    &lt;% &#125; else &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = site.posts.sort(field_sort, &apos;desc&apos;).limit(theme.posts_overview.post_count || 5) %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% show_posts.each(function(post, i)&#123; %&gt;</span><br><span class="line">      &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">        &lt;%- partial(&apos;_partial/post/date&apos;, &#123; post: post, class_name: &apos;meta&apos; &#125;) %&gt;</span><br><span class="line">        &lt;span&gt;&lt;%- partial(&apos;_partial/post/title&apos;, &#123; post: post, index: true, class_name: &apos;&apos; &#125;) %&gt;&lt;/span&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">    &lt;% &#125;); %&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">    &lt;%- partial(&apos;_partial/pagination&apos;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-Make-the-logo-stay-bright"><a href="#3-Make-the-logo-stay-bright" class="headerlink" title="3. Make the logo stay bright"></a>3. Make the logo stay bright</h2><p>Corret the code as below<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#path: theme&gt;cactus&gt;source&gt;css&gt;_partial&gt;header.styl</span><br><span class="line">#logo</span><br><span class="line">  display: inline-block</span><br><span class="line">  float: left</span><br><span class="line">  margin-right: 20px</span><br><span class="line">  width: $logo-width</span><br><span class="line">  height: $logo-height</span><br><span class="line">  border-radius: 5px</span><br><span class="line">  # delete -&gt; filter: grayscale(100%)</span><br><span class="line">  background-size: $logo-width $logo-height</span><br><span class="line">  background-repeat: no-repeat</span><br><span class="line">  # delete -&gt; -webkit-filter: grayscale(100%)</span><br></pre></td></tr></table></figure></p>
+<p>and delete the code below:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#header:hover</span><br><span class="line">  #logo</span><br><span class="line">    filter: none</span><br><span class="line">    -webkit-filter: none</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-Place-Categoy-amp-Recent-Posts-side-by-side"><a href="#4-Place-Categoy-amp-Recent-Posts-side-by-side" class="headerlink" title="4. Place Categoy &amp; Recent Posts side by side"></a>4. Place Categoy &amp; Recent Posts side by side</h2><p>prerequisite: add class ‘.left’, ‘right’ to each section&lt;/br&gt;<br>Correct the code <code>.content</code> as below:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;source&gt;CSS&gt;style.styl</span><br><span class="line">.content</span><br><span class="line">  position: relative</span><br><span class="line">  flex-wrap: wrap</span><br><span class="line">  flex-direction: row</span><br><span class="line">  min-height: 100%</span><br><span class="line">.left</span><br><span class="line">  float: left</span><br><span class="line">.right</span><br><span class="line">  float: right</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-Mange-font-color"><a href="#5-Mange-font-color" class="headerlink" title="5. Mange font color"></a>5. Mange font color</h2><p>path: themes&gt;cactus&gt;source&gt;css&gt;style.styl</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="cjrok6eev000fn8099ip57p2e" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="cjrp1uzb8000flf0964emfxiq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -405,7 +343,7 @@ Correct the code <code>.content</code> as below:</p>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -424,17 +362,16 @@ Correct the code <code>.content</code> as below:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="see-the-example-below"><a class="markdownIt-Anchor" href="#see-the-example-below"></a> See the example below:</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd \path\to\file.md</span><br><span class="line">$ cp file.md \blog\soucre\_post\</span><br><span class="line">$ jupyer nbconvert --to markdown file.ipynb</span><br><span class="line">$ vi file.md</span><br></pre></td></tr></table></figure>
+        <h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd \path\to\file.md</span><br><span class="line">$ cp file.md \blog\soucre\_post\</span><br><span class="line">$ jupyer nbconvert --to markdown file.ipynb</span><br><span class="line">$ vi file.md</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># add following:</span><br><span class="line">title: &quot;jupyer notebook post&quot;</span><br><span class="line">date: 2019-01-28 00:00:00</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="cjrok6eel0008n809a3mgbl21" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="cjrp1uzaf0005lf09tftpuv10" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -450,7 +387,7 @@ Correct the code <code>.content</code> as below:</p>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -469,44 +406,31 @@ Correct the code <code>.content</code> as below:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="11-pyenv-설치"><a class="markdownIt-Anchor" href="#11-pyenv-설치"></a> 1.1 pyenv 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev</span><br><span class="line">$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv</span><br><span class="line">$ vim $HOME/.bashrc</span><br></pre></td></tr></table></figure>
-<h3 id="12-configs-setting"><a class="markdownIt-Anchor" href="#12-configs-setting"></a> 1.2 configs setting</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vi /.bash_profile</span><br><span class="line"></span><br><span class="line">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;</span><br><span class="line">export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;</span><br><span class="line"></span><br><span class="line">eval &quot;$(pyenv init -)&quot;</span><br><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="13-update"><a class="markdownIt-Anchor" href="#13-update"></a> 1.3 update</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update</span><br></pre></td></tr></table></figure>
-<h3 id="14-python-설치"><a class="markdownIt-Anchor" href="#14-python-설치"></a> 1.4 python 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv install 3.5.2</span><br></pre></td></tr></table></figure>
+        <h3 id="1-1-pyenv-설치"><a href="#1-1-pyenv-설치" class="headerlink" title="1.1 pyenv 설치"></a>1.1 pyenv 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev</span><br><span class="line">$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv</span><br><span class="line">$ vim $HOME/.bashrc</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-configs-setting"><a href="#1-2-configs-setting" class="headerlink" title="1.2 configs setting"></a>1.2 configs setting</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vi /.bash_profile</span><br><span class="line"></span><br><span class="line">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;</span><br><span class="line">export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;</span><br><span class="line"></span><br><span class="line">eval &quot;$(pyenv init -)&quot;</span><br><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-update"><a href="#1-3-update" class="headerlink" title="1.3 update"></a>1.3 update</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-python-설치"><a href="#1-4-python-설치" class="headerlink" title="1.4 python 설치"></a>1.4 python 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv install 3.5.2</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="21-pyenv-virtualenv-설치"><a class="markdownIt-Anchor" href="#21-pyenv-virtualenv-설치"></a> 2.1 pyenv-virtualenv 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv</span><br></pre></td></tr></table></figure>
-<h3 id="22-virtualenv-환경변수-추가"><a class="markdownIt-Anchor" href="#22-virtualenv-환경변수-추가"></a> 2.2 virtualenv 환경변수 추가</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;eval &quot;$(pyenv virtualenv-init -)&quot;&apos; &gt;&gt; ~/.bash_profile</span><br><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<h3 id="23-가상환경-설정"><a class="markdownIt-Anchor" href="#23-가상환경-설정"></a> 2.3 가상환경 설정</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv virtualenv 3.6.0 py3tensor</span><br></pre></td></tr></table></figure>
-<h3 id="24-실행"><a class="markdownIt-Anchor" href="#24-실행"></a> 2.4 실행</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv activate py3tensor</span><br></pre></td></tr></table></figure>
-<h3 id="24-해제"><a class="markdownIt-Anchor" href="#24-해제"></a> 2.4 해제</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv deactivate</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-pyenv-virtualenv-설치"><a href="#2-1-pyenv-virtualenv-설치" class="headerlink" title="2.1 pyenv-virtualenv 설치"></a>2.1 pyenv-virtualenv 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-virtualenv-환경변수-추가"><a href="#2-2-virtualenv-환경변수-추가" class="headerlink" title="2.2 virtualenv 환경변수 추가"></a>2.2 virtualenv 환경변수 추가</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;eval &quot;$(pyenv virtualenv-init -)&quot;&apos; &gt;&gt; ~/.bash_profile</span><br><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-가상환경-설정"><a href="#2-3-가상환경-설정" class="headerlink" title="2.3 가상환경 설정"></a>2.3 가상환경 설정</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv virtualenv 3.6.0 py3tensor</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-실행"><a href="#2-4-실행" class="headerlink" title="2.4 실행"></a>2.4 실행</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv activate py3tensor</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-해제"><a href="#2-4-해제" class="headerlink" title="2.4 해제"></a>2.4 해제</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv deactivate</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="31-auto_env-설치"><a class="markdownIt-Anchor" href="#31-auto_env-설치"></a> 3.1 auto_env 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv</span><br><span class="line">$ echo &apos;source ~/.autoenv/activate.sh&apos; &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<h3 id="32-local-지정"><a class="markdownIt-Anchor" href="#32-local-지정"></a> 3.2 local 지정</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir pyenv_test &amp;&amp; cd pyenv_test</span><br><span class="line">$ touch .env</span><br><span class="line">$ echo &quot;pyenv activate [virtualenv name]&quot; &gt; .env</span><br></pre></td></tr></table></figure>
-<h3 id="33-global-해제"><a class="markdownIt-Anchor" href="#33-global-해제"></a> 3.3 global 해제</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.env</span><br><span class="line">$ echo &quot;pyenv deactivate&quot; &gt; .env</span><br></pre></td></tr></table></figure>
-<h3 id="41-jupyter-notebook-for-virtual-env"><a class="markdownIt-Anchor" href="#41-jupyter-notebook-for-virtual-env"></a> 4.1 Jupyter notebook for virtual env</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd pyenv_test</span><br><span class="line">$ pip install ipykernel ipython</span><br><span class="line">$ mkdir /home/henry/.local/share/jupyter/kernels/py3ten</span><br><span class="line">$ vi kernel.jason</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;argv&quot;: [ &quot;/Users/motta/.pyenv/versions/k_means/bin/python&quot;, &quot;-m&quot;, &quot;ipykernel&quot;,</span><br><span class="line">          &quot;-f&quot;, &quot;&#123;connection_file&#125;&quot;],</span><br><span class="line"> &quot;display_name&quot;: &quot;k_means&quot;,</span><br><span class="line"> &quot;language&quot;: &quot;python&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-auto-env-설치"><a href="#3-1-auto-env-설치" class="headerlink" title="3.1 auto_env 설치"></a>3.1 auto_env 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv</span><br><span class="line">$ echo &apos;source ~/.autoenv/activate.sh&apos; &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-local-지정"><a href="#3-2-local-지정" class="headerlink" title="3.2 local 지정"></a>3.2 local 지정</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir pyenv_test &amp;&amp; cd pyenv_test</span><br><span class="line">$ touch .env</span><br><span class="line">$ echo &quot;pyenv activate [virtualenv name]&quot; &gt; .env</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-global-해제"><a href="#3-3-global-해제" class="headerlink" title="3.3 global 해제"></a>3.3 global 해제</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.env</span><br><span class="line">$ echo &quot;pyenv deactivate&quot; &gt; .env</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-Jupyter-notebook-for-virtual-env"><a href="#4-1-Jupyter-notebook-for-virtual-env" class="headerlink" title="4.1 Jupyter notebook for virtual env"></a>4.1 Jupyter notebook for virtual env</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd pyenv_test</span><br><span class="line">$ pip install ipykernel ipython</span><br><span class="line">$ mkdir /home/henry/.local/share/jupyter/kernels/py3ten</span><br><span class="line">$ vi kernel.jason</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;argv&quot;: [ &quot;/Users/motta/.pyenv/versions/k_means/bin/python&quot;, &quot;-m&quot;, &quot;ipykernel&quot;,</span><br><span class="line">          &quot;-f&quot;, &quot;&#123;connection_file&#125;&quot;],</span><br><span class="line"> &quot;display_name&quot;: &quot;k_means&quot;,</span><br><span class="line"> &quot;language&quot;: &quot;python&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>reference:</p>
 <p><a href="https://www.alfredo.motta.name/create-isolated-jupyter-ipython-kernels-with-pyenv-and-virtualenv/" target="_blank" rel="noopener">https://www.alfredo.motta.name/create-isolated-jupyter-ipython-kernels-with-pyenv-and-virtualenv/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="cjrok6eeo000an809myx3kqgg" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="cjrp1uzat0008lf09981c79b9" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3/">python3</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/">Python3</a></li></ul>
 
     </footer>
   </div>
@@ -541,34 +465,29 @@ Correct the code <code>.content</code> as below:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="index"><a class="markdownIt-Anchor" href="#index"></a> index</h2>
-<p>자연어 처리(1)</p>
+        <h2 id="index"><a href="#index" class="headerlink" title="index"></a>index</h2><p>자연어 처리(1)</p>
 <ol>
 <li>말뭉치(corpus)</li>
 <li>토큰생성(tokenizing)</li>
 </ol>
 <ul>
-<li>sentence unit
-<ul>
+<li>sentence unit<ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
 </li>
-<li>word unit
-<ul>
-<li><code>word_tokenize</code><br>
-= <code>TreebankWordTokenizer</code></li>
+<li>word unit<ul>
+<li><code>word_tokenize</code><br>= <code>TreebankWordTokenizer</code></li>
 <li><code>WordPunctTokenizer</code></li>
 <li><code>RegexpTokenizer</code></li>
 </ul>
 </li>
 </ul>
-<ol start="3">
+<ol>
 <li>형태소 분석</li>
 </ol>
 <ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
-<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.
-<ul>
+<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
 </ul>
 </li>
@@ -577,8 +496,7 @@ Correct the code <code>.content</code> as below:</p>
 <p>cf. pos tagging</p>
 <ul>
 <li>품사 POS 구분: 낱말을 문법적 기능, 형태, 뜻에 따라 구분</li>
-<li>NLTK는 Penn Treebank Tagset 채택
-<ul>
+<li>NLTK는 Penn Treebank Tagset 채택<ul>
 <li>NNP: 단수 고유명사</li>
 <li>VB: 동사</li>
 <li>VBP: 동사 현재형</li>
@@ -591,31 +509,29 @@ Correct the code <code>.content</code> as below:</p>
 <p>cf. pos tagging: text pre-processing 연습</p>
 <ul>
 <li>scikit-learn 자연어 분석시 “같은 토큰/다른 품사” = 다른 토큰</li>
-<li>처리방법
-<ul>
+<li>처리방법<ul>
 <li>convert to “토큰/품사”</li>
 </ul>
 </li>
 </ul>
-<ol start="4">
+<ol>
 <li>text class</li>
 </ol>
 <ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
-<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화
-<ul>
+<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
 </ul>
 </li>
 <li><code>concordance</code>: lines 입력 갯수만큼 해당 문장 display</li>
 <li><code>similar</code>: 해당 단어와 비슷한 문맥에서 사용된 단어</li>
 </ul>
-<ol start="5">
+<ol>
 <li>FreqDist</li>
 </ol>
 <ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
-<li>return: <code>{'word': frequency}</code></li>
+<li>return: <code>{&#39;word&#39;: frequency}</code></li>
 <li><code>N()</code>: 전체 단어수</li>
 <li><code>freq(&quot;word&quot;)</code>: 확률</li>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
@@ -626,14 +542,13 @@ Correct the code <code>.content</code> as below:</p>
 </ul>
 <p>5.2 사용법2)</p>
 <ul>
-<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성
-<ul>
+<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
 </li>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
 </ul>
-<ol start="6">
+<ol>
 <li>wordcloud</li>
 </ol>
 <ul>
@@ -641,16 +556,13 @@ Correct the code <code>.content</code> as below:</p>
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
 <hr>
-<h2 id="contents"><a class="markdownIt-Anchor" href="#contents"></a> Contents</h2>
-<h3 id="1-말뭉치corpus"><a class="markdownIt-Anchor" href="#1-말뭉치corpus"></a> 1. 말뭉치(corpus)</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><h3 id="1-말뭉치-corpus"><a href="#1-말뭉치-corpus" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>True
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.book <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.book <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
 <pre><code>*** Introductory Examples for the NLTK Book ***
 Loading text1, ..., text9 and sent1, ..., sent9
 Type the name of the text or sentence to view it.
-Type: 'texts()' or 'sents()' to list the materials.
+Type: &#39;texts()&#39; or &#39;sents()&#39; to list the materials.
 text1: Moby Dick by Herman Melville 1851
 text2: Sense and Sensibility by Jane Austen 1811
 text3: The Book of Genesis
@@ -660,35 +572,33 @@ text6: Monty Python and the Holy Grail
 text7: Wall Street Journal
 text8: Personals Corpus
 text9: The Man Who Was Thursday by G . K . Chesterton 1908
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.corpus.gutenberg.fileids()</span><br></pre></td></tr></table></figure>
-<pre><code>['austen-emma.txt',
- 'austen-persuasion.txt',
- 'austen-sense.txt',
- 'bible-kjv.txt',
- 'blake-poems.txt',
- 'bryant-stories.txt',
- 'burgess-busterbrown.txt',
- 'carroll-alice.txt',
- 'chesterton-ball.txt',
- 'chesterton-brown.txt',
- 'chesterton-thursday.txt',
- 'edgeworth-parents.txt',
- 'melville-moby_dick.txt',
- 'milton-paradise.txt',
- 'shakespeare-caesar.txt',
- 'shakespeare-hamlet.txt',
- 'shakespeare-macbeth.txt',
- 'whitman-leaves.txt']
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raw = nltk.corpus.gutenberg.raw(<span class="string">'bryant-stories.txt'</span>)</span><br><span class="line">print(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.corpus.gutenberg.fileids()</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;austen-emma.txt&#39;,
+ &#39;austen-persuasion.txt&#39;,
+ &#39;austen-sense.txt&#39;,
+ &#39;bible-kjv.txt&#39;,
+ &#39;blake-poems.txt&#39;,
+ &#39;bryant-stories.txt&#39;,
+ &#39;burgess-busterbrown.txt&#39;,
+ &#39;carroll-alice.txt&#39;,
+ &#39;chesterton-ball.txt&#39;,
+ &#39;chesterton-brown.txt&#39;,
+ &#39;chesterton-thursday.txt&#39;,
+ &#39;edgeworth-parents.txt&#39;,
+ &#39;melville-moby_dick.txt&#39;,
+ &#39;milton-paradise.txt&#39;,
+ &#39;shakespeare-caesar.txt&#39;,
+ &#39;shakespeare-hamlet.txt&#39;,
+ &#39;shakespeare-macbeth.txt&#39;,
+ &#39;whitman-leaves.txt&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raw = nltk.corpus.gutenberg.raw(<span class="string">'bryant-stories.txt'</span>)</span><br><span class="line">print(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>[Stories to Tell to Children by Sara Cone Bryant 1918]
 
 
 TWO LITTLE RIDDLES IN RHYME
 
 
-     There's a garden that I ken,
+     There&#39;s a garden that I ken,
      Full of little gentlemen;
      Little caps of blue they wear,
      And green ribbons, very fair.
@@ -696,112 +606,93 @@ TWO LITTLE RIDDLES IN RHYME
 
      From house to house he goes,
      A me
-</code></pre>
-<hr>
-<h3 id="2-토큰생성tokenizing"><a class="markdownIt-Anchor" href="#2-토큰생성tokenizing"></a> 2. 토큰생성(tokenizing)</h3>
-<h4 id="sentence-unit"><a class="markdownIt-Anchor" href="#sentence-unit"></a> sentence unit</h4>
-<ul>
+</code></pre><hr>
+<h3 id="2-토큰생성-tokenizing"><a href="#2-토큰생성-tokenizing" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h3><h4 id="sentence-unit"><a href="#sentence-unit" class="headerlink" title="sentence unit"></a>sentence unit</h4><ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> sent_tokenize</span><br><span class="line">sent_tokenize(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>[&quot;[Stories to Tell to Children by Sara Cone Bryant 1918] \r\n\r\n\r\nTWO LITTLE RIDDLES IN RHYME\r\n\r\n\r\n     There's a garden that I ken,\r\n     Full of little gentlemen;\r\n     Little caps of blue they wear,\r\n     And green ribbons, very fair.&quot;,
- '(Flax.)',
- 'From house to house he goes,\r\n     A me']
-</code></pre>
-<h4 id="word-unit"><a class="markdownIt-Anchor" href="#word-unit"></a> word unit</h4>
-<ul>
-<li><code>word_tokenize</code><br>
-= <code>TreebankWordTokenizer</code></li>
+<pre><code>[&quot;[Stories to Tell to Children by Sara Cone Bryant 1918] \r\n\r\n\r\nTWO LITTLE RIDDLES IN RHYME\r\n\r\n\r\n     There&#39;s a garden that I ken,\r\n     Full of little gentlemen;\r\n     Little caps of blue they wear,\r\n     And green ribbons, very fair.&quot;,
+ &#39;(Flax.)&#39;,
+ &#39;From house to house he goes,\r\n     A me&#39;]
+</code></pre><h4 id="word-unit"><a href="#word-unit" class="headerlink" title="word unit"></a>word unit</h4><ul>
+<li><code>word_tokenize</code><br>= <code>TreebankWordTokenizer</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> word_tokenize</span><br><span class="line">word_tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>['this', &quot;'s&quot;, ',', 'a', ',', 'test', '!', 'ha', '.']
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> TreebankWordTokenizer</span><br><span class="line">tree = TreebankWordTokenizer()</span><br><span class="line">tree.tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>['this', &quot;'s&quot;, ',', 'a', ',', 'test', '!', 'ha', '.']
-</code></pre>
-<ul>
+<pre><code>[&#39;this&#39;, &quot;&#39;s&quot;, &#39;,&#39;, &#39;a&#39;, &#39;,&#39;, &#39;test&#39;, &#39;!&#39;, &#39;ha&#39;, &#39;.&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> TreebankWordTokenizer</span><br><span class="line">tree = TreebankWordTokenizer()</span><br><span class="line">tree.tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;this&#39;, &quot;&#39;s&quot;, &#39;,&#39;, &#39;a&#39;, &#39;,&#39;, &#39;test&#39;, &#39;!&#39;, &#39;ha&#39;, &#39;.&#39;]
+</code></pre><ul>
 <li><code>WordPunctTokenizer</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> WordPunctTokenizer</span><br><span class="line">punct = WordPunctTokenizer()</span><br><span class="line">punct.tokenize(<span class="string">"this's, a, test! ha."</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>['this', &quot;'&quot;, 's', ',', 'a', ',', 'test', '!', 'ha', '.']
-</code></pre>
-<ul>
+<pre><code>[&#39;this&#39;, &quot;&#39;&quot;, &#39;s&#39;, &#39;,&#39;, &#39;a&#39;, &#39;,&#39;, &#39;test&#39;, &#39;!&#39;, &#39;ha&#39;, &#39;.&#39;]
+</code></pre><ul>
 <li><code>RegexpTokenizer</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> RegexpTokenizer</span><br><span class="line">pattern = <span class="string">"[\w]+"</span></span><br><span class="line">retokenize = RegexpTokenizer(pattern)</span><br><span class="line">retokenize.tokenize(raw[<span class="number">50</span>:<span class="number">100</span>])</span><br></pre></td></tr></table></figure>
-<pre><code>['918', 'TWO', 'LITTLE', 'RIDDLES', 'IN', 'RHYME', 'T']
-</code></pre>
-<hr>
-<h3 id="3-형태소-분석"><a class="markdownIt-Anchor" href="#3-형태소-분석"></a> 3. 형태소 분석</h3>
-<ul>
+<pre><code>[&#39;918&#39;, &#39;TWO&#39;, &#39;LITTLE&#39;, &#39;RIDDLES&#39;, &#39;IN&#39;, &#39;RHYME&#39;, &#39;T&#39;]
+</code></pre><hr>
+<h3 id="3-형태소-분석"><a href="#3-형태소-분석" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h3><ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
-<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.
-<ul>
+<li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
 </ul>
 </li>
 <li>품사 부착 part-of-speech tagging</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words = retokenize.tokenize(raw[<span class="number">1300</span>:<span class="number">2000</span>])</span><br></pre></td></tr></table></figure>
-<h4 id="stemming"><a class="markdownIt-Anchor" href="#stemming"></a> stemming</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> PorterStemmer</span><br><span class="line">st = PorterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>[('said', 'said'),
- ('a', 'a'),
- ('little', 'littl'),
- ('soft', 'soft'),
- ('cheery', 'cheeri'),
- ('voice', 'voic'),
- ('and', 'and'),
- ('I', 'I'),
- ('want', 'want'),
- ('to', 'to'),
- ('come', 'come'),
- ('in', 'in'),
- ('N', 'N'),
- ('no', 'no'),
- ('said', 'said')]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> LancasterStemmer</span><br><span class="line">st = LancasterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>[('said', 'said'),
- ('a', 'a'),
- ('little', 'littl'),
- ('soft', 'soft'),
- ('cheery', 'cheery'),
- ('voice', 'voic'),
- ('and', 'and'),
- ('I', 'i'),
- ('want', 'want'),
- ('to', 'to'),
- ('come', 'com'),
- ('in', 'in'),
- ('N', 'n'),
- ('no', 'no'),
- ('said', 'said')]
-</code></pre>
-<h4 id="lemmatizing"><a class="markdownIt-Anchor" href="#lemmatizing"></a> lemmatizing</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> WordNetLemmatizer</span><br><span class="line">lm = WordNetLemmatizer()</span><br><span class="line">[(w, lm.lemmatize(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>[('said', 'said'),
- ('a', 'a'),
- ('little', 'little'),
- ('soft', 'soft'),
- ('cheery', 'cheery'),
- ('voice', 'voice'),
- ('and', 'and'),
- ('I', 'I'),
- ('want', 'want'),
- ('to', 'to'),
- ('come', 'come'),
- ('in', 'in'),
- ('N', 'N'),
- ('no', 'no'),
- ('said', 'said')]
-</code></pre>
-<hr>
-<h4 id="pos-tagging"><a class="markdownIt-Anchor" href="#pos-tagging"></a> pos tagging</h4>
-<ul>
+<h4 id="stemming"><a href="#stemming" class="headerlink" title="stemming"></a>stemming</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> PorterStemmer</span><br><span class="line">st = PorterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;said&#39;, &#39;said&#39;),
+ (&#39;a&#39;, &#39;a&#39;),
+ (&#39;little&#39;, &#39;littl&#39;),
+ (&#39;soft&#39;, &#39;soft&#39;),
+ (&#39;cheery&#39;, &#39;cheeri&#39;),
+ (&#39;voice&#39;, &#39;voic&#39;),
+ (&#39;and&#39;, &#39;and&#39;),
+ (&#39;I&#39;, &#39;I&#39;),
+ (&#39;want&#39;, &#39;want&#39;),
+ (&#39;to&#39;, &#39;to&#39;),
+ (&#39;come&#39;, &#39;come&#39;),
+ (&#39;in&#39;, &#39;in&#39;),
+ (&#39;N&#39;, &#39;N&#39;),
+ (&#39;no&#39;, &#39;no&#39;),
+ (&#39;said&#39;, &#39;said&#39;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> LancasterStemmer</span><br><span class="line">st = LancasterStemmer()</span><br><span class="line">[(w, st.stem(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;said&#39;, &#39;said&#39;),
+ (&#39;a&#39;, &#39;a&#39;),
+ (&#39;little&#39;, &#39;littl&#39;),
+ (&#39;soft&#39;, &#39;soft&#39;),
+ (&#39;cheery&#39;, &#39;cheery&#39;),
+ (&#39;voice&#39;, &#39;voic&#39;),
+ (&#39;and&#39;, &#39;and&#39;),
+ (&#39;I&#39;, &#39;i&#39;),
+ (&#39;want&#39;, &#39;want&#39;),
+ (&#39;to&#39;, &#39;to&#39;),
+ (&#39;come&#39;, &#39;com&#39;),
+ (&#39;in&#39;, &#39;in&#39;),
+ (&#39;N&#39;, &#39;n&#39;),
+ (&#39;no&#39;, &#39;no&#39;),
+ (&#39;said&#39;, &#39;said&#39;)]
+</code></pre><h4 id="lemmatizing"><a href="#lemmatizing" class="headerlink" title="lemmatizing"></a>lemmatizing</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> WordNetLemmatizer</span><br><span class="line">lm = WordNetLemmatizer()</span><br><span class="line">[(w, lm.lemmatize(w)) <span class="keyword">for</span> w <span class="keyword">in</span> words][:<span class="number">15</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;said&#39;, &#39;said&#39;),
+ (&#39;a&#39;, &#39;a&#39;),
+ (&#39;little&#39;, &#39;little&#39;),
+ (&#39;soft&#39;, &#39;soft&#39;),
+ (&#39;cheery&#39;, &#39;cheery&#39;),
+ (&#39;voice&#39;, &#39;voice&#39;),
+ (&#39;and&#39;, &#39;and&#39;),
+ (&#39;I&#39;, &#39;I&#39;),
+ (&#39;want&#39;, &#39;want&#39;),
+ (&#39;to&#39;, &#39;to&#39;),
+ (&#39;come&#39;, &#39;come&#39;),
+ (&#39;in&#39;, &#39;in&#39;),
+ (&#39;N&#39;, &#39;N&#39;),
+ (&#39;no&#39;, &#39;no&#39;),
+ (&#39;said&#39;, &#39;said&#39;)]
+</code></pre><hr>
+<h4 id="pos-tagging"><a href="#pos-tagging" class="headerlink" title="pos tagging"></a>pos tagging</h4><ul>
 <li>품사 POS 구분: 낱말을 문법적 기능, 형태, 뜻에 따라 구분</li>
-<li>NLTK는 Penn Treebank Tagset 채택
-<ul>
+<li>NLTK는 Penn Treebank Tagset 채택<ul>
 <li>NNP: 단수 고유명사</li>
 <li>VB: 동사</li>
 <li>VBP: 동사 현재형</li>
@@ -812,60 +703,49 @@ TWO LITTLE RIDDLES IN RHYME
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> pos_tag</span><br><span class="line">sentence = sent_tokenize(raw[<span class="number">203</span>:<span class="number">400</span>])[<span class="number">0</span>]</span><br><span class="line">sentence</span><br></pre></td></tr></table></figure>
-<pre><code>'And green ribbons, very fair.'
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word = word_tokenize(sentence)</span><br><span class="line">word</span><br></pre></td></tr></table></figure>
-<pre><code>['And', 'green', 'ribbons', ',', 'very', 'fair', '.']
-</code></pre>
-<ul>
+<pre><code>&#39;And green ribbons, very fair.&#39;
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">word = word_tokenize(sentence)</span><br><span class="line">word</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;And&#39;, &#39;green&#39;, &#39;ribbons&#39;, &#39;,&#39;, &#39;very&#39;, &#39;fair&#39;, &#39;.&#39;]
+</code></pre><ul>
 <li><code>pos_tag</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tagged_list = pos_tag(word)</span><br><span class="line">tagged_list</span><br></pre></td></tr></table></figure>
-<pre><code>[('And', 'CC'),
- ('green', 'JJ'),
- ('ribbons', 'NNS'),
- (',', ','),
- ('very', 'RB'),
- ('fair', 'JJ'),
- ('.', '.')]
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.help.upenn_tagset(<span class="string">'JJ'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[(&#39;And&#39;, &#39;CC&#39;),
+ (&#39;green&#39;, &#39;JJ&#39;),
+ (&#39;ribbons&#39;, &#39;NNS&#39;),
+ (&#39;,&#39;, &#39;,&#39;),
+ (&#39;very&#39;, &#39;RB&#39;),
+ (&#39;fair&#39;, &#39;JJ&#39;),
+ (&#39;.&#39;, &#39;.&#39;)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltk.help.upenn_tagset(<span class="string">'JJ'</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>JJ: adjective or numeral, ordinal
     third ill-mannered pre-war regrettable oiled calamitous first separable
     ectoplasmic battery-powered participatory fourth still-to-be-named
     multilingual multi-disciplinary ...
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>filtering</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cc_list = [t[<span class="number">0</span>] <span class="keyword">for</span> t <span class="keyword">in</span> tagged_list <span class="keyword">if</span> t[<span class="number">1</span>] == <span class="string">"CC"</span>]</span><br><span class="line">cc_list</span><br></pre></td></tr></table></figure>
-<pre><code>['And']
-</code></pre>
-<ul>
+<pre><code>[&#39;And&#39;]
+</code></pre><ul>
 <li><code>untag</code>: return word</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tag <span class="keyword">import</span> untag</span><br><span class="line">untag(tagged_list)</span><br></pre></td></tr></table></figure>
-<pre><code>['And', 'green', 'ribbons', ',', 'very', 'fair', '.']
-</code></pre>
-<hr>
-<h4 id="pos-tagging-text-pre-processing-연습"><a class="markdownIt-Anchor" href="#pos-tagging-text-pre-processing-연습"></a> pos tagging: text pre-processing 연습</h4>
-<ul>
+<pre><code>[&#39;And&#39;, &#39;green&#39;, &#39;ribbons&#39;, &#39;,&#39;, &#39;very&#39;, &#39;fair&#39;, &#39;.&#39;]
+</code></pre><hr>
+<h4 id="pos-tagging-text-pre-processing-연습"><a href="#pos-tagging-text-pre-processing-연습" class="headerlink" title="pos tagging: text pre-processing 연습"></a>pos tagging: text pre-processing 연습</h4><ul>
 <li>scikit-learn 자연어 분석시 “같은 토큰/다른 품사” = 다른 토큰</li>
-<li>처리방법
-<ul>
+<li>처리방법<ul>
 <li>convert to “토큰/품사”</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenizer</span><span class="params">(doc)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">"/"</span>.join(p) <span class="keyword">for</span> p <span class="keyword">in</span> tagged_list]</span><br><span class="line"></span><br><span class="line">tokenizer(sentence)</span><br></pre></td></tr></table></figure>
-<pre><code>['And/CC', 'green/JJ', 'ribbons/NNS', ',/,', 'very/RB', 'fair/JJ', './.']
-</code></pre>
-<hr>
-<h3 id="4-text-class"><a class="markdownIt-Anchor" href="#4-text-class"></a> 4. text class</h3>
-<ul>
+<pre><code>[&#39;And/CC&#39;, &#39;green/JJ&#39;, &#39;ribbons/NNS&#39;, &#39;,/,&#39;, &#39;very/RB&#39;, &#39;fair/JJ&#39;, &#39;./.&#39;]
+</code></pre><hr>
+<h3 id="4-text-class"><a href="#4-text-class" class="headerlink" title="4. text class"></a>4. text class</h3><ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
-<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화
-<ul>
+<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
 </ul>
 </li>
@@ -879,8 +759,7 @@ TWO LITTLE RIDDLES IN RHYME
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text.plot(<span class="number">30</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p><img src="/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png" alt="png"></p>
 <ul>
-<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화
-<ul>
+<li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
 </ul>
 </li>
@@ -897,30 +776,23 @@ TWO LITTLE RIDDLES IN RHYME
 f both daughters but particularly of Emma Between _them_ it was more the intim
 nd friend very mutually attached and Emma doing just what she liked highly est
  by her own The real evils indeed of Emma s situation were the power of having
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><code>similar</code>: 해당 단어와 비슷한 문맥에서 사용된 단어</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text.similar(<span class="string">'Emma'</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>she it he i harriet you her jane him that
-</code></pre>
-<hr>
-<h3 id="5-freqdist"><a class="markdownIt-Anchor" href="#5-freqdist"></a> 5. FreqDist</h3>
-<ul>
+</code></pre><hr>
+<h3 id="5-FreqDist"><a href="#5-FreqDist" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h3><ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
-<li>return: <code>{'word': frequency}</code></li>
+<li>return: <code>{&#39;word&#39;: frequency}</code></li>
 </ul>
-<h4 id="사용법1"><a class="markdownIt-Anchor" href="#사용법1"></a> 사용법1)</h4>
-<ul>
+<h4 id="사용법1"><a href="#사용법1" class="headerlink" title="사용법1)"></a>사용법1)</h4><ul>
 <li><code>Text</code> class의 vocab으로 추출</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fd = text.vocab()</span><br><span class="line">type(fd)</span><br></pre></td></tr></table></figure>
 <pre><code>nltk.probability.FreqDist
-</code></pre>
-<h4 id="사용법2"><a class="markdownIt-Anchor" href="#사용법2"></a> 사용법2)</h4>
-<ul>
-<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성
-<ul>
+</code></pre><h4 id="사용법2"><a href="#사용법2" class="headerlink" title="사용법2)"></a>사용법2)</h4><ul>
+<li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
 </li>
@@ -930,34 +802,28 @@ nd friend very mutually attached and Emma doing just what she liked highly est
     Motown Venneboerger Czestochwa Ranzer Conchita Trumplane Christos
     Oceanside Escobar Kreisler Sawyer Cougar Yvette Ervin ODI Darryl CTCA
     Shannon A.K.C. Meltex Liverpool ...
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emma_tokens = pos_tag(retokenize.tokenize(raw))</span><br><span class="line">len(emma_tokens), emma_tokens[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<pre><code>(161983, ('Emma', 'NN'))
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> FreqDist</span><br><span class="line"></span><br><span class="line">stopwords = [<span class="string">'Mr.'</span>, <span class="string">'Mrs.'</span>, <span class="string">'Miss'</span>, <span class="string">'Mr'</span>, <span class="string">'Mrs'</span>, <span class="string">'Dear'</span>]</span><br><span class="line">names_list = [t[<span class="number">0</span>] <span class="keyword">for</span> t <span class="keyword">in</span> emma_tokens <span class="keyword">if</span> t[<span class="number">1</span>] == <span class="string">"NNP"</span> <span class="keyword">and</span> t[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> stopwords]</span><br><span class="line">fd_names = FreqDist(names_list)</span><br><span class="line">fd_names</span><br></pre></td></tr></table></figure>
-<pre><code>FreqDist({'Emma': 830, 'Harriet': 491, 'Weston': 439, 'Knightley': 389, 'Elton': 385, 'Woodhouse': 304, 'Jane': 299, 'Fairfax': 241, 'Churchill': 223, 'Frank': 208, ...})
-</code></pre>
-<hr>
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">emma_tokens = pos_tag(retokenize.tokenize(raw))</span><br><span class="line">len(emma_tokens), emma_tokens[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>(161983, (&#39;Emma&#39;, &#39;NN&#39;))
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk <span class="keyword">import</span> FreqDist</span><br><span class="line"></span><br><span class="line">stopwords = [<span class="string">'Mr.'</span>, <span class="string">'Mrs.'</span>, <span class="string">'Miss'</span>, <span class="string">'Mr'</span>, <span class="string">'Mrs'</span>, <span class="string">'Dear'</span>]</span><br><span class="line">names_list = [t[<span class="number">0</span>] <span class="keyword">for</span> t <span class="keyword">in</span> emma_tokens <span class="keyword">if</span> t[<span class="number">1</span>] == <span class="string">"NNP"</span> <span class="keyword">and</span> t[<span class="number">0</span>] <span class="keyword">not</span> <span class="keyword">in</span> stopwords]</span><br><span class="line">fd_names = FreqDist(names_list)</span><br><span class="line">fd_names</span><br></pre></td></tr></table></figure>
+<pre><code>FreqDist({&#39;Emma&#39;: 830, &#39;Harriet&#39;: 491, &#39;Weston&#39;: 439, &#39;Knightley&#39;: 389, &#39;Elton&#39;: 385, &#39;Woodhouse&#39;: 304, &#39;Jane&#39;: 299, &#39;Fairfax&#39;: 241, &#39;Churchill&#39;: 223, &#39;Frank&#39;: 208, ...})
+</code></pre><hr>
 <ul>
 <li><code>N()</code>: 전체 단어수</li>
 <li><code>freq(&quot;word&quot;)</code>: 확률</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd_names.N(), fd_names[<span class="string">'Emma'</span>], fd_names.freq(<span class="string">'Emma'</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>(7863, 830, 0.10555767518758744)
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd_names.most_common(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>[('Emma', 830),
- ('Harriet', 491),
- ('Weston', 439),
- ('Knightley', 389),
- ('Elton', 385)]
-</code></pre>
-<hr>
-<h3 id="6-wordcloud"><a class="markdownIt-Anchor" href="#6-wordcloud"></a> 6. wordcloud</h3>
-<ul>
+<pre><code>[(&#39;Emma&#39;, 830),
+ (&#39;Harriet&#39;, 491),
+ (&#39;Weston&#39;, 439),
+ (&#39;Knightley&#39;, 389),
+ (&#39;Elton&#39;, 385)]
+</code></pre><hr>
+<h3 id="6-wordcloud"><a href="#6-wordcloud" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h3><ul>
 <li><code>FreqDist</code> 활용</li>
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
@@ -967,7 +833,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="cjrok6eez000in809o2a2vjge" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="cjrp1uzb3000elf094561je68" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Text/">Text</a></li></ul>
@@ -986,7 +852,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/github/">github</a>
+    <a class="article-category-link" href="/categories/Github/">Github</a>
   </div>
 
   </div>
@@ -1005,42 +871,28 @@ nd friend very mutually attached and Emma doing just what she liked highly est
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="install-nodejs"><a class="markdownIt-Anchor" href="#install-nodejs"></a> install Node.js</h3>
-<pre><code>$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
-</code></pre>
-<h3 id="install-hexo"><a class="markdownIt-Anchor" href="#install-hexo"></a> install hexo</h3>
-<pre><code>$ npm install hexo-cli -g
+        <h3 id="install-Node-js"><a href="#install-Node-js" class="headerlink" title="install Node.js"></a>install Node.js</h3><pre><code>$ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh
+</code></pre><h3 id="install-hexo"><a href="#install-hexo" class="headerlink" title="install hexo"></a>install hexo</h3><pre><code>$ npm install hexo-cli -g
 $ hexo init blog # blog = &lt;file name&gt;
 $ cd blog
-</code></pre>
-<h3 id="set-theme"><a class="markdownIt-Anchor" href="#set-theme"></a> set theme</h3>
-<pre><code>$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus
+</code></pre><h3 id="set-theme"><a href="#set-theme" class="headerlink" title="set theme"></a>set theme</h3><pre><code>$ git clone https://github.com/probberechts/hexo-theme-cactus.git themes/cactus
 $ vi _config.yml
-</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: cactus</span><br></pre></td></tr></table></figure>
-<h3 id="setting-deploy-config"><a class="markdownIt-Anchor" href="#setting-deploy-config"></a> setting deploy config.</h3>
-<pre><code>$ npm install hexo-deployer-git --save
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: cactus</span><br></pre></td></tr></table></figure>
+<h3 id="setting-deploy-config"><a href="#setting-deploy-config" class="headerlink" title="setting deploy config."></a>setting deploy config.</h3><pre><code>$ npm install hexo-deployer-git --save
 $ vi _config.yml
-</code></pre>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/HenryPaik1/HenryPaik1.github.io.git</span><br></pre></td></tr></table></figure>
-<h3 id="apply-modification-run-hexo-server"><a class="markdownIt-Anchor" href="#apply-modification-run-hexo-server"></a> apply modification &amp; run hexo server</h3>
-<pre><code>$ hexo g
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/HenryPaik1/HenryPaik1.github.io.git</span><br></pre></td></tr></table></figure>
+<h3 id="apply-modification-amp-run-hexo-server"><a href="#apply-modification-amp-run-hexo-server" class="headerlink" title="apply modification &amp; run hexo server"></a>apply modification &amp; run hexo server</h3><pre><code>$ hexo g
 $ hexo s
-</code></pre>
-<h3 id="sync-github"><a class="markdownIt-Anchor" href="#sync-github"></a> sync github</h3>
-<pre><code>$ hexo d
-</code></pre>
-<p><strong>refernce:</strong><br>
-<a href="https://github.com/probberechts/hexo-theme-cactus" target="_blank" rel="noopener">https://github.com/probberechts/hexo-theme-cactus</a><br>
-<a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">https://hexo.io/docs/commands</a></p>
+</code></pre><h3 id="sync-github"><a href="#sync-github" class="headerlink" title="sync github"></a>sync github</h3><pre><code>$ hexo d
+</code></pre><p><strong>refernce:</strong><br><a href="https://github.com/probberechts/hexo-theme-cactus" target="_blank" rel="noopener">https://github.com/probberechts/hexo-theme-cactus</a><br><a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">https://hexo.io/docs/commands</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="cjrok6eeg0005n809n4okn399" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="cjrp1uza70002lf098enyd56i" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 
     </footer>
   </div>
@@ -1059,7 +911,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
     </div>
   </div>
 
@@ -1069,7 +921,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
     </div>
   </div>
 
@@ -1079,7 +931,7 @@ $ hexo s
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
     </div>
   </div>
 
@@ -1105,10 +957,6 @@ $ hexo s
           </li>
         
           <li>
-            <a href="/2019/01/31/brack-install/">brack-install</a>
-          </li>
-        
-          <li>
             <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
           </li>
         
@@ -1118,6 +966,10 @@ $ hexo s
         
           <li>
             <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/insatlling_virtual_env/">&lt;Linux&gt; Install virtual python env</a>
           </li>
         
       </ul>

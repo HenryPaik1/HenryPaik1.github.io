@@ -7,18 +7,18 @@
   
   <title>&lt;Linux&gt; Install virtual python env | G00D Morning &#34;Data&#34;</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.1 pyenv 설치 123$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv$ vim $HOME/.bashrc">
-<meta name="keywords" content="pyenv,python3">
+  <meta name="description" content="1.1 pyenv 설치123$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv$ vim $HOME/.bashrc 1">
+<meta name="keywords" content="Pyenv,Python3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;Linux&gt; Install virtual python env">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/index.html">
 <meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
-<meta property="og:description" content="1.1 pyenv 설치 123$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv$ vim $HOME/.bashrc">
+<meta property="og:description" content="1.1 pyenv 설치123$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv$ vim $HOME/.bashrc 1">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-29T21:31:26.287Z">
+<meta property="og:updated_time" content="2019-02-03T07:17:15.693Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;Linux&gt; Install virtual python env">
-<meta name="twitter:description" content="1.1 pyenv 설치 123$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv$ vim $HOME/.bashrc">
+<meta name="twitter:description" content="1.1 pyenv 설치123$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv$ vim $HOME/.bashrc 1">
   
     <link rel="alternate" href="/atom.xml" title="G00D Morning &#34;Data&#34;" type="application/atom+xml">
   
@@ -72,7 +72,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
   </div>
 
   </div>
@@ -91,44 +91,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="11-pyenv-설치"><a class="markdownIt-Anchor" href="#11-pyenv-설치"></a> 1.1 pyenv 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev</span><br><span class="line">$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv</span><br><span class="line">$ vim $HOME/.bashrc</span><br></pre></td></tr></table></figure>
-<h3 id="12-configs-setting"><a class="markdownIt-Anchor" href="#12-configs-setting"></a> 1.2 configs setting</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vi /.bash_profile</span><br><span class="line"></span><br><span class="line">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;</span><br><span class="line">export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;</span><br><span class="line"></span><br><span class="line">eval &quot;$(pyenv init -)&quot;</span><br><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="13-update"><a class="markdownIt-Anchor" href="#13-update"></a> 1.3 update</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update</span><br></pre></td></tr></table></figure>
-<h3 id="14-python-설치"><a class="markdownIt-Anchor" href="#14-python-설치"></a> 1.4 python 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv install 3.5.2</span><br></pre></td></tr></table></figure>
+        <h3 id="1-1-pyenv-설치"><a href="#1-1-pyenv-설치" class="headerlink" title="1.1 pyenv 설치"></a>1.1 pyenv 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install curl git-core gcc make zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libssl-dev</span><br><span class="line">$ git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv</span><br><span class="line">$ vim $HOME/.bashrc</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-configs-setting"><a href="#1-2-configs-setting" class="headerlink" title="1.2 configs setting"></a>1.2 configs setting</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ vi /.bash_profile</span><br><span class="line"></span><br><span class="line">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;</span><br><span class="line">export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;</span><br><span class="line"></span><br><span class="line">eval &quot;$(pyenv init -)&quot;</span><br><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-update"><a href="#1-3-update" class="headerlink" title="1.3 update"></a>1.3 update</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/pyenv/pyenv-update.git ~/.pyenv/plugins/pyenv-update</span><br></pre></td></tr></table></figure>
+<h3 id="1-4-python-설치"><a href="#1-4-python-설치" class="headerlink" title="1.4 python 설치"></a>1.4 python 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv install 3.5.2</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="21-pyenv-virtualenv-설치"><a class="markdownIt-Anchor" href="#21-pyenv-virtualenv-설치"></a> 2.1 pyenv-virtualenv 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv</span><br></pre></td></tr></table></figure>
-<h3 id="22-virtualenv-환경변수-추가"><a class="markdownIt-Anchor" href="#22-virtualenv-환경변수-추가"></a> 2.2 virtualenv 환경변수 추가</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;eval &quot;$(pyenv virtualenv-init -)&quot;&apos; &gt;&gt; ~/.bash_profile</span><br><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<h3 id="23-가상환경-설정"><a class="markdownIt-Anchor" href="#23-가상환경-설정"></a> 2.3 가상환경 설정</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv virtualenv 3.6.0 py3tensor</span><br></pre></td></tr></table></figure>
-<h3 id="24-실행"><a class="markdownIt-Anchor" href="#24-실행"></a> 2.4 실행</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv activate py3tensor</span><br></pre></td></tr></table></figure>
-<h3 id="24-해제"><a class="markdownIt-Anchor" href="#24-해제"></a> 2.4 해제</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv deactivate</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-pyenv-virtualenv-설치"><a href="#2-1-pyenv-virtualenv-설치" class="headerlink" title="2.1 pyenv-virtualenv 설치"></a>2.1 pyenv-virtualenv 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-virtualenv-환경변수-추가"><a href="#2-2-virtualenv-환경변수-추가" class="headerlink" title="2.2 virtualenv 환경변수 추가"></a>2.2 virtualenv 환경변수 추가</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &apos;eval &quot;$(pyenv virtualenv-init -)&quot;&apos; &gt;&gt; ~/.bash_profile</span><br><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h3 id="2-3-가상환경-설정"><a href="#2-3-가상환경-설정" class="headerlink" title="2.3 가상환경 설정"></a>2.3 가상환경 설정</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv virtualenv 3.6.0 py3tensor</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-실행"><a href="#2-4-실행" class="headerlink" title="2.4 실행"></a>2.4 실행</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv activate py3tensor</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-해제"><a href="#2-4-해제" class="headerlink" title="2.4 해제"></a>2.4 해제</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pyenv deactivate</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="31-auto_env-설치"><a class="markdownIt-Anchor" href="#31-auto_env-설치"></a> 3.1 auto_env 설치</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv</span><br><span class="line">$ echo &apos;source ~/.autoenv/activate.sh&apos; &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<h3 id="32-local-지정"><a class="markdownIt-Anchor" href="#32-local-지정"></a> 3.2 local 지정</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir pyenv_test &amp;&amp; cd pyenv_test</span><br><span class="line">$ touch .env</span><br><span class="line">$ echo &quot;pyenv activate [virtualenv name]&quot; &gt; .env</span><br></pre></td></tr></table></figure>
-<h3 id="33-global-해제"><a class="markdownIt-Anchor" href="#33-global-해제"></a> 3.3 global 해제</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.env</span><br><span class="line">$ echo &quot;pyenv deactivate&quot; &gt; .env</span><br></pre></td></tr></table></figure>
-<h3 id="41-jupyter-notebook-for-virtual-env"><a class="markdownIt-Anchor" href="#41-jupyter-notebook-for-virtual-env"></a> 4.1 Jupyter notebook for virtual env</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd pyenv_test</span><br><span class="line">$ pip install ipykernel ipython</span><br><span class="line">$ mkdir /home/henry/.local/share/jupyter/kernels/py3ten</span><br><span class="line">$ vi kernel.jason</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;argv&quot;: [ &quot;/Users/motta/.pyenv/versions/k_means/bin/python&quot;, &quot;-m&quot;, &quot;ipykernel&quot;,</span><br><span class="line">          &quot;-f&quot;, &quot;&#123;connection_file&#125;&quot;],</span><br><span class="line"> &quot;display_name&quot;: &quot;k_means&quot;,</span><br><span class="line"> &quot;language&quot;: &quot;python&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-auto-env-설치"><a href="#3-1-auto-env-설치" class="headerlink" title="3.1 auto_env 설치"></a>3.1 auto_env 설치</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv</span><br><span class="line">$ echo &apos;source ~/.autoenv/activate.sh&apos; &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-local-지정"><a href="#3-2-local-지정" class="headerlink" title="3.2 local 지정"></a>3.2 local 지정</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir pyenv_test &amp;&amp; cd pyenv_test</span><br><span class="line">$ touch .env</span><br><span class="line">$ echo &quot;pyenv activate [virtualenv name]&quot; &gt; .env</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-global-해제"><a href="#3-3-global-해제" class="headerlink" title="3.3 global 해제"></a>3.3 global 해제</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.env</span><br><span class="line">$ echo &quot;pyenv deactivate&quot; &gt; .env</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-Jupyter-notebook-for-virtual-env"><a href="#4-1-Jupyter-notebook-for-virtual-env" class="headerlink" title="4.1 Jupyter notebook for virtual env"></a>4.1 Jupyter notebook for virtual env</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd pyenv_test</span><br><span class="line">$ pip install ipykernel ipython</span><br><span class="line">$ mkdir /home/henry/.local/share/jupyter/kernels/py3ten</span><br><span class="line">$ vi kernel.jason</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> &quot;argv&quot;: [ &quot;/Users/motta/.pyenv/versions/k_means/bin/python&quot;, &quot;-m&quot;, &quot;ipykernel&quot;,</span><br><span class="line">          &quot;-f&quot;, &quot;&#123;connection_file&#125;&quot;],</span><br><span class="line"> &quot;display_name&quot;: &quot;k_means&quot;,</span><br><span class="line"> &quot;language&quot;: &quot;python&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>reference:</p>
 <p><a href="https://www.alfredo.motta.name/create-isolated-jupyter-ipython-kernels-with-pyenv-and-virtualenv/" target="_blank" rel="noopener">https://www.alfredo.motta.name/create-isolated-jupyter-ipython-kernels-with-pyenv-and-virtualenv/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="cjrok6eeo000an809myx3kqgg" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="cjrp1uzat0008lf09981c79b9" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python3/">python3</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/">Python3</a></li></ul>
 
     </footer>
   </div>
@@ -164,7 +151,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
     </div>
   </div>
 
@@ -174,7 +161,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
     </div>
   </div>
 
@@ -184,7 +171,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
     </div>
   </div>
 
@@ -210,10 +197,6 @@
           </li>
         
           <li>
-            <a href="/2019/01/31/brack-install/">brack-install</a>
-          </li>
-        
-          <li>
             <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
           </li>
         
@@ -223,6 +206,10 @@
         
           <li>
             <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/insatlling_virtual_env/">&lt;Linux&gt; Install virtual python env</a>
           </li>
         
       </ul>
