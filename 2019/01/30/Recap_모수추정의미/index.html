@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>&lt;Recap&gt; 모수추정 | G00D Morning &#34;Data&#34;</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="검정test과 모수추정parameter-estimation 데이터 분석은 확률변수를 파악해가는 과정 분포검정(distribution test): 확률변수가 예상한 확률분포를 따르는지 검정 eg. 정규성 검정(normarlity test)   모수검정(parameter test): 분포를 정했을 때, 해당 pdf의 계수(coefficient, paramete">
+<meta name="keywords" content="모수추정,Math,베이지안 모수 추정,최대가능도,최소자승법">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&lt;Recap&gt; 모수추정">
+<meta property="og:url" content="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/index.html">
+<meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
+<meta property="og:description" content="검정test과 모수추정parameter-estimation 데이터 분석은 확률변수를 파악해가는 과정 분포검정(distribution test): 확률변수가 예상한 확률분포를 따르는지 검정 eg. 정규성 검정(normarlity test)   모수검정(parameter test): 분포를 정했을 때, 해당 pdf의 계수(coefficient, paramete">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8_files/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8_5_1.png">
+<meta property="og:updated_time" content="2019-02-03T07:14:28.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&lt;Recap&gt; 모수추정">
+<meta name="twitter:description" content="검정test과 모수추정parameter-estimation 데이터 분석은 확률변수를 파악해가는 과정 분포검정(distribution test): 확률변수가 예상한 확률분포를 따르는지 검정 eg. 정규성 검정(normarlity test)   모수검정(parameter test): 분포를 정했을 때, 해당 pdf의 계수(coefficient, paramete">
+<meta name="twitter:image" content="https://henrypaik1.github.io/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8_files/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8_5_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="G00D Morning &#34;Data&#34;" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">G00D Morning &#34;Data&#34;</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Recap_모수추정의미" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/30/Recap_모수추정의미/" class="article-date">
+  <time datetime="2019-01-30T13:14:57.000Z" itemprop="datePublished">2019-01-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &lt;Recap&gt; 모수추정
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="검정test과-모수추정parameter-estimation"><a href="#검정test과-모수추정parameter-estimation" class="headerlink" title="검정test과 모수추정parameter-estimation"></a>검정test과 모수추정parameter-estimation</h2><ul>
+<li>데이터 분석은 확률변수를 파악해가는 과정</li>
+<li><strong>분포검정(distribution test)</strong>: 확률변수가 예상한 확률분포를 따르는지 검정<ul>
+<li>eg. 정규성 검정(normarlity test)</li>
+</ul>
+</li>
+<li><strong>모수검정(parameter test)</strong>: 분포를 정했을 때, 해당 pdf의 계수(coefficient, parameter)이 특정값을 가지는지, 또는 큰지 작은지 확인</li>
+</ul>
+<ul>
+<li><strong>모수추정(parameter-estimation)</strong>: 모수가 어떤 값을 가질 확률이 가장 높은지 추정<ul>
+<li>LSM(Least Squared Method): 가능성이 가장 큰 값 하나만 구함</li>
+<li>MLE(Maximum Likelihood Estimation): 상동</li>
+<li><strong>Bayesian Estimation</strong>: 가능한 모든 모수에 대해 확률 구함<ul>
+<li>모수적(parametric) 방법: 모수 분포를 확률분포로 나타냄. Hyper Prams필요.<ul>
+<li>데이터가 베르누이 분포 -&gt; 모수는 베타분포 따른다고 가정</li>
+<li>데이터가 카테고리 분포 -&gt; 모수는 디리클레 분포 따른다고 가정</li>
+</ul>
+</li>
+<li>비모수적(non-parametric) 방법: 모수의 분포와 동일한 분포를 가지는 숫자 집합 생성. eg. MCMC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="모수추정parameter-estimation"><a href="#모수추정parameter-estimation" class="headerlink" title="모수추정parameter-estimation"></a>모수추정parameter-estimation</h2><h2 id="1-최소자승법-LSM-least-squre-method"><a href="#1-최소자승법-LSM-least-squre-method" class="headerlink" title="1. 최소자승법 LSM(least squre method)"></a>1. 최소자승법 LSM(least squre method)</h2><ul>
+<li>근사적으로 <strong>구하려는 해</strong>와, <strong>실제 해의 오차의 제곱의 합이 최소</strong>가 되는 해를 구하는 것</li>
+<li><strong>minimizing the sum of squares of the residulas</strong></li>
+</ul>
+<h3 id="1-역행렬-존재"><a href="#1-역행렬-존재" class="headerlink" title="1) 역행렬 존재"></a>1) 역행렬 존재</h3><p>$Xw = y \rightarrow w=X^{-1}y$</p>
+<ul>
+<li>X: 계수행렬</li>
+<li>w: 가중치 벡터(미지수벡터)</li>
+<li>y: 상수벡터</li>
+</ul>
+<h3 id="2-역행렬-존재하지-않음"><a href="#2-역행렬-존재하지-않음" class="headerlink" title="2) 역행렬 존재하지 않음"></a>2) 역행렬 존재하지 않음</h3><p>$Ax=b$</p>
+<ul>
+<li>A: 계수 행렬</li>
+<li>x: 미지수 벡터</li>
+<li>b: 상수벡터<ul>
+<li>선형 연립방정식의 해가 존재하지 않는 경우</li>
+<li>data(방정식) &gt; Dim(미지수 갯수)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-1-solution-최소자승법"><a href="#2-1-solution-최소자승법" class="headerlink" title="2.1) solution: 최소자승법"></a>2.1) solution: 최소자승법</h3><ul>
+<li>목표:  $Ax \approx b$ 최소화하는 $x$(미지수 벡터) 구하기</li>
+<li>방법:</li>
+<li>2.1.1) $\text{minimize L2 norm}$<ul>
+<li>$Ax-b=e \rightarrow e^Te = ||e||^2=(Ax-b)^T(Ax-b)$</li>
+<li>$x = \text{arg} \min_x e^Te$    </li>
+</ul>
+</li>
+<li><p>2.1.2) $x = A^+b$ (pseudo inverse)</p>
+<ul>
+<li><p>e: 잔차 residual</p>
+</li>
+<li><p>잔차벡터e L2 norm 최소화</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-최대-가능도-모수-추정-Maximum-Likelihood-Estimation"><a href="#2-최대-가능도-모수-추정-Maximum-Likelihood-Estimation" class="headerlink" title="2. 최대 가능도 모수 추정(Maximum Likelihood Estimation)"></a>2. 최대 가능도 모수 추정(Maximum Likelihood Estimation)</h2><h3 id="hat-theta-ML-arg-max-theta-log-L-theta-x-i"><a href="#hat-theta-ML-arg-max-theta-log-L-theta-x-i" class="headerlink" title="$\hat{\theta}_{ML} = \arg \max_{\theta} \log{L}(\theta; \{x_i\})$"></a>$\hat{\theta}_{ML} = \arg \max_{\theta} \log{L}(\theta; \{x_i\})$</h3><ul>
+<li>추정한 pdf의 변수: $\theta$(params), 상수:$x$(sample)</li>
+<li>표본: <strong>같은 확률분포</strong>에서 나온 독립적 값</li>
+</ul>
+<h3 id="가능도-함수-mathcal-L-theta-p-x-vert-theta"><a href="#가능도-함수-mathcal-L-theta-p-x-vert-theta" class="headerlink" title="가능도 함수$\mathcal{L}(\theta)=p(x \vert \theta)$"></a>가능도 함수$\mathcal{L}(\theta)=p(x \vert \theta)$</h3><h3 id="결합확률밀도함수-mathcal-L-theta-x-1-dots-x-N-prod-i-1-N-p-x-i-theta"><a href="#결합확률밀도함수-mathcal-L-theta-x-1-dots-x-N-prod-i-1-N-p-x-i-theta" class="headerlink" title="결합확률밀도함수 $\mathcal{L}(\theta; x_1, \dots, x_N)=\prod_{i=1}^N p(x_i;\theta)$"></a>결합확률밀도함수 $\mathcal{L}(\theta; x_1, \dots, x_N)=\prod_{i=1}^N p(x_i;\theta)$</h3><ul>
+<li>예) $N(\mu, \sigma)$ 표본 x=1이라면, $\mu$=1일 때 pdf가 가장 높음</li>
+</ul>
+<h2 id="3-베이지안-모수-추정"><a href="#3-베이지안-모수-추정" class="headerlink" title="3. 베이지안 모수 추정"></a>3. 베이지안 모수 추정</h2><ul>
+<li><strong>tartget: 모수의 사후 분포 $p_{posterior}(\mu| x_1, \dots, x_N)$</strong></li>
+<li>모수의 값이 가질 수 있는 모든 가능성의 분포를 계산</li>
+<li>Hyper prams: 모수$\theta$의 확률분포를 표현<h3 id="p-posterior-mu-x-1-dots-x-N-dfrac-p-likelihood-x-1-dots-x-N-mu-cdot-p-prior-mu-p-x-1-cdots-x-N"><a href="#p-posterior-mu-x-1-dots-x-N-dfrac-p-likelihood-x-1-dots-x-N-mu-cdot-p-prior-mu-p-x-1-cdots-x-N" class="headerlink" title="$p_{posterior}(\mu| x_1, \dots, x_N) = \dfrac{p_{likelihood}(x_1, \dots, x_N| \mu) \cdot p_{prior}(\mu)}{p(x_1, \cdots, x_N)}$"></a>$p_{posterior}(\mu| x_1, \dots, x_N) = \dfrac{p_{likelihood}(x_1, \dots, x_N| \mu) \cdot p_{prior}(\mu)}{p(x_1, \cdots, x_N)}$</h3></li>
+<li>$p_{prior}(\mu)$: <em>모수</em>의 사전분포. 모수 분포 사전지식 없으면, uniform dist. $Beta(1,1)$ or Gaussian dist $N(0, 1)$</li>
+<li>$p_{posterior}(\mu| x_1, \dots, x_N)$: 데이터(지식) 주어졌을 때 모수의 분포</li>
+<li>$p_{likelihood}(x_1, \dots, x_N| \mu)$: 모수를 알 때, 데이터 $x_1, \dots, x_N$ 나올 수 있는 확률</li>
+</ul>
+<p>예제. 정규분포 기댓값 베이지안 모수 추정</p>
+<ul>
+<li>모수 $\mu$ 정규분포 따르는 것으로 가정</li>
+<li>param $\sigma^2$은 알고 있다고 가정</li>
+<li><p>$p_{posterior} \propto p_{likelihood} \cdot p_{prior} $</p>
+</li>
+<li><p><strong>prior</strong>: $p(\mu) = N(\mu_0, \sigma_0^2) = \dfrac{1}{\sqrt{2 \pi \sigma_0^2}}\exp(- \dfrac{(\mu - \mu_0)^2}{2 \sigma_0^2}) $</p>
+<ul>
+<li>$\mu_0$: unknown. $\mu_0$은 정규 분포(0, 1)를 따른다고 가정하고 시작.</li>
+<li>즉, hyper param 초기값이 (0, 1) -&gt; 데이터 더할수록 갱신</li>
+</ul>
+</li>
+<li><strong>likelihodd</strong>: $p(x_1, \cdots, x_N| \mu) = \prod_{i=1}^N N(x_i|\mu) = \prod_{i=1}^N\dfrac{1}{\sqrt{2 \pi \sigma_0^2}}\exp(- \dfrac{(x_i - \mu_0)^2}{2 \sigma_0^2}) $</li>
+<li><strong>target:$p_{posterior}(\mu_0| x_1, \dots, x_N)$</strong><script type="math/tex; mode=display">
+\exp \left( -\dfrac{(\mu - \mu_0^{'})^2}{2 \sigma_0^{'2}}  \right)</script></li>
+<li>hyper param은 데이터를 먹으면서 계속 갱신됨</li>
+<li>즉, 아래의 $x_i$와 N에 따라 갱신</li>
+<li><strong>다음 스텝에서는 $\mu’_0$이 $\mu_0$자리로 치환 -&gt; 새로운 데이터 바로바로 적용가능</strong><ul>
+<li>$\mu_o^{‘}$</li>
+<li>$\sigma_o^{‘}$<script type="math/tex; mode=display">
+\begin{eqnarray}
+\mu'_0 &=& \dfrac{\sigma^2}{N\sigma_0^2 + \sigma^2}\mu_0 + \dfrac{N\sigma_0^2}{N\sigma_0^2 + \sigma^2} \dfrac{\sum x_i}{N} \\
+\dfrac{1}{\sigma_0^{'2}} &=& \dfrac{1}{\sigma_0^{2}} + \dfrac{N}{\sigma^{'2}}
+\end{eqnarray}</script></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sp.stats.norm(mu).rvs(N)</span><br></pre></td></tr></table></figure>
+<pre><code>array([ 2.52106488,  1.42421203,  2.14195316,  1.68067158,  2.69153875,
+        2.69474914,  1.27440262,  0.61663604,  0.4170616 ,  2.61037938,
+        0.81114074,  1.49318365,  1.40368596,  1.9474327 ,  0.06372019,
+        2.1887786 ,  2.52389102,  2.08842209,  1.68911383,  2.09740017,
+        2.39904635, -0.77259276,  3.95591231,  2.39009332,  1.34759142,
+        1.60904662,  2.49374178,  1.88389606, -0.03068447,  4.06449286,
+        1.88945934,  3.02017271,  1.30795015,  3.53637705,  2.28634369,
+        2.60884383,  0.95474663,  3.21114529,  2.68981816,  3.30184623,
+        1.37191244,  1.51897288,  4.3039167 ,  0.93998418,  1.8640503 ,
+        3.13689136,  2.09772497,  2.58295368,  1.60055097,  2.37005589])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sample generator</span></span><br><span class="line">mu, sigma2 = <span class="number">2</span>, <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># target: hyperparam</span></span><br><span class="line">mu0, sigma20 = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"></span><br><span class="line">xx = np.linspace(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1000</span>)</span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 데이터(지식)을 50개씩 늘려갔을 때, Posterior는 어떻게 변하는가</span></span><br><span class="line">line = [<span class="string">":"</span>, <span class="string">"-."</span>, <span class="string">"--"</span>, <span class="string">"-"</span>]</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> line:</span><br><span class="line">    N = <span class="number">50</span></span><br><span class="line">    x = sp.stats.norm(mu).rvs(N)</span><br><span class="line"></span><br><span class="line">    mu0 = sigma2 / (N*sigma20 + sigma2) * mu0 + \</span><br><span class="line">    (N * sigma20) / (N * sigma20 + sigma2) * x.mean()</span><br><span class="line">    sigma20 = <span class="number">1</span>/(<span class="number">1</span>/sigma20+ N/sigma2)</span><br><span class="line">    print(mu0)</span><br><span class="line"></span><br><span class="line">    ax.plot(xx, sp.stats.norm(mu0, sigma20).pdf(xx), ls=l, label=<span class="string">"&#123;&#125;th"</span>.format(i))</span><br><span class="line">    ax.legend()</span><br><span class="line">ax.axis([<span class="number">1.75</span>, <span class="number">2.25</span>, <span class="number">0</span>, <span class="number">25</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>1.9819993262158315
+1.9805846303216201
+2.0701788542914947
+2.0303044050403543
+</code></pre><p><img src="/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8_files/Recap_%EB%AA%A8%EC%88%98%EC%B6%94%EC%A0%95%EC%9D%98%EB%AF%B8_5_1.png" alt="png"></p>
+<p>reference:</p>
+<ul>
+<li><a href="https://github.com/WillKoehrsen/probabilistic-programming/blob/master/Estimating%20Probabilities%20with%20Bayesian%20Inference.ipynb" target="_blank" rel="noopener">https://github.com/WillKoehrsen/probabilistic-programming/blob/master/Estimating%20Probabilities%20with%20Bayesian%20Inference.ipynb</a></li>
+<li><a href="https://datascienceschool.net/view-notebook/ae35a40deb884cf88e85135b4b5a1130/" target="_blank" rel="noopener">https://datascienceschool.net/view-notebook/ae35a40deb884cf88e85135b4b5a1130/</a></li>
+</ul>
+<p>질문</p>
+<ul>
+<li>00확률분포의 모수, 의 확률분포는 00를 따르는가?<ul>
+<li>아니다. 드물다. 이러한 사전분포는 conjugate prior이며 베타분포가 그러하다</li>
+</ul>
+</li>
+<li>예제에서 hyper param 공식 유도시, 최대 가능도 함수 사용?</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="cjrok6edw0000n8093nskskm3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/31/brack-install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          brack-install
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/29/theme-tweak/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&lt;hexo&gt; Customize hexo theme using .ejs</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/31/recap-svd/">recap-svd</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/31/brack-install/">brack-install</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/29/theme-tweak/">&lt;hexo&gt; Customize hexo theme using .ejs</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Henry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

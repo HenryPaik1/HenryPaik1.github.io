@@ -1,278 +1,302 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Example Picture 1. Change ‘Writing’ to ‘Recent Posts’index.articles indicates “writing”. Need to change variable index.articles to “Recent Post” 1234#path: themes&amp;gt;cactus&amp;gt;layout&amp;gt;index.ejs&amp;lt;s">
-<meta name="keywords" content="hexo,github">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>&lt;hexo&gt; Customize hexo theme using .ejs | G00D Morning &#34;Data&#34;</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Example Picture   1. Change ‘Writing’ to ‘Recent Posts’ index.articles indicates “writing”. Need to change variable index.articles to “Recent Post” 1234#path: themes&amp;gt;cactus&amp;gt;layout&amp;gt;index.ejs&amp;">
+<meta name="keywords" content="Github,Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;hexo&gt; Customize hexo theme using .ejs">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/29/theme-tweak/index.html">
 <meta property="og:site_name" content="G00D Morning &quot;Data&quot;">
-<meta property="og:description" content="Example Picture 1. Change ‘Writing’ to ‘Recent Posts’index.articles indicates “writing”. Need to change variable index.articles to “Recent Post” 1234#path: themes&amp;gt;cactus&amp;gt;layout&amp;gt;index.ejs&amp;lt;s">
+<meta property="og:description" content="Example Picture   1. Change ‘Writing’ to ‘Recent Posts’ index.articles indicates “writing”. Need to change variable index.articles to “Recent Post” 1234#path: themes&amp;gt;cactus&amp;gt;layout&amp;gt;index.ejs&amp;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/images/modifyejs.png">
-<meta property="og:updated_time" content="2019-01-29T21:40:27.800Z">
+<meta property="og:updated_time" content="2019-01-30T13:17:54.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;hexo&gt; Customize hexo theme using .ejs">
-<meta name="twitter:description" content="Example Picture 1. Change ‘Writing’ to ‘Recent Posts’index.articles indicates “writing”. Need to change variable index.articles to “Recent Post” 1234#path: themes&amp;gt;cactus&amp;gt;layout&amp;gt;index.ejs&amp;lt;s">
+<meta name="twitter:description" content="Example Picture   1. Change ‘Writing’ to ‘Recent Posts’ index.articles indicates “writing”. Need to change variable index.articles to “Recent Post” 1234#path: themes&amp;gt;cactus&amp;gt;layout&amp;gt;index.ejs&amp;">
 <meta name="twitter:image" content="https://henrypaik1.github.io/images/modifyejs.png">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/images/smile.png">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/images/chrome-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>&lt;hexo&gt; Customize hexo theme using .ejs</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
-    <!-- persian styles -->
-    
-      <link rel="stylesheet" href="/css/rtl.css">
-    
-    <!-- rss -->
-    
-    
+  
+    <link rel="alternate" href="/atom.xml" title="G00D Morning &#34;Data&#34;" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
-
-<body class="max-width mx-auto px3 ltr">
-    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/categories/">Category</a></li>
-         
-          <li><a href="/Log/">Log</a></li>
-        
-      </ul>
-    </span>
-    <br>
-    <span id="actions">
-      <ul>
-        
-        
-        <li><a class="icon" href="/2019/01/28/how-to-create-jupyer/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://henrypaik1.github.io/2019/01/29/theme-tweak/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&text=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&is_video=false&description=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&lt;hexo&gt; Customize hexo theme using .ejs&body=Check out this article: https://henrypaik1.github.io/2019/01/29/theme-tweak/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&name=&lt;hexo&gt; Customize hexo theme using .ejs&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">G00D Morning &#34;Data&#34;</a>
+      </h1>
+      
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-Picture"><span class="toc-number">1.</span> <span class="toc-text">Example Picture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Change-‘Writing’-to-‘Recent-Posts’"><span class="toc-number">2.</span> <span class="toc-text">1. Change ‘Writing’ to ‘Recent Posts’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Display-Categories-on-the-first-page"><span class="toc-number">3.</span> <span class="toc-text">2. Display Categories on the first page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Make-the-logo-stay-bright"><span class="toc-number">4.</span> <span class="toc-text">3. Make the logo stay bright</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Place-Categoy-amp-Recent-Posts-side-by-side"><span class="toc-number">5.</span> <span class="toc-text">4. Place Categoy &amp; Recent Posts side by side</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Mange-font-color"><span class="toc-number">6.</span> <span class="toc-text">5. Mange font color</span></a></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <header>
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-theme-tweak" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/29/theme-tweak/" class="article-date">
+  <time datetime="2019-01-29T06:31:57.000Z" itemprop="datePublished">2019-01-29</time>
+</a>
     
-    <h1 class="posttitle" itemprop="name headline">
-        &lt;hexo&gt; Customize hexo theme using .ejs
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Github/">Github</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &lt;hexo&gt; Customize hexo theme using .ejs
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-        <span itemprop="name">G00D Morning "Data"</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-01-29T06:31:57.000Z" itemprop="datePublished">2019-01-29</time>
-        
-      
-    </div>
-
-
-      
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/github/">github</a>
-    </div>
-
-
-      
-    <div class="article-tag">
-        <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/github/">github</a>, <a class="tag-link" href="/tags/hexo/">hexo</a>
-    </div>
-
-
-    </div>
-  </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <h2 id="Example-Picture"><a href="#Example-Picture" class="headerlink" title="Example Picture"></a>Example Picture</h2><p><img src="/images/modifyejs.png" alt=""></p>
-<h2 id="1-Change-‘Writing’-to-‘Recent-Posts’"><a href="#1-Change-‘Writing’-to-‘Recent-Posts’" class="headerlink" title="1. Change ‘Writing’ to ‘Recent Posts’"></a>1. Change ‘Writing’ to ‘Recent Posts’</h2><p><code>index.articles</code> indicates “writing”.<br>
-Need to change variable <code>index.articles</code> to “Recent Post”
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br></pre></td></tr></table></figure></p>
-<p> <code>default.yml</code> save variables.<br>
- modified code:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;languages&gt;default.yml</span><br><span class="line"> index:</span><br><span class="line">   find_me_on: Find me on</span><br><span class="line">   enum_comma: &apos;,&apos;</span><br><span class="line">   enum_and: and</span><br><span class="line">   articles: wrting # change to -&gt; Recent Posts</span><br><span class="line">   projects: Projects</span><br><span class="line">   topics: Topics</span><br><span class="line">   most_recent: Most recent</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-Display-Categories-on-the-first-page"><a href="#2-Display-Categories-on-the-first-page" class="headerlink" title="2. Display Categories on the first page"></a>2. Display Categories on the first page</h2><p>Note. prerequisite: categories page
-        $ hexo new page categories
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="example-picture"><a class="markdownIt-Anchor" href="#example-picture"></a> Example Picture</h2>
+<p><img src="/images/modifyejs.png" alt=""></p>
+<h2 id="1-change-writing-to-recent-posts"><a class="markdownIt-Anchor" href="#1-change-writing-to-recent-posts"></a> 1. Change ‘Writing’ to ‘Recent Posts’</h2>
+<p><code>index.articles</code> indicates “writing”.<br><br>
+Need to change variable <code>index.articles</code> to “Recent Post”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br></pre></td></tr></table></figure>
+<p><code>default.yml</code> save variables.<br><br>
+modified code:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;languages&gt;default.yml</span><br><span class="line"> index:</span><br><span class="line">   find_me_on: Find me on</span><br><span class="line">   enum_comma: &apos;,&apos;</span><br><span class="line">   enum_and: and</span><br><span class="line">   articles: wrting # change to -&gt; Recent Posts</span><br><span class="line">   projects: Projects</span><br><span class="line">   topics: Topics</span><br><span class="line">   most_recent: Most recent</span><br></pre></td></tr></table></figure>
+<h2 id="2-display-categories-on-the-first-page"><a class="markdownIt-Anchor" href="#2-display-categories-on-the-first-page"></a> 2. Display Categories on the first page</h2>
+<p>Note. prerequisite: categories page<br>
+$ hexo new page categories<br>
 and adding <code>type:categories</code> to <code>source&gt;categories&gt;index.md</code></p>
-<p>Need to insert following code:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;categories&quot; class=&quot;left&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;category-list-title&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;categories&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;nav.category&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">      &lt;% var visibleCategories = 0 %&gt;</span><br><span class="line">      &lt;% site.categories.each(function(cat)&#123; %&gt;</span><br><span class="line">        &lt;% if (cat.length) &#123; %&gt;</span><br><span class="line">          &lt;% visibleCategories += 1 %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br><span class="line">      &lt;% &#125;) %&gt;</span><br><span class="line">      &lt;%- _p(&apos;counter.categories&apos;, visibleCategories) %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;category-list&quot;&gt;</span><br><span class="line">    &lt;%- list_categories() %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
-<p>after the code below:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.topics&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;widget tagcloud&quot;&gt;</span><br><span class="line">    &lt;%- tagcloud(theme.tags_overview) %&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.most_recent&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  &lt;ul class=&quot;post-list&quot;&gt;</span><br><span class="line">    &lt;% var field_sort = theme.posts_overview.sort_updated ? &apos;updated&apos; : &apos;date&apos; %&gt;</span><br><span class="line">    &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = page.posts.sort(field_sort, &apos;desc&apos;) %&gt;</span><br><span class="line">    &lt;% &#125; else &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = site.posts.sort(field_sort, &apos;desc&apos;).limit(theme.posts_overview.post_count || 5) %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% show_posts.each(function(post, i)&#123; %&gt;</span><br><span class="line">      &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">        &lt;%- partial(&apos;_partial/post/date&apos;, &#123; post: post, class_name: &apos;meta&apos; &#125;) %&gt;</span><br><span class="line">        &lt;span&gt;&lt;%- partial(&apos;_partial/post/title&apos;, &#123; post: post, index: true, class_name: &apos;&apos; &#125;) %&gt;&lt;/span&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">    &lt;% &#125;); %&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">    &lt;%- partial(&apos;_partial/pagination&apos;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-Make-the-logo-stay-bright"><a href="#3-Make-the-logo-stay-bright" class="headerlink" title="3. Make the logo stay bright"></a>3. Make the logo stay bright</h2><p>Corret the code as below
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#path: theme&gt;cactus&gt;source&gt;css&gt;_partial&gt;header.styl</span><br><span class="line">#logo</span><br><span class="line">  display: inline-block</span><br><span class="line">  float: left</span><br><span class="line">  margin-right: 20px</span><br><span class="line">  width: $logo-width</span><br><span class="line">  height: $logo-height</span><br><span class="line">  border-radius: 5px</span><br><span class="line">  # delete -&gt; filter: grayscale(100%)</span><br><span class="line">  background-size: $logo-width $logo-height</span><br><span class="line">  background-repeat: no-repeat</span><br><span class="line">  # delete -&gt; -webkit-filter: grayscale(100%)</span><br></pre></td></tr></table></figure></p>
-<p>and delete the code below:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#header:hover</span><br><span class="line">  #logo</span><br><span class="line">    filter: none</span><br><span class="line">    -webkit-filter: none</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-Place-Categoy-amp-Recent-Posts-side-by-side"><a href="#4-Place-Categoy-amp-Recent-Posts-side-by-side" class="headerlink" title="4. Place Categoy &amp; Recent Posts side by side"></a>4. Place Categoy &amp; Recent Posts side by side</h2><p>prerequisite: add class ‘.left’, ‘right’ to each section<br>
-Correct the code <code>.content</code> as below:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;source&gt;CSS&gt;style.styl</span><br><span class="line">.content</span><br><span class="line">  position: relative</span><br><span class="line">  flex-wrap: wrap</span><br><span class="line">  flex-direction: row</span><br><span class="line">  min-height: 100%</span><br><span class="line">.left</span><br><span class="line">  float: left</span><br><span class="line">.right</span><br><span class="line">  float: right</span><br></pre></td></tr></table></figure></p>
-<h2 id="5-Mange-font-color"><a href="#5-Mange-font-color" class="headerlink" title="5. Mange font color"></a>5. Mange font color</h2><p>path: themes&gt;cactus&gt;source&gt;css&gt;style.styl</p>
+<p>Need to insert following code:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;layout&gt;index.ejs</span><br><span class="line">&lt;section id=&quot;categories&quot; class=&quot;left&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;category-list-title&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;categories&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;nav.category&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">      &lt;% var visibleCategories = 0 %&gt;</span><br><span class="line">      &lt;% site.categories.each(function(cat)&#123; %&gt;</span><br><span class="line">        &lt;% if (cat.length) &#123; %&gt;</span><br><span class="line">          &lt;% visibleCategories += 1 %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br><span class="line">      &lt;% &#125;) %&gt;</span><br><span class="line">      &lt;%- _p(&apos;counter.categories&apos;, visibleCategories) %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;category-list&quot;&gt;</span><br><span class="line">    &lt;%- list_categories() %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<p>after the code below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=&quot;writing&quot;&gt;</span><br><span class="line">  &lt;span class=&quot;h1&quot;&gt;&lt;a href=&quot;&lt;%- url_for(&quot;archives&quot;) %&gt;&quot;&gt;&lt;%= __(&apos;index.articles&apos;) %&gt;&lt;/a&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% if (theme.tags_overview &amp;&amp; site.tags.length) &#123; %&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.topics&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;widget tagcloud&quot;&gt;</span><br><span class="line">    &lt;%- tagcloud(theme.tags_overview) %&gt;</span><br><span class="line">  &lt;/span&gt;</span><br><span class="line">  &lt;span class=&quot;h2&quot;&gt;&lt;%= __(&apos;index.most_recent&apos;) %&gt;&lt;/span&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  &lt;ul class=&quot;post-list&quot;&gt;</span><br><span class="line">    &lt;% var field_sort = theme.posts_overview.sort_updated ? &apos;updated&apos; : &apos;date&apos; %&gt;</span><br><span class="line">    &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = page.posts.sort(field_sort, &apos;desc&apos;) %&gt;</span><br><span class="line">    &lt;% &#125; else &#123; %&gt;</span><br><span class="line">      &lt;% var show_posts = site.posts.sort(field_sort, &apos;desc&apos;).limit(theme.posts_overview.post_count || 5) %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% show_posts.each(function(post, i)&#123; %&gt;</span><br><span class="line">      &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">        &lt;%- partial(&apos;_partial/post/date&apos;, &#123; post: post, class_name: &apos;meta&apos; &#125;) %&gt;</span><br><span class="line">        &lt;span&gt;&lt;%- partial(&apos;_partial/post/title&apos;, &#123; post: post, index: true, class_name: &apos;&apos; &#125;) %&gt;&lt;/span&gt;</span><br><span class="line">      &lt;/li&gt;</span><br><span class="line">    &lt;% &#125;); %&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;% if (theme.posts_overview.show_all_posts) &#123; %&gt;</span><br><span class="line">    &lt;%- partial(&apos;_partial/pagination&apos;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="3-make-the-logo-stay-bright"><a class="markdownIt-Anchor" href="#3-make-the-logo-stay-bright"></a> 3. Make the logo stay bright</h2>
+<p>Corret the code as below</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#path: theme&gt;cactus&gt;source&gt;css&gt;_partial&gt;header.styl</span><br><span class="line">#logo</span><br><span class="line">  display: inline-block</span><br><span class="line">  float: left</span><br><span class="line">  margin-right: 20px</span><br><span class="line">  width: $logo-width</span><br><span class="line">  height: $logo-height</span><br><span class="line">  border-radius: 5px</span><br><span class="line">  # delete -&gt; filter: grayscale(100%)</span><br><span class="line">  background-size: $logo-width $logo-height</span><br><span class="line">  background-repeat: no-repeat</span><br><span class="line">  # delete -&gt; -webkit-filter: grayscale(100%)</span><br></pre></td></tr></table></figure>
+<p>and delete the code below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#header:hover</span><br><span class="line">  #logo</span><br><span class="line">    filter: none</span><br><span class="line">    -webkit-filter: none</span><br></pre></td></tr></table></figure>
+<h2 id="4-place-categoy-recent-posts-side-by-side"><a class="markdownIt-Anchor" href="#4-place-categoy-recent-posts-side-by-side"></a> 4. Place Categoy &amp; Recent Posts side by side</h2>
+<p>prerequisite: add class ‘.left’, ‘right’ to each section<br><br>
+Correct the code <code>.content</code> as below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#path: themes&gt;cactus&gt;source&gt;CSS&gt;style.styl</span><br><span class="line">.content</span><br><span class="line">  position: relative</span><br><span class="line">  flex-wrap: wrap</span><br><span class="line">  flex-direction: row</span><br><span class="line">  min-height: 100%</span><br><span class="line">.left</span><br><span class="line">  float: left</span><br><span class="line">.right</span><br><span class="line">  float: right</span><br></pre></td></tr></table></figure>
+<h2 id="5-mange-font-color"><a class="markdownIt-Anchor" href="#5-mange-font-color"></a> 5. Mange font color</h2>
+<p>path: themes&gt;cactus&gt;source&gt;css&gt;style.styl</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="cjrok6eev000fn8099ip57p2e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/30/Recap_모수추정의미/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          &lt;Recap&gt; 모수추정
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/28/how-to-create-jupyer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&lt;Linux&gt; Create and post jupyter.md</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-
+</section>
         
-          <div id="footer-post-container">
-  <div id="footer-post">
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/">Data science</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-science/Math/">Math</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
+    </div>
+  </div>
 
-    <div id="nav-footer" style="display: none">
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter-notebook/">jupyter notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyenv/">pyenv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python3/">python3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jupyter-notebook/" style="font-size: 10px;">jupyter notebook</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/pyenv/" style="font-size: 10px;">pyenv</a> <a href="/tags/python3/" style="font-size: 10px;">python3</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
       <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/categories/">Category</a></li>
-         
-          <li><a href="/Log/">Log</a></li>
+        
+          <li>
+            <a href="/2019/01/31/recap-svd/">recap-svd</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/31/brack-install/">brack-install</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/30/Recap_모수추정의미/">&lt;Recap&gt; 모수추정</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/29/theme-tweak/">&lt;hexo&gt; Customize hexo theme using .ejs</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/how-to-create-jupyer/">&lt;Linux&gt; Create and post jupyter.md</a>
+          </li>
         
       </ul>
     </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-Picture"><span class="toc-number">1.</span> <span class="toc-text">Example Picture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Change-‘Writing’-to-‘Recent-Posts’"><span class="toc-number">2.</span> <span class="toc-text">1. Change ‘Writing’ to ‘Recent Posts’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Display-Categories-on-the-first-page"><span class="toc-number">3.</span> <span class="toc-text">2. Display Categories on the first page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Make-the-logo-stay-bright"><span class="toc-number">4.</span> <span class="toc-text">3. Make the logo stay bright</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Place-Categoy-amp-Recent-Posts-side-by-side"><span class="toc-number">5.</span> <span class="toc-text">4. Place Categoy &amp; Recent Posts side by side</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Mange-font-color"><span class="toc-number">6.</span> <span class="toc-text">5. Mange font color</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://henrypaik1.github.io/2019/01/29/theme-tweak/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&text=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&is_video=false&description=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=&lt;hexo&gt; Customize hexo theme using .ejs&body=Check out this article: https://henrypaik1.github.io/2019/01/29/theme-tweak/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&title=&lt;hexo&gt; Customize hexo theme using .ejs"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://henrypaik1.github.io/2019/01/29/theme-tweak/&name=&lt;hexo&gt; Customize hexo theme using .ejs&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
   </div>
-</div>
 
+  
+</aside>
         
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2019 Henry
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a href="/categories/">Category</a></li>
-         
-          <li><a href="/Log/">Log</a></li>
-        
-      </ul>
-    </nav>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Henry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
 </footer>
-
     </div>
-    <!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-    <!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<script src="/js/main.js"></script>
-<!-- search -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-<!-- Google Analytics -->
 
-<!-- Baidu Analytics -->
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-<!-- Disqus Comments -->
 
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>
