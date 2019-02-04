@@ -128,7 +128,7 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 .outer {
-  max-width: 1020px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -143,8 +143,8 @@ body {
 .inner {
   display: inline;
   float: left;
-  width: 98%;
-  margin: 0 1%;
+  width: 98.46153846153847%;
+  margin: 0 0.769230769230769%;
 }
 .left,
 .alignleft {
@@ -179,9 +179,18 @@ body {
 .mobile-nav-on #wrap {
   left: 280px;
 }
+@media screen and (min-width: 768px) {
+  #main {
+    display: inline;
+    float: left;
+    width: 75.38461538461539%;
+    margin: 0 0.769230769230769%;
+  }
+}
 .article-date,
 .article-category-link,
-.archive-year {
+.archive-year,
+.widget-title {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1316,27 +1325,45 @@ pre .javascript .function {
     color: #fff;
   }
 }
-.widget-wrap {
-  margin-bottom: 50px !important;
-}
 @media screen and (min-width: 768px) {
-  .widget-wrap {
+  #sidebar {
     display: inline;
     float: left;
-    width: 28.000000000000004%;
-    margin: 0 1%;
+    width: 21.53846153846154%;
+    margin: 0 0.769230769230769%;
   }
 }
-.widget-title {
-  color: #ccc;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 1em;
-  line-height: 1em;
-  font-weight: bold;
+.widget-wrap {
+  margin: 50px 0;
 }
 .widget {
-  color: #999;
+  color: #777;
+  text-shadow: 0 1px #fff;
+  background: #ddd;
+  -webkit-box-shadow: 0 -1px 4px #ccc inset;
+  box-shadow: 0 -1px 4px #ccc inset;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 3px;
+}
+.widget a {
+  color: #258fb8;
+  text-decoration: none;
+}
+.widget a:hover {
+  text-decoration: underline;
+}
+.widget ul ul,
+.widget ol ul,
+.widget dl ul,
+.widget ul ol,
+.widget ol ol,
+.widget dl ol,
+.widget ul dl,
+.widget ol dl,
+.widget dl dl {
+  margin-left: 15px;
+  list-style: disc;
 }
 .widget {
   line-height: 1.6em;
