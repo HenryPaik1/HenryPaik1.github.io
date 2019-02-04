@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA / ARIMA(5) | G00D Morning;Data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="일반 선형확률과정 모형(general linear process model)3) ARMA(p, q) AR과 구분 불가 cf. AR 간에도 p차 구분불가 MA &amp;amp; AR은 구분 가능   Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\ + \theta_1 \ep">
+<meta name="keywords" content="Math,Timeseries,일반선형확률과정,ARMA,ARIMA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA &#x2F; ARIMA(5)">
+<meta property="og:url" content="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/index.html">
+<meta property="og:site_name" content="G00D Morning;Data">
+<meta property="og:description" content="일반 선형확률과정 모형(general linear process model)3) ARMA(p, q) AR과 구분 불가 cf. AR 간에도 p차 구분불가 MA &amp;amp; AR은 구분 가능   Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\ + \theta_1 \ep">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_1_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_4_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_5_0.png">
+<meta property="og:updated_time" content="2019-02-04T07:06:38.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA &#x2F; ARIMA(5)">
+<meta name="twitter:description" content="일반 선형확률과정 모형(general linear process model)3) ARMA(p, q) AR과 구분 불가 cf. AR 간에도 p차 구분불가 MA &amp;amp; AR은 구분 가능   Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\ + \theta_1 \ep">
+<meta name="twitter:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_1_0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="G00D Morning;Data" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+</html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">G00D Morning;Data</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Recap_TimeSeries_ARMA_ARIMA(5)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
+  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &lt;Recap&gt; 시계열_일반 선형확률과정 ARMA / ARIMA(5)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2><h3 id="3-ARMA-p-q"><a href="#3-ARMA-p-q" class="headerlink" title="3) ARMA(p, q)"></a>3) ARMA(p, q)</h3><ul>
+<li>AR과 구분 불가 cf. AR 간에도 p차 구분불가</li>
+<li>MA &amp; AR은 구분 가능</li>
+</ul>
+<script type="math/tex; mode=display">
+Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
++ \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \cdots + \theta_q \epsilon_{t-q}</script><ul>
+<li><p>AR(p)와 MA(q) 성질 모두 가지는 모형</p>
+<ul>
+<li>$AR(p): Y_t = -\phi_1 Y_{t-1} - \phi_2 Y_{t-2} - \cdots$</li>
+<li>$MA(q): Y_t = \epsilon_t + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \cdots + \theta_q \epsilon_{t-q}$</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ARMA(<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="comment">#샘플링</span></span><br><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">phi = <span class="number">0.7</span>; theta = <span class="number">-0.4</span></span><br><span class="line">ar=[<span class="number">1</span>, -phi];ma=[<span class="number">1</span>, theta]</span><br><span class="line">p1 = sm.tsa.ArmaProcess(ar, ma)</span><br><span class="line">y1 = p1.generate_sample(<span class="number">120</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">plt.subplot(<span class="number">311</span>)</span><br><span class="line">plt.plot(y1, <span class="string">'o-'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">312</span>)</span><br><span class="line">plt.stem(p1.acf(<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line">ax = plt.subplot(<span class="number">313</span>)</span><br><span class="line">sm.graphics.tsa.plot_acf(y1, lags=<span class="number">100</span>, ax=ax)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_1_0.png" alt="png"></p>
+<h3 id="4-ARIMA-모형-비정상과정"><a href="#4-ARIMA-모형-비정상과정" class="headerlink" title="4) ARIMA 모형: 비정상과정"></a>4) ARIMA 모형: 비정상과정</h3><ul>
+<li>차분한 결과 $\nabla Y_t = Y_t - Y_{t-1}$가 ARMA 모형</li>
+<li>ARIMA(p, d, q): $\nabla^d Y_t = ARMA(p, q) \rightarrow$ d번 차분 후 ARMA</li>
+<li>특징: 자기상관계수 빠르게 감소하지 않음</li>
+</ul>
+<h3 id="4-1-단위근-특성"><a href="#4-1-단위근-특성" class="headerlink" title="4.1) 단위근 특성"></a>4.1) 단위근 특성</h3><ul>
+<li>$(Y_t - Y_{t-1}) + \phi_1(Y_{t-1} - Y_{t-2}) + \cdots + \phi_p (Y_{t-p} - Y_{t-p-1}) =\\<br>  \epsilon_t + \theta_1 \epsilon_{t-1} + \cdots + \theta_q \epsilon_{t-q}$</li>
+<li>ARIMA(p, 1, q)모형은 특성 방정식 해가 x=1 단위근 가짐</li>
+<li>특성방정식: $(1-x)(1 + \phi_1 x + \cdots + \phi_p x^p)=0$</li>
+</ul>
+<h3 id="4-2-단위근-검정-ADF-Augmented-Dickey-Fuller-test"><a href="#4-2-단위근-검정-ADF-Augmented-Dickey-Fuller-test" class="headerlink" title="4.2) 단위근 검정: ADF(Augmented Dickey-Fuller) test"></a>4.2) 단위근 검정: ADF(Augmented Dickey-Fuller) test</h3><ul>
+<li>DF 일반화</li>
+<li>H0: 적분차수1 이상<ul>
+<li><code>sm.tsa.adfuller</code><ul>
+<li>adf: test statistic</li>
+<li>pvalue: float</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="예-IMA-1-1"><a href="#예-IMA-1-1" class="headerlink" title="예) IMA(1, 1)"></a>예) IMA(1, 1)</h3><ul>
+<li>$Y_t - Y_{t-1} = \epsilon_t - \theta \epsilon_{t-1}$</li>
+<li>$Y_t = \epsilon_t + (1-\theta) \epsilon_{t-1} + (1 - \theta) \epsilon_{t-2} + (1-\theta) \epsilon_{t-3} \cdots +$</li>
+<li>백색잡음의 누적 cumulation</li>
+</ul>
+<h3 id="예-IMA-2-2"><a href="#예-IMA-2-2" class="headerlink" title="예) IMA(2, 2)"></a>예) IMA(2, 2)</h3><ul>
+<li>$(Y_t - Y _{t-1}) - (Y_{t-1} - Y_{t-2}) = \epsilon_t - \theta_1 \epsilon_{t-1} - \theta_2 \epsilon_{t-2}$</li>
+</ul>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#IMA(2,2): theta1 = 1, theta2 = -0.6</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">theta1 = <span class="number">1</span>; theta2 = <span class="number">-0.6</span></span><br><span class="line">ar = [<span class="number">1</span>]; ma=[<span class="number">1</span>, theta1, theta2]</span><br><span class="line">p = sm.tsa.ArmaProcess(ar, ma)</span><br><span class="line">sample = p.generate_sample(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">y2 = sample.cumsum().cumsum()</span><br><span class="line">y1 = np.diff(y2)</span><br><span class="line">y0 = np.diff(y1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># y0 = sample</span></span><br><span class="line"><span class="comment"># y1 = y0.cumsum()</span></span><br><span class="line"><span class="comment"># y2 = y1.cumsum()</span></span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">plt.subplot(<span class="number">313</span>)</span><br><span class="line">plt.title(<span class="string">'IMA(2,1): diff(2)'</span>)</span><br><span class="line">plt.plot(y0, <span class="string">'o-'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">312</span>)</span><br><span class="line">plt.title(<span class="string">'IMA(2,1): diff(1)'</span>)</span><br><span class="line">plt.plot(y1, <span class="string">'o-'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">311</span>)</span><br><span class="line">plt.title(<span class="string">'IMA(2,1): diff(0)'</span>)</span><br><span class="line">plt.plot(y2, <span class="string">'o-'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_4_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">ax1 = plt.subplot(<span class="number">313</span>)</span><br><span class="line">sm.tsa.graphics.plot_acf(y0, lags=<span class="number">90</span>, ax=ax1)</span><br><span class="line">ax1.set_title(<span class="string">'ACF: IMA(2, 1): diff(2)'</span>)</span><br><span class="line"></span><br><span class="line">ax2 = plt.subplot(<span class="number">312</span>)</span><br><span class="line">sm.tsa.graphics.plot_acf(y1, lags=<span class="number">90</span>, ax=ax2)</span><br><span class="line">ax2.set_title(<span class="string">'ACF: IMA(2, 1): diff(1)'</span>)</span><br><span class="line"></span><br><span class="line">ax3 = plt.subplot(<span class="number">311</span>)</span><br><span class="line">sm.tsa.graphics.plot_acf(y2, lags=<span class="number">90</span>, ax=ax3)</span><br><span class="line">ax3.set_title(<span class="string">'ACF: IMA(2, 1): diff(0)'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.grid(<span class="keyword">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_5_0.png" alt="png"></p>
+<hr>
+<ul>
+<li>ADF test 예시: y0 -&gt; 귀무가설 기각</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sm.tsa.adfuller(y2)</span><br></pre></td></tr></table></figure>
+<pre><code>(-2.251162211352469,
+ 0.1882029374890175,
+ 8,
+ 91,
+ {&#39;1%&#39;: -3.50434289821397,
+  &#39;5%&#39;: -2.8938659630479413,
+  &#39;10%&#39;: -2.5840147047458037},
+ 307.88958150914243)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sm.tsa.adfuller(y1)</span><br></pre></td></tr></table></figure>
+<pre><code>(-1.7069994687237129,
+ 0.42750979630229596,
+ 12,
+ 86,
+ {&#39;1%&#39;: -3.5087828609430614,
+  &#39;5%&#39;: -2.895783561573195,
+  &#39;10%&#39;: -2.5850381719848565},
+ 307.69019010591194)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sm.tsa.adfuller(y0)</span><br></pre></td></tr></table></figure>
+<pre><code>(-2.5363882098874595,
+ 0.10686979989276602,
+ 6,
+ 91,
+ {&#39;1%&#39;: -3.50434289821397,
+  &#39;5%&#39;: -2.8938659630479413,
+  &#39;10%&#39;: -2.5840147047458037},
+ 305.82342887519786)
+</code></pre><hr>
+<p>질문</p>
+<ul>
+<li>특성방정식 - 이해 부족</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="cjrpzpreu00083a099a7auf93" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARIMA/">ARIMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARMA/">ARMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/04/Recap_Time series_theory(1)ok/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">&lt;Recap&gt; 시계열_확률과정 및 시계열 이론(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 12.5px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 12.5px;">ARMA</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 17.5px;">Timeseries</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/일반선형확률과정/" style="font-size: 15px;">일반선형확률과정</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/확률과정/" style="font-size: 12.5px;">확률과정</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA / ARIMA(5)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/04/Recap_Time series_theory(1)ok/">&lt;Recap&gt; 시계열_확률과정 및 시계열 이론(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 MA(3)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 AR(4)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/04/Recap_TimeSeires(2)/">&lt;Recap&gt; 시계열_비정상 확률과정(2)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Henry<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
