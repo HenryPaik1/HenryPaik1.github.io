@@ -31,6 +31,7 @@
     stopSearchAnim();
   });
 
+
   // Share
   $('body').on('click', function(){
     $('.article-share-box.on').removeClass('on');
@@ -119,7 +120,7 @@
     setTimeout(function(){
       isMobileNavAnim = false;
     }, mobileNavAnimDuration);
-  }
+};
 
   $('#main-nav-toggle').on('click', function(){
     if (isMobileNavAnim) return;

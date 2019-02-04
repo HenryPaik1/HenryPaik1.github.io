@@ -3,38 +3,42 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-
-  
-  <title>&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA / ARIMA(5) | G00D Morning;Data</title>
+  <title>&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA / ARIMA(5) | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="일반 선형확률과정 모형(general linear process model)3) ARMA(p, q) AR과 구분 불가 cf. AR 간에도 p차 구분불가 MA &amp;amp; AR은 구분 가능   Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\ + \theta_1 \ep">
+  <meta name="description" content="일반 선형확률과정 모형(general linear process model)">
 <meta name="keywords" content="Timeseries,Math,일반선형확률과정,ARMA,ARIMA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA &#x2F; ARIMA(5)">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/index.html">
-<meta property="og:site_name" content="G00D Morning;Data">
-<meta property="og:description" content="일반 선형확률과정 모형(general linear process model)3) ARMA(p, q) AR과 구분 불가 cf. AR 간에도 p차 구분불가 MA &amp;amp; AR은 구분 가능   Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\ + \theta_1 \ep">
+<meta property="og:site_name" content="Henry&#39;s blog">
+<meta property="og:description" content="일반 선형확률과정 모형(general linear process model)">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_1_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_4_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_5_0.png">
-<meta property="og:updated_time" content="2019-02-04T07:06:38.688Z">
+<meta property="og:updated_time" content="2019-02-04T16:03:31.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA &#x2F; ARIMA(5)">
-<meta name="twitter:description" content="일반 선형확률과정 모형(general linear process model)3) ARMA(p, q) AR과 구분 불가 cf. AR 간에도 p차 구분불가 MA &amp;amp; AR은 구분 가능   Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\ + \theta_1 \ep">
+<meta name="twitter:description" content="일반 선형확률과정 모형(general linear process model)">
 <meta name="twitter:image" content="https://henrypaik1.github.io/Recap_TimeSeries_ARMA_ARIMA%285%29ok_files/Recap_TimeSeries_ARMA_ARIMA%285%29ok_1_0.png">
   
-    <link rel="alternate" href="/atom.xml" title="G00D Morning;Data" type="application/atom+xml">
   
+    <link rel="icon" href="/favicon.ico">
   
-    <link rel="icon" href="/favicon.png">
+  <!--link href="//fonts.useso.com/css?family=Lato:400,400italic" rel="stylesheet" type="text/css"-->
+  <link href="http://yurixu.com/css/fonts/Google/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">  
   
+
+
+  <!--
+
+-->
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-</html>
+
+  <!-- add by yurixu 2016/1/13 向百度提交sitemap-->
+  <meta name="baidu-site-verification" content="ubBCJmBrxD"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head></html>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div id="wrap">
@@ -43,8 +47,12 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">G00D Morning;Data</a>
+        <a href="/" id="logo">Henry&#39;s blog</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Step by step</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -55,12 +63,16 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="https://github.com/HenryPaik1">GitHub</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
+        <! --modify by yurixu 22016/1/8 修改search为swiftype -->
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <!-- <input type="text" class="st-default-search-input"> -->
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
@@ -70,16 +82,7 @@
 </header>
       <div class="outer">
         <section id="main"><article id="post-Recap_TimeSeries_ARMA_ARIMA(5)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
-  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-02-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
-  </div>
 
-  </div>
   <div class="article-inner">
     
     
@@ -93,15 +96,30 @@
 
       </header>
     
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
+  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
+  </div>
+
+    </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2><h3 id="3-ARMA-p-q"><a href="#3-ARMA-p-q" class="headerlink" title="3) ARMA(p, q)"></a>3) ARMA(p, q)</h3><ul>
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2><a id="more"></a>
+<h3 id="3-ARMA-p-q"><a href="#3-ARMA-p-q" class="headerlink" title="3) ARMA(p, q)"></a>3) ARMA(p, q)</h3><ul>
 <li>AR과 구분 불가 cf. AR 간에도 p차 구분불가</li>
-<li>MA &amp; AR은 구분 가능</li>
+<li>MA &amp; AR은 구분 가능<br>$$<br>Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\</li>
 </ul>
-<script type="math/tex; mode=display">
-Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
-+ \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \cdots + \theta_q \epsilon_{t-q}</script><ul>
+<ul>
+<li>\theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \cdots + \theta_q \epsilon_{t-q}<br>$$</li>
+</ul>
+<ul>
 <li><p>AR(p)와 MA(q) 성질 모두 가지는 모형</p>
 <ul>
 <li>$AR(p): Y_t = -\phi_1 Y_{t-1} - \phi_2 Y_{t-2} - \cdots$</li>
@@ -184,39 +202,18 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
 
       
     </div>
+
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="cjrqfpzsh0009lr09z4jkzt8r" class="article-share-link">Share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="cjrqgvlif0009nc094mq8oppt" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARIMA/">ARIMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARMA/">ARMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
 
     </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          &lt;Recap&gt; 시계열_일반 선형확률과정 AR(4)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/02/04/Recap_TimeSeires(2)/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">&lt;Recap&gt; 시계열_비정상 확률과정(2)</div>
-    </a>
-  
-</nav>
 
-  
-</article>
 
-</section>
+
+</div></article></section>
         
           <aside id="sidebar">
   
@@ -224,27 +221,25 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><span class="category-list-count">8</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Text/">Text</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
-
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
-
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Study/" style="font-size: 10px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 17.5px;">Timeseries</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/일반선형확률과정/" style="font-size: 15px;">일반선형확률과정</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/확률과정/" style="font-size: 12.5px;">확률과정</a>
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 17.5px;">Timeseries</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/일반선형확률과정/" style="font-size: 15px;">일반선형확률과정</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/확률과정/" style="font-size: 12.5px;">확률과정</a>
     </div>
   </div>
 
@@ -253,15 +248,14 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">8</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
-
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
         
@@ -270,15 +264,15 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
           </li>
         
           <li>
-            <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 MA(3)</a>
-          </li>
-        
-          <li>
             <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 AR(4)</a>
           </li>
         
           <li>
             <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 ARMA / ARIMA(5)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/">&lt;Recap&gt; 시계열_일반 선형확률과정 MA(3)</a>
           </li>
         
           <li>
@@ -294,14 +288,26 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
         
       </div>
       <footer id="footer">
-  
+    
+  <!-- add by yurixu 2016/1/3 add bottom -->
   <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Henry<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div id="footer-info" class="inner" style="text-align:center;">
+	  <table width="100%" border="0">
+        <tr>
+          <td style="text-align:left">
+            Copyright &copy; 2019 Henry &nbsp; &nbsp;
+		  </td>
+
+        </tr>
+      </table>
     </div>
-  </div>
+</div>
+
 </footer>
+<!-- add by yurixu 2016/1/1 add website counter -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
     </div>
     <nav id="mobile-nav">
   
@@ -309,10 +315,19 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="https://github.com/HenryPaik1" class="mobile-nav-link">GitHub</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
 </nav>
     
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+< !-- add by yurixu 替换Google的jquery并且添加判断逻辑 -->
+<script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined') {
+  document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -321,7 +336,17 @@ Y_t = -\phi_1 Y_{t-1} -\phi_2 Y_{t-2} - \phi_3 Y_{t-3} - \cdots + \epsilon_t \\
 
 <script src="/js/script.js"></script>
 
+<!-- add by yurixu 2016/1/8 添加swiftype搜索代码 -->
+<!-- 
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
+  _st('install','Fa9mKyRrtZcNX19oWoxv','2.0.0');
+</script>
+-->
 
   </div>
 <script type="text/x-mathjax-config">

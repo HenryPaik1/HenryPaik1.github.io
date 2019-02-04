@@ -114,8 +114,8 @@ button::-moz-focus-inner {
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
-  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
+  src: url("fonts/fontawesome-webfont.eot?v=#4.5.0");
+  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.5.0") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.5.0") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.5.0") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.5.0") format("svg");
 }
 html,
 body,
@@ -124,11 +124,11 @@ body,
 }
 body {
   background: #eee;
-  font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 14px Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
-  max-width: 1220px;
+  max-width: 1020px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -143,8 +143,8 @@ body {
 .inner {
   display: inline;
   float: left;
-  width: 98.33333333333333%;
-  margin: 0 0.833333333333333%;
+  width: 98%;
+  margin: 0 1%;
 }
 .left,
 .alignleft {
@@ -179,18 +179,9 @@ body {
 .mobile-nav-on #wrap {
   left: 280px;
 }
-@media screen and (min-width: 768px) {
-  #main {
-    display: inline;
-    float: left;
-    width: 73.33333333333333%;
-    margin: 0 0.833333333333333%;
-  }
-}
 .article-date,
 .article-category-link,
-.archive-year,
-.widget-title {
+.archive-year {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -348,7 +339,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("images/aa.jpg") center #000;
+  background: url("http://7xj5r6.com1.z0.glb.clouddn.com/banner.jpg") center #000;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -482,7 +473,7 @@ body {
   background: none;
   color: #555;
   width: 100%;
-  font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 13px Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
   outline: none;
 }
 .search-form-input::-webkit-search-results-decoration,
@@ -519,29 +510,40 @@ body {
   clear: both;
 }
 .article-date {
+  margin: 20px 15px 0px 15px;
   float: left;
 }
+a.article-date:hover {
+  color: #258fb8;
+}
+.article-date:before {
+  font-family: FontAwesome;
+  color: #ccc;
+  content: "\f073";
+}
 .article-category {
+  margin: 20px 15px 0px 8px;
   float: left;
   line-height: 1em;
   color: #ccc;
   text-shadow: 0 1px #fff;
-  margin-left: 8px;
 }
 .article-category:before {
-  content: "\2022";
+  font-family: FontAwesome;
+  content: "\f0c6";
 }
 .article-category-link {
   margin: 0 12px 1em;
 }
 .article-header {
-  padding: 20px 20px 0;
+  padding: 35px 35px 0;
 }
 .article-title {
   text-decoration: none;
   font-size: 2em;
   font-weight: bold;
   color: #555;
+  margin-top: 10px;
   line-height: 1.1em;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -553,7 +555,7 @@ a.article-title:hover {
 }
 .article-entry {
   color: #555;
-  padding: 0 20px;
+  padding: 0 35px;
 }
 .article-entry:before,
 .article-entry:after {
@@ -565,7 +567,7 @@ a.article-title:hover {
 }
 .article-entry p,
 .article-entry table {
-  line-height: 1.6em;
+  line-height: 2em;
   margin: 1.6em 0;
 }
 .article-entry h1,
@@ -595,8 +597,9 @@ a.article-title:hover {
 .article-entry ul,
 .article-entry ol,
 .article-entry dl {
-  margin-top: 1.6em;
-  margin-bottom: 1.6em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  line-height: 1.8em;
 }
 .article-entry img,
 .article-entry video {
@@ -612,6 +615,7 @@ a.article-title:hover {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  line-height: 2em;
 }
 .article-entry th {
   font-weight: bold;
@@ -631,7 +635,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -695,7 +699,7 @@ a.article-title:hover {
   line-height: 1.6em;
   border-top: 1px solid #ddd;
   padding-top: 1.6em;
-  margin: 0 20px 20px;
+  margin: 0 35px 35px;
 }
 .article-footer:before,
 .article-footer:after {
@@ -836,7 +840,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 14px Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
@@ -941,11 +945,38 @@ a.article-title:hover {
   max-width: 100%;
   margin: 0 auto;
 }
+.toc-article {
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  margin: 1.5em 0 0.3em 1.5em;
+  padding: 1.2em 1em 0 1em;
+  max-width: 28%;
+}
+.toc-title {
+  font-size: 120%;
+}
+#toc {
+  line-height: 1em;
+  font-size: 0.9em;
+  float: right;
+}
+#toc .toc {
+  padding: 0;
+  margin: 1em;
+  line-height: 1.8em;
+}
+#toc .toc li {
+  list-style-type: none;
+}
+#toc .toc-child {
+  margin-left: 1em;
+}
 #comments {
   background: #fff;
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
-  padding: 20px;
+  padding: 35px;
   border: 1px solid #ddd;
   border-radius: 3px;
   margin: 50px 0;
@@ -1094,9 +1125,10 @@ a.article-title:hover {
 .article-entry pre,
 .article-entry .highlight {
   background: #2d2d2d;
-  margin: 0 -20px;
-  padding: 15px 20px;
+  margin: auto;
+  padding: 15px 35px;
   border-style: solid;
+  border-radius: 8px;
   border-color: #ddd;
   border-width: 1px 0;
   overflow: auto;
@@ -1159,16 +1191,13 @@ a.article-title:hover {
 .article-entry .highlight .line {
   height: 22.400000000000002px;
 }
-.article-entry .highlight .line.marked {
-  background: #515151;
-}
 .article-entry .gist {
-  margin: 0 -20px;
+  margin: 0 -35px;
   border-style: solid;
   border-color: #ddd;
   border-width: 1px 0;
   background: #2d2d2d;
-  padding: 15px 20px 15px 0;
+  padding: 15px 35px 15px 0;
 }
 .article-entry .gist .gist-file {
   border: none;
@@ -1195,11 +1224,11 @@ a.article-title:hover {
 .article-entry .gist .gist-file .gist-meta {
   background: #2d2d2d;
   color: #999;
-  font: 0.85em -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font: 0.85em Tahoma, "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei Light", "Microsoft YaHei", "Source Han Sans CN", "WenQuanYi Micro Hei", sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;
-  margin-left: 20px;
+  margin-left: 35px;
 }
 .article-entry .gist .gist-file .gist-meta a {
   color: #258fb8;
@@ -1287,45 +1316,27 @@ pre .javascript .function {
     color: #fff;
   }
 }
+.widget-wrap {
+  margin-bottom: 50px !important;
+}
 @media screen and (min-width: 768px) {
-  #sidebar {
+  .widget-wrap {
     display: inline;
     float: left;
-    width: 23.333333333333332%;
-    margin: 0 0.833333333333333%;
+    width: 28.000000000000004%;
+    margin: 0 1%;
   }
 }
-.widget-wrap {
-  margin: 50px 0;
+.widget-title {
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+  line-height: 1em;
+  font-weight: bold;
 }
 .widget {
-  color: #777;
-  text-shadow: 0 1px #fff;
-  background: #ddd;
-  -webkit-box-shadow: 0 -1px 4px #ccc inset;
-  box-shadow: 0 -1px 4px #ccc inset;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 3px;
-}
-.widget a {
-  color: #258fb8;
-  text-decoration: none;
-}
-.widget a:hover {
-  text-decoration: underline;
-}
-.widget ul ul,
-.widget ol ul,
-.widget dl ul,
-.widget ul ol,
-.widget ol ol,
-.widget dl ol,
-.widget ul dl,
-.widget ol dl,
-.widget dl dl {
-  margin-left: 15px;
-  list-style: disc;
+  color: #999;
 }
 .widget {
   line-height: 1.6em;
