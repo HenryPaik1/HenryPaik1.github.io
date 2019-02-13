@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>[Math] Singular Value Decomposition, SVD | Henry&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="특이값 분해(Singular Value Decomposition, SVD)">
+<meta name="keywords" content="SVD,압축,차원감소,잠재변수분석LAV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Math] Singular Value Decomposition, SVD">
+<meta property="og:url" content="https://henrypaik1.github.io/2019/02/11/Recap_SVD/index.html">
+<meta property="og:site_name" content="Henry&#39;s blog">
+<meta property="og:description" content="특이값 분해(Singular Value Decomposition, SVD)">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/2019/02/11/Recap_SVD/Recap_SVD_files/Recap_SVD_9_0.png">
+<meta property="og:updated_time" content="2019-02-13T10:30:24.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Math] Singular Value Decomposition, SVD">
+<meta name="twitter:description" content="특이값 분해(Singular Value Decomposition, SVD)">
+<meta name="twitter:image" content="https://henrypaik1.github.io/2019/02/11/Recap_SVD/Recap_SVD_files/Recap_SVD_9_0.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <!--link href="//fonts.useso.com/css?family=Lato:400,400italic" rel="stylesheet" type="text/css"-->
+  <link href="http://yurixu.com/css/fonts/Google/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">  
+  
+
+
+  <!--
+
+-->
+  
+
+  <!-- add by yurixu 2016/1/13 向百度提交sitemap-->
+  <meta name="baidu-site-verification" content="ubBCJmBrxD"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head></html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/HenryPaik1">GitHub</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Log">Log</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <! --modify by yurixu 22016/1/8 修改search为swiftype -->
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <!-- <input type="text" class="st-default-search-input"> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Recap_SVD" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [Math] Singular Value Decomposition, SVD
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/11/Recap_SVD/" class="article-date">
+  <time datetime="2019-02-11T03:02:08.000Z" itemprop="datePublished">2019-2-11 Mon  12:02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <h1 id="특이값-분해-Singular-Value-Decomposition-SVD"><a href="#특이값-분해-Singular-Value-Decomposition-SVD" class="headerlink" title="특이값 분해(Singular Value Decomposition, SVD)"></a>특이값 분해(Singular Value Decomposition, SVD)</h1><a id="more"></a>
+<ul>
+<li>활용: 1) 차원감소 2) 압축 3) 잠재변수 분석 4) PCA보다 계산 속도 빠름<script type="math/tex; mode=display">
+A = U \Sigma V^T ( m \times n)</script></li>
+<li>$U: \text{left singular vector}, orthogonal, m \times m, \text{eigen-vector of } AA^T$</li>
+<li>$V: \text{right singular vector}, orthogonal, n \times n, \text{eigen-vector of } A^TA$</li>
+<li>$\text{The diagonal entries of } \Sigma: \text{singular values of A} A$<ul>
+<li>$\text{singular-value}^2$ = eigen-value</li>
+</ul>
+</li>
+</ul>
+<h2 id="예제-영화-평점"><a href="#예제-영화-평점" class="headerlink" title="예제) 영화 평점"></a>예제) 영화 평점</h2><ul>
+<li>A ~ E 영화 5편(column)에 관객 7명(index)이 평점 부여</li>
+<li>영화는 SF, Romance 두가지 부류</li>
+<li>관객들은 SF, Romance에 대한 기호가 확실</li>
+</ul>
+<h3 id="1-SVD"><a href="#1-SVD" class="headerlink" title="1) SVD"></a>1) SVD</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">             [<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">             [<span class="number">4</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">             [<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">             [<span class="number">0</span>,<span class="number">2</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">4</span>],</span><br><span class="line">             [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">5</span>],</span><br><span class="line">             [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">2</span>]])</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<pre><code>array([[1, 1, 1, 0, 0],
+       [3, 3, 3, 0, 0],
+       [4, 4, 4, 0, 0],
+       [5, 5, 5, 0, 0],
+       [0, 2, 0, 4, 4],
+       [0, 0, 0, 5, 5],
+       [0, 1, 0, 2, 2]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">idx1 = [<span class="string">'SF'</span>] * <span class="number">4</span></span><br><span class="line">idx2 = [<span class="string">'Romance'</span>] * <span class="number">3</span></span><br><span class="line">idx = idx1 + idx2</span><br><span class="line">idx_ = [idx + <span class="string">" lover"</span> + str(i) <span class="keyword">for</span> i, idx <span class="keyword">in</span> enumerate(idx, <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">col = list(<span class="string">'ABCDE'</span>)</span><br><span class="line">col_ = [<span class="string">"movie_"</span> + idx <span class="keyword">for</span> idx <span class="keyword">in</span> col]</span><br><span class="line">col_</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;movie_A&#39;, &#39;movie_B&#39;, &#39;movie_C&#39;, &#39;movie_D&#39;, &#39;movie_E&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov = pd.DataFrame(A,columns=col_, index=idx_)</span><br><span class="line">mov</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_A</th>
+      <th>movie_B</th>
+      <th>movie_C</th>
+      <th>movie_D</th>
+      <th>movie_E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SF lover1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>SF lover2</th>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>SF lover3</th>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>SF lover4</th>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Romance lover5</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Romance lover6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Romance lover7</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">left_s, v, right_s = np.linalg.svd(A)</span><br><span class="line">print(<span class="string">" Original Matrix A: &#123;&#125; \n Left_SV: &#123;&#125; \n Right_SV: &#123;&#125; \n Singualr Values: &#123;&#125;"</span>\</span><br><span class="line">      .format(A.shape, left_s.shape, right_s.shape, v.shape))</span><br></pre></td></tr></table></figure>
+<pre><code> Original Matrix A: (7, 5)
+ Left_SV: (7, 7)
+ Right_SV: (5, 5)
+ Singualr Values: (5,)
+</code></pre><hr>
+<h3 id="2-Number-of-Singular-Values"><a href="#2-Number-of-Singular-Values" class="headerlink" title="2) Number of Singular Values"></a>2) Number of Singular Values</h3><ul>
+<li>주성분1, 2가 data의 94% 설명</li>
+<li>영화 5편을 2개 부류로 나눌 수 있음</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SVD = pd.DataFrame(v, columns=[<span class="string">'Singular values'</span>], index=np.arange(<span class="number">1</span>,<span class="number">6</span>))</span><br><span class="line">SVD[<span class="string">'Portion'</span>] = round(SVD / SVD.sum(), <span class="number">3</span>)</span><br><span class="line">SVD[<span class="string">'Portion_cum'</span>] = SVD[<span class="string">'Portion'</span>].cumsum()</span><br><span class="line">SVD</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Singular values</th>
+      <th>Portion</th>
+      <th>Portion_cum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1.248101e+01</td>
+      <td>0.535</td>
+      <td>0.535</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9.508614e+00</td>
+      <td>0.407</td>
+      <td>0.942</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.345560e+00</td>
+      <td>0.058</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.046427e-16</td>
+      <td>0.000</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.000000e+00</td>
+      <td>0.000</td>
+      <td>1.000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(SVD[<span class="string">'Portion_cum'</span>])</span><br><span class="line">plt.scatter(<span class="number">2</span>, <span class="number">0.942</span>, marker=<span class="string">'o'</span>, c=<span class="string">'red'</span>, s=<span class="number">100</span>)</span><br><span class="line">plt.xticks(np.arange(<span class="number">1</span>, <span class="number">6</span>))</span><br><span class="line">plt.xlabel(<span class="string">'Num of PC'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Cumulative Portion'</span>)</span><br><span class="line">plt.grid(<span class="keyword">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="Recap_SVD_files/Recap_SVD_9_0.png" alt="png"></p>
+<h3 id="3-Compared-with-Original-data"><a href="#3-Compared-with-Original-data" class="headerlink" title="3) Compared with Original data"></a>3) Compared with Original data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PC: 2</span></span><br><span class="line">left_s[:,:<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-0.13759913, -0.02361145],
+       [-0.41279738, -0.07083435],
+       [-0.5503965 , -0.09444581],
+       [-0.68799563, -0.11805726],
+       [-0.15277509,  0.59110096],
+       [-0.07221651,  0.73131186],
+       [-0.07638754,  0.29555048]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.diag(v)[:<span class="number">2</span>, :<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>array([[12.48101469,  0.        ],
+       [ 0.        ,  9.50861406]])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">right_s[:<span class="number">2</span>, :]</span><br></pre></td></tr></table></figure>
+<pre><code>array([[-0.56225841, -0.5928599 , -0.56225841, -0.09013354, -0.09013354],
+       [-0.12664138,  0.02877058, -0.12664138,  0.69537622,  0.69537622]])
+</code></pre><h4 id="3-1-retored-by-PCA2"><a href="#3-1-retored-by-PCA2" class="headerlink" title="3.1) retored by PCA2"></a>3.1) retored by PCA2</h4><ul>
+<li>if Original Matrix is too sparse, this restored Matrix would be used</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">col_pc2 = [x + <span class="string">'_reversed'</span> <span class="keyword">for</span> x <span class="keyword">in</span> col_]</span><br><span class="line">restore_PC2 = pd.DataFrame(np.linalg.multi_dot([left_s[:,:<span class="number">2</span>], np.diag(v)[:<span class="number">2</span>, :<span class="number">2</span>], right_s[:<span class="number">2</span>, :]]), columns=col_pc2, index=idx_,)</span><br><span class="line">restore_PC2</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_A_reversed</th>
+      <th>movie_B_reversed</th>
+      <th>movie_C_reversed</th>
+      <th>movie_D_reversed</th>
+      <th>movie_E_reversed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SF lover1</th>
+      <td>0.994042</td>
+      <td>1.011704</td>
+      <td>0.994042</td>
+      <td>-0.001327</td>
+      <td>-0.001327</td>
+    </tr>
+    <tr>
+      <th>SF lover2</th>
+      <td>2.982126</td>
+      <td>3.035113</td>
+      <td>2.982126</td>
+      <td>-0.003982</td>
+      <td>-0.003982</td>
+    </tr>
+    <tr>
+      <th>SF lover3</th>
+      <td>3.976168</td>
+      <td>4.046818</td>
+      <td>3.976168</td>
+      <td>-0.005309</td>
+      <td>-0.005309</td>
+    </tr>
+    <tr>
+      <th>SF lover4</th>
+      <td>4.970210</td>
+      <td>5.058522</td>
+      <td>4.970210</td>
+      <td>-0.006636</td>
+      <td>-0.006636</td>
+    </tr>
+    <tr>
+      <th>Romance lover5</th>
+      <td>0.360313</td>
+      <td>1.292165</td>
+      <td>0.360313</td>
+      <td>4.080263</td>
+      <td>4.080263</td>
+    </tr>
+    <tr>
+      <th>Romance lover6</th>
+      <td>-0.373851</td>
+      <td>0.734429</td>
+      <td>-0.373851</td>
+      <td>4.916721</td>
+      <td>4.916721</td>
+    </tr>
+    <tr>
+      <th>Romance lover7</th>
+      <td>0.180157</td>
+      <td>0.646082</td>
+      <td>0.180157</td>
+      <td>2.040132</td>
+      <td>2.040132</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h4 id="3-2-Comparing-Original-data-with-Restored-PC2"><a href="#3-2-Comparing-Original-data-with-Restored-PC2" class="headerlink" title="3.2) Comparing Original_data with Restored_PC2"></a>3.2) Comparing Original_data with Restored_PC2</h4><ul>
+<li>Similar with Original data</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = pd.concat([mov, restore_PC2], axis=<span class="number">1</span>)</span><br><span class="line">df.columns=col_ + col_pc2</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_A</th>
+      <th>movie_B</th>
+      <th>movie_C</th>
+      <th>movie_D</th>
+      <th>movie_E</th>
+      <th>movie_A_reversed</th>
+      <th>movie_B_reversed</th>
+      <th>movie_C_reversed</th>
+      <th>movie_D_reversed</th>
+      <th>movie_E_reversed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SF lover1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.994042</td>
+      <td>1.011704</td>
+      <td>0.994042</td>
+      <td>-0.001327</td>
+      <td>-0.001327</td>
+    </tr>
+    <tr>
+      <th>SF lover2</th>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2.982126</td>
+      <td>3.035113</td>
+      <td>2.982126</td>
+      <td>-0.003982</td>
+      <td>-0.003982</td>
+    </tr>
+    <tr>
+      <th>SF lover3</th>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.976168</td>
+      <td>4.046818</td>
+      <td>3.976168</td>
+      <td>-0.005309</td>
+      <td>-0.005309</td>
+    </tr>
+    <tr>
+      <th>SF lover4</th>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.970210</td>
+      <td>5.058522</td>
+      <td>4.970210</td>
+      <td>-0.006636</td>
+      <td>-0.006636</td>
+    </tr>
+    <tr>
+      <th>Romance lover5</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0.360313</td>
+      <td>1.292165</td>
+      <td>0.360313</td>
+      <td>4.080263</td>
+      <td>4.080263</td>
+    </tr>
+    <tr>
+      <th>Romance lover6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>-0.373851</td>
+      <td>0.734429</td>
+      <td>-0.373851</td>
+      <td>4.916721</td>
+      <td>4.916721</td>
+    </tr>
+    <tr>
+      <th>Romance lover7</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0.180157</td>
+      <td>0.646082</td>
+      <td>0.180157</td>
+      <td>2.040132</td>
+      <td>2.040132</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="4-applying-PC1-PC2"><a href="#4-applying-PC1-PC2" class="headerlink" title="4) applying PC1, PC2"></a>4) applying PC1, PC2</h3><ul>
+<li>U(left singular vectors M): user to PCA similarity M</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SVD2 = pd.DataFrame(left_s[:,:<span class="number">2</span>] ,columns=[<span class="string">'PC1'</span>, <span class="string">'PC2'</span>,], index=idx_)</span><br><span class="line">SVD2</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PC1</th>
+      <th>PC2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SF lover1</th>
+      <td>-0.137599</td>
+      <td>-0.023611</td>
+    </tr>
+    <tr>
+      <th>SF lover2</th>
+      <td>-0.412797</td>
+      <td>-0.070834</td>
+    </tr>
+    <tr>
+      <th>SF lover3</th>
+      <td>-0.550397</td>
+      <td>-0.094446</td>
+    </tr>
+    <tr>
+      <th>SF lover4</th>
+      <td>-0.687996</td>
+      <td>-0.118057</td>
+    </tr>
+    <tr>
+      <th>Romance lover5</th>
+      <td>-0.152775</td>
+      <td>0.591101</td>
+    </tr>
+    <tr>
+      <th>Romance lover6</th>
+      <td>-0.072217</td>
+      <td>0.731312</td>
+    </tr>
+    <tr>
+      <th>Romance lover7</th>
+      <td>-0.076388</td>
+      <td>0.295550</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 비교: user</span></span><br><span class="line">df2 = pd.concat([mov, SVD2], axis=<span class="number">1</span>)</span><br><span class="line">df2.columns = col_ + list(SVD2.columns)</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_A</th>
+      <th>movie_B</th>
+      <th>movie_C</th>
+      <th>movie_D</th>
+      <th>movie_E</th>
+      <th>PC1</th>
+      <th>PC2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SF lover1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.137599</td>
+      <td>-0.023611</td>
+    </tr>
+    <tr>
+      <th>SF lover2</th>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.412797</td>
+      <td>-0.070834</td>
+    </tr>
+    <tr>
+      <th>SF lover3</th>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.550397</td>
+      <td>-0.094446</td>
+    </tr>
+    <tr>
+      <th>SF lover4</th>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.687996</td>
+      <td>-0.118057</td>
+    </tr>
+    <tr>
+      <th>Romance lover5</th>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>-0.152775</td>
+      <td>0.591101</td>
+    </tr>
+    <tr>
+      <th>Romance lover6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>-0.072217</td>
+      <td>0.731312</td>
+    </tr>
+    <tr>
+      <th>Romance lover7</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>-0.076388</td>
+      <td>0.295550</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="5-applying-PC1-PC2"><a href="#5-applying-PC1-PC2" class="headerlink" title="5) applying PC1, PC2"></a>5) applying PC1, PC2</h3><ul>
+<li>movie to PC<ul>
+<li>movie_A heavily corresponds to PC</li>
+<li>movie_B heavily corresponds to PC</li>
+<li>$\dots$</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">col_pca = [x + <span class="string">"_PC2"</span> <span class="keyword">for</span> x <span class="keyword">in</span> col_]</span><br><span class="line">df3 = pd.DataFrame(right_s[:<span class="number">2</span>,:], index=[<span class="string">'PC1'</span>, <span class="string">'PC2'</span>], columns=col_pca)</span><br><span class="line">df3</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_A_PC2</th>
+      <th>movie_B_PC2</th>
+      <th>movie_C_PC2</th>
+      <th>movie_D_PC2</th>
+      <th>movie_E_PC2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PC1</th>
+      <td>-0.562258</td>
+      <td>-0.592860</td>
+      <td>-0.562258</td>
+      <td>-0.090134</td>
+      <td>-0.090134</td>
+    </tr>
+    <tr>
+      <th>PC2</th>
+      <td>-0.126641</td>
+      <td>0.028771</td>
+      <td>-0.126641</td>
+      <td>0.695376</td>
+      <td>0.695376</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h4 id="4-Wrap-up"><a href="#4-Wrap-up" class="headerlink" title="4) Wrap-up"></a>4) Wrap-up</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># user to PC</span></span><br><span class="line">SVD2</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PC1</th>
+      <th>PC2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SF lover1</th>
+      <td>-0.137599</td>
+      <td>-0.023611</td>
+    </tr>
+    <tr>
+      <th>SF lover2</th>
+      <td>-0.412797</td>
+      <td>-0.070834</td>
+    </tr>
+    <tr>
+      <th>SF lover3</th>
+      <td>-0.550397</td>
+      <td>-0.094446</td>
+    </tr>
+    <tr>
+      <th>SF lover4</th>
+      <td>-0.687996</td>
+      <td>-0.118057</td>
+    </tr>
+    <tr>
+      <th>Romance lover5</th>
+      <td>-0.152775</td>
+      <td>0.591101</td>
+    </tr>
+    <tr>
+      <th>Romance lover6</th>
+      <td>-0.072217</td>
+      <td>0.731312</td>
+    </tr>
+    <tr>
+      <th>Romance lover7</th>
+      <td>-0.076388</td>
+      <td>0.295550</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># movie to PC</span></span><br><span class="line">df3</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie_A_PC2</th>
+      <th>movie_B_PC2</th>
+      <th>movie_C_PC2</th>
+      <th>movie_D_PC2</th>
+      <th>movie_E_PC2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PC1</th>
+      <td>-0.562258</td>
+      <td>-0.592860</td>
+      <td>-0.562258</td>
+      <td>-0.090134</td>
+      <td>-0.090134</td>
+    </tr>
+    <tr>
+      <th>PC2</th>
+      <td>-0.126641</td>
+      <td>0.028771</td>
+      <td>-0.126641</td>
+      <td>0.695376</td>
+      <td>0.695376</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<hr>
+<p>reference</p>
+<ul>
+<li><a href="https://datascienceschool.net/view-notebook/30055dc68e8f4db0b7f6e4b56a571d52/" target="_blank" rel="noopener">https://datascienceschool.net/view-notebook/30055dc68e8f4db0b7f6e4b56a571d52/</a></li>
+<li><a href="https://www.youtube.com/watch?v=P5mlg91as1c&amp;t=490s" target="_blank" rel="noopener">https://www.youtube.com/watch?v=P5mlg91as1c&amp;t=490s</a></li>
+</ul>
+<p>질문</p>
+<ul>
+<li>왜 고유값이 설명력의 ‘양’을 대변하는지</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/11/Recap_SVD/" data-id="cjs0bphp80006vo09vslhzl1i" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVD/">SVD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/압축/">압축</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/차원감소/">차원감소</a></li></ul>
+
+    </footer>
+
+
+
+</div></article></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a><span class="category-list-count">10</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat/">Stat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alias/">alias</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdf/">cdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvalue/">eigenvalue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvector/">eigenvector</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p-value/">p-value</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">pdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random-variable/">random_variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/고유값분해/">고유값분해</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/대각화/">대각화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/압축/">압축</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원감소/">차원감소</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원의저주/">차원의저주</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/표준오차/">표준오차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Curse-of-Dimensionality/" style="font-size: 10px;">Curse_of_Dimensionality</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Stat/" style="font-size: 10px;">Stat</a> <a href="/tags/Study/" style="font-size: 12.5px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 17.5px;">Timeseries</a> <a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/cdf/" style="font-size: 10px;">cdf</a> <a href="/tags/eigenvalue/" style="font-size: 10px;">eigenvalue</a> <a href="/tags/eigenvector/" style="font-size: 10px;">eigenvector</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/p-value/" style="font-size: 10px;">p-value</a> <a href="/tags/pdf/" style="font-size: 10px;">pdf</a> <a href="/tags/random-variable/" style="font-size: 10px;">random_variable</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/고유값분해/" style="font-size: 10px;">고유값분해</a> <a href="/tags/대각화/" style="font-size: 10px;">대각화</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/압축/" style="font-size: 10px;">압축</a> <a href="/tags/일반선형확률과정/" style="font-size: 15px;">일반선형확률과정</a> <a href="/tags/잠재변수분석LAV/" style="font-size: 10px;">잠재변수분석LAV</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/차원감소/" style="font-size: 10px;">차원감소</a> <a href="/tags/차원의저주/" style="font-size: 10px;">차원의저주</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/표준오차/" style="font-size: 10px;">표준오차</a> <a href="/tags/확률과정/" style="font-size: 12.5px;">확률과정</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/13/Recap_Curse_of_dimensionalityok/">[ML] 차원의 저주 (Curse of Dimensionality)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/13/Recap_evdok/">[Math] 고유값 분해 (Eigen Value Decomposition)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/11/Recap_SVD/">[Math] Singular Value Decomposition, SVD</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/11/alias/">[Linux] Make alias</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/08/cdf-pdf/">[Stat]누적밀도함수cdf &amp; 확률밀도함수pdf</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+    
+  <!-- add by yurixu 2016/1/3 add bottom -->
+  <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:center;">
+	  <table width="100%" border="0">
+        <tr>
+          <td style="text-align:left">
+            Copyright &copy; 2019 Henry &nbsp; &nbsp;
+		  </td>
+
+        </tr>
+      </table>
+    </div>
+</div>
+
+</footer>
+<!-- add by yurixu 2016/1/1 add website counter -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/HenryPaik1" class="mobile-nav-link">GitHub</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Log" class="mobile-nav-link">Log</a>
+  
+</nav>
+    
+< !-- add by yurixu 替换Google的jquery并且添加判断逻辑 -->
+<script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined') {
+  document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<!-- add by yurixu 2016/1/8 添加swiftype搜索代码 -->
+<!-- 
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','Fa9mKyRrtZcNX19oWoxv','2.0.0');
+</script>
+-->
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
