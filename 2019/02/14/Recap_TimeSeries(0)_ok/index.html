@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>[시계열] ARIMA 모델 모수추정 일반 | Henry&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="확률과정 모형 추정">
+<meta name="keywords" content="Timeseries,Math,시계열모수추정,Timeseries_process,Timeseries_log_transform">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[시계열] ARIMA 모델 모수추정 일반">
+<meta property="og:url" content="https://henrypaik1.github.io/2019/02/14/Recap_TimeSeries(0)_ok/index.html">
+<meta property="og:site_name" content="Henry&#39;s blog">
+<meta property="og:description" content="확률과정 모형 추정">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/acfvspacf.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_4_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_5_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_8_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_11_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_12_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_18_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_21_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_25_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_27_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_31_1.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_33_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_36_1.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_38_0.png">
+<meta property="og:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_40_0.png">
+<meta property="og:updated_time" content="2019-02-14T13:15:22.456Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[시계열] ARIMA 모델 모수추정 일반">
+<meta name="twitter:description" content="확률과정 모형 추정">
+<meta name="twitter:image" content="https://henrypaik1.github.io/Recap_TimeSeries%280%29_ok_files/acfvspacf.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <!--link href="//fonts.useso.com/css?family=Lato:400,400italic" rel="stylesheet" type="text/css"-->
+  <link href="http://yurixu.com/css/fonts/Google/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">  
+  
+
+
+  <!--
+
+-->
+  
+
+  <!-- add by yurixu 2016/1/13 向百度提交sitemap-->
+  <meta name="baidu-site-verification" content="ubBCJmBrxD"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head></html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/HenryPaik1">GitHub</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Log">Log</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <! --modify by yurixu 22016/1/8 修改search为swiftype -->
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <!-- <input type="text" class="st-default-search-input"> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Recap_TimeSeries(0)_ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [시계열] ARIMA 모델 모수추정 일반
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/14/Recap_TimeSeries(0)_ok/" class="article-date">
+  <time datetime="2019-02-14T12:56:57.000Z" itemprop="datePublished">2019-2-14 Thu  21:56</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Science/">Data Science</a>►<a class="article-category-link" href="/categories/Data-Science/Math/">Math</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <h1 id="확률과정-모형-추정"><a href="#확률과정-모형-추정" class="headerlink" title="확률과정 모형 추정"></a>확률과정 모형 추정</h1><a id="more"></a>
+<h3 id="1-결정론적-추세-Deterministic-Trend-제거"><a href="#1-결정론적-추세-Deterministic-Trend-제거" class="headerlink" title="1. 결정론적 추세(Deterministic Trend) 제거"></a>1. 결정론적 추세(Deterministic Trend) 제거</h3><pre><code>- 다항식 추세
+</code></pre><h3 id="2-확률적-추세-Stochastic-Trend-제거"><a href="#2-확률적-추세-Stochastic-Trend-제거" class="headerlink" title="2. 확률적 추세(Stochastic Trend) 제거"></a>2. 확률적 추세(Stochastic Trend) 제거</h3><pre><code>- ARIMA
+- ADF 사용
+    - H0: 단위근 존재 -&gt; Integration 존재 -&gt; 차분필요
+</code></pre><h3 id="3-정규성-확인"><a href="#3-정규성-확인" class="headerlink" title="3. 정규성 확인"></a>3. 정규성 확인</h3><pre><code>- 정규성을 띠면 백색잡음 -&gt; ARMA 모형 적용가능
+- 일반 선형확률과정은 가우시안 정규분포 따름(백색잡음의 선형조합)
+- 정규성 개선을 위한 방법
+    - Box-Cox
+    - 로그변환
+</code></pre><h3 id="4-ARMA-모형의-차수-결정"><a href="#4-ARMA-모형의-차수-결정" class="headerlink" title="4.  ARMA 모형의 차수 결정"></a>4.  ARMA 모형의 차수 결정</h3><pre><code>- MA: ACF가 특정차수이상에서 사라짐(cut-off)
+- AR: PACF가 특정차수이상에서 사라짐
+- ARMA: ACF/PACF가 특정차수이상에서 사라지지 않음
+    - 모수추정: AIC/BIC, MML/LM/MLE 등 사용
+    - bootstrapping으로 모수의 표준오차 추정
+</code></pre><h3 id="5-모형-진단"><a href="#5-모형-진단" class="headerlink" title="5. 모형 진단"></a>5. 모형 진단</h3><pre><code>- 잔차 정규성 검정
+- 잔차에 ACF/PACF/Ljung-Box(H0: k=0이외 상관계수0) Q검정으로 모형 차수 재확인
+</code></pre><hr>
+<h1 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h1><h3 id="1-로그변환-및-Box-Cox-변환"><a href="#1-로그변환-및-Box-Cox-변환" class="headerlink" title="1) 로그변환 및 Box-Cox 변환"></a>1) 로그변환 및 Box-Cox 변환</h3><h4 id="왜-사용-to-get-constant-variance-rightarrow-and-then-detrend-rightarrow-stationary-process"><a href="#왜-사용-to-get-constant-variance-rightarrow-and-then-detrend-rightarrow-stationary-process" class="headerlink" title="왜 사용? to get constant variance $\rightarrow$ and then detrend $\rightarrow$ stationary process"></a>왜 사용? to get constant variance $\rightarrow$ and then detrend $\rightarrow$ stationary process</h4><ul>
+<li>비정상확률 과정 중 시간t에 의존하여 기댓값 및 분산이 변하는 경우</li>
+<li>eg. 기댓값은 t에 의존, 표준편차는 $\mu$에 의존<script type="math/tex; mode=display">
+E[Y_t] = \mu_t = f(t) \\
+\sqrt{Var[Y_t]} = \mu_t \sigma \\
+E[\log{Y_t}] = \log{\mu_t} \\
+Var[\log{Y_t}] \approx \sigma^2 \rightarrow \text{constant}</script></li>
+</ul>
+<h3 id="2-모형구분"><a href="#2-모형구분" class="headerlink" title="2) 모형구분"></a>2) 모형구분</h3><ul>
+<li>AR vs MA: 모두 백색잡음 $\epsilon$의 선형 조합. ACF &amp; PACF로 구분 가능</li>
+<li>ARMA(Stationary) vs ARIMA(Non-Stationary): 특성방정식이 다름. ADF로 구분 가능<ul>
+<li>ARMA(p, q)<script type="math/tex; mode=display">Y_t = \phi_1Y_{t-1}+ \cdots + \phi_p Y_{t-p} + \cdots</script></li>
+<li>ARIMA(p, 1, q):<script type="math/tex; mode=display">Y_t = (1+\phi_1)Y_t + (\phi_2 - \phi_1)Y_{t-1} + \cdots + (\phi_p - \phi_{p-1})Y_{t-p} - \phi_p Y_{t-p-1} + \cdots</script></li>
+</ul>
+</li>
+</ul>
+<h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><p><img src="/Recap_TimeSeries%280%29_ok_files\acfvspacf.png" alt="http://stat.snu.ac.kr/time/download/%EC%8B%9C%EA%B3%84%EC%97%B4%EB%B6%84%EC%84%9D6%EC%9E%A5%EA%B0%95%EC%9D%98.pdf"></p>
+<h1 id="예제-MA-amp-AR의-ACF-amp-PACF-비교"><a href="#예제-MA-amp-AR의-ACF-amp-PACF-비교" class="headerlink" title="예제) MA &amp; AR의 ACF &amp; PACF 비교"></a>예제) MA &amp; AR의 ACF &amp; PACF 비교</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ma</span></span><br><span class="line">theta = <span class="number">0.6</span></span><br><span class="line">ar = [<span class="number">1</span>]</span><br><span class="line">ma = [<span class="number">1</span>, theta]</span><br><span class="line">a = sm.tsa.ArmaProcess(ar, ma)</span><br><span class="line">s = a.generate_sample(<span class="number">20</span>, burnin=<span class="number">240</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">5</span>,<span class="number">7</span>))</span><br><span class="line">plt.subplot(<span class="number">411</span>)</span><br><span class="line">plt.stem(a.acf(<span class="number">20</span>))</span><br><span class="line">plt.subplot(<span class="number">412</span>)</span><br><span class="line">plt.stem(a.pacf(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line">ax=plt.subplot(<span class="number">413</span>)</span><br><span class="line">sm.tsa.graphics.plot_acf(s, ax=ax)</span><br><span class="line">ax=plt.subplot(<span class="number">414</span>)</span><br><span class="line">sm.tsa.graphics.plot_pacf(s, method=<span class="string">'ywm'</span>, ax=ax)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_4_0.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AR</span></span><br><span class="line">phi = <span class="number">0.6</span></span><br><span class="line">ar = [<span class="number">1</span>, phi]</span><br><span class="line">ma = [<span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">a = sm.tsa.ArmaProcess(ar, ma)</span><br><span class="line">s = a.generate_sample(<span class="number">20</span>, burnin=<span class="number">240</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">5</span>,<span class="number">7</span>))</span><br><span class="line">plt.subplot(<span class="number">411</span>)</span><br><span class="line">plt.stem(a.acf(<span class="number">20</span>))</span><br><span class="line">plt.subplot(<span class="number">412</span>)</span><br><span class="line">plt.stem(a.pacf(<span class="number">20</span>))</span><br><span class="line"></span><br><span class="line">ax=plt.subplot(<span class="number">413</span>)</span><br><span class="line">sm.tsa.graphics.plot_acf(s, ax=ax)</span><br><span class="line">ax=plt.subplot(<span class="number">414</span>)</span><br><span class="line">sm.tsa.graphics.plot_pacf(s, method=<span class="string">'ywm'</span>, ax=ax)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_5_0.png" alt=" "></p>
+<h2 id="예제-Shampoo-Sales-Dataset"><a href="#예제-Shampoo-Sales-Dataset" class="headerlink" title="예제) Shampoo Sales Dataset"></a>예제) Shampoo Sales Dataset</h2><ul>
+<li><ol>
+<li>Deterministic Trend &amp; Seasonality</li>
+</ol>
+</li>
+<li><ol>
+<li>Stochastic Trend &amp; Seasonality: Multiplicative SARIMA</li>
+</ol>
+</li>
+</ul>
+<h3 id="Original-data"><a href="#Original-data" class="headerlink" title="Original data"></a>Original data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">'shampoo.csv'</span>)</span><br><span class="line">df.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">X = df.values[:, <span class="number">1</span>]</span><br><span class="line">plt.plot(X)</span><br><span class="line">plt.show()</span><br><span class="line">df.info()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_8_0.png" alt=" "></p>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 36 entries, 0 to 35
+Data columns (total 2 columns):
+Month                                        36 non-null object
+Sales of shampoo over a three year period    36 non-null float64
+dtypes: float64(1), object(1)
+memory usage: 864.0+ bytes
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parser</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> datetime.strptime(<span class="string">'190'</span> + x[<span class="string">'Month'</span>], <span class="string">'%Y-%m'</span>)</span><br><span class="line"></span><br><span class="line">df[<span class="string">'Month'</span>] = df.apply(parser, axis=<span class="number">1</span>)</span><br><span class="line">df = df.rename_axis(<span class="string">'order'</span>).reset_index()</span><br><span class="line">df.columns = [<span class="string">'order'</span>, <span class="string">'date'</span>, <span class="string">'val'</span>]</span><br><span class="line">df[<span class="string">'order'</span>] = df[<span class="string">'order'</span>] + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="EDA"><a href="#EDA" class="headerlink" title="EDA"></a>EDA</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MA 아님</span></span><br><span class="line">sm.tsa.graphics.plot_acf(df[<span class="string">'val'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_11_0.png" alt=" "></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AR(2) 가능성</span></span><br><span class="line">sm.tsa.graphics.plot_pacf(df[<span class="string">'val'</span>], method=<span class="string">'ywm'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_12_0.png" alt=" "></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sm.tsa.adfuller(df[<span class="string">'val'</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>(3.060142083641183,
+ 1.0,
+ 10,
+ 25,
+ {&#39;1%&#39;: -3.7238633119999998, &#39;5%&#39;: -2.98648896, &#39;10%&#39;: -2.6328004},
+ 278.9972644263031)
+</code></pre><hr>
+<h2 id="1-Deterministic-Trend-amp-Seasonality"><a href="#1-Deterministic-Trend-amp-Seasonality" class="headerlink" title="1. Deterministic Trend &amp; Seasonality"></a>1. Deterministic Trend &amp; Seasonality</h2><h3 id="1-결정론적-추세-확인-linear"><a href="#1-결정론적-추세-확인-linear" class="headerlink" title="1) 결정론적 추세 확인: linear"></a>1) 결정론적 추세 확인: linear</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="string">"val ~ order"</span></span><br><span class="line">mod = sm.OLS.from_formula(f, df)</span><br><span class="line">res = mod.fit()</span><br><span class="line">print(res.summary())</span><br></pre></td></tr></table></figure>
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    val   R-squared:                       0.730
+Model:                            OLS   Adj. R-squared:                  0.722
+Method:                 Least Squares   F-statistic:                     91.97
+Date:                Thu, 14 Feb 2019   Prob (F-statistic):           3.37e-11
+Time:                        22:07:16   Log-Likelihood:                -207.13
+No. Observations:                  36   AIC:                             418.3
+Df Residuals:                      34   BIC:                             421.4
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     89.1371     26.723      3.336      0.002      34.829     143.445
+order         12.0791      1.260      9.590      0.000       9.519      14.639
+==============================================================================
+Omnibus:                        3.174   Durbin-Watson:                   1.937
+Prob(Omnibus):                  0.205   Jarque-Bera (JB):                2.703
+Skew:                           0.666   Prob(JB):                        0.259
+Kurtosis:                       2.827   Cond. No.                         43.4
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t = df.order; y = df.val</span><br><span class="line">trend1 = res.params[<span class="number">0</span>] + res.params[<span class="number">1</span>]*t</span><br><span class="line">plt.plot(t, y, <span class="string">'-'</span>)</span><br><span class="line">plt.plot(t, trend1, <span class="string">'-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_18_0.png" alt=" "></p>
+<h3 id="2-결정론적-추세-확인-quadratic"><a href="#2-결정론적-추세-확인-quadratic" class="headerlink" title="2) 결정론적 추세 확인: quadratic"></a>2) 결정론적 추세 확인: quadratic</h3><ul>
+<li>r sqaure 더 높음</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="string">"val ~ order + I(order**2)"</span></span><br><span class="line">mod = sm.OLS.from_formula(f, df)</span><br><span class="line">res = mod.fit()</span><br><span class="line">print(res.summary())</span><br></pre></td></tr></table></figure>
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    val   R-squared:                       0.832
+Model:                            OLS   Adj. R-squared:                  0.821
+Method:                 Least Squares   F-statistic:                     81.51
+Date:                Thu, 14 Feb 2019   Prob (F-statistic):           1.71e-13
+Time:                        22:07:24   Log-Likelihood:                -198.63
+No. Observations:                  36   AIC:                             403.3
+Df Residuals:                      33   BIC:                             408.0
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+Intercept       202.8789     33.300      6.092      0.000     135.129     270.629
+order            -5.8801      4.150     -1.417      0.166     -14.324       2.563
+I(order ** 2)     0.4854      0.109      4.461      0.000       0.264       0.707
+==============================================================================
+Omnibus:                        2.850   Durbin-Watson:                   3.055
+Prob(Omnibus):                  0.241   Jarque-Bera (JB):                2.222
+Skew:                           0.608   Prob(JB):                        0.329
+Kurtosis:                       2.971   Cond. No.                     1.92e+03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.92e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">trend2 = res.params[<span class="number">0</span>] + res.params[<span class="number">1</span>] * t + res.params[<span class="number">2</span>] * (t**<span class="number">2</span>)</span><br><span class="line">plt.plot(t, y, <span class="string">'-'</span>)</span><br><span class="line">plt.plot(t, trend2, <span class="string">'-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_21_0.png" alt=" "></p>
+<h3 id="3-remove-determinstic-trend-only"><a href="#3-remove-determinstic-trend-only" class="headerlink" title="3) remove determinstic trend only"></a>3) remove determinstic trend only</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'diff'</span>] = df[<span class="string">'val'</span>] - trend1</span><br><span class="line">df[<span class="string">'diff2'</span>] = df[<span class="string">'val'</span>] - trend2</span><br><span class="line">df[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order</th>
+      <th>date</th>
+      <th>val</th>
+      <th>diff</th>
+      <th>diff2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1901-01-01</td>
+      <td>266.0</td>
+      <td>164.783784</td>
+      <td>68.515884</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1901-02-01</td>
+      <td>145.9</td>
+      <td>32.604710</td>
+      <td>-47.160121</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1901-03-01</td>
+      <td>183.1</td>
+      <td>57.725637</td>
+      <td>-6.506894</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1901-04-01</td>
+      <td>119.3</td>
+      <td>-18.153436</td>
+      <td>-67.824437</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>1901-05-01</td>
+      <td>180.3</td>
+      <td>30.767490</td>
+      <td>-5.312748</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="4-1-plotting-linear-vs-quadratic"><a href="#4-1-plotting-linear-vs-quadratic" class="headerlink" title="4.1) plotting: linear vs quadratic"></a>4.1) plotting: linear vs quadratic</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df.order, df[<span class="string">'val'</span>], label=<span class="string">'original'</span>)</span><br><span class="line">plt.plot(df.order, df[<span class="string">'diff'</span>], label=<span class="string">'trend: linear'</span>)</span><br><span class="line">plt.plot(df.order, df[<span class="string">'diff2'</span>], label=<span class="string">'trend: quadratic'</span>)</span><br><span class="line">plt.grid(<span class="keyword">False</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_25_0.png" alt=" "></p>
+<h3 id="4-2-plotting-resid-linear-vs-quadratic"><a href="#4-2-plotting-resid-linear-vs-quadratic" class="headerlink" title="4.2) plotting resid: linear vs quadratic"></a>4.2) plotting resid: linear vs quadratic</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df.order - df[<span class="string">'diff'</span>], label=<span class="string">'trend: linear'</span>)</span><br><span class="line">plt.plot(df.order - df[<span class="string">'diff2'</span>], label=<span class="string">'trend: quadratic'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_27_0.png" alt=" "></p>
+<h3 id="5-remove-Trend-amp-Seasonality"><a href="#5-remove-Trend-amp-Seasonality" class="headerlink" title="5) remove Trend &amp; Seasonality"></a>5) remove Trend &amp; Seasonality</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'cat'</span>] = df[<span class="string">'order'</span>] % <span class="number">15</span></span><br><span class="line">df[<span class="string">'cat'</span>].astype(<span class="string">'category'</span>)</span><br><span class="line">f = <span class="string">'val ~ C(cat) + order + I(order**2) - 1'</span></span><br><span class="line">mod = sm.OLS.from_formula(f, df)</span><br><span class="line">res = mod.fit()</span><br><span class="line">print(res.summary())</span><br></pre></td></tr></table></figure>
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    val   R-squared:                       0.958
+Model:                            OLS   Adj. R-squared:                  0.924
+Method:                 Least Squares   F-statistic:                     27.41
+Date:                Thu, 14 Feb 2019   Prob (F-statistic):           8.58e-10
+Time:                        22:07:43   Log-Likelihood:                -173.44
+No. Observations:                  36   AIC:                             380.9
+Df Residuals:                      19   BIC:                             407.8
+Df Model:                          16                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+C(cat)[0]       174.7258     39.418      4.433      0.000      92.224     257.228
+C(cat)[1]       262.7115     30.125      8.721      0.000     199.658     325.765
+C(cat)[2]       128.9006     30.535      4.221      0.000      64.990     192.811
+C(cat)[3]       253.1511     30.877      8.199      0.000     188.526     317.776
+C(cat)[4]       130.1963     31.149      4.180      0.001      65.000     195.392
+C(cat)[5]       198.3030     31.355      6.324      0.000     132.676     263.930
+C(cat)[6]       197.2711     31.498      6.263      0.000     131.346     263.196
+C(cat)[7]       277.3137     37.662      7.363      0.000     198.485     356.142
+C(cat)[8]       186.0607     38.172      4.874      0.000     106.167     265.955
+C(cat)[9]       199.0857     38.599      5.158      0.000     118.298     279.874
+C(cat)[10]      151.8388     38.942      3.899      0.001      70.333     233.345
+C(cat)[11]      297.0200     39.200      7.577      0.000     214.974     379.066
+C(cat)[12]      146.5293     39.374      3.722      0.001      64.119     228.939
+C(cat)[13]      198.5167     39.465      5.030      0.000     115.915     281.118
+C(cat)[14]      142.2322     39.478      3.603      0.002      59.603     224.861
+order            -5.5256      3.059     -1.806      0.087     -11.928       0.877
+I(order ** 2)     0.4860      0.081      6.027      0.000       0.317       0.655
+==============================================================================
+Omnibus:                        0.957   Durbin-Watson:                   2.711
+Prob(Omnibus):                  0.620   Jarque-Bera (JB):                0.508
+Skew:                           0.290   Prob(JB):                        0.776
+Kurtosis:                       3.053   Cond. No.                     8.31e+03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 8.31e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</code></pre><h3 id="6-plotting"><a href="#6-plotting" class="headerlink" title="6) plotting"></a>6) plotting</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">211</span>)</span><br><span class="line">plt.plot(df[<span class="string">'val'</span>], label=<span class="string">'orginal'</span>)</span><br><span class="line">plt.plot(res.fittedvalues, label=<span class="string">'seasonality+deterministic trend'</span>, lw=<span class="number">3</span>, alpha=<span class="number">0.7</span>)</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line"><span class="comment"># residual</span></span><br><span class="line">plt.subplot(<span class="number">212</span>)</span><br><span class="line">plt.plot(res.resid, label=<span class="string">'residuals'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f4c44182240&gt;
+</code></pre><p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_31_1.png" alt=" "></p>
+<h3 id="7-1-잔차검정-정규성-pass"><a href="#7-1-잔차검정-정규성-pass" class="headerlink" title="7.1) 잔차검정: 정규성 pass"></a>7.1) 잔차검정: 정규성 pass</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sp.stats.probplot(res.resid, plot=plt)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_33_0.png" alt=" "></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sp.stats.shapiro(res.resid)</span><br></pre></td></tr></table></figure>
+<pre><code>(0.986703634262085, 0.9349536895751953)
+</code></pre><h3 id="7-2-잔차검정-이분산성"><a href="#7-2-잔차검정-이분산성" class="headerlink" title="7.2) 잔차검정: 이분산성"></a>7.2) 잔차검정: 이분산성</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(res.fittedvalues, res.resid)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x7f4c428741d0&gt;
+</code></pre><p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_36_1.png" alt=" "></p>
+<h3 id="7-3-잔차검정-자기상관계수-ACF"><a href="#7-3-잔차검정-자기상관계수-ACF" class="headerlink" title="7.3) 잔차검정: 자기상관계수 ACF"></a>7.3) 잔차검정: 자기상관계수 ACF</h3><ul>
+<li>lag=0 이외에 상관관계 존재 -&gt; 잔차 독립조건 위배</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">5</span>, <span class="number">7</span>))</span><br><span class="line"></span><br><span class="line">ax1 = plt.subplot(<span class="number">211</span>)</span><br><span class="line">sm.tsa.graphics.plot_acf(res.resid, ax=ax1, lags=<span class="number">15</span>)</span><br><span class="line">ax2 = plt.subplot(<span class="number">212</span>)</span><br><span class="line">sm.tsa.graphics.plot_pacf(res.resid, ax=ax2, lags=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_38_0.png" alt=" "></p>
+<h3 id="7-3-Ljung-Box-검정"><a href="#7-3-Ljung-Box-검정" class="headerlink" title="7.3) Ljung-Box 검정"></a>7.3) Ljung-Box 검정</h3><ul>
+<li>잔차가 독립적이라면, 귀무가설(ACF값이 lag=k까지 모두 0) 성립해야 함</li>
+<li>아래는 기각</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val, pval = sm.stats.diagnostic.acorr_ljungbox(res.resid)</span><br><span class="line">plt.stem(pval)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="\Recap_TimeSeries%280%29_ok_files/Recap_TimeSeries%280%29_ok_40_0.png" alt=" "></p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><ul>
+<li>결정론적 모델 부적합</li>
+</ul>
+<hr>
+<ul>
+<li>reference<ul>
+<li><a href="https://www.ltrr.arizona.edu/webhome/dmeko/geos585a.html#cdownload" target="_blank" rel="noopener">https://www.ltrr.arizona.edu/webhome/dmeko/geos585a.html#cdownload</a></li>
+<li><a href="https://datascienceschool.net/view-notebook/e4b52228ac5749418d51409fdc4f9cef/" target="_blank" rel="noopener">https://datascienceschool.net/view-notebook/e4b52228ac5749418d51409fdc4f9cef/</a></li>
+<li><a href="https://machinelearningmastery.com/time-series-trends-in-python/" target="_blank" rel="noopener">https://machinelearningmastery.com/time-series-trends-in-python/</a></li>
+<li><a href="http://stat.snu.ac.kr/time/download/%EC%8B%A4%EC%8A%B5%EA%B0%95%EC%9D%983.pdf" target="_blank" rel="noopener">http://stat.snu.ac.kr/time/download/%EC%8B%A4%EC%8A%B5%EA%B0%95%EC%9D%983.pdf</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="자가질문"><a href="#자가질문" class="headerlink" title="자가질문"></a>자가질문</h2><ul>
+<li>pacf lag=0에서 1이 안되는 이유: 자료가 작아서 lag이 너무 크면 계산에 오류 발생? No, method=’ywm’(biased method)</li>
+<li>How to know if a model is deterministic or stochastic model?<ul>
+<li>detrend 후 잔차가 백색잡음이면 stochastic model</li>
+</ul>
+</li>
+<li>determinisitic &amp; stochastic trend &amp; seasonality 동시에 존재 가능?</li>
+<li>왜 detrend하고 나서 regression으로 seasonality 찾으면 안되는지?</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/14/Recap_TimeSeries(0)_ok/" data-id="cjs4mmmb50009f109zb0igxwq" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a></li></ul>
+
+    </footer>
+
+
+
+</div></article></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/">Data Science</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Science/Math/">Math</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat/">Stat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alias/">alias</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdf/">cdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvalue/">eigenvalue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvector/">eigenvector</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p-value/">p-value</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">pdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random-variable/">random_variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/고유값분해/">고유값분해</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/대각화/">대각화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/압축/">압축</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원감소/">차원감소</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원의저주/">차원의저주</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/표준오차/">표준오차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Curse-of-Dimensionality/" style="font-size: 10px;">Curse_of_Dimensionality</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Stat/" style="font-size: 10px;">Stat</a> <a href="/tags/Study/" style="font-size: 12.5px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 17.5px;">Timeseries</a> <a href="/tags/Timeseries-log-transform/" style="font-size: 10px;">Timeseries_log_transform</a> <a href="/tags/Timeseries-process/" style="font-size: 10px;">Timeseries_process</a> <a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/cdf/" style="font-size: 10px;">cdf</a> <a href="/tags/eigenvalue/" style="font-size: 10px;">eigenvalue</a> <a href="/tags/eigenvector/" style="font-size: 10px;">eigenvector</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/p-value/" style="font-size: 10px;">p-value</a> <a href="/tags/pdf/" style="font-size: 10px;">pdf</a> <a href="/tags/random-variable/" style="font-size: 10px;">random_variable</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/고유값분해/" style="font-size: 10px;">고유값분해</a> <a href="/tags/대각화/" style="font-size: 10px;">대각화</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/시계열모수추정/" style="font-size: 10px;">시계열모수추정</a> <a href="/tags/압축/" style="font-size: 10px;">압축</a> <a href="/tags/일반선형확률과정/" style="font-size: 15px;">일반선형확률과정</a> <a href="/tags/잠재변수분석LAV/" style="font-size: 10px;">잠재변수분석LAV</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/차원감소/" style="font-size: 10px;">차원감소</a> <a href="/tags/차원의저주/" style="font-size: 10px;">차원의저주</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/표준오차/" style="font-size: 10px;">표준오차</a> <a href="/tags/확률과정/" style="font-size: 12.5px;">확률과정</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/14/Recap_TimeSeries(0)_ok/">[시계열] ARIMA 모델 모수추정 일반</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/14/restartwifi/">[Linux] Restart ubuntu wifi without reboot</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/13/Recap_Curse_of_dimensionalityok/">[ML] 차원의 저주 (Curse of Dimensionality)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/13/Recap_evdok/">[Math] 고유값 분해 (Eigen Value Decomposition)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/11/Recap_SVD/">[Math] Singular Value Decomposition, SVD</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+    
+  <!-- add by yurixu 2016/1/3 add bottom -->
+  <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:center;">
+	  <table width="100%" border="0">
+        <tr>
+          <td style="text-align:left">
+            Copyright &copy; 2019 Henry &nbsp; &nbsp;
+		  </td>
+
+        </tr>
+      </table>
+    </div>
+</div>
+
+</footer>
+<!-- add by yurixu 2016/1/1 add website counter -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/HenryPaik1" class="mobile-nav-link">GitHub</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Log" class="mobile-nav-link">Log</a>
+  
+</nav>
+    
+< !-- add by yurixu 替换Google的jquery并且添加判断逻辑 -->
+<script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined') {
+  document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<!-- add by yurixu 2016/1/8 添加swiftype搜索代码 -->
+<!-- 
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','Fa9mKyRrtZcNX19oWoxv','2.0.0');
+</script>
+-->
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
