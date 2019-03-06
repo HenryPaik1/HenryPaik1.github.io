@@ -13,20 +13,20 @@
 <meta property="og:site_name" content="Henry&#39;s blog">
 <meta property="og:description" content="AWS RDS">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/workbench.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/ca2.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/awscache2.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/resh1.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/Au1.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/aucompare.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/au2.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/sqlms.png">
-<meta property="og:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/sql_join.png">
-<meta property="og:updated_time" content="2019-03-06T08:22:01.314Z">
+<meta property="og:image" content="https://henrypaik1.github.io/img/workbench.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/ca2.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/awscache2.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/resh1.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/Au1.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/aucompare.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/au2.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/sqlms.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/sql_join.png">
+<meta property="og:updated_time" content="2019-03-06T08:45:58.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[AWS_3] AWS RDS">
 <meta name="twitter:description" content="AWS RDS">
-<meta name="twitter:image" content="https://henrypaik1.github.io/2019/03/06/aws6/img/workbench.png">
+<meta name="twitter:image" content="https://henrypaik1.github.io/img/workbench.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -137,7 +137,7 @@
 </ul>
 </li>
 <li>생성: service &gt; RDS</li>
-<li>MySQL connection(linux workbench: jdbc필요없음)<br><img src="img/workbench.png"><ul>
+<li>MySQL connection(linux workbench: jdbc필요없음)<br><img src="/img/workbench.png" width="300px"><ul>
 <li>Connection Name: writer instance ID</li>
 <li>Hostname: end point</li>
 <li>Port: 3306</li>
@@ -151,19 +151,17 @@
 </li>
 <li>Scale-up: Modify</li>
 <li>Scale-out: add reader</li>
-<li>cache 서비스: 자주 접근하는 데이터를 cache서버에 저장<br><a href="https://aws.amazon.com/caching/database-caching/" target="_blank" rel="noopener"><img src="img/ca2.png" width="500px"></a><ul>
-<li>예시: 게임 데이터 분석 아키텍처<br><a href="https://www.slideshare.net/awskorea/aws-cloud-game-architecture" target="_blank" rel="noopener"><img src="img/awscache2.png" width="400px"></a></li>
+<li>cache 서비스: 자주 접근하는 데이터를 cache서버에 저장 <a href="https://aws.amazon.com/caching/database-caching/" target="_blank" rel="noopener">(more…)</a><br><img src="/img/ca2.png" width="500px"><ul>
+<li>예시: 게임 데이터 분석 아키텍처<a href="https://www.slideshare.net/awskorea/aws-cloud-game-architecture" target="_blank" rel="noopener"> (more…)</a><br><img src="/img/awscache2.png" width="400px"></li>
 </ul>
 </li>
-<li>Redshift: Relational data warehouse<br><a href="https://medium.com/team-mangoplate/%EB%A7%9D%EA%B3%A0%ED%94%8C%EB%A0%88%EC%9D%B4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9B%A8%EC%96%B4%ED%95%98%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EC%95%BC%EA%B8%B0-602e4e073078" target="_blank" rel="noopener"><img src="img/resh1.png" width="400px"></a></li>
+<li>Redshift: Relational data warehouse (<a href="https://medium.com/team-mangoplate/%EB%A7%9D%EA%B3%A0%ED%94%8C%EB%A0%88%EC%9D%B4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9B%A8%EC%96%B4%ED%95%98%EC%9A%B0%EC%8A%A4-%EC%9D%B4%EC%95%BC%EA%B8%B0-602e4e073078" target="_blank" rel="noopener">more…</a>)<br><img src="/img/resh1.png" width="400px"></li>
 </ul>
 <h2 id="Aurora-DB"><a href="#Aurora-DB" class="headerlink" title="Aurora DB"></a>Aurora DB</h2><blockquote>
-<blockquote>
 <p>Aurora brings a novel architecture to the relational database to address this constraint, most notably by pushing redo processing to a multi-tenant scaleout storage service, purpose-built for Aurora. We describe how doing so not only reduces network traffic, but also allows for fast crash recovery, failovers to replicas without loss of data, and fault-tolerant, self-healing storage.(“<a href="http://allthingsdistributed.com/files/p1041-verbitski.pdf" target="_blank" rel="noopener">Amazon Aurora: Design Considerations for HighThroughput Cloud-Native Relational Databases</a>“)</p>
 </blockquote>
-</blockquote>
 <ul>
-<li>AWS Aurora 생성시 DB 클러스터 생성<a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html" target="_blank" rel="noopener"><img src="img/Au1.png" width="500px"></a><ul>
+<li>AWS Aurora 생성시 DB 클러스터 생성 <a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html" target="_blank" rel="noopener">(more…)</a><br><img src="/img/Au1.png" width="500px"><ul>
 <li>DB클러스터는 하나 이상의 인스턴스 &amp; 데이터 관리하는 클러스터 볼륨으로 구성</li>
 <li>Aurora 클러스터 볼륨은 Multiple AZ 아우르는 가상 DB Storage Volume으로서, 각 AZ에는 클러스터 Data 사본이 복사됨</li>
 <li><strong>기본primary DB 인스턴스</strong><ul>
@@ -185,7 +183,7 @@
 </li>
 </ul>
 </li>
-<li>비교(SQL vs Aurora)<br><a href="https://www.slideshare.net/AmazonWebServices/aws-reinvent-2016-getting-started-with-amazon-aurora-dat203-70508626" target="_blank" rel="noopener"><img src="img/aucompare.png" width="500px"></a><ul>
+<li>SQL vs Aurora 비교 <a href="https://www.slideshare.net/AmazonWebServices/aws-reinvent-2016-getting-started-with-amazon-aurora-dat203-70508626" target="_blank" rel="noopener">(more…)</a><br><img src="/img/aucompare.png"><ul>
 <li>MySQL: reader별로 디스크가 다름</li>
 <li>Aurora: wirter/reader 참조 디스크가 하나(Cluster Volume)</li>
 </ul>
@@ -213,12 +211,12 @@
 </ul>
 </li>
 <li>Cluster: 디스크로부터 데이터를 읽어오는 시간을 줄이기 위해, 조인이나 자주 사용되는 테이블의 데이터를 <strong>디스크의 같은 위치</strong> 에 저장시키는 방법<ul>
-<li>Aurora<br><a href="https://www.slideshare.net/AmazonWebServices/aws-reinvent-2016-getting-started-with-amazon-aurora-dat203-70508626" target="_blank" rel="noopener"><img src="img/au2.png" width="500px"></a></li>
+<li>Aurora <a href="https://www.slideshare.net/AmazonWebServices/aws-reinvent-2016-getting-started-with-amazon-aurora-dat203-70508626" target="_blank" rel="noopener">(more…)</a><br><img src="/img/au2.png" width="500px"></li>
 <li>장점: grouped된 컬럼 data 행들이 같은 data Block에 저장되므로 디스크 I/O 단축</li>
 </ul>
 </li>
 <li>Replication<ul>
-<li>MySQL Replication<a href="https://dev.mysql.com/doc/refman/5.5/en/replication-solutions-scaleout.html" target="_blank" rel="noopener"><img src="img/sqlms.png" width="500px"></a></li>
+<li>MySQL Replication<a href="https://dev.mysql.com/doc/refman/5.5/en/replication-solutions-scaleout.html" target="_blank" rel="noopener"><img src="/img/sqlms.png" width="500px"></a></li>
 <li>개념: scale-out(서버 추가)의 한 방법.</li>
 <li>어떤 환경에서 활용? hight Num of reads / low Num of writes&amp;updates</li>
 <li>어떻게 활용? 읽기 분산시킴(distribute the reads over the replication slaves, while still enabling your web servers to communicate with the replication master when a write is required. )</li>
@@ -231,14 +229,14 @@
 </li>
 </ul>
 <h2 id="기타"><a href="#기타" class="headerlink" title="기타"></a>기타</h2><ul>
-<li>Dark data: 더이상 사용하지 않는 데이터 -&gt; 정</li>
+<li>Dark data: 더이상 사용하지 않는 데이터 -&gt; 정리 필 쟝소</li>
 <li>메타 시스템: 테이블 생성 절차 및 사용하지 않는 데이터 어떻게 처리할지</li>
 <li>Query<ul>
 <li><strong>모집단, 기준</strong> 을 잡고 우측에 붙여나가야 됨</li>
 <li><strong>count</strong> 무조건 사용해서 모집단이 1000명이면 <strong>join</strong> 할 때 2000명… 등으로 달라지지 않도록 유의</li>
 </ul>
 </li>
-<li>inner join/ left outer join/ left anti<br><img src="img/sql_join.png"></li>
+<li>inner join/ left outer join/ left anti<br><img src="/img/sql_join.png" width="500px"></li>
 <li><strong>replica 서버</strong> 는 master와 동급이거나 높은 사양으로 맞춰야 함(과부하 방지)</li>
 </ul>
 <p>참조</p>
@@ -253,7 +251,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/06/aws6/" data-id="cjswxp1ug000s2x091gks946t" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/06/aws6/" data-id="cjswylz3y0011l50986yihsw4" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AURORA/">AURORA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cache/">Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RDS/">RDS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redshift/">Redshift</a></li></ul>
@@ -399,7 +397,23 @@ if (typeof jQuery == 'undefined') {
 </script>
 -->
 
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -417,5 +431,6 @@ if (typeof jQuery == 'undefined') {
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
 </body>
 </html>
