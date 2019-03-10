@@ -399,6 +399,31 @@
     
     
     <entry>
+      <title>[Linux] Make alias</title>
+      <link href="/2019/02/11/alias/"/>
+      <url>/2019/02/11/alias/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-Execute-application-on-Linux"><a href="#1-Execute-application-on-Linux" class="headerlink" title="1) Execute application on Linux"></a>1) Execute application on Linux</h1><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ path/application_name</span><br></pre></td></tr></table></figure><h1 id="2-Execute-app-by-alias"><a href="#2-Execute-app-by-alias" class="headerlink" title="2) Execute app by alias"></a>2) Execute app by alias</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias shortcut_key=&quot;path/app&quot;</span><br></pre></td></tr></table></figure><p>eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;</span><br></pre></td></tr></table></figure></p><h1 id="3-Use-alias-permanently"><a href="#3-Use-alias-permanently" class="headerlink" title="3) Use alias permanently"></a>3) Use alias permanently</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gedit ~/.bashrc</span><br><span class="line">~~</span><br><span class="line">and add `alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;`</span><br><span class="line">at the bottom.</span><br><span class="line">After then,</span><br></pre></td></tr></table></figure><p>$ source ~/.bashrc<br>~~~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> alias </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Math] Singular Value Decomposition, SVD</title>
       <link href="/2019/02/11/Recap_SVD/"/>
       <url>/2019/02/11/Recap_SVD/</url>
@@ -424,31 +449,6 @@
             <tag> 차원감소 </tag>
             
             <tag> 잠재변수분석LAV </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>[Linux] Make alias</title>
-      <link href="/2019/02/11/alias/"/>
-      <url>/2019/02/11/alias/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1-Execute-application-on-Linux"><a href="#1-Execute-application-on-Linux" class="headerlink" title="1) Execute application on Linux"></a>1) Execute application on Linux</h1><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ path/application_name</span><br></pre></td></tr></table></figure><h1 id="2-Execute-app-by-alias"><a href="#2-Execute-app-by-alias" class="headerlink" title="2) Execute app by alias"></a>2) Execute app by alias</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias shortcut_key=&quot;path/app&quot;</span><br></pre></td></tr></table></figure><p>eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;</span><br></pre></td></tr></table></figure></p><h1 id="3-Use-alias-permanently"><a href="#3-Use-alias-permanently" class="headerlink" title="3) Use alias permanently"></a>3) Use alias permanently</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gedit ~/.bashrc</span><br><span class="line">~~</span><br><span class="line">and add `alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;`</span><br><span class="line">at the bottom.</span><br><span class="line">After then,</span><br></pre></td></tr></table></figure><p>$ source ~/.bashrc<br>~~~</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> alias </tag>
             
         </tags>
       
@@ -593,6 +593,45 @@
     
     
     <entry>
+      <title>[시계열] 확률과정 및 시계열 이론(1)</title>
+      <link href="/2019/02/04/Recap_Time%20series_theory(1)ok/"/>
+      <url>/2019/02/04/Recap_Time%20series_theory(1)ok/</url>
+      
+        <content type="html"><![CDATA[<h1 id="확률과정-Random-process-Stochastic-process"><a href="#확률과정-Random-process-Stochastic-process" class="headerlink" title="확률과정(Random process, Stochastic process):"></a>확률과정(Random process, Stochastic process):</h1><a id="more"></a><ul><li>의미: 확률변수의 순서열(sequence of infinit random variables)</li><li>확률과정$Y = \{\cdots, Y_{-1}, Y_0, Y_{1}, \cdots\}$<ul><li>확률변수$Y_t$는 평행우주 t시간의 표본 generator</li></ul></li><li>시계열 자료는 확률 과정의 표본</li><li>앙상블 평균$E[Y_t]$: <strong>복수의 시계열 자료 표본</strong>에서 특정한 시간 t의 값만 평균(평행우주에서 $y_t$시간 값만 추출)<ul><li>현실세계는 불가능: 현실세계가 표본 하나</li><li>앙상블 평균 추정의 조건<ul><li>정상과정(stationary process) &amp; 에르고딕 과정(ergodic process)</li></ul></li></ul></li></ul><h2 id="1-확률과정의-기댓값-자기공분산-자기상관계수"><a href="#1-확률과정의-기댓값-자기공분산-자기상관계수" class="headerlink" title="1. 확률과정의 기댓값, 자기공분산, 자기상관계수"></a>1. 확률과정의 기댓값, 자기공분산, 자기상관계수</h2><ul><li>‘자기(auto)’: <strong>표본 하나의 set 내</strong>에서의 cov &amp; cor</li><li>확률과정 기댓값: $\mu_t = E[Y_t]$</li><li>자기공분산(auto-covariance): 방향 &amp; 거리<ul><li>$\gamma_{t, s}=Cov[Y_t, Y_s]=E[(Y_t - E[Y_t]) \cdot (Y_s - E[Y_s])]$</li></ul></li><li>자기상관계수(auto-correlation): 방향<ul><li>$\rho_{t,s} = \dfrac{\gamma_{t,s}}{\sqrt{\gamma_t \gamma_s}}= Corr[Y_t, Y_s] = \dfrac{Cov[Y_t, Y_s]}{\sqrt{Var[Y_t] \cdot Var[Y_s]}} \leq 1$</li></ul></li></ul><h2 id="2-정상확률과정"><a href="#2-정상확률과정" class="headerlink" title="2. 정상확률과정"></a>2. 정상확률과정</h2><ul><li>$Y_1, Y_2, \cdots$의 평균, 표준오차 등이 변하지 않음.</li><li><strong>쉽게 말하자면, 평균, 분산 등 모멘트 공식에 절대시간 t변수가 없고, 시차 k변수가 존재(이후 MA, AR 모델 등에서 확인)</strong></li><li>즉, 에르고딕 성질에 의해, 표본들이 하나의 generator에서 생성됨</li></ul><h3 id="2-1-자기공분산-시간-변수의-차이lag-k-에만-의존"><a href="#2-1-자기공분산-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존"></a>2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존</h3><p>$\gamma_{t, t+k} = \gamma_{0,k} \triangleq \gamma_k$</p><h3 id="2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존"><a href="#2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존"></a>2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존</h3><p>$\rho_{t, t+k} = \rho_{0,k} \triangleq \rho_k = \dfrac{\gamma_k}{\gamma_0}$</p><ul><li>eg) ACF of AR(1): $\rho_k=\dfrac{\gamma_k}{\gamma_0}=(-\phi)^k \rightarrow \phi&lt;0$ 그래프는 진동</li></ul><h3 id="2-3-정상확률과정-특징"><a href="#2-3-정상확률과정-특징" class="headerlink" title="2.3 정상확률과정 특징"></a>2.3 정상확률과정 특징</h3><ul><li>확률과정 특성은 확률변수$Y_t$의 결합확률밀도함수 사용</li><li>협의의 정상확률과정(strictly stationary process): 모든 모멘트가 ‘절대시간’에 의존하지 않고 시차lag에만 의존<ul><li>$E[Y_t Y_{t+k_1} \cdots] = E[Y_s Y_{s+k_1 \cdots}]$</li></ul></li><li>광의의 정상확률과정(weak stationary process)<ul><li>1, 2차 모멘텀에 대해서만 ‘절대시간’ 의존하지 않음</li><li>$E[Y_t] = E[Y_s] = \mu$</li><li>$E[Y_t Y_{t+k}] = E[Y_s Y_{s+k}]$</li></ul></li><li>순수하게 백색잡음이라면, 어떤 시차lag에서도 자기상관$\rho$는 1</li></ul><h2 id="3-에르고딕-성질"><a href="#3-에르고딕-성질" class="headerlink" title="3. 에르고딕 성질"></a>3. 에르고딕 성질</h2><ul><li>정상확률 과정의 확률변수들($Y_t, Y_{t+1}, \cdots$)은 무조건부 분포 동일</li><li>따라서 현실 시계열 데이터를 <strong>하나의 분포</strong>에서 나온 <strong>표본 데이터</strong>로 간주</li><li>moment method(점 추정)에 따라 모수추정 가능: $\mu = E[X] = \bar{x}$</li></ul><h2 id="4-백색-잡음-white-noise"><a href="#4-백색-잡음-white-noise" class="headerlink" title="4. 백색 잡음 white noise"></a>4. 백색 잡음 white noise</h2><ul><li>확률과정 $\epsilon = \{\epsilon_1, \epsilon_2, \cdots\}$</li><li>$\epsilon_t \sim i.i.d$(independent and identically distributed)</li></ul><h2 id="5-랜덤-워크-Random-walk"><a href="#5-랜덤-워크-Random-walk" class="headerlink" title="5. 랜덤 워크 Random walk"></a>5. 랜덤 워크 Random walk</h2><ul><li>IMA(1,0)</li><li>과거 백색잡음의 cumsum</li></ul><hr><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><h1 id="A1-Non-stationarity"><a href="#A1-Non-stationarity" class="headerlink" title="A1. Non-stationarity"></a>A1. Non-stationarity</h1><h2 id="Trend-amp-Seasonality"><a href="#Trend-amp-Seasonality" class="headerlink" title="Trend &amp; Seasonality"></a>Trend &amp; Seasonality</h2><ul><li>Trend</li><li>Seasonality: additive or multiplicative</li></ul><h1 id="A2-Stationarity"><a href="#A2-Stationarity" class="headerlink" title="A2. Stationarity"></a>A2. Stationarity</h1><h2 id="A-white-noise-series-sequence-of-random-numbers"><a href="#A-white-noise-series-sequence-of-random-numbers" class="headerlink" title="A white noise series(sequence of random numbers)"></a>A white noise series(sequence of random numbers)</h2><ul><li>a flat looking series</li><li>no trend</li><li>no constant variance over time</li><li>no a constant autocorrelation structure over time</li><li>no periodic fluctuations</li></ul><h1 id="A3-STL-Seasonal-and-Trend-Decomposition-using-Loess"><a href="#A3-STL-Seasonal-and-Trend-Decomposition-using-Loess" class="headerlink" title="A3. STL(Seasonal and Trend Decomposition using Loess)"></a>A3. STL(Seasonal and Trend Decomposition using Loess)</h1><h1 id="A4-Application"><a href="#A4-Application" class="headerlink" title="A4. Application"></a>A4. Application</h1><ul><li>explanation</li><li>control: identify anomal</li><li>forecasting</li></ul><h1 id="A5-Remove-trend-and-seasonality"><a href="#A5-Remove-trend-and-seasonality" class="headerlink" title="A5. Remove trend and seasonality"></a>A5. Remove trend and seasonality</h1><script type="math/tex; mode=display">X_t = \mu_t + S_t + Z_t</script><ul><li>$\mu_t$ trend component: 추정 방법 3가지<ul><li><strong>LSE</strong>: deterministic $\mu_t = f(t)$</li><li><strong>Smoothing by rolling mean</strong>: stocahstic, ARIMA</li><li><strong>Differencing</strong>: stocahstic, ARIMA</li></ul></li><li>$S_t$: seasonal component</li><li>$Z_t$: random noise component</li></ul><hr><h2 id="예시-CO2-Data"><a href="#예시-CO2-Data" class="headerlink" title="예시) CO2 Data"></a>예시) CO2 Data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">data = sm.datasets.get_rdataset(<span class="string">"CO2"</span>, package=<span class="string">"datasets"</span>)</span><br><span class="line">df = data.data</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yearfraction2datetime</span><span class="params">(yearfraction, startyear=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line">    <span class="keyword">import</span> dateutil</span><br><span class="line">    year = int(yearfraction) + startyear</span><br><span class="line">    month = int(round(<span class="number">12</span> * (yearfraction - year)))</span><br><span class="line">    delta = dateutil.relativedelta.relativedelta(months=month)</span><br><span class="line">    date = datetime.datetime(year, <span class="number">1</span>, <span class="number">1</span>) + delta</span><br><span class="line">    <span class="keyword">return</span> date</span><br><span class="line"></span><br><span class="line">df[<span class="string">"datetime"</span>] = df.time.map(yearfraction2datetime)</span><br><span class="line">df[<span class="string">"month"</span>] = df.datetime.dt.month</span><br><span class="line">df.tail()</span><br></pre></td></tr></table></figure><div><style scoped>    .dataframe tbody tr th:only-of-type {        vertical-align: middle;    }    .dataframe tbody tr th {        vertical-align: top;    }    .dataframe thead th {        text-align: right;    }</style><table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>time</th>      <th>value</th>      <th>datetime</th>      <th>month</th>    </tr>  </thead>  <tbody>    <tr>      <th>463</th>      <td>1997.583333</td>      <td>362.57</td>      <td>1997-08-01</td>      <td>8</td>    </tr>    <tr>      <th>464</th>      <td>1997.666667</td>      <td>360.24</td>      <td>1997-09-01</td>      <td>9</td>    </tr>    <tr>      <th>465</th>      <td>1997.750000</td>      <td>360.83</td>      <td>1997-10-01</td>      <td>10</td>    </tr>    <tr>      <th>466</th>      <td>1997.833333</td>      <td>362.49</td>      <td>1997-11-01</td>      <td>11</td>    </tr>    <tr>      <th>467</th>      <td>1997.916667</td>      <td>364.34</td>      <td>1997-12-01</td>      <td>12</td>    </tr>  </tbody></table></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df[<span class="string">'value'</span>])</span><br></pre></td></tr></table></figure><pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff3474934e0&gt;]</code></pre><p><img src="/Recap_Time%20series_theory%281%29ok_files/Recap_Time%20series_theory%281%29ok_6_1.png" alt="png"></p><p>질문</p><ul><li>Moving Average, Smoothing, differencing 관계</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Data Science </category>
+          
+          <category> Math </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Timeseries </tag>
+            
+            <tag> Math </tag>
+            
+            <tag> 확률과정 </tag>
+            
+            <tag> 정상확률과정 </tag>
+            
+            <tag> 랜덤워크 </tag>
+            
+            <tag> 백색잡음 </tag>
+            
+            <tag> ACF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[시계열] 일반 선형확률과정 AR(4)</title>
       <link href="/2019/02/04/Recap_TimeSeries_AR(4)ok/"/>
       <url>/2019/02/04/Recap_TimeSeries_AR(4)ok/</url>
@@ -653,45 +692,6 @@
             <tag> ARMA </tag>
             
             <tag> ARIMA </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>[시계열] 확률과정 및 시계열 이론(1)</title>
-      <link href="/2019/02/04/Recap_Time%20series_theory(1)ok/"/>
-      <url>/2019/02/04/Recap_Time%20series_theory(1)ok/</url>
-      
-        <content type="html"><![CDATA[<h1 id="확률과정-Random-process-Stochastic-process"><a href="#확률과정-Random-process-Stochastic-process" class="headerlink" title="확률과정(Random process, Stochastic process):"></a>확률과정(Random process, Stochastic process):</h1><a id="more"></a><ul><li>의미: 확률변수의 순서열(sequence of infinit random variables)</li><li>확률과정$Y = \{\cdots, Y_{-1}, Y_0, Y_{1}, \cdots\}$<ul><li>확률변수$Y_t$는 평행우주 t시간의 표본 generator</li></ul></li><li>시계열 자료는 확률 과정의 표본</li><li>앙상블 평균$E[Y_t]$: <strong>복수의 시계열 자료 표본</strong>에서 특정한 시간 t의 값만 평균(평행우주에서 $y_t$시간 값만 추출)<ul><li>현실세계는 불가능: 현실세계가 표본 하나</li><li>앙상블 평균 추정의 조건<ul><li>정상과정(stationary process) &amp; 에르고딕 과정(ergodic process)</li></ul></li></ul></li></ul><h2 id="1-확률과정의-기댓값-자기공분산-자기상관계수"><a href="#1-확률과정의-기댓값-자기공분산-자기상관계수" class="headerlink" title="1. 확률과정의 기댓값, 자기공분산, 자기상관계수"></a>1. 확률과정의 기댓값, 자기공분산, 자기상관계수</h2><ul><li>‘자기(auto)’: <strong>표본 하나의 set 내</strong>에서의 cov &amp; cor</li><li>확률과정 기댓값: $\mu_t = E[Y_t]$</li><li>자기공분산(auto-covariance): 방향 &amp; 거리<ul><li>$\gamma_{t, s}=Cov[Y_t, Y_s]=E[(Y_t - E[Y_t]) \cdot (Y_s - E[Y_s])]$</li></ul></li><li>자기상관계수(auto-correlation): 방향<ul><li>$\rho_{t,s} = \dfrac{\gamma_{t,s}}{\sqrt{\gamma_t \gamma_s}}= Corr[Y_t, Y_s] = \dfrac{Cov[Y_t, Y_s]}{\sqrt{Var[Y_t] \cdot Var[Y_s]}} \leq 1$</li></ul></li></ul><h2 id="2-정상확률과정"><a href="#2-정상확률과정" class="headerlink" title="2. 정상확률과정"></a>2. 정상확률과정</h2><ul><li>$Y_1, Y_2, \cdots$의 평균, 표준오차 등이 변하지 않음.</li><li><strong>쉽게 말하자면, 평균, 분산 등 모멘트 공식에 절대시간 t변수가 없고, 시차 k변수가 존재(이후 MA, AR 모델 등에서 확인)</strong></li><li>즉, 에르고딕 성질에 의해, 표본들이 하나의 generator에서 생성됨</li></ul><h3 id="2-1-자기공분산-시간-변수의-차이lag-k-에만-의존"><a href="#2-1-자기공분산-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존"></a>2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존</h3><p>$\gamma_{t, t+k} = \gamma_{0,k} \triangleq \gamma_k$</p><h3 id="2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존"><a href="#2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존"></a>2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존</h3><p>$\rho_{t, t+k} = \rho_{0,k} \triangleq \rho_k = \dfrac{\gamma_k}{\gamma_0}$</p><ul><li>eg) ACF of AR(1): $\rho_k=\dfrac{\gamma_k}{\gamma_0}=(-\phi)^k \rightarrow \phi&lt;0$ 그래프는 진동</li></ul><h3 id="2-3-정상확률과정-특징"><a href="#2-3-정상확률과정-특징" class="headerlink" title="2.3 정상확률과정 특징"></a>2.3 정상확률과정 특징</h3><ul><li>확률과정 특성은 확률변수$Y_t$의 결합확률밀도함수 사용</li><li>협의의 정상확률과정(strictly stationary process): 모든 모멘트가 ‘절대시간’에 의존하지 않고 시차lag에만 의존<ul><li>$E[Y_t Y_{t+k_1} \cdots] = E[Y_s Y_{s+k_1 \cdots}]$</li></ul></li><li>광의의 정상확률과정(weak stationary process)<ul><li>1, 2차 모멘텀에 대해서만 ‘절대시간’ 의존하지 않음</li><li>$E[Y_t] = E[Y_s] = \mu$</li><li>$E[Y_t Y_{t+k}] = E[Y_s Y_{s+k}]$</li></ul></li><li>순수하게 백색잡음이라면, 어떤 시차lag에서도 자기상관$\rho$는 1</li></ul><h2 id="3-에르고딕-성질"><a href="#3-에르고딕-성질" class="headerlink" title="3. 에르고딕 성질"></a>3. 에르고딕 성질</h2><ul><li>정상확률 과정의 확률변수들($Y_t, Y_{t+1}, \cdots$)은 무조건부 분포 동일</li><li>따라서 현실 시계열 데이터를 <strong>하나의 분포</strong>에서 나온 <strong>표본 데이터</strong>로 간주</li><li>moment method(점 추정)에 따라 모수추정 가능: $\mu = E[X] = \bar{x}$</li></ul><h2 id="4-백색-잡음-white-noise"><a href="#4-백색-잡음-white-noise" class="headerlink" title="4. 백색 잡음 white noise"></a>4. 백색 잡음 white noise</h2><ul><li>확률과정 $\epsilon = \{\epsilon_1, \epsilon_2, \cdots\}$</li><li>$\epsilon_t \sim i.i.d$(independent and identically distributed)</li></ul><h2 id="5-랜덤-워크-Random-walk"><a href="#5-랜덤-워크-Random-walk" class="headerlink" title="5. 랜덤 워크 Random walk"></a>5. 랜덤 워크 Random walk</h2><ul><li>IMA(1,0)</li><li>과거 백색잡음의 cumsum</li></ul><hr><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><h1 id="A1-Non-stationarity"><a href="#A1-Non-stationarity" class="headerlink" title="A1. Non-stationarity"></a>A1. Non-stationarity</h1><h2 id="Trend-amp-Seasonality"><a href="#Trend-amp-Seasonality" class="headerlink" title="Trend &amp; Seasonality"></a>Trend &amp; Seasonality</h2><ul><li>Trend</li><li>Seasonality: additive or multiplicative</li></ul><h1 id="A2-Stationarity"><a href="#A2-Stationarity" class="headerlink" title="A2. Stationarity"></a>A2. Stationarity</h1><h2 id="A-white-noise-series-sequence-of-random-numbers"><a href="#A-white-noise-series-sequence-of-random-numbers" class="headerlink" title="A white noise series(sequence of random numbers)"></a>A white noise series(sequence of random numbers)</h2><ul><li>a flat looking series</li><li>no trend</li><li>no constant variance over time</li><li>no a constant autocorrelation structure over time</li><li>no periodic fluctuations</li></ul><h1 id="A3-STL-Seasonal-and-Trend-Decomposition-using-Loess"><a href="#A3-STL-Seasonal-and-Trend-Decomposition-using-Loess" class="headerlink" title="A3. STL(Seasonal and Trend Decomposition using Loess)"></a>A3. STL(Seasonal and Trend Decomposition using Loess)</h1><h1 id="A4-Application"><a href="#A4-Application" class="headerlink" title="A4. Application"></a>A4. Application</h1><ul><li>explanation</li><li>control: identify anomal</li><li>forecasting</li></ul><h1 id="A5-Remove-trend-and-seasonality"><a href="#A5-Remove-trend-and-seasonality" class="headerlink" title="A5. Remove trend and seasonality"></a>A5. Remove trend and seasonality</h1><script type="math/tex; mode=display">X_t = \mu_t + S_t + Z_t</script><ul><li>$\mu_t$ trend component: 추정 방법 3가지<ul><li><strong>LSE</strong>: deterministic $\mu_t = f(t)$</li><li><strong>Smoothing by rolling mean</strong>: stocahstic, ARIMA</li><li><strong>Differencing</strong>: stocahstic, ARIMA</li></ul></li><li>$S_t$: seasonal component</li><li>$Z_t$: random noise component</li></ul><hr><h2 id="예시-CO2-Data"><a href="#예시-CO2-Data" class="headerlink" title="예시) CO2 Data"></a>예시) CO2 Data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">data = sm.datasets.get_rdataset(<span class="string">"CO2"</span>, package=<span class="string">"datasets"</span>)</span><br><span class="line">df = data.data</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yearfraction2datetime</span><span class="params">(yearfraction, startyear=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line">    <span class="keyword">import</span> dateutil</span><br><span class="line">    year = int(yearfraction) + startyear</span><br><span class="line">    month = int(round(<span class="number">12</span> * (yearfraction - year)))</span><br><span class="line">    delta = dateutil.relativedelta.relativedelta(months=month)</span><br><span class="line">    date = datetime.datetime(year, <span class="number">1</span>, <span class="number">1</span>) + delta</span><br><span class="line">    <span class="keyword">return</span> date</span><br><span class="line"></span><br><span class="line">df[<span class="string">"datetime"</span>] = df.time.map(yearfraction2datetime)</span><br><span class="line">df[<span class="string">"month"</span>] = df.datetime.dt.month</span><br><span class="line">df.tail()</span><br></pre></td></tr></table></figure><div><style scoped>    .dataframe tbody tr th:only-of-type {        vertical-align: middle;    }    .dataframe tbody tr th {        vertical-align: top;    }    .dataframe thead th {        text-align: right;    }</style><table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>time</th>      <th>value</th>      <th>datetime</th>      <th>month</th>    </tr>  </thead>  <tbody>    <tr>      <th>463</th>      <td>1997.583333</td>      <td>362.57</td>      <td>1997-08-01</td>      <td>8</td>    </tr>    <tr>      <th>464</th>      <td>1997.666667</td>      <td>360.24</td>      <td>1997-09-01</td>      <td>9</td>    </tr>    <tr>      <th>465</th>      <td>1997.750000</td>      <td>360.83</td>      <td>1997-10-01</td>      <td>10</td>    </tr>    <tr>      <th>466</th>      <td>1997.833333</td>      <td>362.49</td>      <td>1997-11-01</td>      <td>11</td>    </tr>    <tr>      <th>467</th>      <td>1997.916667</td>      <td>364.34</td>      <td>1997-12-01</td>      <td>12</td>    </tr>  </tbody></table></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df[<span class="string">'value'</span>])</span><br></pre></td></tr></table></figure><pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff3474934e0&gt;]</code></pre><p><img src="/Recap_Time%20series_theory%281%29ok_files/Recap_Time%20series_theory%281%29ok_6_1.png" alt="png"></p><p>질문</p><ul><li>Moving Average, Smoothing, differencing 관계</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Data Science </category>
-          
-          <category> Math </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Timeseries </tag>
-            
-            <tag> Math </tag>
-            
-            <tag> 확률과정 </tag>
-            
-            <tag> 정상확률과정 </tag>
-            
-            <tag> 랜덤워크 </tag>
-            
-            <tag> 백색잡음 </tag>
-            
-            <tag> ACF </tag>
             
         </tags>
       
