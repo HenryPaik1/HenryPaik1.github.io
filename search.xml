@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>[Stat] 회귀분석 가정과 잔차분석</title>
+      <link href="/2019/03/11/assumption/"/>
+      <url>/2019/03/11/assumption/</url>
+      
+        <content type="html"><![CDATA[<h1 id="확률론적-선형회귀-가정-amp-잔차-분석"><a href="#확률론적-선형회귀-가정-amp-잔차-분석" class="headerlink" title="확률론적 선형회귀 가정 &amp; 잔차 분석"></a>확률론적 선형회귀 가정 &amp; 잔차 분석</h1><a id="more"></a><h2 id="1-확률론적-선형회귀-가정"><a href="#1-확률론적-선형회귀-가정" class="headerlink" title="1. 확률론적 선형회귀 가정"></a>1. 확률론적 선형회귀 가정</h2><ul><li><strong>확률론적 선형회귀</strong>: 데이터가 확률변수로부터 생성된 표본으로 가정(MLE 사용)</li><li>결정론적 선형회귀: 표본 데이터에 따라 값이 달라짐(OLS 사용: RSS 최소화)</li><li>MLE/OLS 해는 같으나, MLE를 사용하면 <strong>가중치 추정값의 오차</strong> 구할 수 있음<h3 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h3></li><li>선형 정규 분포</li><li>오차항 정규분포</li><li>오차항 기댓값0</li><li>독립변수와 오차항 상관관계X</li><li>오차항 등분산</li><li>오차항 자기상관X</li><li>독립변수간 상관관계X</li></ul><h3 id="1-선형-정규-분포-가정-gt-오차항-정규성과-연결"><a href="#1-선형-정규-분포-가정-gt-오차항-정규성과-연결" class="headerlink" title="1) 선형 정규 분포 가정(-&gt; 오차항 정규성과 연결)"></a>1) 선형 정규 분포 가정(-&gt; 오차항 정규성과 연결)</h3><ul><li>의미: $y \sim \mathcal{N}(w^Tx, \sigma^2)$<ul><li>종속변수y는, <strong>독립변수 x의 선형조합으로 이루어진 기댓값</strong> &amp; <strong>고정된 분산</strong>을 가지는 <strong>가우시안 정규분포</strong></li><li>중요: <strong>y는 x 조건부 정규 분포</strong> (아닐 경우 일반화 선형회귀GLS 사용); x, y 무조건부 정규분포 필요없음</li></ul></li><li>비선형일 때 option<ul><li>변수 추가</li><li><strong>변수 변환(log, exp, sqrt): 비추. 해석에 어려움 생길 가능성</strong></li><li>해당 변수 제거</li><li><strong>모델 만든 후 변수 선택(선호)</strong></li></ul></li><li>질문: x1은 비선형이지만, 전체 모델 coef는 유의한 이유는?<ul><li>x_1과 y는 비선형이지만, 다른 x_n들의 영향을 제거한 partial regression은 선형관계일 수 있음</li></ul></li></ul><h3 id="2-오차항-기댓값0-amp-독립변수와-오차항-간-상관관계-없음"><a href="#2-오차항-기댓값0-amp-독립변수와-오차항-간-상관관계-없음" class="headerlink" title="2) 오차항 기댓값0 &amp; 독립변수와 오차항 간 상관관계 없음"></a>2) 오차항 기댓값0 &amp; 독립변수와 오차항 간 상관관계 없음</h3><ul><li>외생성 가정(Exogeneity): 오차항 기댓값은 독립변수에 상관 없이 0 -&gt; 무조건부 기댓값 0<script type="math/tex; mode=display">E[\epsilon | x] = 0, E[\epsilon] = 0, E[\epsilon x] = 0​</script></li></ul><h3 id="3-오차항-등분산"><a href="#3-오차항-등분산" class="headerlink" title="3) 오차항 등분산"></a>3) 오차항 등분산</h3><ul><li>문제 원인: 잔차의 <strong>조건부 이분산성</strong>(오차항의 분산과 독립변수가 일정한 상관관계) eg. y_hat에 따라 잔차 분산 증가</li><li>영향<ul><li><strong>회귀계수의 표준오차</strong> 신뢰문제:  <strong>회귀계수coef 분산</strong>은 <strong>잔차의 분산</strong> 으로 추정</li><li>표준오차 과소 계산 -&gt; t 통계량 과대평가 -&gt; 귀무가설 기각 -&gt; $coef \neq 0​$<ul><li>cf. <strong>표준오차</strong>: 모평균과 표본평균 사이에 평균적으로 얼마나 오차 발생하는가</li><li>모집단의 표준편차 high &amp; 표본 many -&gt;표준오차 low</li></ul></li></ul></li><li>해결:  WLS, 종속변수 변환(log, exp, …), white corrected std error</li></ul><h3 id="4-오차항-자기-상관성X"><a href="#4-오차항-자기-상관성X" class="headerlink" title="4) 오차항 자기 상관성X"></a>4) 오차항 자기 상관성X</h3><ul><li>실제로는, 시계열 자료가 아닌 횡단면 자료에 대해서는 실시하지 않음</li><li>영향: 자기상관 존재하면,<ul><li>coef 표준오차 신뢰도 하락</li></ul></li><li>검사<ul><li>plotting: 지그재그,  +/-반복, …</li><li>Ljung box</li></ul></li></ul><h3 id="5-독립변수간-상관관계X"><a href="#5-독립변수간-상관관계X" class="headerlink" title="5) 독립변수간 상관관계X"></a>5) 독립변수간 상관관계X</h3><ul><li>문제: 다중공선성 발생</li><li>영향<ul><li>coef의 p-value 높음</li><li>조건수 condition 증가- 표준오차 증가(coef값이 불안정해짐. 즉, data가 바뀌면 값이 전혀 달라질 수 있음.)</li></ul></li><li>해결: PCA, 변수제거</li></ul><hr><h1 id="2-잔차-분석"><a href="#2-잔차-분석" class="headerlink" title="2. 잔차 분석"></a>2. 잔차 분석</h1><ul><li>normality, homoscadicity, independence</li><li>얻고자 하는 정보<ul><li>설명변수 - 종속변수는 선형관계?<ul><li>아니라면, 오차항이 다항함수 모양 -&gt; 다항회귀 필요</li></ul></li><li>오차 분산은 설명 변수 값에 따라 변하는가? 등분산성</li><li>오차항은 서로 독립? 자기상관</li><li>이상치나 영향치 존재?</li><li>오차항은 정규분포 따르는가</li><li>다른 설명 변수는 없는가?<ul><li>오차항이 함수형태를 띠면 다른 독립변수 필요</li></ul></li></ul></li></ul><p>reference:</p><ul><li><a href="http://blog.naver.com/PostView.nhn?blogId=yonxman&amp;logNo=220950614789&amp;categoryNo=0&amp;parentCategoryNo=0&amp;viewDate=&amp;currentPage=2&amp;postListTopCurrentPage=1&amp;from=postView&amp;userTopListOpen=true&amp;userTopListCount=30&amp;userTopListManageOpen=false&amp;userTopListCurrentPage=2" target="_blank" rel="noopener">http://blog.naver.com/PostView.nhn?blogId=yonxman&amp;logNo=220950614789&amp;categoryNo=0&amp;parentCategoryNo=0&amp;viewDate=&amp;currentPage=2&amp;postListTopCurrentPage=1&amp;from=postView&amp;userTopListOpen=true&amp;userTopListCount=30&amp;userTopListManageOpen=false&amp;userTopListCurrentPage=2</a></li><li><a href="https://datascienceschool.net/view-notebook/743cdedec523447a907b2b0abda45533/" target="_blank" rel="noopener">https://datascienceschool.net/view-notebook/743cdedec523447a907b2b0abda45533/</a></li><li><a href="http://wolfpack.hnu.ac.kr/Stat_Notes/adv_stat/LinearModel/Regression/ch3_residual.pdf" target="_blank" rel="noopener">http://wolfpack.hnu.ac.kr/Stat_Notes/adv_stat/LinearModel/Regression/ch3_residual.pdf</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Data Science </category>
+          
+          <category> Math </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Regression </tag>
+            
+            <tag> Study </tag>
+            
+            <tag> 잔차 </tag>
+            
+            <tag> 회귀분석가정 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Spark_1] Distributed Computing Basic</title>
       <link href="/2019/03/10/spark1/"/>
       <url>/2019/03/10/spark1/</url>
@@ -168,8 +201,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> Math </category>
           
       </categories>
@@ -255,8 +286,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> Math </category>
           
       </categories>
@@ -283,8 +312,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -346,8 +373,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> ML </category>
           
       </categories>
@@ -374,8 +399,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -433,8 +456,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> Math </category>
           
       </categories>
@@ -465,8 +486,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -499,8 +518,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> Math </category>
           
       </categories>
@@ -532,8 +549,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> Math </category>
           
       </categories>
@@ -564,8 +579,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -601,8 +614,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -641,8 +652,6 @@
       
       <categories>
           
-          <category> Data Science </category>
-          
           <category> Math </category>
           
       </categories>
@@ -673,8 +682,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -735,8 +742,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> Math </category>
           
@@ -851,8 +856,6 @@
       
       
       <categories>
-          
-          <category> Data Science </category>
           
           <category> ML </category>
           
