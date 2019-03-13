@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>[Stat_ANOVA] 집단간 비교(1) | Henry&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="통계 검정: 집단간 비교">
+<meta name="keywords" content="Stat,Study,ANOVA,Ftest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Stat_ANOVA] 집단간 비교(1)">
+<meta property="og:url" content="https://henrypaik1.github.io/2019/03/13/recap-annova/index.html">
+<meta property="og:site_name" content="Henry&#39;s blog">
+<meta property="og:description" content="통계 검정: 집단간 비교">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/img/ftest.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/anova_2.jpg">
+<meta property="og:updated_time" content="2019-03-13T05:54:09.047Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Stat_ANOVA] 집단간 비교(1)">
+<meta name="twitter:description" content="통계 검정: 집단간 비교">
+<meta name="twitter:image" content="https://henrypaik1.github.io/img/ftest.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <!--link href="//fonts.useso.com/css?family=Lato:400,400italic" rel="stylesheet" type="text/css"-->
+  <link href="http://yurixu.com/css/fonts/Google/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">  
+  
+
+
+  <!--
+
+-->
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-136157247-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <!-- add by yurixu 2016/1/13 向百度提交sitemap-->
+  <meta name="baidu-site-verification" content="ubBCJmBrxD"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head></html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/HenryPaik1">GitHub</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Log">Log</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <! --modify by yurixu 22016/1/8 修改search为swiftype -->
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <!-- <input type="text" class="st-default-search-input"> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-recap-annova" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [Stat_ANOVA] 집단간 비교(1)
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/03/13/recap-annova/" class="article-date">
+  <time datetime="2019-03-13T04:12:00.000Z" itemprop="datePublished">2019-3-13 Wed  13:12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <h1 id="통계-검정-집단간-비교"><a href="#통계-검정-집단간-비교" class="headerlink" title="통계 검정: 집단간 비교"></a>통계 검정: 집단간 비교</h1><a id="more"></a>
+<h2 id="Two-groups"><a href="#Two-groups" class="headerlink" title="Two groups"></a>Two groups</h2><ul>
+<li>z-test: 모집단 분산 미리 알고/ 표본크기 30이상 (대개 분산모르므로 사용안함)</li>
+<li>t-test(등분산/이분산): 독립된 두 개의 표본집단간의 <strong>평균차이</strong> 검정. eg. 어떤 변인에 따른 두 집단 차이</li>
+</ul>
+<h2 id="Two-or-More-groups"><a href="#Two-or-More-groups" class="headerlink" title="Two or More groups"></a>Two or More groups</h2><h3 id="1-F-test-두-개-이상의-집단-비교-집단-내-amp-집단-간-분산을-분석"><a href="#1-F-test-두-개-이상의-집단-비교-집단-내-amp-집단-간-분산을-분석" class="headerlink" title="1. F-test: 두 개 이상의 집단 비교. 집단 내 &amp; 집단 간 분산을 분석"></a>1. F-test: 두 개 이상의 집단 비교. 집단 내 &amp; 집단 간 분산을 분석</h3><p>   <img src="/img/ftest.png"></p>
+<ul>
+<li>eg. A, B, C 각 집단내 &amp; 집단간 연령 분산 -&gt; A 집단 연령의 분산 &gt; B, C 집단 연령의 분산 = A는 이질적 연령대로 구성 되어 있음</li>
+</ul>
+<h3 id="2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link"><a href="#2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link" class="headerlink" title="2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 (link)"></a>2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 <a href="http://www.cqeacademy.com/cqe-body-of-knowledge/quantitative-methods-tools/anova-analysis/" target="_blank" rel="noopener">(link)</a></h3><p>   <img src="/img/anova_2.jpg" width="500px"></p>
+<ul>
+<li><strong>결론</strong>: 가변수 활용한 <strong>회귀분석</strong> 결과와 같음.<script type="math/tex; mode=display">F_{k, n-k-1} = \dfrac{R^2/(k-1)}{(1-R^2)(n-k-1)} = \dfrac{회귀제곱평균(MSR)}{오차제곱평균(MSE)}</script><ul>
+<li>k: num of group; n: num of sample</li>
+<li>MSR_(explained var.) = SSR/df; MSE_(unexplained var.) = SSE/df</li>
+<li>Regression : ANOVA<ul>
+<li>= SSR(sum of squares of reg.) : SSB(b/w groups sum of squares)</li>
+<li>= SSE(sum of squares error) : SSW(within gorups sum of squares)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>회귀분석이 제공하는 정보가 더 많음. eg. ANOVA: y에 영향 유무 vs 회귀: 어떻게 영향</li>
+<li>H0: 모집단의 평균이 모두 같다</li>
+<li>목적: 평균값의 차이가 의미 있는가. 아니면 분산이 커서 평균 차이가 발생하는지 확인</li>
+<li>조건: 정규성, 분산의 동질성, 관찰의 독립성</li>
+<li>종류:<ul>
+<li>일원 분산분석 model: y ~ x1</li>
+<li>이원 분산분석 model: y ~ x1, x2, x1:x2(교호 작용/주 효과)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2ANOVA-Question-link"><a href="#2-2ANOVA-Question-link" class="headerlink" title="2.2ANOVA Question (link)"></a>2.2ANOVA Question <a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">(link)</a></h3><ul>
+<li>Q: F-통계량과 R^2가 어떻게 다른가 (How is F Statistic different from R Squared?)</li>
+<li>A: <strong>R^2</strong>는 종속/독립 변수가 얼마나 강하게 연관이 있는지 보여주지만, 유의도를 제공하지는 않음. <strong>F-통계량</strong>은 그 연관성의 유의도를 보여줌. (<strong>R squared</strong> provides <strong>a measure of strength of relationship</strong> between our predictors and our response variable and it does not comment on whether the relationship is statistically significant. <strong>F Statistic</strong> gives us a power to judge whether that relationship is statistically significant in other words it comments on <strong>whether or R² is significant or not.</strong>)</li>
+<li>Q: 회귀분석에서 F-통계량을 어떻게 활용해야하는가? (What should I do with F statistic in Regression model?)</li>
+<li>A: R^2의 신뢰도 측정에 부가적으로 사용 (If my <strong>F-statistic is significant</strong> that gives me <strong>extra confidence on the R² value</strong> that I have got and Vice Versa))</li>
+</ul>
+<h3 id="예제-link"><a href="#예제-link" class="headerlink" title="예제 (link)"></a>예제 <a href="https://github.com/HenryPaik1/study/blob/master/06.Math/Recap/Recap_test_ANOVAegok.ipynb" target="_blank" rel="noopener">(link)</a></h3><hr>
+<ul>
+<li>reference<ul>
+<li><a href="https://rfriend.tistory.com/135" target="_blank" rel="noopener">https://rfriend.tistory.com/135</a></li>
+<li><a href="https://socialinnovation.tistory.com/142" target="_blank" rel="noopener">https://socialinnovation.tistory.com/142</a></li>
+<li><a href="https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0" target="_blank" rel="noopener">https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0</a></li>
+<li><a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="cjt6shx8a0029v509s969uc1q" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ANOVA/">ANOVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ftest/">Ftest</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
+
+    </footer>
+
+
+
+</div></article></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANOVA/">ANOVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AURORA/">AURORA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EC2/">EC2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ftest/">Ftest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFS/">GFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Host/">Host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IP/">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/">MapReduce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDS/">RDS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redshift/">Redshift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Regression/">Regression</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/S3/">S3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server-Client/">Server/Client</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat/">Stat</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPC/">VPC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAN/">WAN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/main/">__main__</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alias/">alias</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-strage/">block_strage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdf/">cdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/correlation/">correlation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/covariance/">covariance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvalue/">eigenvalue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvector/">eigenvector</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net-tools/">net-tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netstat/">netstat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-storage/">object_storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p-value/">p-value</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">pdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/r-squared/">r_squared</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random-variable/">random_variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subnet/">subnet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/고유값분해/">고유값분해</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/대각화/">대각화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버킷/">버킷</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/압축/">압축</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잔차/">잔차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원감소/">차원감소</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원의저주/">차원의저주</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/표준오차/">표준오차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회귀분석가정/">회귀분석가정</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/ANOVA/" style="font-size: 10px;">ANOVA</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/AURORA/" style="font-size: 10px;">AURORA</a> <a href="/tags/AWS/" style="font-size: 14px;">AWS</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/Curse-of-Dimensionality/" style="font-size: 10px;">Curse_of_Dimensionality</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Ftest/" style="font-size: 10px;">Ftest</a> <a href="/tags/GFS/" style="font-size: 10px;">GFS</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Host/" style="font-size: 10px;">Host</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Linux/" style="font-size: 12px;">Linux</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/RDS/" style="font-size: 10px;">RDS</a> <a href="/tags/Redshift/" style="font-size: 10px;">Redshift</a> <a href="/tags/Regression/" style="font-size: 12px;">Regression</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/Server-Client/" style="font-size: 10px;">Server/Client</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/Stat/" style="font-size: 14px;">Stat</a> <a href="/tags/Study/" style="font-size: 16px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 18px;">Timeseries</a> <a href="/tags/Timeseries-log-transform/" style="font-size: 10px;">Timeseries_log_transform</a> <a href="/tags/Timeseries-process/" style="font-size: 10px;">Timeseries_process</a> <a href="/tags/VPC/" style="font-size: 10px;">VPC</a> <a href="/tags/WAN/" style="font-size: 10px;">WAN</a> <a href="/tags/main/" style="font-size: 10px;">__main__</a> <a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/block-strage/" style="font-size: 10px;">block_strage</a> <a href="/tags/cdf/" style="font-size: 10px;">cdf</a> <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/correlation/" style="font-size: 10px;">correlation</a> <a href="/tags/covariance/" style="font-size: 10px;">covariance</a> <a href="/tags/eigenvalue/" style="font-size: 10px;">eigenvalue</a> <a href="/tags/eigenvector/" style="font-size: 10px;">eigenvector</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/net-tools/" style="font-size: 10px;">net-tools</a> <a href="/tags/netstat/" style="font-size: 10px;">netstat</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/object-storage/" style="font-size: 10px;">object_storage</a> <a href="/tags/p-value/" style="font-size: 10px;">p-value</a> <a href="/tags/pdf/" style="font-size: 10px;">pdf</a> <a href="/tags/r-squared/" style="font-size: 10px;">r_squared</a> <a href="/tags/random-variable/" style="font-size: 10px;">random_variable</a> <a href="/tags/subnet/" style="font-size: 10px;">subnet</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/고유값분해/" style="font-size: 10px;">고유값분해</a> <a href="/tags/대각화/" style="font-size: 10px;">대각화</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/버킷/" style="font-size: 10px;">버킷</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/시계열모수추정/" style="font-size: 10px;">시계열모수추정</a> <a href="/tags/압축/" style="font-size: 10px;">압축</a> <a href="/tags/일반선형확률과정/" style="font-size: 14px;">일반선형확률과정</a> <a href="/tags/잔차/" style="font-size: 10px;">잔차</a> <a href="/tags/잠재변수분석LAV/" style="font-size: 10px;">잠재변수분석LAV</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/차원감소/" style="font-size: 10px;">차원감소</a> <a href="/tags/차원의저주/" style="font-size: 10px;">차원의저주</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/표준오차/" style="font-size: 10px;">표준오차</a> <a href="/tags/확률과정/" style="font-size: 12px;">확률과정</a> <a href="/tags/회귀분석가정/" style="font-size: 10px;">회귀분석가정</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/13/recap-annova/">[Stat_ANOVA] 집단간 비교(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/net1/">[Web] Basic</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/assumption/">[Stat] 회귀분석 가정과 잔차분석</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/spark1/">[Spark_1] Distributed Computing Basic</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/06/aws6/">[AWS_3] AWS RDS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+    
+  <!-- add by yurixu 2016/1/3 add bottom -->
+  <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:center;">
+	  <table width="100%" border="0">
+        <tr>
+          <td style="text-align:left">
+            Copyright &copy; 2019 Henry &nbsp; &nbsp;
+		  </td>
+
+        </tr>
+      </table>
+    </div>
+</div>
+
+</footer>
+<!-- add by yurixu 2016/1/1 add website counter -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/HenryPaik1" class="mobile-nav-link">GitHub</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Log" class="mobile-nav-link">Log</a>
+  
+</nav>
+    
+< !-- add by yurixu 替换Google的jquery并且添加判断逻辑 -->
+<script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined') {
+  document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<!-- add by yurixu 2016/1/8 添加swiftype搜索代码 -->
+<!-- 
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','Fa9mKyRrtZcNX19oWoxv','2.0.0');
+</script>
+-->
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
