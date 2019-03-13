@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/img/ftest.png">
 <meta property="og:image" content="https://henrypaik1.github.io/img/anova_2.jpg">
-<meta property="og:updated_time" content="2019-03-13T05:54:09.047Z">
+<meta property="og:updated_time" content="2019-03-13T06:40:27.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Stat_ANOVA] 집단간 비교(1)">
 <meta name="twitter:description" content="통계 검정: 집단간 비교">
@@ -135,15 +135,17 @@ ga('send', 'pageview');
 <li>eg. A, B, C 각 집단내 &amp; 집단간 연령 분산 -&gt; A 집단 연령의 분산 &gt; B, C 집단 연령의 분산 = A는 이질적 연령대로 구성 되어 있음</li>
 </ul>
 <h3 id="2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link"><a href="#2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link" class="headerlink" title="2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 (link)"></a>2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 <a href="http://www.cqeacademy.com/cqe-body-of-knowledge/quantitative-methods-tools/anova-analysis/" target="_blank" rel="noopener">(link)</a></h3><p>   <img src="/img/anova_2.jpg" width="500px"></p>
-<ul>
-<li><strong>결론</strong>: 가변수 활용한 <strong>회귀분석</strong> 결과와 같음.<script type="math/tex; mode=display">F_{k, n-k-1} = \dfrac{R^2/(k-1)}{(1-R^2)(n-k-1)} = \dfrac{회귀제곱평균(MSR)}{오차제곱평균(MSE)}</script><ul>
+<script type="math/tex; mode=display">F-static = \dfrac{MST}{MSE} \approx \dfrac{\text{Var b/w Groups}}{\text{Var within Groups}}</script><ul>
+<li><strong>결론</strong>: 가변수 활용한 <strong>회귀분석</strong> 결과와 같음.(변수의 category값이 너무 많으면 그때 ANOVA 하자)<ul>
+<li>회귀분석과 ANOVA 관계: ANOVA를 통해 회귀식의 F 검정 가능(결정계수 R^2에 대해 F 검정. 즉, 회귀식의 적합성 검정)</li>
+<li>결정계수 R^2 -&gt; F 검정 통계량 계산: test statistics F = f(R^2) -&gt; F 검정 <a href="https://datascienceschool.net/view-notebook/897c3471597e42f0a17627953007780b/" target="_blank" rel="noopener">(검정 통계량이란?)</a><script type="math/tex; mode=display">F_{k, n-k-1} = \dfrac{R^2/(k-1)}{(1-R^2)(n-k-1)} = \dfrac{회귀제곱평균(MSR)}{오차제곱평균(MSE)}</script><ul>
 <li>k: num of group; n: num of sample</li>
 <li>MSR_(explained var.) = SSR/df; MSE_(unexplained var.) = SSE/df</li>
-<li>Regression : ANOVA<ul>
-<li>= SSR(sum of squares of reg.) : SSB(b/w groups sum of squares)</li>
-<li>= SSE(sum of squares error) : SSW(within gorups sum of squares)</li>
+<li>Regression : ANOVA</li>
 </ul>
 </li>
+<li>= SSR(sum of squares of reg.) : SSB(b/w groups sum of squares)</li>
+<li>= SSE(sum of squares error) : SSW(within gorups sum of squares)</li>
 </ul>
 </li>
 <li>회귀분석이 제공하는 정보가 더 많음. eg. ANOVA: y에 영향 유무 vs 회귀: 어떻게 영향</li>
@@ -156,7 +158,7 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h3 id="2-2ANOVA-Question-link"><a href="#2-2ANOVA-Question-link" class="headerlink" title="2.2ANOVA Question (link)"></a>2.2ANOVA Question <a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">(link)</a></h3><ul>
+<h3 id="2-2-ANOVA-Question-link"><a href="#2-2-ANOVA-Question-link" class="headerlink" title="2.2 ANOVA Question (link)"></a>2.2 ANOVA Question <a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">(link)</a></h3><ul>
 <li>Q: F-통계량과 R^2가 어떻게 다른가 (How is F Statistic different from R Squared?)</li>
 <li>A: <strong>R^2</strong>는 종속/독립 변수가 얼마나 강하게 연관이 있는지 보여주지만, 유의도를 제공하지는 않음. <strong>F-통계량</strong>은 그 연관성의 유의도를 보여줌. (<strong>R squared</strong> provides <strong>a measure of strength of relationship</strong> between our predictors and our response variable and it does not comment on whether the relationship is statistically significant. <strong>F Statistic</strong> gives us a power to judge whether that relationship is statistically significant in other words it comments on <strong>whether or R² is significant or not.</strong>)</li>
 <li>Q: 회귀분석에서 F-통계량을 어떻게 활용해야하는가? (What should I do with F statistic in Regression model?)</li>
@@ -165,6 +167,7 @@ ga('send', 'pageview');
 <h3 id="예제-link"><a href="#예제-link" class="headerlink" title="예제 (link)"></a>예제 <a href="https://github.com/HenryPaik1/study/blob/master/06.Math/Recap/Recap_test_ANOVAegok.ipynb" target="_blank" rel="noopener">(link)</a></h3><hr>
 <ul>
 <li>reference<ul>
+<li><a href="https://datascienceschool.net/view-notebook/897c3471597e42f0a17627953007780b/" target="_blank" rel="noopener">https://datascienceschool.net/view-notebook/897c3471597e42f0a17627953007780b/</a></li>
 <li><a href="https://rfriend.tistory.com/135" target="_blank" rel="noopener">https://rfriend.tistory.com/135</a></li>
 <li><a href="https://socialinnovation.tistory.com/142" target="_blank" rel="noopener">https://socialinnovation.tistory.com/142</a></li>
 <li><a href="https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0" target="_blank" rel="noopener">https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0</a></li>
@@ -177,7 +180,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="cjt6shx8a0029v509s969uc1q" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="cjt6u5iiy0029z9095e9ag1pu" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ANOVA/">ANOVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ftest/">Ftest</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>

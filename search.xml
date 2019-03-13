@@ -8,7 +8,7 @@
       <link href="/2019/03/13/recap-annova/"/>
       <url>/2019/03/13/recap-annova/</url>
       
-        <content type="html"><![CDATA[<h1 id="통계-검정-집단간-비교"><a href="#통계-검정-집단간-비교" class="headerlink" title="통계 검정: 집단간 비교"></a>통계 검정: 집단간 비교</h1><a id="more"></a><h2 id="Two-groups"><a href="#Two-groups" class="headerlink" title="Two groups"></a>Two groups</h2><ul><li>z-test: 모집단 분산 미리 알고/ 표본크기 30이상 (대개 분산모르므로 사용안함)</li><li>t-test(등분산/이분산): 독립된 두 개의 표본집단간의 <strong>평균차이</strong> 검정. eg. 어떤 변인에 따른 두 집단 차이</li></ul><h2 id="Two-or-More-groups"><a href="#Two-or-More-groups" class="headerlink" title="Two or More groups"></a>Two or More groups</h2><h3 id="1-F-test-두-개-이상의-집단-비교-집단-내-amp-집단-간-분산을-분석"><a href="#1-F-test-두-개-이상의-집단-비교-집단-내-amp-집단-간-분산을-분석" class="headerlink" title="1. F-test: 두 개 이상의 집단 비교. 집단 내 &amp; 집단 간 분산을 분석"></a>1. F-test: 두 개 이상의 집단 비교. 집단 내 &amp; 집단 간 분산을 분석</h3><p>   <img src="/img/ftest.png"></p><ul><li>eg. A, B, C 각 집단내 &amp; 집단간 연령 분산 -&gt; A 집단 연령의 분산 &gt; B, C 집단 연령의 분산 = A는 이질적 연령대로 구성 되어 있음</li></ul><h3 id="2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link"><a href="#2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link" class="headerlink" title="2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 (link)"></a>2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 <a href="http://www.cqeacademy.com/cqe-body-of-knowledge/quantitative-methods-tools/anova-analysis/" target="_blank" rel="noopener">(link)</a></h3><p>   <img src="/img/anova_2.jpg" width="500px"></p><ul><li><strong>결론</strong>: 가변수 활용한 <strong>회귀분석</strong> 결과와 같음.<script type="math/tex; mode=display">F_{k, n-k-1} = \dfrac{R^2/(k-1)}{(1-R^2)(n-k-1)} = \dfrac{회귀제곱평균(MSR)}{오차제곱평균(MSE)}</script><ul><li>k: num of group; n: num of sample</li><li>MSR_(explained var.) = SSR/df; MSE_(unexplained var.) = SSE/df</li><li>Regression : ANOVA<ul><li>= SSR(sum of squares of reg.) : SSB(b/w groups sum of squares)</li><li>= SSE(sum of squares error) : SSW(within gorups sum of squares)</li></ul></li></ul></li><li>회귀분석이 제공하는 정보가 더 많음. eg. ANOVA: y에 영향 유무 vs 회귀: 어떻게 영향</li><li>H0: 모집단의 평균이 모두 같다</li><li>목적: 평균값의 차이가 의미 있는가. 아니면 분산이 커서 평균 차이가 발생하는지 확인</li><li>조건: 정규성, 분산의 동질성, 관찰의 독립성</li><li>종류:<ul><li>일원 분산분석 model: y ~ x1</li><li>이원 분산분석 model: y ~ x1, x2, x1:x2(교호 작용/주 효과)</li></ul></li></ul><h3 id="2-2ANOVA-Question-link"><a href="#2-2ANOVA-Question-link" class="headerlink" title="2.2ANOVA Question (link)"></a>2.2ANOVA Question <a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">(link)</a></h3><ul><li>Q: F-통계량과 R^2가 어떻게 다른가 (How is F Statistic different from R Squared?)</li><li>A: <strong>R^2</strong>는 종속/독립 변수가 얼마나 강하게 연관이 있는지 보여주지만, 유의도를 제공하지는 않음. <strong>F-통계량</strong>은 그 연관성의 유의도를 보여줌. (<strong>R squared</strong> provides <strong>a measure of strength of relationship</strong> between our predictors and our response variable and it does not comment on whether the relationship is statistically significant. <strong>F Statistic</strong> gives us a power to judge whether that relationship is statistically significant in other words it comments on <strong>whether or R² is significant or not.</strong>)</li><li>Q: 회귀분석에서 F-통계량을 어떻게 활용해야하는가? (What should I do with F statistic in Regression model?)</li><li>A: R^2의 신뢰도 측정에 부가적으로 사용 (If my <strong>F-statistic is significant</strong> that gives me <strong>extra confidence on the R² value</strong> that I have got and Vice Versa))</li></ul><h3 id="예제-link"><a href="#예제-link" class="headerlink" title="예제 (link)"></a>예제 <a href="https://github.com/HenryPaik1/study/blob/master/06.Math/Recap/Recap_test_ANOVAegok.ipynb" target="_blank" rel="noopener">(link)</a></h3><hr><ul><li>reference<ul><li><a href="https://rfriend.tistory.com/135" target="_blank" rel="noopener">https://rfriend.tistory.com/135</a></li><li><a href="https://socialinnovation.tistory.com/142" target="_blank" rel="noopener">https://socialinnovation.tistory.com/142</a></li><li><a href="https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0" target="_blank" rel="noopener">https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0</a></li><li><a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/</a></li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="통계-검정-집단간-비교"><a href="#통계-검정-집단간-비교" class="headerlink" title="통계 검정: 집단간 비교"></a>통계 검정: 집단간 비교</h1><a id="more"></a><h2 id="Two-groups"><a href="#Two-groups" class="headerlink" title="Two groups"></a>Two groups</h2><ul><li>z-test: 모집단 분산 미리 알고/ 표본크기 30이상 (대개 분산모르므로 사용안함)</li><li>t-test(등분산/이분산): 독립된 두 개의 표본집단간의 <strong>평균차이</strong> 검정. eg. 어떤 변인에 따른 두 집단 차이</li></ul><h2 id="Two-or-More-groups"><a href="#Two-or-More-groups" class="headerlink" title="Two or More groups"></a>Two or More groups</h2><h3 id="1-F-test-두-개-이상의-집단-비교-집단-내-amp-집단-간-분산을-분석"><a href="#1-F-test-두-개-이상의-집단-비교-집단-내-amp-집단-간-분산을-분석" class="headerlink" title="1. F-test: 두 개 이상의 집단 비교. 집단 내 &amp; 집단 간 분산을 분석"></a>1. F-test: 두 개 이상의 집단 비교. 집단 내 &amp; 집단 간 분산을 분석</h3><p>   <img src="/img/ftest.png"></p><ul><li>eg. A, B, C 각 집단내 &amp; 집단간 연령 분산 -&gt; A 집단 연령의 분산 &gt; B, C 집단 연령의 분산 = A는 이질적 연령대로 구성 되어 있음</li></ul><h3 id="2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link"><a href="#2-1-ANOVA-Analysis-of-Variance-분산분석-범주형-x-연속형-y-F-test-사용-link" class="headerlink" title="2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 (link)"></a>2.1 ANOVA(Analysis of Variance, 분산분석): 범주형 x, 연속형 y, F-test 사용 <a href="http://www.cqeacademy.com/cqe-body-of-knowledge/quantitative-methods-tools/anova-analysis/" target="_blank" rel="noopener">(link)</a></h3><p>   <img src="/img/anova_2.jpg" width="500px"></p><script type="math/tex; mode=display">F-static = \dfrac{MST}{MSE} \approx \dfrac{\text{Var b/w Groups}}{\text{Var within Groups}}</script><ul><li><strong>결론</strong>: 가변수 활용한 <strong>회귀분석</strong> 결과와 같음.(변수의 category값이 너무 많으면 그때 ANOVA 하자)<ul><li>회귀분석과 ANOVA 관계: ANOVA를 통해 회귀식의 F 검정 가능(결정계수 R^2에 대해 F 검정. 즉, 회귀식의 적합성 검정)</li><li>결정계수 R^2 -&gt; F 검정 통계량 계산: test statistics F = f(R^2) -&gt; F 검정 <a href="https://datascienceschool.net/view-notebook/897c3471597e42f0a17627953007780b/" target="_blank" rel="noopener">(검정 통계량이란?)</a><script type="math/tex; mode=display">F_{k, n-k-1} = \dfrac{R^2/(k-1)}{(1-R^2)(n-k-1)} = \dfrac{회귀제곱평균(MSR)}{오차제곱평균(MSE)}</script><ul><li>k: num of group; n: num of sample</li><li>MSR_(explained var.) = SSR/df; MSE_(unexplained var.) = SSE/df</li><li>Regression : ANOVA</li></ul></li><li>= SSR(sum of squares of reg.) : SSB(b/w groups sum of squares)</li><li>= SSE(sum of squares error) : SSW(within gorups sum of squares)</li></ul></li><li>회귀분석이 제공하는 정보가 더 많음. eg. ANOVA: y에 영향 유무 vs 회귀: 어떻게 영향</li><li>H0: 모집단의 평균이 모두 같다</li><li>목적: 평균값의 차이가 의미 있는가. 아니면 분산이 커서 평균 차이가 발생하는지 확인</li><li>조건: 정규성, 분산의 동질성, 관찰의 독립성</li><li>종류:<ul><li>일원 분산분석 model: y ~ x1</li><li>이원 분산분석 model: y ~ x1, x2, x1:x2(교호 작용/주 효과)</li></ul></li></ul><h3 id="2-2-ANOVA-Question-link"><a href="#2-2-ANOVA-Question-link" class="headerlink" title="2.2 ANOVA Question (link)"></a>2.2 ANOVA Question <a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">(link)</a></h3><ul><li>Q: F-통계량과 R^2가 어떻게 다른가 (How is F Statistic different from R Squared?)</li><li>A: <strong>R^2</strong>는 종속/독립 변수가 얼마나 강하게 연관이 있는지 보여주지만, 유의도를 제공하지는 않음. <strong>F-통계량</strong>은 그 연관성의 유의도를 보여줌. (<strong>R squared</strong> provides <strong>a measure of strength of relationship</strong> between our predictors and our response variable and it does not comment on whether the relationship is statistically significant. <strong>F Statistic</strong> gives us a power to judge whether that relationship is statistically significant in other words it comments on <strong>whether or R² is significant or not.</strong>)</li><li>Q: 회귀분석에서 F-통계량을 어떻게 활용해야하는가? (What should I do with F statistic in Regression model?)</li><li>A: R^2의 신뢰도 측정에 부가적으로 사용 (If my <strong>F-statistic is significant</strong> that gives me <strong>extra confidence on the R² value</strong> that I have got and Vice Versa))</li></ul><h3 id="예제-link"><a href="#예제-link" class="headerlink" title="예제 (link)"></a>예제 <a href="https://github.com/HenryPaik1/study/blob/master/06.Math/Recap/Recap_test_ANOVAegok.ipynb" target="_blank" rel="noopener">(link)</a></h3><hr><ul><li>reference<ul><li><a href="https://datascienceschool.net/view-notebook/897c3471597e42f0a17627953007780b/" target="_blank" rel="noopener">https://datascienceschool.net/view-notebook/897c3471597e42f0a17627953007780b/</a></li><li><a href="https://rfriend.tistory.com/135" target="_blank" rel="noopener">https://rfriend.tistory.com/135</a></li><li><a href="https://socialinnovation.tistory.com/142" target="_blank" rel="noopener">https://socialinnovation.tistory.com/142</a></li><li><a href="https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0" target="_blank" rel="noopener">https://medium.com/@rrfd/f-tests-and-anovas-examples-with-the-iris-dataset-fe7caa3e21d0</a></li><li><a href="http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/" target="_blank" rel="noopener">http://analyticspro.org/2016/03/15/r-tutorial-how-to-interpret-f-statistic-in-regression-models/</a></li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -600,41 +600,6 @@
     
     
     <entry>
-      <title>[시계열] 비정상 확률과정(2)</title>
-      <link href="/2019/02/04/Recap_TimeSeires(2)/"/>
-      <url>/2019/02/04/Recap_TimeSeires(2)/</url>
-      
-        <content type="html"><![CDATA[<h2 id="비정상-확률과정"><a href="#비정상-확률과정" class="headerlink" title="비정상 확률과정"></a>비정상 확률과정</h2><a id="more"></a><ul><li>평균수준이 시간대에 따라 다름<ul><li>-&gt; 결정적Deterministic 추세: regression</li><li>-&gt; 확률적Stochastic 추세: 차분 &amp; ADF</li></ul></li><li>추세Trend 지님<ul><li>-&gt; 결정적 계절추세: regression</li><li>-&gt; 확률적 계절추세: 계절 차분</li></ul></li><li>계절성Seasonality 지님</li><li>분산 변함</li></ul><h3 id="Type-of-Non-stationary-Process"><a href="#Type-of-Non-stationary-Process" class="headerlink" title="Type of Non-stationary Process"></a>Type of Non-stationary Process</h3><ul><li>$E[y_t] \neq 0$ and change with time: 평균수준이</li><li>$Var[y_t]$ change with time -&gt; Ranom Walk</li></ul><h3 id="Random-Walk"><a href="#Random-Walk" class="headerlink" title="Random Walk"></a>Random Walk</h3><ul><li>확률과정</li><li>$\epsilon = \text{white noise}, \alpha = intercept$</li><li>1) $W_t = W_{t-1} + \epsilon_t$: Pure Random Walk</li><li>2) ST: $W_t = \alpha + W_{t-1}+\epsilon_t$: Random Walk with Drift</li><li>3) $W_t = \alpha + W_{t-1} + \beta t + \epsilon_t$: Random Walk with Drift and Derministic Trend  </li><li>cf) DT: $Y_t = \alpha + \beta t + \epsilon_t$: Deterministic Trend<br><img src="time1.gif" alt=""></li></ul><h3 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h3><h4 id="1-A-Random-Walk-with-or-without-a-drift"><a href="#1-A-Random-Walk-with-or-without-a-drift" class="headerlink" title="1. A Random Walk with or without a drift"></a>1. A Random Walk with or without a drift</h4><ul><li>Differencing: $\nabla W_t = W_t - W_{t-1}=\epsilon_t$ or $\alpha + \epsilon_t$</li><li>Detrending:<ul><li>$Y_t = \alpha + \beta t + \epsilon_t \rightarrow \nabla Y_t=$</li></ul></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">df = sm.datasets.get_rdataset(<span class="string">"CanPop"</span>, package=<span class="string">"carData"</span>).data</span><br><span class="line">df.plot(x=<span class="string">'year'</span>, y=<span class="string">'population'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><p><img src="/Recap_TimeSeires%282%29_files/Recap_TimeSeires%282%29_2_0.png" alt="png"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># df = df.set_index('year')</span></span><br><span class="line">df_diff1 = df - df.shift()</span><br><span class="line">df_diff1.plot()</span><br></pre></td></tr></table></figure><pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8892339390&gt;</code></pre><p><img src="/Recap_TimeSeires%282%29_files/Recap_TimeSeires%282%29_3_1.png" alt="png"></p><p>reference</p><ul><li>이론: <a href="http://www.irealism.org/xe/datascience/3226" target="_blank" rel="noopener">http://www.irealism.org/xe/datascience/3226</a></li><li>시계열 전반: <a href="https://otexts.com/fpp2/lag-plots.html" target="_blank" rel="noopener">https://otexts.com/fpp2/lag-plots.html</a></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Math </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Timeseries </tag>
-            
-            <tag> Math </tag>
-            
-            <tag> 확률과정 </tag>
-            
-            <tag> 비정상확률과정 </tag>
-            
-            <tag> 추세 </tag>
-            
-            <tag> 계절성 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>[시계열] 확률과정 및 시계열 이론(1)</title>
       <link href="/2019/02/04/Recap_Time%20series_theory(1)ok/"/>
       <url>/2019/02/04/Recap_Time%20series_theory(1)ok/</url>
@@ -664,6 +629,41 @@
             <tag> 백색잡음 </tag>
             
             <tag> ACF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[시계열] 비정상 확률과정(2)</title>
+      <link href="/2019/02/04/Recap_TimeSeires(2)/"/>
+      <url>/2019/02/04/Recap_TimeSeires(2)/</url>
+      
+        <content type="html"><![CDATA[<h2 id="비정상-확률과정"><a href="#비정상-확률과정" class="headerlink" title="비정상 확률과정"></a>비정상 확률과정</h2><a id="more"></a><ul><li>평균수준이 시간대에 따라 다름<ul><li>-&gt; 결정적Deterministic 추세: regression</li><li>-&gt; 확률적Stochastic 추세: 차분 &amp; ADF</li></ul></li><li>추세Trend 지님<ul><li>-&gt; 결정적 계절추세: regression</li><li>-&gt; 확률적 계절추세: 계절 차분</li></ul></li><li>계절성Seasonality 지님</li><li>분산 변함</li></ul><h3 id="Type-of-Non-stationary-Process"><a href="#Type-of-Non-stationary-Process" class="headerlink" title="Type of Non-stationary Process"></a>Type of Non-stationary Process</h3><ul><li>$E[y_t] \neq 0$ and change with time: 평균수준이</li><li>$Var[y_t]$ change with time -&gt; Ranom Walk</li></ul><h3 id="Random-Walk"><a href="#Random-Walk" class="headerlink" title="Random Walk"></a>Random Walk</h3><ul><li>확률과정</li><li>$\epsilon = \text{white noise}, \alpha = intercept$</li><li>1) $W_t = W_{t-1} + \epsilon_t$: Pure Random Walk</li><li>2) ST: $W_t = \alpha + W_{t-1}+\epsilon_t$: Random Walk with Drift</li><li>3) $W_t = \alpha + W_{t-1} + \beta t + \epsilon_t$: Random Walk with Drift and Derministic Trend  </li><li>cf) DT: $Y_t = \alpha + \beta t + \epsilon_t$: Deterministic Trend<br><img src="time1.gif" alt=""></li></ul><h3 id="Transformation"><a href="#Transformation" class="headerlink" title="Transformation"></a>Transformation</h3><h4 id="1-A-Random-Walk-with-or-without-a-drift"><a href="#1-A-Random-Walk-with-or-without-a-drift" class="headerlink" title="1. A Random Walk with or without a drift"></a>1. A Random Walk with or without a drift</h4><ul><li>Differencing: $\nabla W_t = W_t - W_{t-1}=\epsilon_t$ or $\alpha + \epsilon_t$</li><li>Detrending:<ul><li>$Y_t = \alpha + \beta t + \epsilon_t \rightarrow \nabla Y_t=$</li></ul></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">df = sm.datasets.get_rdataset(<span class="string">"CanPop"</span>, package=<span class="string">"carData"</span>).data</span><br><span class="line">df.plot(x=<span class="string">'year'</span>, y=<span class="string">'population'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><p><img src="/Recap_TimeSeires%282%29_files/Recap_TimeSeires%282%29_2_0.png" alt="png"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># df = df.set_index('year')</span></span><br><span class="line">df_diff1 = df - df.shift()</span><br><span class="line">df_diff1.plot()</span><br></pre></td></tr></table></figure><pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8892339390&gt;</code></pre><p><img src="/Recap_TimeSeires%282%29_files/Recap_TimeSeires%282%29_3_1.png" alt="png"></p><p>reference</p><ul><li>이론: <a href="http://www.irealism.org/xe/datascience/3226" target="_blank" rel="noopener">http://www.irealism.org/xe/datascience/3226</a></li><li>시계열 전반: <a href="https://otexts.com/fpp2/lag-plots.html" target="_blank" rel="noopener">https://otexts.com/fpp2/lag-plots.html</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Math </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Timeseries </tag>
+            
+            <tag> Math </tag>
+            
+            <tag> 확률과정 </tag>
+            
+            <tag> 비정상확률과정 </tag>
+            
+            <tag> 추세 </tag>
+            
+            <tag> 계절성 </tag>
             
         </tags>
       
