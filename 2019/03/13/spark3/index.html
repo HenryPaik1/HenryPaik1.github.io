@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>[Spark_2] Spark Intro_Architecture and Components | Henry&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spark Intro">
+<meta name="keywords" content="Study,Spark,RDD,Spark_component,DAG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Spark_2] Spark Intro_Architecture and Components">
+<meta property="og:url" content="https://henrypaik1.github.io/2019/03/13/spark3/index.html">
+<meta property="og:site_name" content="Henry&#39;s blog">
+<meta property="og:description" content="Spark Intro">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/img/spark_archi.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/main_com.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/spark_com2.png">
+<meta property="og:updated_time" content="2019-03-13T12:23:06.523Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Spark_2] Spark Intro_Architecture and Components">
+<meta name="twitter:description" content="Spark Intro">
+<meta name="twitter:image" content="https://henrypaik1.github.io/img/spark_archi.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <!--link href="//fonts.useso.com/css?family=Lato:400,400italic" rel="stylesheet" type="text/css"-->
+  <link href="http://yurixu.com/css/fonts/Google/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">  
+  
+
+
+  <!--
+
+-->
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-136157247-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  <!-- add by yurixu 2016/1/13 向百度提交sitemap-->
+  <meta name="baidu-site-verification" content="ubBCJmBrxD"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head></html>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Henry&#39;s blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Step by step</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="https://github.com/HenryPaik1">GitHub</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/Log">Log</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <! --modify by yurixu 22016/1/8 修改search为swiftype -->
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <!-- <input type="text" class="st-default-search-input"> -->
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://henrypaik1.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-spark3" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [Spark_2] Spark Intro_Architecture and Components
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/03/13/spark3/" class="article-date">
+  <time datetime="2019-03-13T12:14:44.000Z" itemprop="datePublished">2019-3-13 Wed  21:14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spark/">Spark</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <h1 id="Spark-Intro"><a href="#Spark-Intro" class="headerlink" title="Spark Intro"></a>Spark Intro</h1><a id="more"></a>
+<ul>
+<li>reference: <a href="http://datastrophic.io/core-concepts-architecture-and-internals-of-apache-spark/" target="_blank" rel="noopener">Apache Spark: core concepts, architecture and internals</a><h3 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h3></li>
+<li>RDD</li>
+<li>Operation<ul>
+<li>Create RDD</li>
+<li>Action: Count, Collect, Take</li>
+<li>Transformation: Map, Filter</li>
+</ul>
+</li>
+<li>Partition, Dependency</li>
+</ul>
+<h2 id="1-RDD-Resilient-Distributed-Datasets"><a href="#1-RDD-Resilient-Distributed-Datasets" class="headerlink" title="1. RDD (Resilient Distributed Datasets)"></a>1. RDD (Resilient Distributed <strong>Datasets</strong>)</h2><ul>
+<li>Important aspect: <strong>Distributed/ Immutable/ Resilient</strong><ul>
+<li>Distributed: Each RDD is split into multiple pieces(<strong>partitions</strong>) -&gt; partitions are <strong>divided</strong> across the <strong>clusters</strong></li>
+<li>Immutable(read-only): cannot be changed after created -&gt; <strong>remove all the potential problems</strong> due to <strong>updates from multiple threads</strong></li>
+<li>Resilient: in case of any node in the cluster goes down, can <strong>recover</strong> the parts of the RDDs(cuz can be recreated <strong>at any time</strong> &amp; ‘Lineage’) -&gt; make sure <strong>fault-tolerance</strong></li>
+</ul>
+</li>
+<li>Basic concept<ul>
+<li>can contain any types of obj</li>
+<li>is <strong>a capsulation</strong> around a very large dataset</li>
+<li>will <strong>automatically distribute</strong> the data contained in RDDs, across your cluster and <strong>parallelize the operaton</strong> your perfom on them</li>
+<li><strong>paralleize applications</strong>(compute-intensive app, app requiring input from data streams, and etc) across clusters</li>
+</ul>
+</li>
+<li>RDD workflow<ul>
+<li><strong>Create initial RDDs</strong> from external data</li>
+<li>Apply <strong>Transformation</strong></li>
+<li>Launch <strong>Actions</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="How-to-create-a-RDD"><a href="#How-to-create-a-RDD" class="headerlink" title="How to create a RDD"></a>How to create a RDD</h3><ul>
+<li>1) (Not practical to large datasets)Take an <strong>existing collection</strong> and pass it to SparkContext’s <code>parallelize</code> method.</li>
+<li>2) <strong>Load RDDs</strong> from external strage by calling <code>textFile</code> method on SparkContext.<ul>
+<li>External storage: AWS S3, HDFS and etc. (JDBC, Cassandra, Elasticsearch)</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Spark-Architecture-link"><a href="#2-Spark-Architecture-link" class="headerlink" title="2. Spark Architecture (link)"></a>2. Spark Architecture <a href="http://datastrophic.io/core-concepts-architecture-and-internals-of-apache-spark/" target="_blank" rel="noopener">(link)</a></h2><p><img src="/img/spark_archi.png"></p>
+<ul>
+<li><code>Driver Program</code>(Spark Application) eg. shell<ul>
+<li>Drive application</li>
+<li>Consists of <code>SparkContext</code> and user code</li>
+</ul>
+</li>
+<li><code>SparkContext</code><ul>
+<li>Take the job, break the job in tasks and distribute them to the <code>worker nodes</code></li>
+<li>Represent <strong>connection</strong> to spark <code>Cluster Managers</code> which allocate resourecs across app</li>
+<li><code>Driver Program</code> access Spark app through <code>SparckContext</code> obj</li>
+</ul>
+</li>
+<li><code>Cluster Manager</code><ul>
+<li>not need to be on the same machines with <code>Driver Program</code></li>
+<li>Manage job <strong>within the cluster</strong></li>
+<li>Allocate resource</li>
+</ul>
+</li>
+<li><code>Executor</code><ul>
+<li><strong>Excute</strong> the tasks on the <strong>partitioned RDDs</strong></li>
+<li>Launch at the beginning of the Spark app</li>
+<li><strong>Return back</strong> result to <code>SparkContext</code></li>
+<li>Interact with storage system</li>
+</ul>
+</li>
+<li><code>DAG</code>(Direct Acyclic Graph): User code containing RDD transformations forms DAG<ul>
+<li>split into stages of task by DAGScheduler</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-Spark-Components-link"><a href="#3-Spark-Components-link" class="headerlink" title="3. Spark Components (link)"></a>3. Spark Components <a href="http://datastrophic.io/core-concepts-architecture-and-internals-of-apache-spark/" target="_blank" rel="noopener">(link)</a></h2><h4 id="Main-Components"><a href="#Main-Components" class="headerlink" title="Main Components"></a>Main Components</h4><p><img src="/img/main_com.png" width="300px"></p>
+<ul>
+<li><code>Spark Driver</code></li>
+<li><code>Executors</code></li>
+<li><code>Cluster Manger</code></li>
+</ul>
+<h4 id="Other-Components"><a href="#Other-Components" class="headerlink" title="Other Components"></a>Other Components</h4><p>: Responsible for translation of user code into actual jobs executed on cluster</p>
+<p><img src="/img/spark_com2.png"></p>
+<ul>
+<li><code>SparkContext</code></li>
+<li><code>DAGScheduler</code></li>
+<li><code>TaskScheduler</code></li>
+<li><code>SchedulerBackend</code></li>
+<li><code>BlockManager</code></li>
+</ul>
+<h2 id="4-Operation"><a href="#4-Operation" class="headerlink" title="4. Operation"></a>4. Operation</h2><ul>
+<li>1) <code>Action</code>: <strong>compute(count, collect)</strong> a result based on an RDD and <strong>return result to <code>Driver Program</code> or write it to storage</strong></li>
+<li>2) <code>Transformation</code>: Apply some <strong>functions</strong> to the data in RDD to <strong>create a new RDD</strong><ul>
+<li><code>filter</code>: <strong>return a new RDD</strong> with a subset of the data in the original RDD(selecting elems from those passed to func())<ul>
+<li>used to remove invalid row to <strong>clean up</strong></li>
+</ul>
+</li>
+<li><code>map</code>: pass each elem through the function and yield the new value of each elem in the resulting RDD</li>
+</ul>
+</li>
+<li>3) Transformation vs Actions: due to <strong> Lazy Execution</strong>,  all the RDDs won’t be computed until they are used in an <strong>ACTION()</strong>(eg. collect(), first())</li>
+</ul>
+<h2 id="5-Others"><a href="#5-Others" class="headerlink" title="5. Others"></a>5. Others</h2><ul>
+<li>Dependencies<ul>
+<li>Wide(shuffle): multiple child partitions may depend on one parent partition; require data from all parent partitions</li>
+<li>Narrow: each partition of the parent RDD is used by <strong>at most one partition</strong> of the child RDD eg. Map(), Filter()</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Operation Code from <a href="https://spark.apache.org/docs/latest/rdd-programming-guide.html" target="_blank" rel="noopener">Spark Doc</a></p>
+<hr>
+<h3 id="transformations">Transformations</h3>
+
+<p>The following table lists some of the common transformations supported by Spark. Refer to the
+RDD API doc
+(<a href="api/scala/index.html#org.apache.spark.rdd.RDD">Scala</a>,
+ <a href="api/java/index.html?org/apache/spark/api/java/JavaRDD.html">Java</a>,
+ <a href="api/python/pyspark.html#pyspark.RDD">Python</a>,
+ <a href="api/R/index.html">R</a>)
+and pair RDD functions doc
+(<a href="api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions">Scala</a>,
+ <a href="api/java/index.html?org/apache/spark/api/java/JavaPairRDD.html">Java</a>)
+for details.</p>
+
+<table class="table">
+<tr><th style="width:25%">Transformation</th><th>Meaning</th></tr>
+<tr>
+  <td> <b>map</b>(<i>func</i>) </td>
+  <td> Return a new distributed dataset formed by passing each element of the source through a function <i>func</i>. </td>
+</tr>
+<tr>
+  <td> <b>filter</b>(<i>func</i>) </td>
+  <td> Return a new dataset formed by selecting those elements of the source on which <i>func</i> returns true. </td>
+</tr>
+<tr>
+  <td> <b>flatMap</b>(<i>func</i>) </td>
+  <td> Similar to map, but each input item can be mapped to 0 or more output items (so <i>func</i> should return a Seq rather than a single item). </td>
+</tr>
+<tr>
+  <td> <b>mapPartitions</b>(<i>func</i>) <a name="MapPartLink"></a> </td>
+  <td> Similar to map, but runs separately on each partition (block) of the RDD, so <i>func</i> must be of type
+    Iterator&lt;T&gt; =&gt; Iterator&lt;U&gt; when running on an RDD of type T. </td>
+</tr>
+<tr>
+  <td> <b>mapPartitionsWithIndex</b>(<i>func</i>) </td>
+  <td> Similar to mapPartitions, but also provides <i>func</i> with an integer value representing the index of
+  the partition, so <i>func</i> must be of type (Int, Iterator&lt;T&gt;) =&gt; Iterator&lt;U&gt; when running on an RDD of type T.
+  </td>
+</tr>
+<tr>
+  <td> <b>sample</b>(<i>withReplacement</i>, <i>fraction</i>, <i>seed</i>) </td>
+  <td> Sample a fraction <i>fraction</i> of the data, with or without replacement, using a given random number generator seed. </td>
+</tr>
+<tr>
+  <td> <b>union</b>(<i>otherDataset</i>) </td>
+  <td> Return a new dataset that contains the union of the elements in the source dataset and the argument. </td>
+</tr>
+<tr>
+  <td> <b>intersection</b>(<i>otherDataset</i>) </td>
+  <td> Return a new RDD that contains the intersection of elements in the source dataset and the argument. </td>
+</tr>
+<tr>
+  <td> <b>distinct</b>([<i>numPartitions</i>])) </td>
+  <td> Return a new dataset that contains the distinct elements of the source dataset.</td>
+</tr>
+<tr>
+  <td> <b>groupByKey</b>([<i>numPartitions</i>]) <a name="GroupByLink"></a> </td>
+  <td> When called on a dataset of (K, V) pairs, returns a dataset of (K, Iterable&lt;V&gt;) pairs. <br>
+    <b>Note:</b> If you are grouping in order to perform an aggregation (such as a sum or
+      average) over each key, using <code>reduceByKey</code> or <code>aggregateByKey</code> will yield much better
+      performance.
+    <br>
+    <b>Note:</b> By default, the level of parallelism in the output depends on the number of partitions of the parent RDD.
+      You can pass an optional <code>numPartitions</code> argument to set a different number of tasks.
+  </td>
+</tr>
+<tr>
+  <td> <b>reduceByKey</b>(<i>func</i>, [<i>numPartitions</i>]) <a name="ReduceByLink"></a> </td>
+  <td> When called on a dataset of (K, V) pairs, returns a dataset of (K, V) pairs where the values for each key are aggregated using the given reduce function <i>func</i>, which must be of type (V,V) =&gt; V. Like in <code>groupByKey</code>, the number of reduce tasks is configurable through an optional second argument. </td>
+</tr>
+<tr>
+  <td> <b>aggregateByKey</b>(<i>zeroValue</i>)(<i>seqOp</i>, <i>combOp</i>, [<i>numPartitions</i>]) <a name="AggregateByLink"></a> </td>
+  <td> When called on a dataset of (K, V) pairs, returns a dataset of (K, U) pairs where the values for each key are aggregated using the given combine functions and a neutral "zero" value. Allows an aggregated value type that is different than the input value type, while avoiding unnecessary allocations. Like in <code>groupByKey</code>, the number of reduce tasks is configurable through an optional second argument. </td>
+</tr>
+<tr>
+  <td> <b>sortByKey</b>([<i>ascending</i>], [<i>numPartitions</i>]) <a name="SortByLink"></a> </td>
+  <td> When called on a dataset of (K, V) pairs where K implements Ordered, returns a dataset of (K, V) pairs sorted by keys in ascending or descending order, as specified in the boolean <code>ascending</code> argument.</td>
+</tr>
+<tr>
+  <td> <b>join</b>(<i>otherDataset</i>, [<i>numPartitions</i>]) <a name="JoinLink"></a> </td>
+  <td> When called on datasets of type (K, V) and (K, W), returns a dataset of (K, (V, W)) pairs with all pairs of elements for each key.
+    Outer joins are supported through <code>leftOuterJoin</code>, <code>rightOuterJoin</code>, and <code>fullOuterJoin</code>.
+  </td>
+</tr>
+<tr>
+  <td> <b>cogroup</b>(<i>otherDataset</i>, [<i>numPartitions</i>]) <a name="CogroupLink"></a> </td>
+  <td> When called on datasets of type (K, V) and (K, W), returns a dataset of (K, (Iterable&lt;V&gt;, Iterable&lt;W&gt;)) tuples. This operation is also called <code>groupWith</code>. </td>
+</tr>
+<tr>
+  <td> <b>cartesian</b>(<i>otherDataset</i>) </td>
+  <td> When called on datasets of types T and U, returns a dataset of (T, U) pairs (all pairs of elements). </td>
+</tr>
+<tr>
+  <td> <b>pipe</b>(<i>command</i>, <i>[envVars]</i>) </td>
+  <td> Pipe each partition of the RDD through a shell command, e.g. a Perl or bash script. RDD elements are written to the
+    process's stdin and lines output to its stdout are returned as an RDD of strings. </td>
+</tr>
+<tr>
+  <td> <b>coalesce</b>(<i>numPartitions</i>) <a name="CoalesceLink"></a> </td>
+  <td> Decrease the number of partitions in the RDD to numPartitions. Useful for running operations more efficiently
+    after filtering down a large dataset. </td>
+</tr>
+<tr>
+  <td> <b>repartition</b>(<i>numPartitions</i>) </td>
+  <td> Reshuffle the data in the RDD randomly to create either more or fewer partitions and balance it across them.
+    This always shuffles all data over the network. <a name="RepartitionLink"></a></td>
+</tr>
+<tr>
+  <td> <b>repartitionAndSortWithinPartitions</b>(<i>partitioner</i>) <a name="Repartition2Link"></a></td>
+  <td> Repartition the RDD according to the given partitioner and, within each resulting partition,
+  sort records by their keys. This is more efficient than calling <code>repartition</code> and then sorting within
+  each partition because it can push the sorting down into the shuffle machinery. </td>
+</tr>
+</table>
+
+<h3 id="actions">Actions</h3>
+
+<p>The following table lists some of the common actions supported by Spark. Refer to the
+RDD API doc
+(<a href="api/scala/index.html#org.apache.spark.rdd.RDD">Scala</a>,
+ <a href="api/java/index.html?org/apache/spark/api/java/JavaRDD.html">Java</a>,
+ <a href="api/python/pyspark.html#pyspark.RDD">Python</a>,
+ <a href="api/R/index.html">R</a>)</p>
+
+<p>and pair RDD functions doc
+(<a href="api/scala/index.html#org.apache.spark.rdd.PairRDDFunctions">Scala</a>,
+ <a href="api/java/index.html?org/apache/spark/api/java/JavaPairRDD.html">Java</a>)
+for details.</p>
+
+<table class="table">
+<tr><th>Action</th><th>Meaning</th></tr>
+<tr>
+  <td> <b>reduce</b>(<i>func</i>) </td>
+  <td> Aggregate the elements of the dataset using a function <i>func</i> (which takes two arguments and returns one). The function should be commutative and associative so that it can be computed correctly in parallel. </td>
+</tr>
+<tr>
+  <td> <b>collect</b>() </td>
+  <td> Return all the elements of the dataset as an array at the driver program. This is usually useful after a filter or other operation that returns a sufficiently small subset of the data. </td>
+</tr>
+<tr>
+  <td> <b>count</b>() </td>
+  <td> Return the number of elements in the dataset. </td>
+</tr>
+<tr>
+  <td> <b>first</b>() </td>
+  <td> Return the first element of the dataset (similar to take(1)). </td>
+</tr>
+<tr>
+  <td> <b>take</b>(<i>n</i>) </td>
+  <td> Return an array with the first <i>n</i> elements of the dataset. </td>
+</tr>
+<tr>
+  <td> <b>takeSample</b>(<i>withReplacement</i>, <i>num</i>, [<i>seed</i>]) </td>
+  <td> Return an array with a random sample of <i>num</i> elements of the dataset, with or without replacement, optionally pre-specifying a random number generator seed.</td>
+</tr>
+<tr>
+  <td> <b>takeOrdered</b>(<i>n</i>, <i>[ordering]</i>) </td>
+  <td> Return the first <i>n</i> elements of the RDD using either their natural order or a custom comparator. </td>
+</tr>
+<tr>
+  <td> <b>saveAsTextFile</b>(<i>path</i>) </td>
+  <td> Write the elements of the dataset as a text file (or set of text files) in a given directory in the local filesystem, HDFS or any other Hadoop-supported file system. Spark will call toString on each element to convert it to a line of text in the file. </td>
+</tr>
+<tr>
+  <td> <b>saveAsSequenceFile</b>(<i>path</i>) <br> (Java and Scala) </td>
+  <td> Write the elements of the dataset as a Hadoop SequenceFile in a given path in the local filesystem, HDFS or any other Hadoop-supported file system. This is available on RDDs of key-value pairs that implement Hadoop's Writable interface. In Scala, it is also
+   available on types that are implicitly convertible to Writable (Spark includes conversions for basic types like Int, Double, String, etc). </td>
+</tr>
+<tr>
+  <td> <b>saveAsObjectFile</b>(<i>path</i>) <br> (Java and Scala) </td>
+  <td> Write the elements of the dataset in a simple format using Java serialization, which can then be loaded using
+    <code>SparkContext.objectFile()</code>. </td>
+</tr>
+<tr>
+  <td> <b>countByKey</b>() <a name="CountByLink"></a> </td>
+  <td> Only available on RDDs of type (K, V). Returns a hashmap of (K, Int) pairs with the count of each key. </td>
+</tr>
+<tr>
+  <td> <b>foreach</b>(<i>func</i>) </td>
+  <td> Run a function <i>func</i> on each element of the dataset. This is usually done for side effects such as updating an <a href="#accumulators">Accumulator</a> or interacting with external storage systems.
+  <br><b>Note</b>: modifying variables other than Accumulators outside of the <code>foreach()</code> may result in undefined behavior. See <a href="#understanding-closures-a-nameclosureslinka">Understanding closures </a> for more details.</td>
+</tr>
+</table>
+
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/03/13/spark3/" data-id="cjt76ejz3002g15098xk8jky5" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RDD/">RDD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-component/">Spark_component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
+
+    </footer>
+
+
+
+</div></article></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANOVA/">ANOVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AURORA/">AURORA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EC2/">EC2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ftest/">Ftest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFS/">GFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Host/">Host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IP/">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/">MapReduce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDD/">RDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDS/">RDS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redshift/">Redshift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Regression/">Regression</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/S3/">S3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server-Client/">Server/Client</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-component/">Spark_component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat/">Stat</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPC/">VPC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAN/">WAN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/main/">__main__</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alias/">alias</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-strage/">block_strage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdf/">cdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/correlation/">correlation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/covariance/">covariance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvalue/">eigenvalue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvector/">eigenvector</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net-tools/">net-tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netstat/">netstat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-storage/">object_storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p-value/">p-value</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">pdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/r-squared/">r_squared</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random-variable/">random_variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subnet/">subnet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/고유값분해/">고유값분해</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/대각화/">대각화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버킷/">버킷</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/압축/">압축</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잔차/">잔차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원감소/">차원감소</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원의저주/">차원의저주</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/표준오차/">표준오차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회귀분석가정/">회귀분석가정</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/ANOVA/" style="font-size: 10px;">ANOVA</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/AURORA/" style="font-size: 10px;">AURORA</a> <a href="/tags/AWS/" style="font-size: 15px;">AWS</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/Curse-of-Dimensionality/" style="font-size: 10px;">Curse_of_Dimensionality</a> <a href="/tags/DAG/" style="font-size: 10px;">DAG</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/Ftest/" style="font-size: 10px;">Ftest</a> <a href="/tags/GFS/" style="font-size: 10px;">GFS</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Host/" style="font-size: 10px;">Host</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/Math/" style="font-size: 20px;">Math</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/RDD/" style="font-size: 10px;">RDD</a> <a href="/tags/RDS/" style="font-size: 10px;">RDS</a> <a href="/tags/Redshift/" style="font-size: 10px;">Redshift</a> <a href="/tags/Regression/" style="font-size: 12.5px;">Regression</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/Server-Client/" style="font-size: 10px;">Server/Client</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Spark/" style="font-size: 12.5px;">Spark</a> <a href="/tags/Spark-component/" style="font-size: 10px;">Spark_component</a> <a href="/tags/Stat/" style="font-size: 15px;">Stat</a> <a href="/tags/Study/" style="font-size: 17.5px;">Study</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 17.5px;">Timeseries</a> <a href="/tags/Timeseries-log-transform/" style="font-size: 10px;">Timeseries_log_transform</a> <a href="/tags/Timeseries-process/" style="font-size: 10px;">Timeseries_process</a> <a href="/tags/VPC/" style="font-size: 10px;">VPC</a> <a href="/tags/WAN/" style="font-size: 10px;">WAN</a> <a href="/tags/main/" style="font-size: 10px;">__main__</a> <a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/block-strage/" style="font-size: 10px;">block_strage</a> <a href="/tags/cdf/" style="font-size: 10px;">cdf</a> <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/correlation/" style="font-size: 10px;">correlation</a> <a href="/tags/covariance/" style="font-size: 10px;">covariance</a> <a href="/tags/eigenvalue/" style="font-size: 10px;">eigenvalue</a> <a href="/tags/eigenvector/" style="font-size: 10px;">eigenvector</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/net-tools/" style="font-size: 10px;">net-tools</a> <a href="/tags/netstat/" style="font-size: 10px;">netstat</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/object-storage/" style="font-size: 10px;">object_storage</a> <a href="/tags/p-value/" style="font-size: 10px;">p-value</a> <a href="/tags/pdf/" style="font-size: 10px;">pdf</a> <a href="/tags/r-squared/" style="font-size: 10px;">r_squared</a> <a href="/tags/random-variable/" style="font-size: 10px;">random_variable</a> <a href="/tags/subnet/" style="font-size: 10px;">subnet</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/고유값분해/" style="font-size: 10px;">고유값분해</a> <a href="/tags/대각화/" style="font-size: 10px;">대각화</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/버킷/" style="font-size: 10px;">버킷</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/시계열모수추정/" style="font-size: 10px;">시계열모수추정</a> <a href="/tags/압축/" style="font-size: 10px;">압축</a> <a href="/tags/일반선형확률과정/" style="font-size: 15px;">일반선형확률과정</a> <a href="/tags/잔차/" style="font-size: 10px;">잔차</a> <a href="/tags/잠재변수분석LAV/" style="font-size: 10px;">잠재변수분석LAV</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/차원감소/" style="font-size: 10px;">차원감소</a> <a href="/tags/차원의저주/" style="font-size: 10px;">차원의저주</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/표준오차/" style="font-size: 10px;">표준오차</a> <a href="/tags/확률과정/" style="font-size: 12.5px;">확률과정</a> <a href="/tags/회귀분석가정/" style="font-size: 10px;">회귀분석가정</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/13/spark3/">[Spark_2] Spark Intro_Architecture and Components</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/13/recap-annova/">[Stat_ANOVA] 집단간 비교(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/net1/">[Web] Basic</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/assumption/">[Stat] 회귀분석 가정과 잔차분석</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/spark1/">[Spark_1] Distributed Computing Basic</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+    
+  <!-- add by yurixu 2016/1/3 add bottom -->
+  <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:center;">
+	  <table width="100%" border="0">
+        <tr>
+          <td style="text-align:left">
+            Copyright &copy; 2019 Henry &nbsp; &nbsp;
+		  </td>
+
+        </tr>
+      </table>
+    </div>
+</div>
+
+</footer>
+<!-- add by yurixu 2016/1/1 add website counter -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="https://github.com/HenryPaik1" class="mobile-nav-link">GitHub</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="/Log" class="mobile-nav-link">Log</a>
+  
+</nav>
+    
+< !-- add by yurixu 替换Google的jquery并且添加判断逻辑 -->
+<script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+if (typeof jQuery == 'undefined') {
+  document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<!-- add by yurixu 2016/1/8 添加swiftype搜索代码 -->
+<!-- 
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','Fa9mKyRrtZcNX19oWoxv','2.0.0');
+</script>
+-->
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
