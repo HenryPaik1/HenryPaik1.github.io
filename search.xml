@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>NLP1: word representation and bigram model</title>
+      <link href="/2019/09/28/NLPbigram/"/>
+      <url>/2019/09/28/NLPbigram/</url>
+      
+        <content type="html"><![CDATA[<h1 id="word-representation-통계-vs-추론"><a href="#word-representation-통계-vs-추론" class="headerlink" title="word representation: 통계 vs 추론"></a>word representation: 통계 vs 추론</h1><h2 id="통계-co-occurrenc-mat을-기반으로-dens-vector-찾아냄"><a href="#통계-co-occurrenc-mat을-기반으로-dens-vector-찾아냄" class="headerlink" title="통계: co-occurrenc mat을 기반으로 dens vector 찾아냄"></a>통계: co-occurrenc mat을 기반으로 dens vector 찾아냄</h2><ul><li>시소러스 thesaurus: 단어간 상하 관계를 통해 유사도 구함. 사람이 개입. 시간비용 소모 큼.<ul><li>$similarirty(w, w’) = -\log{distance}(w, w’)$</li></ul></li><li>통계기반(TF-IDF…): 말뭉치 -&gt; 단어 의미 추출<ul><li>분포가설에 기반하여 벡터표현 = 분산표현 distributional representation</li><li>방법: co-occurrence mat</li><li>활용: 코사인유사도, PMI, PPMI -&gt; embedding: SVD(U vector 사용) -&gt; Dense Vector 계산 -&gt; 1회만에 distributional representation = dense vector</li><li>추론기반(word2vec)</li></ul></li></ul><h2 id="추론-Word2vec-단어-분산표현-갱신-가능"><a href="#추론-Word2vec-단어-분산표현-갱신-가능" class="headerlink" title="추론: Word2vec, 단어 분산표현 갱신 가능"></a>추론: Word2vec, 단어 분산표현 갱신 가능</h2><ul><li>Use W(input) and Avg Sum for words, the num of which is based on the number of window -&gt; Get Weight layer</li><li>CBOW vs Skip-Gram: multiple in-layer vs multiple out-layer<ul><li>skip gram은 손실함수에 맥락이 모두 고려됨</li></ul></li></ul><h1 id="Language-Model"><a href="#Language-Model" class="headerlink" title="Language Model"></a>Language Model</h1><ul><li>핵심: sentence scoring and generation</li><li>partial scoring 가능하다면 모든 sentence를 scoring할 필요가 없음</li><li>unsupervised</li></ul><h1 id="bigram-model"><a href="#bigram-model" class="headerlink" title="bigram model"></a>bigram model</h1><ul><li>p(current_word | previous_word)를 통해 해당 문장이 얼마나 가능성 있는 문장인지 추론</li><li>Marcov Assumption에 의해 지금 단어는 과거 단어의 영향만 받음<ul><li>$p(w_t | w_{t-1}, \cdots, w_1) = p(w_t|w_{t-1})$</li></ul></li><li>따라서 문장의 발생확률은, $p(A,B,C,D,E) = p(text{end_pad}|E)p(E|D)p(D|C)p(C|B)p(B|A)p(A|text{start_pad})$<ul><li>pad는 <s>, </s>처럼 문장의 시작과 끝을 나타냄</li><li>실제 계산은 log prob를 사용. 그 이유는 많은 곱셈 연산으로 값이 0보다 한없이 작아지기 때문에 덧셈의 꼴로 바꾸기 위함</li><li>더불어 문장이 짧을수록 prob가 높아지기 때문에 한 문장의 단어 숫자로 log prob.를 나눠 normalize -&gt; $\dfrac{1}{T} \log{w_1, \cdots, w_T}$</li></ul></li><li><p>bigram prob 코드</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bigram_prob = np.ones((V, V)) * smoothing <span class="comment">#co-occurrence라고 생각하면 됨</span></span><br><span class="line"><span class="keyword">for</span> sen <span class="keyword">in</span> sentences: <span class="comment"># sen은 word2idx에 의해 mapping되어있음</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sen)):</span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">            bigram_prob[start_idx, sen[i]] += <span class="number">1</span> <span class="comment"># p(sen[i] | start_idx)</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            bigram_prob[sen[i<span class="number">-1</span>], sen[i]] <span class="comment"># p(sen[i-1] | sen[i])</span></span><br><span class="line">    bigram_prob[sen[<span class="number">-1</span>], end_idx] += <span class="number">1</span> <span class="comment"># p(end_idx | sen[-1])</span></span><br><span class="line">bigram_prob /= bigram_prob.sum(axis=<span class="number">1</span>, keepdims=<span class="keyword">True</span>) <span class="comment"># row wise sum. 각 단어들 다음에 row의 단어가 나올 확률.</span></span><br></pre></td></tr></table></figure></li><li><p>log prob 구하는 코드</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">score = <span class="number">0</span></span><br><span class="line">num_sen = len(sen)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(num_sen):</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        score += np.log(bigram_prob[start_idx, sen[i]]) <span class="comment"># bigram_prob: 벡터</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        score += np.log(bigram_prob[sen[i<span class="number">-1</span>], sen[i]])</span><br><span class="line">score += np.log(bigram_prob[sen[<span class="number">-1</span>], end_idx])</span><br><span class="line">score /= (len(num_sen)+<span class="number">1</span>) <span class="comment"># normalize the score:</span></span><br><span class="line">                          <span class="comment"># +1은 vocab size가 원래 vocab + pad &lt;s&gt;, &lt;/s&gt; 되기 떄문.</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> NLP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> bigram, word_presentation, language_model </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Atom 에디터 메뉴 폰트조절</title>
+      <link href="/2019/09/27/atomfontsize/"/>
+      <url>/2019/09/27/atomfontsize/</url>
+      
+        <content type="html"><![CDATA[<p>참고: <a href="https://discuss.atom.io/t/atoms-main-menu-text-is-very-small/52259/2" target="_blank" rel="noopener">https://discuss.atom.io/t/atoms-main-menu-text-is-very-small/52259/2</a></p><p>아톰 메뉴 글씨가 작을 때 아래 명령어로 실행하면 문제해결<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atom --force-device-scale-factor=1.5</span><br></pre></td></tr></table></figure></p><p>“Default Scale Factor”의 문제라고 한다.<br><code>scale factor</code>값은 1~2 사이.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> sth </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> atom </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[hexo] hexo command cheat sheet</title>
+      <link href="/2019/09/27/howtousehexo/"/>
+      <url>/2019/09/27/howtousehexo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo-basic-cmd"><a href="#hexo-basic-cmd" class="headerlink" title="hexo basic cmd"></a>hexo basic cmd</h1><p>link: <a href="https://hexo.io/docs/writing" target="_blank" rel="noopener">https://hexo.io/docs/writing</a></p><a id="more"></a><p>이하 모든 코드는 hexo init한 폴더에서 실행해야</p><h1 id="1-포스팅-생성"><a href="#1-포스팅-생성" class="headerlink" title="1. 포스팅 생성"></a>1. 포스팅 생성</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br><span class="line"></span><br><span class="line">hexo new post how_to_use_hexo</span><br><span class="line">hexo new post &apos;ㅗow to use hexo&apos;</span><br></pre></td></tr></table></figure><p>layout: post, page, draft</p><h1 id="2-article에-read-more-생성"><a href="#2-article에-read-more-생성" class="headerlink" title="2. article에 read more 생성"></a>2. article에 <code>read more</code> 생성</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 본문 중간에 아래 삽입</span><br><span class="line">&lt;!-- more--&gt;</span><br></pre></td></tr></table></figure><h1 id="3-draft-배포"><a href="#3-draft-배포" class="headerlink" title="3. draft 배포"></a>3. draft 배포</h1><ul><li><code>hexo new draft</code>로 작성한 글은 source/_drafts로 이동</li><li><code>hexo publish dfaft hexo new post how_to_use_hexo</code></li></ul><h1 id="4-local에서-홈페이지-확인"><a href="#4-local에서-홈페이지-확인" class="headerlink" title="4. local에서 홈페이지 확인"></a>4. local에서 홈페이지 확인</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># draft제외</span><br><span class="line">hexo server</span><br><span class="line"></span><br><span class="line"># draft 포함하여 표시</span><br><span class="line">hexo server --draft</span><br></pre></td></tr></table></figure><h1 id="5-scaffolds-다루기"><a href="#5-scaffolds-다루기" class="headerlink" title="5. scaffolds 다루기"></a>5. scaffolds 다루기</h1><ul><li>hexo new로 posting 만들 때 기본 형식을 정함</li><li>dir <code>sccafolds</code> 아래 <code>draft</code>, <code>page</code>, <code>post</code> 등이 있음.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 기본값 설정 가능한 항목</span><br><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li></ul><h1 id="5-article-배포"><a href="#5-article-배포" class="headerlink" title="5. article 배포"></a>5. article 배포</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># article 작성 후 public폴더에 담기</span><br><span class="line">hexo generate           </span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"># temp 파일들 삭제</span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"># github 에 올리기                       </span><br><span class="line">hexo deploy                       </span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line"># 생성+배포</span><br><span class="line">hexo generate --deploy</span><br><span class="line">hexo g d</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[Hadoop_Cluster] Tutorial with GCP(Google Cloud Platform)</title>
       <link href="/2019/04/15/hadoop_tutorial/"/>
       <url>/2019/04/15/hadoop_tutorial/</url>
@@ -809,31 +884,6 @@
     
     
     <entry>
-      <title>[Linux] Make alias</title>
-      <link href="/2019/02/11/alias/"/>
-      <url>/2019/02/11/alias/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1-Execute-application-on-Linux"><a href="#1-Execute-application-on-Linux" class="headerlink" title="1) Execute application on Linux"></a>1) Execute application on Linux</h1><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ path/application_name</span><br></pre></td></tr></table></figure><h1 id="2-Execute-app-by-alias"><a href="#2-Execute-app-by-alias" class="headerlink" title="2) Execute app by alias"></a>2) Execute app by alias</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias shortcut_key=&quot;path/app&quot;</span><br></pre></td></tr></table></figure><p>eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;</span><br></pre></td></tr></table></figure></p><h1 id="3-Use-alias-permanently"><a href="#3-Use-alias-permanently" class="headerlink" title="3) Use alias permanently"></a>3) Use alias permanently</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gedit ~/.bashrc</span><br><span class="line">~~</span><br><span class="line">and add `alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;`</span><br><span class="line">at the bottom.</span><br><span class="line">After then,</span><br></pre></td></tr></table></figure><p>$ source ~/.bashrc<br>~~~</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> alias </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>[Math] Singular Value Decomposition, SVD</title>
       <link href="/2019/02/11/Recap_SVD/"/>
       <url>/2019/02/11/Recap_SVD/</url>
@@ -857,6 +907,31 @@
             <tag> 차원감소 </tag>
             
             <tag> 잠재변수분석LAV </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[Linux] Make alias</title>
+      <link href="/2019/02/11/alias/"/>
+      <url>/2019/02/11/alias/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-Execute-application-on-Linux"><a href="#1-Execute-application-on-Linux" class="headerlink" title="1) Execute application on Linux"></a>1) Execute application on Linux</h1><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ path/application_name</span><br></pre></td></tr></table></figure><h1 id="2-Execute-app-by-alias"><a href="#2-Execute-app-by-alias" class="headerlink" title="2) Execute app by alias"></a>2) Execute app by alias</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias shortcut_key=&quot;path/app&quot;</span><br></pre></td></tr></table></figure><p>eg.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;</span><br></pre></td></tr></table></figure></p><h1 id="3-Use-alias-permanently"><a href="#3-Use-alias-permanently" class="headerlink" title="3) Use alias permanently"></a>3) Use alias permanently</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gedit ~/.bashrc</span><br><span class="line">~~</span><br><span class="line">and add `alias Typora=&quot;/home/henry/Documents/app/Typora-linux-x64/Typora&quot;`</span><br><span class="line">at the bottom.</span><br><span class="line">After then,</span><br></pre></td></tr></table></figure><p>$ source ~/.bashrc<br>~~~</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> alias </tag>
             
         </tags>
       
@@ -993,6 +1068,43 @@
     
     
     <entry>
+      <title>[시계열] 확률과정 및 시계열 이론(1)</title>
+      <link href="/2019/02/04/Recap_Time%20series_theory(1)ok/"/>
+      <url>/2019/02/04/Recap_Time%20series_theory(1)ok/</url>
+      
+        <content type="html"><![CDATA[<h1 id="확률과정-Random-process-Stochastic-process"><a href="#확률과정-Random-process-Stochastic-process" class="headerlink" title="확률과정(Random process, Stochastic process):"></a>확률과정(Random process, Stochastic process):</h1><a id="more"></a><ul><li>의미: 확률변수의 순서열(sequence of infinit random variables)</li><li>확률과정$Y = \{\cdots, Y_{-1}, Y_0, Y_{1}, \cdots\}$<ul><li>확률변수$Y_t$는 평행우주 t시간의 표본 generator</li></ul></li><li>시계열 자료는 확률 과정의 표본</li><li>앙상블 평균$E[Y_t]$: <strong>복수의 시계열 자료 표본</strong>에서 특정한 시간 t의 값만 평균(평행우주에서 $y_t$시간 값만 추출)<ul><li>현실세계는 불가능: 현실세계가 표본 하나</li><li>앙상블 평균 추정의 조건<ul><li>정상과정(stationary process) &amp; 에르고딕 과정(ergodic process)</li></ul></li></ul></li></ul><h2 id="1-확률과정의-기댓값-자기공분산-자기상관계수"><a href="#1-확률과정의-기댓값-자기공분산-자기상관계수" class="headerlink" title="1. 확률과정의 기댓값, 자기공분산, 자기상관계수"></a>1. 확률과정의 기댓값, 자기공분산, 자기상관계수</h2><ul><li>‘자기(auto)’: <strong>표본 하나의 set 내</strong>에서의 cov &amp; cor</li><li>확률과정 기댓값: $\mu_t = E[Y_t]$</li><li>자기공분산(auto-covariance): 방향 &amp; 거리<ul><li>$\gamma_{t, s}=Cov[Y_t, Y_s]=E[(Y_t - E[Y_t]) \cdot (Y_s - E[Y_s])]$</li></ul></li><li>자기상관계수(auto-correlation): 방향<ul><li>$\rho_{t,s} = \dfrac{\gamma_{t,s}}{\sqrt{\gamma_t \gamma_s}}= Corr[Y_t, Y_s] = \dfrac{Cov[Y_t, Y_s]}{\sqrt{Var[Y_t] \cdot Var[Y_s]}} \leq 1$</li></ul></li></ul><h2 id="2-정상확률과정"><a href="#2-정상확률과정" class="headerlink" title="2. 정상확률과정"></a>2. 정상확률과정</h2><ul><li>$Y_1, Y_2, \cdots$의 평균, 표준오차 등이 변하지 않음.</li><li><strong>쉽게 말하자면, 평균, 분산 등 모멘트 공식에 절대시간 t변수가 없고, 시차 k변수가 존재(이후 MA, AR 모델 등에서 확인)</strong></li><li>즉, 에르고딕 성질에 의해, 표본들이 하나의 generator에서 생성됨</li></ul><h3 id="2-1-자기공분산-시간-변수의-차이lag-k-에만-의존"><a href="#2-1-자기공분산-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존"></a>2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존</h3><p>$\gamma_{t, t+k} = \gamma_{0,k} \triangleq \gamma_k$</p><h3 id="2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존"><a href="#2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존"></a>2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존</h3><p>$\rho_{t, t+k} = \rho_{0,k} \triangleq \rho_k = \dfrac{\gamma_k}{\gamma_0}$</p><ul><li>eg) ACF of AR(1): $\rho_k=\dfrac{\gamma_k}{\gamma_0}=(-\phi)^k \rightarrow \phi&lt;0$ 그래프는 진동</li></ul><h3 id="2-3-정상확률과정-특징"><a href="#2-3-정상확률과정-특징" class="headerlink" title="2.3 정상확률과정 특징"></a>2.3 정상확률과정 특징</h3><ul><li>확률과정 특성은 확률변수$Y_t$의 결합확률밀도함수 사용</li><li>협의의 정상확률과정(strictly stationary process): 모든 모멘트가 ‘절대시간’에 의존하지 않고 시차lag에만 의존<ul><li>$E[Y_t Y_{t+k_1} \cdots] = E[Y_s Y_{s+k_1 \cdots}]$</li></ul></li><li>광의의 정상확률과정(weak stationary process)<ul><li>1, 2차 모멘텀에 대해서만 ‘절대시간’ 의존하지 않음</li><li>$E[Y_t] = E[Y_s] = \mu$</li><li>$E[Y_t Y_{t+k}] = E[Y_s Y_{s+k}]$</li></ul></li><li>순수하게 백색잡음이라면, 어떤 시차lag에서도 자기상관$\rho$는 1</li></ul><h2 id="3-에르고딕-성질"><a href="#3-에르고딕-성질" class="headerlink" title="3. 에르고딕 성질"></a>3. 에르고딕 성질</h2><ul><li>정상확률 과정의 확률변수들($Y_t, Y_{t+1}, \cdots$)은 무조건부 분포 동일</li><li>따라서 현실 시계열 데이터를 <strong>하나의 분포</strong>에서 나온 <strong>표본 데이터</strong>로 간주</li><li>moment method(점 추정)에 따라 모수추정 가능: $\mu = E[X] = \bar{x}$</li></ul><h2 id="4-백색-잡음-white-noise"><a href="#4-백색-잡음-white-noise" class="headerlink" title="4. 백색 잡음 white noise"></a>4. 백색 잡음 white noise</h2><ul><li>확률과정 $\epsilon = \{\epsilon_1, \epsilon_2, \cdots\}$</li><li>$\epsilon_t \sim i.i.d$(independent and identically distributed)</li></ul><h2 id="5-랜덤-워크-Random-walk"><a href="#5-랜덤-워크-Random-walk" class="headerlink" title="5. 랜덤 워크 Random walk"></a>5. 랜덤 워크 Random walk</h2><ul><li>IMA(1,0)</li><li>과거 백색잡음의 cumsum</li></ul><hr><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><h1 id="A1-Non-stationarity"><a href="#A1-Non-stationarity" class="headerlink" title="A1. Non-stationarity"></a>A1. Non-stationarity</h1><h2 id="Trend-amp-Seasonality"><a href="#Trend-amp-Seasonality" class="headerlink" title="Trend &amp; Seasonality"></a>Trend &amp; Seasonality</h2><ul><li>Trend</li><li>Seasonality: additive or multiplicative</li></ul><h1 id="A2-Stationarity"><a href="#A2-Stationarity" class="headerlink" title="A2. Stationarity"></a>A2. Stationarity</h1><h2 id="A-white-noise-series-sequence-of-random-numbers"><a href="#A-white-noise-series-sequence-of-random-numbers" class="headerlink" title="A white noise series(sequence of random numbers)"></a>A white noise series(sequence of random numbers)</h2><ul><li>a flat looking series</li><li>no trend</li><li>no constant variance over time</li><li>no a constant autocorrelation structure over time</li><li>no periodic fluctuations</li></ul><h1 id="A3-STL-Seasonal-and-Trend-Decomposition-using-Loess"><a href="#A3-STL-Seasonal-and-Trend-Decomposition-using-Loess" class="headerlink" title="A3. STL(Seasonal and Trend Decomposition using Loess)"></a>A3. STL(Seasonal and Trend Decomposition using Loess)</h1><h1 id="A4-Application"><a href="#A4-Application" class="headerlink" title="A4. Application"></a>A4. Application</h1><ul><li>explanation</li><li>control: identify anomal</li><li>forecasting</li></ul><h1 id="A5-Remove-trend-and-seasonality"><a href="#A5-Remove-trend-and-seasonality" class="headerlink" title="A5. Remove trend and seasonality"></a>A5. Remove trend and seasonality</h1><script type="math/tex; mode=display">X_t = \mu_t + S_t + Z_t</script><ul><li>$\mu_t$ trend component: 추정 방법 3가지<ul><li><strong>LSE</strong>: deterministic $\mu_t = f(t)$</li><li><strong>Smoothing by rolling mean</strong>: stocahstic, ARIMA</li><li><strong>Differencing</strong>: stocahstic, ARIMA</li></ul></li><li>$S_t$: seasonal component</li><li>$Z_t$: random noise component</li></ul><hr><h2 id="예시-CO2-Data"><a href="#예시-CO2-Data" class="headerlink" title="예시) CO2 Data"></a>예시) CO2 Data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">data = sm.datasets.get_rdataset(<span class="string">"CO2"</span>, package=<span class="string">"datasets"</span>)</span><br><span class="line">df = data.data</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yearfraction2datetime</span><span class="params">(yearfraction, startyear=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line">    <span class="keyword">import</span> dateutil</span><br><span class="line">    year = int(yearfraction) + startyear</span><br><span class="line">    month = int(round(<span class="number">12</span> * (yearfraction - year)))</span><br><span class="line">    delta = dateutil.relativedelta.relativedelta(months=month)</span><br><span class="line">    date = datetime.datetime(year, <span class="number">1</span>, <span class="number">1</span>) + delta</span><br><span class="line">    <span class="keyword">return</span> date</span><br><span class="line"></span><br><span class="line">df[<span class="string">"datetime"</span>] = df.time.map(yearfraction2datetime)</span><br><span class="line">df[<span class="string">"month"</span>] = df.datetime.dt.month</span><br><span class="line">df.tail()</span><br></pre></td></tr></table></figure><div><style scoped>    .dataframe tbody tr th:only-of-type {        vertical-align: middle;    }    .dataframe tbody tr th {        vertical-align: top;    }    .dataframe thead th {        text-align: right;    }</style><table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>time</th>      <th>value</th>      <th>datetime</th>      <th>month</th>    </tr>  </thead>  <tbody>    <tr>      <th>463</th>      <td>1997.583333</td>      <td>362.57</td>      <td>1997-08-01</td>      <td>8</td>    </tr>    <tr>      <th>464</th>      <td>1997.666667</td>      <td>360.24</td>      <td>1997-09-01</td>      <td>9</td>    </tr>    <tr>      <th>465</th>      <td>1997.750000</td>      <td>360.83</td>      <td>1997-10-01</td>      <td>10</td>    </tr>    <tr>      <th>466</th>      <td>1997.833333</td>      <td>362.49</td>      <td>1997-11-01</td>      <td>11</td>    </tr>    <tr>      <th>467</th>      <td>1997.916667</td>      <td>364.34</td>      <td>1997-12-01</td>      <td>12</td>    </tr>  </tbody></table></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df[<span class="string">'value'</span>])</span><br></pre></td></tr></table></figure><pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff3474934e0&gt;]</code></pre><p><img src="/Recap_Time%20series_theory%281%29ok_files/Recap_Time%20series_theory%281%29ok_6_1.png" alt="png"></p><p>질문</p><ul><li>Moving Average, Smoothing, differencing 관계</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Math </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Timeseries </tag>
+            
+            <tag> Math </tag>
+            
+            <tag> 확률과정 </tag>
+            
+            <tag> 정상확률과정 </tag>
+            
+            <tag> 랜덤워크 </tag>
+            
+            <tag> 백색잡음 </tag>
+            
+            <tag> ACF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>[시계열] 일반 선형확률과정 ARMA / ARIMA(5)</title>
       <link href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/"/>
       <url>/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/</url>
@@ -1051,43 +1163,6 @@
             <tag> 일반선형확률과정 </tag>
             
             <tag> MA </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>[시계열] 확률과정 및 시계열 이론(1)</title>
-      <link href="/2019/02/04/Recap_Time%20series_theory(1)ok/"/>
-      <url>/2019/02/04/Recap_Time%20series_theory(1)ok/</url>
-      
-        <content type="html"><![CDATA[<h1 id="확률과정-Random-process-Stochastic-process"><a href="#확률과정-Random-process-Stochastic-process" class="headerlink" title="확률과정(Random process, Stochastic process):"></a>확률과정(Random process, Stochastic process):</h1><a id="more"></a><ul><li>의미: 확률변수의 순서열(sequence of infinit random variables)</li><li>확률과정$Y = \{\cdots, Y_{-1}, Y_0, Y_{1}, \cdots\}$<ul><li>확률변수$Y_t$는 평행우주 t시간의 표본 generator</li></ul></li><li>시계열 자료는 확률 과정의 표본</li><li>앙상블 평균$E[Y_t]$: <strong>복수의 시계열 자료 표본</strong>에서 특정한 시간 t의 값만 평균(평행우주에서 $y_t$시간 값만 추출)<ul><li>현실세계는 불가능: 현실세계가 표본 하나</li><li>앙상블 평균 추정의 조건<ul><li>정상과정(stationary process) &amp; 에르고딕 과정(ergodic process)</li></ul></li></ul></li></ul><h2 id="1-확률과정의-기댓값-자기공분산-자기상관계수"><a href="#1-확률과정의-기댓값-자기공분산-자기상관계수" class="headerlink" title="1. 확률과정의 기댓값, 자기공분산, 자기상관계수"></a>1. 확률과정의 기댓값, 자기공분산, 자기상관계수</h2><ul><li>‘자기(auto)’: <strong>표본 하나의 set 내</strong>에서의 cov &amp; cor</li><li>확률과정 기댓값: $\mu_t = E[Y_t]$</li><li>자기공분산(auto-covariance): 방향 &amp; 거리<ul><li>$\gamma_{t, s}=Cov[Y_t, Y_s]=E[(Y_t - E[Y_t]) \cdot (Y_s - E[Y_s])]$</li></ul></li><li>자기상관계수(auto-correlation): 방향<ul><li>$\rho_{t,s} = \dfrac{\gamma_{t,s}}{\sqrt{\gamma_t \gamma_s}}= Corr[Y_t, Y_s] = \dfrac{Cov[Y_t, Y_s]}{\sqrt{Var[Y_t] \cdot Var[Y_s]}} \leq 1$</li></ul></li></ul><h2 id="2-정상확률과정"><a href="#2-정상확률과정" class="headerlink" title="2. 정상확률과정"></a>2. 정상확률과정</h2><ul><li>$Y_1, Y_2, \cdots$의 평균, 표준오차 등이 변하지 않음.</li><li><strong>쉽게 말하자면, 평균, 분산 등 모멘트 공식에 절대시간 t변수가 없고, 시차 k변수가 존재(이후 MA, AR 모델 등에서 확인)</strong></li><li>즉, 에르고딕 성질에 의해, 표본들이 하나의 generator에서 생성됨</li></ul><h3 id="2-1-자기공분산-시간-변수의-차이lag-k-에만-의존"><a href="#2-1-자기공분산-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존"></a>2.1. 자기공분산: 시간 변수의 차이lag $k$에만 의존</h3><p>$\gamma_{t, t+k} = \gamma_{0,k} \triangleq \gamma_k$</p><h3 id="2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존"><a href="#2-2-자기상관계수-시간-변수의-차이lag-k-에만-의존" class="headerlink" title="2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존"></a>2.2. 자기상관계수: 시간 변수의 차이lag $k$에만 의존</h3><p>$\rho_{t, t+k} = \rho_{0,k} \triangleq \rho_k = \dfrac{\gamma_k}{\gamma_0}$</p><ul><li>eg) ACF of AR(1): $\rho_k=\dfrac{\gamma_k}{\gamma_0}=(-\phi)^k \rightarrow \phi&lt;0$ 그래프는 진동</li></ul><h3 id="2-3-정상확률과정-특징"><a href="#2-3-정상확률과정-특징" class="headerlink" title="2.3 정상확률과정 특징"></a>2.3 정상확률과정 특징</h3><ul><li>확률과정 특성은 확률변수$Y_t$의 결합확률밀도함수 사용</li><li>협의의 정상확률과정(strictly stationary process): 모든 모멘트가 ‘절대시간’에 의존하지 않고 시차lag에만 의존<ul><li>$E[Y_t Y_{t+k_1} \cdots] = E[Y_s Y_{s+k_1 \cdots}]$</li></ul></li><li>광의의 정상확률과정(weak stationary process)<ul><li>1, 2차 모멘텀에 대해서만 ‘절대시간’ 의존하지 않음</li><li>$E[Y_t] = E[Y_s] = \mu$</li><li>$E[Y_t Y_{t+k}] = E[Y_s Y_{s+k}]$</li></ul></li><li>순수하게 백색잡음이라면, 어떤 시차lag에서도 자기상관$\rho$는 1</li></ul><h2 id="3-에르고딕-성질"><a href="#3-에르고딕-성질" class="headerlink" title="3. 에르고딕 성질"></a>3. 에르고딕 성질</h2><ul><li>정상확률 과정의 확률변수들($Y_t, Y_{t+1}, \cdots$)은 무조건부 분포 동일</li><li>따라서 현실 시계열 데이터를 <strong>하나의 분포</strong>에서 나온 <strong>표본 데이터</strong>로 간주</li><li>moment method(점 추정)에 따라 모수추정 가능: $\mu = E[X] = \bar{x}$</li></ul><h2 id="4-백색-잡음-white-noise"><a href="#4-백색-잡음-white-noise" class="headerlink" title="4. 백색 잡음 white noise"></a>4. 백색 잡음 white noise</h2><ul><li>확률과정 $\epsilon = \{\epsilon_1, \epsilon_2, \cdots\}$</li><li>$\epsilon_t \sim i.i.d$(independent and identically distributed)</li></ul><h2 id="5-랜덤-워크-Random-walk"><a href="#5-랜덤-워크-Random-walk" class="headerlink" title="5. 랜덤 워크 Random walk"></a>5. 랜덤 워크 Random walk</h2><ul><li>IMA(1,0)</li><li>과거 백색잡음의 cumsum</li></ul><hr><h1 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h1><h1 id="A1-Non-stationarity"><a href="#A1-Non-stationarity" class="headerlink" title="A1. Non-stationarity"></a>A1. Non-stationarity</h1><h2 id="Trend-amp-Seasonality"><a href="#Trend-amp-Seasonality" class="headerlink" title="Trend &amp; Seasonality"></a>Trend &amp; Seasonality</h2><ul><li>Trend</li><li>Seasonality: additive or multiplicative</li></ul><h1 id="A2-Stationarity"><a href="#A2-Stationarity" class="headerlink" title="A2. Stationarity"></a>A2. Stationarity</h1><h2 id="A-white-noise-series-sequence-of-random-numbers"><a href="#A-white-noise-series-sequence-of-random-numbers" class="headerlink" title="A white noise series(sequence of random numbers)"></a>A white noise series(sequence of random numbers)</h2><ul><li>a flat looking series</li><li>no trend</li><li>no constant variance over time</li><li>no a constant autocorrelation structure over time</li><li>no periodic fluctuations</li></ul><h1 id="A3-STL-Seasonal-and-Trend-Decomposition-using-Loess"><a href="#A3-STL-Seasonal-and-Trend-Decomposition-using-Loess" class="headerlink" title="A3. STL(Seasonal and Trend Decomposition using Loess)"></a>A3. STL(Seasonal and Trend Decomposition using Loess)</h1><h1 id="A4-Application"><a href="#A4-Application" class="headerlink" title="A4. Application"></a>A4. Application</h1><ul><li>explanation</li><li>control: identify anomal</li><li>forecasting</li></ul><h1 id="A5-Remove-trend-and-seasonality"><a href="#A5-Remove-trend-and-seasonality" class="headerlink" title="A5. Remove trend and seasonality"></a>A5. Remove trend and seasonality</h1><script type="math/tex; mode=display">X_t = \mu_t + S_t + Z_t</script><ul><li>$\mu_t$ trend component: 추정 방법 3가지<ul><li><strong>LSE</strong>: deterministic $\mu_t = f(t)$</li><li><strong>Smoothing by rolling mean</strong>: stocahstic, ARIMA</li><li><strong>Differencing</strong>: stocahstic, ARIMA</li></ul></li><li>$S_t$: seasonal component</li><li>$Z_t$: random noise component</li></ul><hr><h2 id="예시-CO2-Data"><a href="#예시-CO2-Data" class="headerlink" title="예시) CO2 Data"></a>예시) CO2 Data</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line">data = sm.datasets.get_rdataset(<span class="string">"CO2"</span>, package=<span class="string">"datasets"</span>)</span><br><span class="line">df = data.data</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yearfraction2datetime</span><span class="params">(yearfraction, startyear=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> datetime</span><br><span class="line">    <span class="keyword">import</span> dateutil</span><br><span class="line">    year = int(yearfraction) + startyear</span><br><span class="line">    month = int(round(<span class="number">12</span> * (yearfraction - year)))</span><br><span class="line">    delta = dateutil.relativedelta.relativedelta(months=month)</span><br><span class="line">    date = datetime.datetime(year, <span class="number">1</span>, <span class="number">1</span>) + delta</span><br><span class="line">    <span class="keyword">return</span> date</span><br><span class="line"></span><br><span class="line">df[<span class="string">"datetime"</span>] = df.time.map(yearfraction2datetime)</span><br><span class="line">df[<span class="string">"month"</span>] = df.datetime.dt.month</span><br><span class="line">df.tail()</span><br></pre></td></tr></table></figure><div><style scoped>    .dataframe tbody tr th:only-of-type {        vertical-align: middle;    }    .dataframe tbody tr th {        vertical-align: top;    }    .dataframe thead th {        text-align: right;    }</style><table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th></th>      <th>time</th>      <th>value</th>      <th>datetime</th>      <th>month</th>    </tr>  </thead>  <tbody>    <tr>      <th>463</th>      <td>1997.583333</td>      <td>362.57</td>      <td>1997-08-01</td>      <td>8</td>    </tr>    <tr>      <th>464</th>      <td>1997.666667</td>      <td>360.24</td>      <td>1997-09-01</td>      <td>9</td>    </tr>    <tr>      <th>465</th>      <td>1997.750000</td>      <td>360.83</td>      <td>1997-10-01</td>      <td>10</td>    </tr>    <tr>      <th>466</th>      <td>1997.833333</td>      <td>362.49</td>      <td>1997-11-01</td>      <td>11</td>    </tr>    <tr>      <th>467</th>      <td>1997.916667</td>      <td>364.34</td>      <td>1997-12-01</td>      <td>12</td>    </tr>  </tbody></table></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df[<span class="string">'value'</span>])</span><br></pre></td></tr></table></figure><pre><code>[&lt;matplotlib.lines.Line2D at 0x7ff3474934e0&gt;]</code></pre><p><img src="/Recap_Time%20series_theory%281%29ok_files/Recap_Time%20series_theory%281%29ok_6_1.png" alt="png"></p><p>질문</p><ul><li>Moving Average, Smoothing, differencing 관계</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Math </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Timeseries </tag>
-            
-            <tag> Math </tag>
-            
-            <tag> 확률과정 </tag>
-            
-            <tag> 정상확률과정 </tag>
-            
-            <tag> 랜덤워크 </tag>
-            
-            <tag> 백색잡음 </tag>
-            
-            <tag> ACF </tag>
             
         </tags>
       
@@ -1183,33 +1258,6 @@
     
     
     <entry>
-      <title>[Linux] Create and post jupyter.md</title>
-      <link href="/2019/01/28/how-to-create-jupyer/"/>
-      <url>/2019/01/28/how-to-create-jupyer/</url>
-      
-        <content type="html"><![CDATA[<h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd \path\to\file.md</span><br><span class="line">$ cp file.md \blog\soucre\_post\</span><br><span class="line">$ jupyer nbconvert --to markdown file.ipynb</span><br><span class="line">$ vi file.md</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># add following:</span><br><span class="line">title: &quot;jupyer notebook post&quot;</span><br><span class="line">date: 2019-01-28 00:00:00</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> Linux </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> Jupyter notebook </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>[ML] 자연어 처리(1)</title>
       <link href="/2019/01/28/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC(1)/"/>
       <url>/2019/01/28/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC(1)/</url>
@@ -1256,6 +1304,33 @@
             <tag> Pyenv </tag>
             
             <tag> Python3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>[Linux] Create and post jupyter.md</title>
+      <link href="/2019/01/28/how-to-create-jupyer/"/>
+      <url>/2019/01/28/how-to-create-jupyer/</url>
+      
+        <content type="html"><![CDATA[<h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3><a id="more"></a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cd \path\to\file.md</span><br><span class="line">$ cp file.md \blog\soucre\_post\</span><br><span class="line">$ jupyer nbconvert --to markdown file.ipynb</span><br><span class="line">$ vi file.md</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># add following:</span><br><span class="line">title: &quot;jupyer notebook post&quot;</span><br><span class="line">date: 2019-01-28 00:00:00</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> Jupyter notebook </tag>
             
         </tags>
       
