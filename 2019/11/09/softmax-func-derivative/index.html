@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Henry&#39;s blog">
 <meta property="og:description" content="Softmax function derivative">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-09T05:58:27.270Z">
+<meta property="og:updated_time" content="2019-11-09T06:01:08.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Math] Softmax Function 미분">
 <meta name="twitter:description" content="Softmax function derivative">
@@ -152,7 +152,7 @@ D_1 S_n & \cdots & D_n S_n
 i = j \\
 \dfrac{\partial}{\partial a_i} (\dfrac{e^{a_i}}{\Sigma_{k=1}^N e^{a_k}}) \\
 =\dfrac{e^{a_i}\Sigma - e^{a_i}e^{a_i}}{\Sigma^2} \\
-= \dfrac{e^{a_i}}{\Sigma} - (\dfrac{a_i}{\Sigma})^2 \\
+= \dfrac{e^{a_i}}{\Sigma} - (\dfrac{e^{a_i}}{\Sigma})^2 \\
 = (1-p_i)p_i \\
  \text{where } p_i = S_i</script><h3 id="case2-i-neq-j"><a href="#case2-i-neq-j" class="headerlink" title="case2. $i \neq j$"></a>case2. $i \neq j$</h3><script type="math/tex; mode=display">
 i \neq j \\
