@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://henrypaik1.github.io/img/minus_logy.png">
 <meta property="og:image" content="https://henrypaik1.github.io/img/RNN_batch1.jpg">
 <meta property="og:image" content="https://henrypaik1.github.io/img/RNN_batch2.jpg">
-<meta property="og:updated_time" content="2019-10-20T11:06:01.371Z">
+<meta property="og:updated_time" content="2020-02-02T02:03:49.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[DeepLearning] DL Cheat Sheet">
 <meta name="twitter:description" content="1. sigmoid with bainary cross entropy back propagation">
@@ -200,6 +200,23 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
+<h1 id="10-Language-Model-LM"><a href="#10-Language-Model-LM" class="headerlink" title="10. Language Model(LM)"></a>10. Language Model(LM)</h1><ul>
+<li>reference<ul>
+<li><a href="http://www.cs.cmu.edu/~aberger/lm.html" target="_blank" rel="noopener">http://www.cs.cmu.edu/~aberger/lm.html</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Language_model" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Language_model</a></li>
+<li><a href="https://wikidocs.net/21668" target="_blank" rel="noopener">https://wikidocs.net/21668</a></li>
+</ul>
+</li>
+<li>language model이란 sequence에 대한 확률분포</li>
+<li>즉, 단어 또는 문장에 확률을 할당(assign)하는 것</li>
+<li>표현<ul>
+<li>$P(w_1, w_2) = P(w_1) P(w_2 | w_1)$</li>
+<li>$P(w_1, /cdots, w_n) = P(w_1) P(w_1) P(w_2 | w_1) P(w_3 | w_1,w_2) /cdots P(w_n | w_1, /cdots, w_{n-1})$</li>
+<li>-&gt; P(w_1, /cdots, w_n) = P(w_1) /prod_{i=2}^{n} P(w_i|w_{&lt;i})</li>
+<li>-&gt; 곱셈이 거듭되면 값이 너무 작아지므로 log를 취함</li>
+</ul>
+</li>
+</ul>
 <h1 id="shuffle-dataset"><a href="#shuffle-dataset" class="headerlink" title="shuffle dataset"></a>shuffle dataset</h1><p>: TBD</p>
 <h1 id="learning-rate-decay"><a href="#learning-rate-decay" class="headerlink" title="learning rate decay"></a>learning rate decay</h1><p>: TBD</p>
 
@@ -224,7 +241,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL-seq2seq/">DL, seq2seq</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/ML/">ML</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/decorator-python/">decorator, python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL-seq2seq/">DL, seq2seq</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/decorator-python/">decorator, python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
