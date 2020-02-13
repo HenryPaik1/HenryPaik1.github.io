@@ -5,19 +5,19 @@
   
   <title>[NLP] GPT(Improving Language Understanding by Generative Pre-Training) 정리 | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="참조 글 paper: https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf reference: https://zhuanlan.zhihu.com/p/59286975    도입NLP는 labeled">
-<meta name="keywords" content="Study,DL,NLP,GPT">
+  <meta name="description" content="참조 글 paper: https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf reference: https://zhuanlan.zhihu.com/p/59286975">
+<meta name="keywords" content="Study,DL,GPT,NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[NLP] GPT(Improving Language Understanding by Generative Pre-Training) 정리">
 <meta property="og:url" content="https://henrypaik1.github.io/2020/02/02/gpt-review/index.html">
 <meta property="og:site_name" content="Henry&#39;s blog">
-<meta property="og:description" content="참조 글 paper: https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf reference: https://zhuanlan.zhihu.com/p/59286975    도입NLP는 labeled">
+<meta property="og:description" content="참조 글 paper: https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf reference: https://zhuanlan.zhihu.com/p/59286975">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/img/GPT.png">
-<meta property="og:updated_time" content="2020-02-13T15:16:01.610Z">
+<meta property="og:updated_time" content="2020-02-13T15:18:20.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[NLP] GPT(Improving Language Understanding by Generative Pre-Training) 정리">
-<meta name="twitter:description" content="참조 글 paper: https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf reference: https://zhuanlan.zhihu.com/p/59286975    도입NLP는 labeled">
+<meta name="twitter:description" content="참조 글 paper: https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf reference: https://zhuanlan.zhihu.com/p/59286975">
 <meta name="twitter:image" content="https://henrypaik1.github.io/img/GPT.png">
   
   
@@ -131,6 +131,7 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
+<a id="more"></a>
 <h1 id="도입"><a href="#도입" class="headerlink" title="도입"></a>도입</h1><p>NLP는 labeled 데이터가 부족하다. 때문에 unlabeled 데이터를 통해 언어학 정보를 추출해야 한다. 그리고 word embedding을 통해 효과가 입증되었다. 하지만 word level을 뛰어넘어 context, sentence 수준의 정보까지 추출해내는 것에는 어려움이 따른다. 2가지 이유가 있다:</p>
 <ol>
 <li>text representation 및 transfer learning을 위한 최적의 optimization objective를 모른다. 기존에는 Language Model, Machine Translation, discourse coherence 활용</li>
@@ -200,7 +201,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/02/02/gpt-review/" data-id="ck6kvyj4n0000sn09x06dlo6w" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/02/02/gpt-review/" data-id="ck6kw3raw002avw097to66c6c" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPT/">GPT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -244,7 +245,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -254,6 +255,10 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/02/14/transformer-implement/">[NLP] Transformer implement 정리</a>
+          </li>
         
           <li>
             <a href="/2020/02/02/gpt-review/">[NLP] GPT(Improving Language Understanding by Generative Pre-Training) 정리</a>
@@ -269,10 +274,6 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
         
           <li>
             <a href="/2020/01/01/seq2seq-code/">seq2seq code 구현 예시</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/29/pytorch-operation-dtype-concat-stack/">Pytorch basic operation1: cat, stack</a>
           </li>
         
       </ul>

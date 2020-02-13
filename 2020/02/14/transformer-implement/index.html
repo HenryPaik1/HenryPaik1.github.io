@@ -3,18 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Tag: Study, LSTM, NLP | Henry&#39;s blog</title>
+  <title>[NLP] Transformer implement 정리 | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Henry&apos;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Henry&#39;s blog">
-<meta property="og:url" content="https://henrypaik1.github.io/tags/Study-LSTM-NLP/index.html">
+  <meta name="description" content="Encoder part">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[NLP] Transformer implement 정리">
+<meta property="og:url" content="https://henrypaik1.github.io/2020/02/14/transformer-implement/index.html">
 <meta property="og:site_name" content="Henry&#39;s blog">
-<meta property="og:description" content="Henry&apos;s blog">
+<meta property="og:description" content="Encoder part">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://henrypaik1.github.io/img/transformer.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/positional_emb.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/attention_model1.png">
+<meta property="og:updated_time" content="2020-02-13T15:18:14.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Henry&#39;s blog">
-<meta name="twitter:description" content="Henry&apos;s blog">
+<meta name="twitter:title" content="[NLP] Transformer implement 정리">
+<meta name="twitter:description" content="Encoder part">
+<meta name="twitter:image" content="https://henrypaik1.github.io/img/transformer.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -90,40 +95,143 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-transformer-implement" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/21/LSTM-params/" class="archive-article-date">
-  <time datetime="2019-12-21T02:22:37.000Z" itemprop="datePublished">Dec 21</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/21/LSTM-params/">LSTM params 및 code 정리</a>
+    <h1 class="article-title" itemprop="name">
+      [NLP] Transformer implement 정리
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-</section>
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2020/02/14/transformer-implement/" class="article-date">
+  <time datetime="2020-02-13T15:18:14.289Z" itemprop="datePublished">2020-2-14 Fri  00:18</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <h1 id="Encoder-part"><a href="#Encoder-part" class="headerlink" title="Encoder part"></a>Encoder part</h1><a id="more"></a>
+<p><img src="/img/transformer.png"></p>
+<h2 id="1-input-data"><a href="#1-input-data" class="headerlink" title="1. input data"></a>1. input data</h2><h3 id="1-1-data"><a href="#1-1-data" class="headerlink" title="1.1. data"></a>1.1. data</h3><ul>
+<li>sequential data<ul>
+<li>eg. [나, 는, 학, 교, 에, 간, 다] -&gt; [1, 2, 3, 4, 5, 6, 7]</li>
+<li>sequence length 정하고 padding처리</li>
+<li>sequence length보다 길면 버리거나, truncate</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-embedding"><a href="#1-2-embedding" class="headerlink" title="1.2. embedding"></a>1.2. embedding</h3><ul>
+<li>input data word embedding:<ul>
+<li>shape: [batch_size, seq_len, emb_dim]</li>
+</ul>
+</li>
+<li>input data positional embedding<ul>
+<li>$PE(pos, 2i) = sin(\frac{pos}{1E+4^{2i / d_{model}}}),$</li>
+<li>$PE(pos, 2i+1) = cos(\frac{pos}{1E+4^{2i / d_{model}}}),$<ul>
+<li>i: embbedding weight matrix의 dim 중 i th idx</li>
+<li>pos: sentence에서 해당 단어의 position</li>
+</ul>
+</li>
+<li>즉, 각 pos에 대응하는 embedding weight matrix.</li>
+<li>word embedding weight matrix가 vocab idx에 따른 look-up table 역할을 하듯이, pos에 따른 look-up table 역할.</li>
+<li>아래그림에서 row: pos</li>
+</ul>
+</li>
+<li>input data = input data’로 완성<br><img src="/img/positional_emb.png" width="400"></li>
+</ul>
+<h2 id="2-attention-layer"><a href="#2-attention-layer" class="headerlink" title="2. attention layer"></a>2. attention layer</h2><h3 id="2-1-key-query-value-vector"><a href="#2-1-key-query-value-vector" class="headerlink" title="2.1. key, query, value vector"></a>2.1. key, query, value vector</h3><ul>
+<li>key, query, value vector는 위의 input data’에 $W_k, W_q, W_v$를 matrix multiply하여 구함</li>
+<li>기존 attention model에서 key, query, value와 비교<br><img src="/img/attention_model1.png" width="200"><ul>
+<li>기존 attention 모델은(<a href="https://arxiv.org/pdf/1409.0473.pdf" target="_blank" rel="noopener">paper</a>), <strong>decoder time step t의 hidden state</strong>와 <strong>encoder의 모든 time step의 hidden state</strong>간의 <strong>score</strong>를 산출.</li>
+<li>그리고 그 score를 다시 encoder의 hidden state에 곱하여 weight를 주고, 합산하여 context vector를 산출.</li>
+<li>위 context vector는, time step t의 hidden state와 concat.</li>
+<li>concat된 vector는 feedforward 통과하여 time step t의 출력값</li>
+<li>이를 transformer와 비교해보자면, <strong>score은 value</strong>(but value vector 따로 있음), <strong>decoder의 hidden state는 query</strong>, <strong>encoder의 hidden state는 key</strong>에 해당.</li>
+<li>attention model에 대한 더 자세한 설명은 <a href="http://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/" target="_blank" rel="noopener">jalammmar의 블로그를 참조</a></li>
+</ul>
+</li>
+<li>k, q, v vector<ul>
+<li>shape: [seq_len, hidden_dim]</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-scaled-dot-product-attention"><a href="#2-2-scaled-dot-product-attention" class="headerlink" title="2.2. scaled dot product attention"></a>2.2. scaled dot product attention</h3><script type="math/tex; mode=display">
+Attention(Q, K, V) = softmax_k(\dfrac{QK^T}{\sqrt{d_k}})V</script><ul>
+<li>왜 scale?<ul>
+<li>d_k는 key vector의 dim.</li>
+<li>depth가 깊다면, $QK^T$ 값이 커짐</li>
+<li>“The dot-product attention is scaled by a factor of square root of the depth. This is done because for large values of depth, the dot product grows large in magnitude pushing the softmax function where it has small gradients resulting in a very hard softmax.”<br>(<a href="https://www.tensorflow.org/tutorials/text/transformer" target="_blank" rel="noopener">https://www.tensorflow.org/tutorials/text/transformer</a>)</li>
+</ul>
+</li>
+<li>detail: 내적은 두 벡터의 크기 * 둘 간의 cosin angle<ul>
+<li>$cos \theta = \dfrac{A \dot B}{|A||B|}$</li>
+<li>key dim으로 정규화하면 값이 너무 커지는 것을 방지할 수 있음(<a href="https://physics.stackexchange.com/questions/252086/dot-product-approaches-zero-as-the-magnitude-of-the-vectors-increase" target="_blank" rel="noopener">https://physics.stackexchange.com/questions/252086/dot-product-approaches-zero-as-the-magnitude-of-the-vectors-increase</a>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-attention-head-1-output"><a href="#2-3-attention-head-1-output" class="headerlink" title="2.3. attention head #1 output"></a>2.3. attention head #1 output</h3><ul>
+<li>score vector = $Q \times K^T = \text{[seq_len, hidden_d] * [hidden_d, seq_len]}$</li>
+<li>score vector *= $\dfrac{1}{\sqrt{dk}}$</li>
+<li><strong> score vector = softmax(score vector) </strong><ul>
+<li>shape: [seq_len, seq_len]</li>
+</ul>
+</li>
+<li><strong>attention head #1의 최종 output</strong><ul>
+<li><strong>score vector * value vector</strong> = [seq_len, seq_len] * [seq_len, hidden_dim]<ul>
+<li>shape: [seq_len, hidden_dim]</li>
+</ul>
+</li>
+<li>score vector에 value vector를 곱해 필요여부에 따라 가중치가 조절됨</li>
+<li>예를 들어 output의 matrix의 (row=1, col1=1)은, <strong>query 1(row=1)과 key 1, …, n의 score</strong>에, 각 key 1, …, n의 value vector 1 feature(col=1)을 곱하고 합산한 결과.</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-multi-head-attention"><a href="#2-3-multi-head-attention" class="headerlink" title="2.3. multi head attention"></a>2.3. multi head attention</h3><ul>
+<li>각 attn head에서 나온 결과물을 concat<ul>
+<li>shape: [seq_len, n_head * hidden_dim]</li>
+</ul>
+</li>
+<li><strong>encoder output</strong><ul>
+<li>상기 <strong>concat(multi head attn output)</strong>(shape:[seq_len, n_head * hidden_dim])을 <strong>$W_0$</strong>(shape: [n_head * hidden_dim, hidden_n])과 mat+mul -&gt; 초기 input 값과 같은 형태로 만듦</li>
+<li>shape: [seq_len, hidden_n] = [seq_len, n_head * hidden_dim] * [n_head * hidden_dim, hidden_n]</li>
+</ul>
+</li>
+</ul>
+<h1 id="Decoder-part"><a href="#Decoder-part" class="headerlink" title="Decoder part"></a>Decoder part</h1><ul>
+<li>Decoder의 1st attention은 self attention<ul>
+<li>다음 단어 볼 수 없도록 triangular mask</li>
+</ul>
+</li>
+<li>2nd attention layer(encoder-decoder attention layer)는, Encoder의 output을 <strong>key, value</strong>로 사용</li>
+<li>마지막 output에는 Feed Forward 적용<ul>
+<li>$ReLU(xW_1 + b_1) W_2 + b_2$</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2020/02/14/transformer-implement/" data-id="ck6kw3rcv004yvw09lt5wcvwa" class="article-share-link">share</a>
+      
+      
+    </footer>
+
+
+
+</div></article></section>
         
           <aside id="sidebar">
   

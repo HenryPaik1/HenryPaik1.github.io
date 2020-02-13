@@ -92,6 +92,49 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-transformer-implement" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/14/transformer-implement/">[NLP] Transformer implement 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2020/02/14/transformer-implement/" class="article-date">
+  <time datetime="2020-02-13T15:18:14.289Z" itemprop="datePublished">2020-2-14 Fri  00:18</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Encoder-part"><a href="#Encoder-part" class="headerlink" title="Encoder part"></a>Encoder part</h1>
+        
+          <p class="article-more-link">
+            <a href="/2020/02/14/transformer-implement/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2020/02/14/transformer-implement/" data-id="ck6kw3rcv004yvw09lt5wcvwa" class="article-share-link">share</a>
+      
+      
+    </footer>
+
+
+
+</div></article>
+  
     <article id="post-gpt-review" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
@@ -120,8 +163,6 @@ ga('send', 'pageview');
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- add by yurixu 2016/1/3 添加文章目录 -->
-        
         <ul>
 <li>참조 글<ul>
 <li>paper: <a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf" target="_blank" rel="noopener">https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf</a></li>
@@ -129,76 +170,16 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h1 id="도입"><a href="#도입" class="headerlink" title="도입"></a>도입</h1><p>NLP는 labeled 데이터가 부족하다. 때문에 unlabeled 데이터를 통해 언어학 정보를 추출해야 한다. 그리고 word embedding을 통해 효과가 입증되었다. 하지만 word level을 뛰어넘어 context, sentence 수준의 정보까지 추출해내는 것에는 어려움이 따른다. 2가지 이유가 있다:</p>
-<ol>
-<li>text representation 및 transfer learning을 위한 최적의 optimization objective를 모른다. 기존에는 Language Model, Machine Translation, discourse coherence 활용</li>
-<li>text representation을 하더라도 어떻게 transfer learning을 해야할지 알지 못한다.</li>
-</ol>
-<p>그래서 GPT는 semi-supervised approach를 소개. 이는 2단계로 나눌 수 있다. unsupervised pre-train을 통해 universal representation을 구하고, 이를 specific task에 transfer learning.</p>
-<h1 id="모델-구조"><a href="#모델-구조" class="headerlink" title="모델 구조"></a>모델 구조</h1><ul>
-<li>이하 논문의 예시 그림<br><img src="/img/GPT.png"></li>
-</ul>
-<h2 id="2개-task-활용"><a href="#2개-task-활용" class="headerlink" title="2개 task 활용"></a>2개 task 활용</h2><ul>
-<li>unsupervised + task specific supervised learning): 목적함수 2개를 결합하여 활용</li>
-<li>즉, Language Model을 통해 다음 텍스트를 예측하는 문제(unsupervise objective) 학습하고, 동시에(또는 이후에) task specific supervised learning(eg. text classification, QA, …)을 진행.</li>
-<li>하기에서 output은 2개<ul>
-<li>$P(U) = softmax(h_n W_e^T)$:</li>
-<li>$P(y|x_1, \cdots, x_m) = softmax(h_I^m W_y)$</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-Unsupervised-learning-LM-objective"><a href="#1-Unsupervised-learning-LM-objective" class="headerlink" title="1. Unsupervised learning: LM objective"></a>1. Unsupervised learning: LM objective</h3><ul>
-<li>input: 단어 임베딩 및 위치정보 임베딩</li>
-<li>output: transformer block의 아웃풋 vector에 softmax를 취함<script type="math/tex; mode=display">
-L_1(U) = \sum_{i} \log{P({u_i|u_{i-k}, \cdots, u_{i-1}; \theta})} (k: window size) \\
-\text{where } U = \{u_1, \cdots, u_n\} (U: corpus; u: tokens) \\
-h_0 = UW_e + W_p \\
-h_I = \text{transformer_block}(h_{I-1}) \\
-\forall_{i} \in [1, n] \\
-P(u) = softmax(h_n W_e^T) \\</script></li>
-<li>상기에서 U는 context vector of tokens, $W_e$는 embedding matrix, $W_p$는 position embedding matrix</li>
-<li>$h_0$는 text, position embedding된 결과물. transformer_block에 input.</li>
-<li>$P(u)$는 위 그림에서 text prediction에 사용.</li>
-</ul>
-<h3 id="2-supervised-fine-tunning"><a href="#2-supervised-fine-tunning" class="headerlink" title="2. supervised fine-tunning"></a>2. supervised fine-tunning</h3><ul>
-<li>$P(y|x_1, \cdots, x_m) = softmax(h_I^m W_y)$</li>
-<li>pretrain에서 사용했던 transformer_block의 마지막 output을 사용</li>
-</ul>
-<h3 id="3-정리"><a href="#3-정리" class="headerlink" title="3. 정리"></a>3. 정리</h3><ul>
-<li>objective func<ul>
-<li>$L_1(U) = \sum_{i} \log{P({u_i|u_{i-k}, \cdots, u_{i-1}; \theta})}$ (k: window size)</li>
-<li>$L_2(C) = \sum_{(x, y)} \log{P(y|x_1, \cdots, x_m)}$</li>
-<li>$L_3(C) = L_2(C) + \lambda * L_1(C)$</li>
-<li>상기에서 $C$는 labeled data</li>
-</ul>
-</li>
-</ul>
-<h1 id="task-specific-input-transformation"><a href="#task-specific-input-transformation" class="headerlink" title="task-specific input transformation"></a>task-specific input transformation</h1><ul>
-<li>task에 따라 input을 다르게 변환</li>
-<li>text classification: 기존 input 형태</li>
-<li>similarity: embedding된 2개 seq를 각각 선후 관계를 달리하여 input, 2개의 transformer block output $h_l^m$을 서로 더한 뒤 linear feed forward &amp; softmax</li>
-<li>QA: input 형태는 concat[텍스트, 질문, delimiter /$, 가능답변]</li>
-</ul>
-<h3 id="의문점-amp-해소"><a href="#의문점-amp-해소" class="headerlink" title="의문점 &amp; 해소"></a>의문점 &amp; 해소</h3><ul>
-<li>U는 token들이 one hot encoding된 matrix</li>
-<li>L1, L2를 함께 train? Yes. lambada 조절하며 L3를 loss function으로 train</li>
-<li>LM에서는 마지막 softmax 통과할 때, W_e word embedding weight matrix transponse 곱한 뒤 softmax -&gt; RNN에서 다음 단어 예측하는 구조와 비슷</li>
-<li>pre train은 initial parameter로 사용<ul>
-<li>L1을 train하고 L3(L2 + lambda * L1) train</li>
-<li>또는 L1을 train하고 L2(L2 + 0 * L1) train</li>
-<li>또는 처음부터 L3(L2 + lambda * L1) train</li>
-<li>Lambda는 학습하면서 계속 바꿀 수 있음</li>
-</ul>
-</li>
-<li>position emb mat 학습됨(기존 transformer와 차이)</li>
-<li>GPT는 생성에 특화된 모델  </li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/02/02/gpt-review/#more">Read More</a>
+          </p>
+        
       
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/02/02/gpt-review/" data-id="ck6kvyj4n0000sn09x06dlo6w" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/02/02/gpt-review/" data-id="ck6kw3raw002avw097to66c6c" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPT/">GPT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -249,7 +230,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/01/26/conv1d/" data-id="ck6eherql00260109828ijgcj" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/01/26/conv1d/" data-id="ck6kw3ras0024vw096c18qnye" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conv1d/">conv1d</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/">pytorch</a></li></ul>
@@ -303,7 +284,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/01/09/regression-basic/" data-id="ck6eherrl003s01094w3l3x04" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/01/09/regression-basic/" data-id="ck6kw3rc5003zvw09xpgt9mle" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regression/">regression</a></li></ul>
@@ -353,7 +334,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/01/01/seq2seq-code/" data-id="ck6eherrm003u01098il8zfgz" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/01/01/seq2seq-code/" data-id="ck6kw3rca0047vw097rpaaant" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL-NLP/">DL, NLP</a></li></ul>
@@ -402,7 +383,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/29/pytorch-operation-dtype-concat-stack/" data-id="ck6eherri003m0109enthq5qy" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/29/pytorch-operation-dtype-concat-stack/" data-id="ck6kw3rby003rvw090wegqo0s" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch-pytorch-concat-pytorch-stack/">pytorch, pytorch_concat, pytorch_stack</a></li></ul>
@@ -451,7 +432,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/29/batch-and-SGD/" data-id="ck6eherqb001r01098yja5wpe" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/29/batch-and-SGD/" data-id="ck6kw3rak001svw092freirun" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/batch-mini-batch-SGD-gradient-discent/">batch, mini_batch, SGD, gradient_discent</a></li></ul>
@@ -500,7 +481,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/21/decorator/" data-id="ck6eherqi002301095jzuo30g" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/21/decorator/" data-id="ck6kw3rau0027vw09ywnrsr1p" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-Python/">Study, Python</a></li></ul>
@@ -549,7 +530,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/21/LSTM-params/" data-id="ck6eheroo00050109z835xjl2" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/21/LSTM-params/" data-id="ck6kw3r9e000avw09czgx7gp9" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-LSTM-NLP/">Study, LSTM, NLP</a></li></ul>
@@ -598,7 +579,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/11/09/softmax-func-derivative/" data-id="ck6ehers200430109g70uzkeo" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/11/09/softmax-func-derivative/" data-id="ck6kw3rcc0049vw09q8bithpl" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/derivative/">derivative</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/softmax/">softmax</a></li></ul>
@@ -647,7 +628,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/11/03/BM25/" data-id="ck6eherom00040109i524s9ev" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/11/03/BM25/" data-id="ck6kw3r900003vw09ayhkp6ei" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BM25/">BM25</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-clustering/">text_clustering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-ranking/">text_ranking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tf-idf/">tf_idf</a></li></ul>
@@ -696,7 +677,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/10/19/DL-cheatsheet/" data-id="ck6eherow00080109eymyo8pv" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/10/19/DL-cheatsheet/" data-id="ck6kw3r9c0009vw091xrriv5c" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lemmatization/">lemmatization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/softmax/">softmax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stemming/">stemming</a></li></ul>
@@ -745,7 +726,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/10/19/nlp-word2vec-keras/" data-id="ck6eherrb003b0109yt5t24kx" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/10/19/nlp-word2vec-keras/" data-id="ck6kw3rbv003mvw09jv1ti1dd" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/word2vec/">word2vec</a></li></ul>
@@ -794,7 +775,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/10/12/python-logging/" data-id="ck6eherrq003x0109j9my8vm7" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/10/12/python-logging/" data-id="ck6kw3rc0003uvw09bc0ym2dq" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logging/">logging</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -843,7 +824,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/09/28/NLPbigram/" data-id="ck6eherp3000a0109qjp8fniy" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/09/28/NLPbigram/" data-id="ck6kw3r9h000bvw09bzt532qb" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigram-word-presentation-language-model/">bigram, word_presentation, language_model</a></li></ul>
@@ -892,7 +873,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/09/27/atomfontsize/" data-id="ck6eherq4001i0109hqq9nlcx" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/09/27/atomfontsize/" data-id="ck6kw3ra8001avw09ojguhgwt" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atom/">atom</a></li></ul>
@@ -941,7 +922,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/09/27/howtousehexo/" data-id="ck6eherr2002r0109u17br04y" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/09/27/howtousehexo/" data-id="ck6kw3rb7002ovw096ssb2fxc" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -990,7 +971,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/05/28/cheatsheet/" data-id="ck6eherqg002001099qqvzyvn" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/05/28/cheatsheet/" data-id="ck6kw3rba002svw09z66vdde0" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CheatSheet/">CheatSheet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/statistical-power/">statistical_power</a></li></ul>
@@ -1040,7 +1021,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/15/hadoop_tutorial/" data-id="ck6eherqo00290109tldf35t6" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/15/hadoop_tutorial/" data-id="ck6kw3raz002dvw09n9y8mxa3" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
@@ -1090,7 +1071,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/08/spark-twi/" data-id="ck6ehersa004h01097z1wcg7y" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/08/spark-twi/" data-id="ck6kw3rcn004lvw095ype73kx" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li></ul>
@@ -1142,7 +1123,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/08/AWS-kinesis/" data-id="ck6eheroz00090109rdgakdun" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/08/AWS-kinesis/" data-id="ck6kw3r940005vw09iahke1cl" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API-gateway/">API_gateway</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shard/">Shard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kinesis/">kinesis</a></li></ul>
@@ -1193,7 +1174,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </h2></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/06/spark-resource/" data-id="ck6ehers6004a0109r3u549wk" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/06/spark-resource/" data-id="ck6kw3rcm004jvw092f804wjp" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark-resource/">spark_resource</a></li></ul>
@@ -1242,7 +1223,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/22/test_basic/" data-id="ck6ehersh004t01094139njqb" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/22/test_basic/" data-id="ck6kw3rcs004uvw09jskapkeh" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binomial-test/">Binomial_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chi-Squared-test/">Chi_Squared_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Equal-Var-test/">Equal_Var_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Normality-test/">Normality_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat-test/">Stat_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/t-test/">t-test</a></li></ul>
@@ -1291,7 +1272,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/20/asw-9/" data-id="ck6eherq0001c0109d4i3cqa7" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/20/asw-9/" data-id="ck6kw3rac001hvw095xwznag6" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS-glue/">AWS_glue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cluster/">Cluster</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EMR/">EMR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1340,7 +1321,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/20/spark-dag/" data-id="ck6ehers400470109ca4vucbd" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/20/spark-dag/" data-id="ck6kw3rch004dvw09cblahax1" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-Stage/">Spark_Stage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-Task/">Spark_Task</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1389,7 +1370,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/17/spark-sql-basic/" data-id="ck6ehers8004e0109rd0migfc" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/17/spark-sql-basic/" data-id="ck6kw3rcj004fvw09qftgp95j" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataFrame/">DataFrame</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SparkSQL/">SparkSQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SparkSession/">SparkSession</a></li></ul>
@@ -1439,7 +1420,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/16/install-pyspark/" data-id="ck6eherr6002z0109ge9ys9c2" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/16/install-pyspark/" data-id="ck6kw3rbf0033vw0952pnr7jz" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyspark-install/">Pyspark_install</a></li></ul>
@@ -1488,7 +1469,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/15/hdfs-recap/" data-id="ck6eherqr002c0109hlu2ldxa" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/15/hdfs-recap/" data-id="ck6kw3rb1002gvw09l7aggqyj" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDFS/">HDFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rack/">Rack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Replica/">Replica</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1537,7 +1518,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/13/spark3/" data-id="ck6ehersd004n01092su2zni2" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/13/spark3/" data-id="ck6kw3rct004wvw09k1034bt4" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RDD/">RDD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-component/">Spark_component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1586,7 +1567,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="ck6eherrf003i0109zzt7jg86" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="ck6kw3rc60041vw09mfog7vkd" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ANOVA/">ANOVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ftest/">Ftest</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat-test/">Stat_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1635,7 +1616,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/11/net1/" data-id="ck6eherrd003f0109nhd78r01" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/11/net1/" data-id="ck6kw3rbk003bvw0928qw50lw" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Host/">Host</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IP/">IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server-Client/">Server/Client</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1684,7 +1665,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/11/assumption/" data-id="ck6eherpr00150109r47scl9a" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/11/assumption/" data-id="ck6kw3raa001evw09yvku1ag0" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regression/">Regression</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/잔차/">잔차</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/회귀분석가정/">회귀분석가정</a></li></ul>
@@ -1733,7 +1714,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/10/spark1/" data-id="ck6ehersc004k0109a8iz6614" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/10/spark1/" data-id="ck6kw3rcp004pvw097kc6dtyq" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GFS/">GFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MapReduce/">MapReduce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -1782,7 +1763,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/06/aws6/" data-id="ck6eherq9001o0109xw7hg50e" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/06/aws6/" data-id="ck6kw3rai001pvw09yp94d2kv" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AURORA/">AURORA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cache/">Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RDS/">RDS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redshift/">Redshift</a></li></ul>
@@ -1831,7 +1812,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/02/ifnamemain/" data-id="ck6eherr1002o0109sqcungvi" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/02/ifnamemain/" data-id="ck6kw3rbb002vvw09vvk23kud" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/main/">__main__</a></li></ul>
@@ -1885,7 +1866,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/28/aws2/" data-id="ck6eherq8001m010962oqkoq2" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/28/aws2/" data-id="ck6kw3rao001yvw09firf6773" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EC2/">EC2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/S3/">S3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-strage/">block_strage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object-storage/">object_storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/버킷/">버킷</a></li></ul>
@@ -1939,7 +1920,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/28/aws1/" data-id="ck6eherq2001g0109bzrjfc23" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/28/aws1/" data-id="ck6kw3rag001mvw09o9lawk0p" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPC/">VPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAN/">WAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subnet/">subnet</a></li></ul>
@@ -1988,7 +1969,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/23/Recap_rsquareok/" data-id="ck6eherpl000v0109fnsalufe" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/23/Recap_rsquareok/" data-id="ck6kw3ra00010vw09z904k4w4" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regression/">Regression</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/r-squared/">r_squared</a></li></ul>
@@ -2035,7 +2016,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/17/linuxchaet/" data-id="ck6eherr8003301096gbqu71y" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/17/linuxchaet/" data-id="ck6kw3rbh0037vw09huppnse7" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li></ul>
@@ -2084,7 +2065,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/17/netstat/" data-id="ck6eherr900370109f0p1od79" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/17/netstat/" data-id="ck6kw3rbm003evw09z1cjxdk7" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/net-tools/">net-tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/netstat/">netstat</a></li></ul>
@@ -2133,7 +2114,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/16/Recap_covandcorr/" data-id="ck6eherpk000t0109jsfxwmwq" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/16/Recap_covandcorr/" data-id="ck6kw3r9w000uvw09osue15bi" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/correlation/">correlation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/covariance/">covariance</a></li></ul>
@@ -2182,7 +2163,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/14/Recap_TimeSeries(0)_ok/" data-id="ck6eherpc000i0109se3maalp" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/14/Recap_TimeSeries(0)_ok/" data-id="ck6kw3ra60019vw09yy7jq6c8" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a></li></ul>
@@ -2233,7 +2214,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/14/restartwifi/" data-id="ck6ehers000400109djcgael6" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/14/restartwifi/" data-id="ck6kw3rc90045vw09ahnyluaj" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wifi/">wifi</a></li></ul>
@@ -2282,7 +2263,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_Curse_of_dimensionalityok/" data-id="ck6eherp8000e0109twldscza" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_Curse_of_dimensionalityok/" data-id="ck6kw3r9j000evw09asggaw5y" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/차원의저주/">차원의저주</a></li></ul>
@@ -2331,7 +2312,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_evdok/" data-id="ck6eherpy001a0109klwgz3t4" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_evdok/" data-id="ck6kw3r9y000wvw0959sw87vl" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenvalue/">eigenvalue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenvector/">eigenvector</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/고유값분해/">고유값분해</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/대각화/">대각화</a></li></ul>
@@ -2380,7 +2361,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/11/Recap_SVD/" data-id="ck6eherpi000p01094bt3m1pa" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/11/Recap_SVD/" data-id="ck6kw3r9p000lvw09xdzbqz52" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVD/">SVD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/압축/">압축</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/차원감소/">차원감소</a></li></ul>
@@ -2429,7 +2410,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/11/alias/" data-id="ck6eherpn000z01095swrzxn3" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/11/alias/" data-id="ck6kw3ra20013vw09xyqr468i" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alias/">alias</a></li></ul>
@@ -2478,7 +2459,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/08/cdf-pdf/" data-id="ck6eherqf001x0109fs6iemwy" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/08/cdf-pdf/" data-id="ck6kw3raq0021vw099lovfugz" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cdf/">cdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf/">pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/random-variable/">random_variable</a></li></ul>
@@ -2527,10 +2508,157 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/08/pvalue/" data-id="ck6eherrj003o0109dawfqxre" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/08/pvalue/" data-id="ck6kw3rbt003jvw0927frq2pc" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/p-value/">p-value</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/표준오차/">표준오차</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
+    <article id="post-Recap_TimeSeries_ARMA_ARIMA(5)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/">[시계열] 일반 선형확률과정 ARMA / ARIMA(5)</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
+  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
+        
+          <p class="article-more-link">
+            <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="ck6kw3rcz0055vw09djdqf0dz" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARIMA/">ARIMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARMA/">ARMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Intergragted/">Intergragted</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
+    <article id="post-Recap_TimeSeries_AR(4)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_AR(4)ok/">[시계열] 일반 선형확률과정 AR(4)</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/" class="article-date">
+  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
+        
+          <p class="article-more-link">
+            <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_AR(4)ok/" data-id="ck6kw3r9u000qvw09pd0o2fuf" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR/">AR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
+    <article id="post-Recap_TimeSeries_MA(3)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_MA(3)ok/">[시계열] 일반 선형확률과정 MA(3)</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/" class="article-date">
+  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
+        
+          <p class="article-more-link">
+            <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_MA(3)ok/" data-id="ck6kw3r9s000pvw09kqtax597" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MA/">MA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
 
     </footer>
 
@@ -2576,7 +2704,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeires(2)/" data-id="ck6eherv300co0109qctmon64" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeires(2)/" data-id="ck6kw3r9n000jvw09t4hqoapn" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/계절성/">계절성</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/추세/">추세</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/확률과정/">확률과정</a></li></ul>
@@ -2625,157 +2753,10 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_Time series_theory(1)ok/" data-id="ck6eherv000cm0109mco0165h" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_Time series_theory(1)ok/" data-id="ck6kw3r9l000fvw093vx920l0" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACF/">ACF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/랜덤워크/">랜덤워크</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/백색잡음/">백색잡음</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/정상확률과정/">정상확률과정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/확률과정/">확률과정</a></li></ul>
-
-    </footer>
-
-
-
-</div></article>
-  
-    <article id="post-Recap_TimeSeries_ARMA_ARIMA(5)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/">[시계열] 일반 선형확률과정 ARMA / ARIMA(5)</a>
-    </h1>
-  
-
-      </header>
-    
-    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
-    <div class="article-meta">
-      <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
-  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a>
-  </div>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="ck6eherpe000k0109u3crmc4l" class="article-share-link">share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARIMA/">ARIMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARMA/">ARMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Intergragted/">Intergragted</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
-
-    </footer>
-
-
-
-</div></article>
-  
-    <article id="post-Recap_TimeSeries_MA(3)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_MA(3)ok/">[시계열] 일반 선형확률과정 MA(3)</a>
-    </h1>
-  
-
-      </header>
-    
-    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
-    <div class="article-meta">
-      <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/" class="article-date">
-  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a>
-  </div>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/02/04/Recap_TimeSeries_MA(3)ok/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_MA(3)ok/" data-id="ck6eherpg000o0109ijhnwdd2" class="article-share-link">share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MA/">MA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
-
-    </footer>
-
-
-
-</div></article>
-  
-    <article id="post-Recap_TimeSeries_AR(4)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_AR(4)ok/">[시계열] 일반 선형확률과정 AR(4)</a>
-    </h1>
-  
-
-      </header>
-    
-    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
-    <div class="article-meta">
-      <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/" class="article-date">
-  <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Math/">Math</a>
-  </div>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
-        
-          <p class="article-more-link">
-            <a href="/2019/02/04/Recap_TimeSeries_AR(4)ok/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_AR(4)ok/" data-id="ck6eherp5000d0109no0jnuc2" class="article-share-link">share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR/">AR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
 
     </footer>
 
@@ -2821,7 +2802,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="ck6eherqd001u0109taaq7czv" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="ck6kw3ram001vvw09g7i3kn9e" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bracket/">Bracket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Snippets/">Snippets</a></li></ul>
@@ -2870,7 +2851,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="ck6eherpp00120109dvvlnrgp" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="ck6kw3ra30015vw09h25453zg" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
@@ -2919,59 +2900,10 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="ck6ehersg004r0109c0flgi60" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="ck6kw3rcq004rvw09au8o6vyh" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-
-    </footer>
-
-
-
-</div></article>
-  
-    <article id="post-how-to-create-jupyer" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/28/how-to-create-jupyer/">[Linux] Create and post jupyter.md</a>
-    </h1>
-  
-
-      </header>
-    
-    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
-    <div class="article-meta">
-      <a href="/2019/01/28/how-to-create-jupyer/" class="article-date">
-  <time datetime="2019-01-28T06:11:57.000Z" itemprop="datePublished">2019-1-28 Mon  15:11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/28/how-to-create-jupyer/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="ck6eherqy002j01099qmw992b" class="article-share-link">share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
 
@@ -3017,7 +2949,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="ck6eherr4002v0109q5g1340b" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="ck6kw3rbe0030vw09h9hrblwd" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/">Python3</a></li></ul>
@@ -3066,10 +2998,59 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="ck6eherv600cr01097ftbqfq0" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="ck6kw3rcy0052vw09ubvadroa" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Text/">Text</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
+    <article id="post-how-to-create-jupyer" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/28/how-to-create-jupyer/">[Linux] Create and post jupyter.md</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/01/28/how-to-create-jupyer/" class="article-date">
+  <time datetime="2019-01-28T06:11:57.000Z" itemprop="datePublished">2019-1-28 Mon  15:11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3>
+        
+          <p class="article-more-link">
+            <a href="/2019/01/28/how-to-create-jupyer/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="ck6kw3rb5002mvw09d4hael49" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
 
@@ -3115,7 +3096,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="ck6eherqw002g010992aeorii" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="ck6kw3rb3002ivw09ubam5tfh" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -3162,7 +3143,7 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -3172,6 +3153,10 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/02/14/transformer-implement/">[NLP] Transformer implement 정리</a>
+          </li>
         
           <li>
             <a href="/2020/02/02/gpt-review/">[NLP] GPT(Improving Language Understanding by Generative Pre-Training) 정리</a>
@@ -3187,10 +3172,6 @@ P(u) = softmax(h_n W_e^T) \\</script></li>
         
           <li>
             <a href="/2020/01/01/seq2seq-code/">seq2seq code 구현 예시</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/29/pytorch-operation-dtype-concat-stack/">Pytorch basic operation1: cat, stack</a>
           </li>
         
       </ul>
