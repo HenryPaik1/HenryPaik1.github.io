@@ -92,6 +92,99 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-convolutional-layer" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/15/convolutional-layer/">Convolutional Layer 간단한 정리</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2020/02/15/convolutional-layer/" class="article-date">
+  <time datetime="2020-02-15T04:32:26.000Z" itemprop="datePublished">2020-2-15 Sat  13:32</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DL/">DL</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <a id="more"></a>
+<ul>
+<li>reference: cs231n (링크:<a href="http://cs231n.github.io/convolutional-networks/" target="_blank" rel="noopener">http://cs231n.github.io/convolutional-networks/</a>)</li>
+<li>fully connected layer는 앞 layer의 모든 neuron과, 다음 layer의 모든 neuron이 dependent<ul>
+<li>neuron은 일종의 feature라고 생각하면, neuron 갯수는 feature 갯수.</li>
+<li>eg. [1, 3 n_feature] * [3, 4 n_neuron] -&gt; previous layer의 neuron은 3개; next layer의 nueron은 4개;<ul>
+<li>계산해보면 output neuron(4개)은 모두 previous layer의 neuron에 dependent</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>이미지에 fully connected layer를 적용하면, weight가 매우 많이 필요<ul>
+<li>eg. 이미지 32*32*3일 경우, stretch out하면 1*3071 vector로 변환</li>
+<li>weight vector는 최소 3072 weight 가져야 함</li>
+<li>이미지 input시 stretch out하는 것은, 일반 데이터 row: data, col: features에 대응하여 생각하면 이해가 쉬움</li>
+<li>이미지 n개 input시 n * 3071 matrix; 데이터 n개 input시 n * n_feature;</li>
+</ul>
+</li>
+<li>Convolutional Layer의 특징 두 가지:<ul>
+<li><ol>
+<li>spatial structure 유지<ul>
+<li>eg. FC: 32*32*3 -&gt; 1*n_neuron</li>
+<li>eg. Convolutional Layer: 32*32*3에 5*5*3 필터 1개 적용 -&gt; 28*28*1</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>부분적 neuron과 dependent<ul>
+<li>params 적어짐: 궁극적으로 filter(의 element)를 업데이트하는 것</li>
+<li>제한된 영역에 대해 dot product라고 생각할 수 있음<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 하기 이미지 dot product</span><br><span class="line">[1,1,1,0,1,1,0,0,1] * [1,0,1,0,1,0,1,0,1]^T</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/cnn_img.png" width="300">        </p>
+<ul>
+<li>기타<ul>
+<li>one filter, one activation map: 예시 이미지들에서 activation map은 filter를 통과한 이미지</li>
+<li>하기 이미지: cs231n 수업 캡처<br><img src="/img/cnn_map.png" width="400"></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2020/02/15/convolutional-layer/" data-id="ck6n48wr20021iw099jy5msk7" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/convolutional-layer/">convolutional_layer</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
     <article id="post-gpt-review" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
@@ -133,7 +226,7 @@ ga('send', 'pageview');
     </li></ul></li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/02/02/gpt-review/" data-id="ck6kwb4y600259e09gb7fhybe" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/02/02/gpt-review/" data-id="ck6n48wr8002ciw09o0q7r6vq" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GPT/">GPT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -182,7 +275,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/02/01/transformer-implement/" data-id="ck6kwb503004t9e09o3w6amk5" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/02/01/transformer-implement/" data-id="ck6n48wt00055iw09neyoet57" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transformer/">transformer</a></li></ul>
@@ -233,7 +326,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/01/26/conv1d/" data-id="ck6kwb4y3001z9e09iv33zosc" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/01/26/conv1d/" data-id="ck6n48wr70028iw09wrv8mt35" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conv1d/">conv1d</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/">pytorch</a></li></ul>
@@ -287,7 +380,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/01/09/regression-basic/" data-id="ck6kwb4zk003z9e09vcjoawrd" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/01/09/regression-basic/" data-id="ck6n48wsb0047iw09comzprmm" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/regression/">regression</a></li></ul>
@@ -337,7 +430,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/01/01/seq2seq-code/" data-id="ck6kwb4zp00459e09e8lsf7q3" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/01/01/seq2seq-code/" data-id="ck6n48wsd0049iw09lvetyee2" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL-NLP/">DL, NLP</a></li></ul>
@@ -386,7 +479,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/29/pytorch-operation-dtype-concat-stack/" data-id="ck6kwb4za003k9e09c0rur227" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/29/pytorch-operation-dtype-concat-stack/" data-id="ck6n48ws4003viw09ll85zv6u" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch-pytorch-concat-pytorch-stack/">pytorch, pytorch_concat, pytorch_stack</a></li></ul>
@@ -435,7 +528,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/29/batch-and-SGD/" data-id="ck6kwb4xl001e9e0959yjefw4" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/29/batch-and-SGD/" data-id="ck6n48wqw001siw09m7zalnlh" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/batch-mini-batch-SGD-gradient-discent/">batch, mini_batch, SGD, gradient_discent</a></li></ul>
@@ -484,7 +577,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/21/decorator/" data-id="ck6kwb4y500229e09qr8y68sl" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/21/decorator/" data-id="ck6n48wra002giw092jxwimrs" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-Python/">Study, Python</a></li></ul>
@@ -533,7 +626,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/21/LSTM-params/" data-id="ck6kwb4wn000a9e09s4yxmqys" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/21/LSTM-params/" data-id="ck6n48wpo000aiw09e8glma4q" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-LSTM-NLP/">Study, LSTM, NLP</a></li></ul>
@@ -582,7 +675,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/11/09/softmax-func-derivative/" data-id="ck6kwb4zn00439e09i6zf46zt" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/11/09/softmax-func-derivative/" data-id="ck6n48wsf004diw09vha8hk33" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/derivative/">derivative</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/softmax/">softmax</a></li></ul>
@@ -631,7 +724,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/11/03/BM25/" data-id="ck6kwb4wc00059e093kg1g6u5" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/11/03/BM25/" data-id="ck6n48wpa0003iw09480d92jq" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BM25/">BM25</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-clustering/">text_clustering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-ranking/">text_ranking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tf-idf/">tf_idf</a></li></ul>
@@ -680,7 +773,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/10/19/DL-cheatsheet/" data-id="ck6kwb4wi00089e09nag9swe4" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/10/19/DL-cheatsheet/" data-id="ck6n48wpe0005iw09bbxzuwhj" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BP/">BP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DL/">DL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RNN/">RNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lemmatization/">lemmatization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/softmax/">softmax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/stemming/">stemming</a></li></ul>
@@ -729,7 +822,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/10/19/nlp-word2vec-keras/" data-id="ck6kwb4z7003h9e092ozqs2cr" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/10/19/nlp-word2vec-keras/" data-id="ck6n48ws2003siw092ru6uf1n" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/word2vec/">word2vec</a></li></ul>
@@ -778,7 +871,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/10/12/python-logging/" data-id="ck6kwb4ze003p9e0928dkpl1e" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/10/12/python-logging/" data-id="ck6n48wrz003oiw09ytz7gos9" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logging/">logging</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
@@ -827,7 +920,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/09/28/NLPbigram/" data-id="ck6kwb4wl00099e09992piagx" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/09/28/NLPbigram/" data-id="ck6n48wpt000eiw09yrx7ccrs" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bigram-word-presentation-language-model/">bigram, word_presentation, language_model</a></li></ul>
@@ -876,7 +969,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/09/27/atomfontsize/" data-id="ck6kwb4xj001b9e09soham7u1" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/09/27/atomfontsize/" data-id="ck6n48wqi001aiw09amh4d3mq" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atom/">atom</a></li></ul>
@@ -925,7 +1018,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/09/27/howtousehexo/" data-id="ck6kwb4yh002k9e09wtqxxixr" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/09/27/howtousehexo/" data-id="ck6n48wrk002ziw09dwsp0gzl" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -974,7 +1067,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/05/28/cheatsheet/" data-id="ck6kwb4yt00369e090ah4iksk" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/05/28/cheatsheet/" data-id="ck6n48wr0001yiw09n68eab1q" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CheatSheet/">CheatSheet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/statistical-power/">statistical_power</a></li></ul>
@@ -1024,7 +1117,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/15/hadoop_tutorial/" data-id="ck6kwb4y800289e09olmcf7e8" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/15/hadoop_tutorial/" data-id="ck6n48wrc002jiw094bbxp5wa" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
@@ -1074,7 +1167,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/08/spark-twi/" data-id="ck6kwb4zw004h9e09r60bzy3h" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/08/spark-twi/" data-id="ck6n48wsk004miw09fvwmp0ce" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li></ul>
@@ -1126,7 +1219,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/08/AWS-kinesis/" data-id="ck6kwb4w800039e095y9wt8ez" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/08/AWS-kinesis/" data-id="ck6n48wpm0009iw09gs3jrx3s" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/API-gateway/">API_gateway</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shard/">Shard</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kinesis/">kinesis</a></li></ul>
@@ -1177,7 +1270,7 @@ ga('send', 'pageview');
     </h2></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/04/06/spark-resource/" data-id="ck6kwb4zu004e9e09a1945sse" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/04/06/spark-resource/" data-id="ck6n48wsi004jiw09j4u6tqpf" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark-resource/">spark_resource</a></li></ul>
@@ -1226,7 +1319,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/22/test_basic/" data-id="ck6kwb501004p9e095vbfcdv3" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/22/test_basic/" data-id="ck6n48wsy0052iw09ocn6bdb6" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binomial-test/">Binomial_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chi-Squared-test/">Chi_Squared_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Equal-Var-test/">Equal_Var_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Normality-test/">Normality_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat-test/">Stat_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/t-test/">t-test</a></li></ul>
@@ -1275,7 +1368,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/20/asw-9/" data-id="ck6kwb4xc00149e09ivdswj6c" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/20/asw-9/" data-id="ck6n48wqm001giw09z0pb51nm" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS-glue/">AWS_glue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cluster/">Cluster</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EMR/">EMR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1324,7 +1417,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/20/spark-dag/" data-id="ck6kwb4zq00489e09y72jqgy4" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/20/spark-dag/" data-id="ck6n48wsg004fiw09tt5ye2bo" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-Stage/">Spark_Stage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-Task/">Spark_Task</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1373,7 +1466,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/17/spark-sql-basic/" data-id="ck6kwb4zs004b9e09uwicdtp6" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/17/spark-sql-basic/" data-id="ck6n48wsp004riw09qgar3aac" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataFrame/">DataFrame</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SparkSQL/">SparkSQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SparkSession/">SparkSession</a></li></ul>
@@ -1423,7 +1516,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/16/install-pyspark/" data-id="ck6kwb4ym002t9e0953318opu" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/16/install-pyspark/" data-id="ck6n48wrp003biw09xod22rib" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyspark-install/">Pyspark_install</a></li></ul>
@@ -1472,7 +1565,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/15/hdfs-recap/" data-id="ck6kwb4yf002g9e0954bgjck9" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/15/hdfs-recap/" data-id="ck6n48wre002oiw09xwzlyk0m" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDFS/">HDFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rack/">Rack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Replica/">Replica</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1521,7 +1614,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/13/spark3/" data-id="ck6kwb507004v9e09lw71yqfm" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/13/spark3/" data-id="ck6n48wst004yiw090xz82pgi" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DAG/">DAG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RDD/">RDD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark-component/">Spark_component</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1570,7 +1663,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="ck6kwb4zg003s9e09sran309q" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/13/recap-annova/" data-id="ck6n48ws70041iw098pxvm953" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ANOVA/">ANOVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ftest/">Ftest</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat-test/">Stat_test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1619,7 +1712,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/11/net1/" data-id="ck6kwb4yq00319e09oc1bifkn" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/11/net1/" data-id="ck6n48wrr003eiw09ihmwxtme" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Host/">Host</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IP/">IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server-Client/">Server/Client</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li></ul>
@@ -1668,7 +1761,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/11/assumption/" data-id="ck6kwb4xa00119e09cztn9et9" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/11/assumption/" data-id="ck6n48wqk001eiw09l7muet8o" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regression/">Regression</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/잔차/">잔차</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/회귀분석가정/">회귀분석가정</a></li></ul>
@@ -1717,7 +1810,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/10/spark1/" data-id="ck6kwb4zy004j9e098czux8e3" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/10/spark1/" data-id="ck6n48wsr004uiw09112rnxuj" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GFS/">GFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MapReduce/">MapReduce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -1766,7 +1859,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/06/aws6/" data-id="ck6kwb4xs001m9e09q64haf9p" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/06/aws6/" data-id="ck6n48wqv001piw09fvbfks7k" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AURORA/">AURORA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cache/">Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RDS/">RDS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redshift/">Redshift</a></li></ul>
@@ -1815,7 +1908,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/03/02/ifnamemain/" data-id="ck6kwb4yi002m9e097ntyc3bq" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/03/02/ifnamemain/" data-id="ck6n48wro0037iw09swo9nr3v" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/main/">__main__</a></li></ul>
@@ -1869,7 +1962,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/28/aws2/" data-id="ck6kwb4xy001t9e09ww605sal" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/28/aws2/" data-id="ck6n48wqs001miw09hqp43j0l" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EC2/">EC2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/S3/">S3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/block-strage/">block_strage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/object-storage/">object_storage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/버킷/">버킷</a></li></ul>
@@ -1923,7 +2016,7 @@ ga('send', 'pageview');
     </li></ul></div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/28/aws1/" data-id="ck6kwb4xo001j9e09n7vebzqr" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/28/aws1/" data-id="ck6n48wqq001kiw09pyatbcce" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPC/">VPC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAN/">WAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subnet/">subnet</a></li></ul>
@@ -1972,7 +2065,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/23/Recap_rsquareok/" data-id="ck6kwb4x5000u9e096af3qh5x" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/23/Recap_rsquareok/" data-id="ck6n48wqe0015iw092fdcz2qg" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regression/">Regression</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/r-squared/">r_squared</a></li></ul>
@@ -2019,7 +2112,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/17/linuxchaet/" data-id="ck6kwb4yp002y9e09d1djp137" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/17/linuxchaet/" data-id="ck6n48wrw003liw09de9hfddp" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cmd/">cmd</a></li></ul>
@@ -2068,7 +2161,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/17/netstat/" data-id="ck6kwb4yu00399e09vz3e8yk6" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/17/netstat/" data-id="ck6n48wrt003giw09cnazon57" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/net-tools/">net-tools</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/netstat/">netstat</a></li></ul>
@@ -2117,7 +2210,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/16/Recap_covandcorr/" data-id="ck6kwb53h00dr9e09l57z6vdc" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/16/Recap_covandcorr/" data-id="ck6n48wq4000qiw09ij0kl4fz" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/correlation/">correlation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/covariance/">covariance</a></li></ul>
@@ -2166,7 +2259,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/14/Recap_TimeSeries(0)_ok/" data-id="ck6kwb4xg00179e09jfw3b6d8" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/14/Recap_TimeSeries(0)_ok/" data-id="ck6n48wq8000wiw09qug9kk75" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a></li></ul>
@@ -2217,7 +2310,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/14/restartwifi/" data-id="ck6kwb4zi003x9e09me20d13b" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/14/restartwifi/" data-id="ck6n48ws90045iw09nwbsk7ce" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wifi/">wifi</a></li></ul>
@@ -2266,7 +2359,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_Curse_of_dimensionalityok/" data-id="ck6kwb4wq000d9e09fxxnw3dp" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_Curse_of_dimensionalityok/" data-id="ck6n48wpq000biw098wghpxnd" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/차원의저주/">차원의저주</a></li></ul>
@@ -2315,59 +2408,10 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_evdok/" data-id="ck6kwb4x0000n9e09om4xr7sa" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/13/Recap_evdok/" data-id="ck6n48wqc0013iw09zxm1x3l1" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenvalue/">eigenvalue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eigenvector/">eigenvector</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/고유값분해/">고유값분해</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/대각화/">대각화</a></li></ul>
-
-    </footer>
-
-
-
-</div></article>
-  
-    <article id="post-alias" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/11/alias/">[Linux] Make alias</a>
-    </h1>
-  
-
-      </header>
-    
-    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
-    <div class="article-meta">
-      <a href="/2019/02/11/alias/" class="article-date">
-  <time datetime="2019-02-11T03:02:08.000Z" itemprop="datePublished">2019-2-11 Mon  12:02</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Execute-application-on-Linux"><a href="#1-Execute-application-on-Linux" class="headerlink" title="1) Execute application on Linux"></a>1) Execute application on Linux</h1>
-        
-          <p class="article-more-link">
-            <a href="/2019/02/11/alias/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/11/alias/" data-id="ck6kwb4x6000w9e09pe5hxtx6" class="article-share-link">share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alias/">alias</a></li></ul>
 
     </footer>
 
@@ -2413,10 +2457,59 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/11/Recap_SVD/" data-id="ck6kwb4ww000j9e098hhwdwc8" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/11/Recap_SVD/" data-id="ck6n48wpv000fiw09qpyx6ibd" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVD/">SVD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/압축/">압축</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/차원감소/">차원감소</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
+    <article id="post-alias" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/11/alias/">[Linux] Make alias</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/02/11/alias/" class="article-date">
+  <time datetime="2019-02-11T03:02:08.000Z" itemprop="datePublished">2019-2-11 Mon  12:02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Execute-application-on-Linux"><a href="#1-Execute-application-on-Linux" class="headerlink" title="1) Execute application on Linux"></a>1) Execute application on Linux</h1>
+        
+          <p class="article-more-link">
+            <a href="/2019/02/11/alias/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/02/11/alias/" data-id="ck6n48wqg0019iw09p48flr0s" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alias/">alias</a></li></ul>
 
     </footer>
 
@@ -2462,7 +2555,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/08/cdf-pdf/" data-id="ck6kwb4y0001w9e09xf2avqod" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/08/cdf-pdf/" data-id="ck6n48wr40024iw09wdunimv0" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cdf/">cdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf/">pdf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/random-variable/">random_variable</a></li></ul>
@@ -2511,7 +2604,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/08/pvalue/" data-id="ck6kwb4z3003d9e09kmelqxpz" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/08/pvalue/" data-id="ck6n48ws6003ziw09gmjunyqk" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Stat/">Stat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/p-value/">p-value</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/표준오차/">표준오차</a></li></ul>
@@ -2522,7 +2615,7 @@ ga('send', 'pageview');
 
 </div></article>
   
-    <article id="post-Recap_Time series_theory(1)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-Recap_TimeSeries_ARMA_ARIMA(5)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -2531,7 +2624,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/Recap_Time series_theory(1)ok/">[시계열] 확률과정 및 시계열 이론(1)</a>
+      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/">[시계열] 일반 선형확률과정 ARMA / ARIMA(5)</a>
     </h1>
   
 
@@ -2539,7 +2632,7 @@ ga('send', 'pageview');
     
     <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
     <div class="article-meta">
-      <a href="/2019/02/04/Recap_Time series_theory(1)ok/" class="article-date">
+      <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
   <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
 </a>
       
@@ -2550,20 +2643,20 @@ ga('send', 'pageview');
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="확률과정-Random-process-Stochastic-process"><a href="#확률과정-Random-process-Stochastic-process" class="headerlink" title="확률과정(Random process, Stochastic process):"></a>확률과정(Random process, Stochastic process):</h1>
+        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
         
           <p class="article-more-link">
-            <a href="/2019/02/04/Recap_Time series_theory(1)ok/#more">Read More</a>
+            <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/#more">Read More</a>
           </p>
         
       
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_Time series_theory(1)ok/" data-id="ck6kwb4ws000e9e090vkb3eoy" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="ck6n48wt5005aiw09vcnlxyxu" class="article-share-link">share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACF/">ACF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/랜덤워크/">랜덤워크</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/백색잡음/">백색잡음</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/정상확률과정/">정상확률과정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/확률과정/">확률과정</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARIMA/">ARIMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARMA/">ARMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Intergragted/">Intergragted</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
 
     </footer>
 
@@ -2609,7 +2702,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_AR(4)ok/" data-id="ck6kwb4x2000p9e09cacc31ig" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_AR(4)ok/" data-id="ck6n48wq6000uiw09kzcfnnx9" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AR/">AR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
@@ -2658,7 +2751,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeires(2)/" data-id="ck6kwb4wv000i9e09dgv9jv9b" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeires(2)/" data-id="ck6n48wq2000oiw097x7wvdlz" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/계절성/">계절성</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/추세/">추세</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/확률과정/">확률과정</a></li></ul>
@@ -2669,7 +2762,7 @@ ga('send', 'pageview');
 
 </div></article>
   
-    <article id="post-Recap_TimeSeries_ARMA_ARIMA(5)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-Recap_Time series_theory(1)ok" class="article article-type-post" itemscope="" itemprop="blogPost">
 
   <div class="article-inner">
     
@@ -2678,7 +2771,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/">[시계열] 일반 선형확률과정 ARMA / ARIMA(5)</a>
+      <a class="article-title" href="/2019/02/04/Recap_Time series_theory(1)ok/">[시계열] 확률과정 및 시계열 이론(1)</a>
     </h1>
   
 
@@ -2686,7 +2779,7 @@ ga('send', 'pageview');
     
     <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
     <div class="article-meta">
-      <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" class="article-date">
+      <a href="/2019/02/04/Recap_Time series_theory(1)ok/" class="article-date">
   <time datetime="2019-02-04T06:58:57.000Z" itemprop="datePublished">2019-2-4 Mon  15:58</time>
 </a>
       
@@ -2697,20 +2790,20 @@ ga('send', 'pageview');
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="일반-선형확률과정-모형-general-linear-process-model"><a href="#일반-선형확률과정-모형-general-linear-process-model" class="headerlink" title="일반 선형확률과정 모형(general linear process model)"></a>일반 선형확률과정 모형(general linear process model)</h2>
+        <h1 id="확률과정-Random-process-Stochastic-process"><a href="#확률과정-Random-process-Stochastic-process" class="headerlink" title="확률과정(Random process, Stochastic process):"></a>확률과정(Random process, Stochastic process):</h1>
         
           <p class="article-more-link">
-            <a href="/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/#more">Read More</a>
+            <a href="/2019/02/04/Recap_Time series_theory(1)ok/#more">Read More</a>
           </p>
         
       
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_ARMA_ARIMA(5)ok/" data-id="ck6kwb53f00dp9e09gimbf1ea" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_Time series_theory(1)ok/" data-id="ck6n48wpx000jiw093oikudau" class="article-share-link">share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARIMA/">ARIMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ARMA/">ARMA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Intergragted/">Intergragted</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACF/">ACF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/랜덤워크/">랜덤워크</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/백색잡음/">백색잡음</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/정상확률과정/">정상확률과정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/확률과정/">확률과정</a></li></ul>
 
     </footer>
 
@@ -2756,7 +2849,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_MA(3)ok/" data-id="ck6kwb4xe00169e0920cf3u9x" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/02/04/Recap_TimeSeries_MA(3)ok/" data-id="ck6n48wpz000kiw092c39f77l" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MA/">MA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Timeseries/">Timeseries</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a></li></ul>
@@ -2805,7 +2898,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="ck6kwb4xw001q9e091lo77nci" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/31/brack-install/" data-id="ck6n48wqy001viw09wl4nkjbw" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bracket/">Bracket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Snippets/">Snippets</a></li></ul>
@@ -2854,7 +2947,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="ck6kwb4x9000z9e09tzvanplk" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/30/Recap_모수추정의미/" data-id="ck6n48wqa0010iw095kc2wvsc" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/모수추정/">모수추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최대가능도/">최대가능도</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/최소자승법/">최소자승법</a></li></ul>
@@ -2903,10 +2996,59 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="ck6kwb500004n9e09j9axyk7b" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/29/theme-tweak/" data-id="ck6n48wsv0050iw09p4k5org7" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+    </footer>
+
+
+
+</div></article>
+  
+    <article id="post-how-to-create-jupyer" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/28/how-to-create-jupyer/">[Linux] Create and post jupyter.md</a>
+    </h1>
+  
+
+      </header>
+    
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2019/01/28/how-to-create-jupyer/" class="article-date">
+  <time datetime="2019-01-28T06:11:57.000Z" itemprop="datePublished">2019-1-28 Mon  15:11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3>
+        
+          <p class="article-more-link">
+            <a href="/2019/01/28/how-to-create-jupyer/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="ck6n48wrg002riw099psvku3r" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
 
@@ -2952,7 +3094,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="ck6kwb4yl002q9e098vjpqb7r" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/insatlling_virtual_env/" data-id="ck6n48wrm0034iw09faf9lx7q" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pyenv/">Pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/">Python3</a></li></ul>
@@ -3001,59 +3143,10 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="ck6kwb509004y9e092k8z3bgp" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="ck6n48wt20057iw0980ui074m" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Text/">Text</a></li></ul>
-
-    </footer>
-
-
-
-</div></article>
-  
-    <article id="post-how-to-create-jupyer" class="article article-type-post" itemscope="" itemprop="blogPost">
-
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/28/how-to-create-jupyer/">[Linux] Create and post jupyter.md</a>
-    </h1>
-  
-
-      </header>
-    
-    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
-    <div class="article-meta">
-      <a href="/2019/01/28/how-to-create-jupyer/" class="article-date">
-  <time datetime="2019-01-28T06:11:57.000Z" itemprop="datePublished">2019-1-28 Mon  15:11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="See-the-example-below"><a href="#See-the-example-below" class="headerlink" title="See the example below:"></a>See the example below:</h3>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/28/how-to-create-jupyer/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/how-to-create-jupyer/" data-id="ck6kwb4yd002e9e097wx24n2i" class="article-share-link">share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
 
@@ -3099,7 +3192,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="ck6kwb4yb002b9e09ph62ly0u" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/26/how-to-create-hexo-github-page/" data-id="ck6n48wri002wiw09rdpfp0qx" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -3119,7 +3212,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL-seq2seq/">DL, seq2seq</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/decorator-python/">decorator, python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL-seq2seq/">DL, seq2seq</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/decorator-python/">decorator, python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -3128,7 +3221,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANOVA/">ANOVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API-gateway/">API_gateway</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AURORA/">AURORA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-glue/">AWS_glue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BM25/">BM25</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BP/">BP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binomial-test/">Binomial_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CheatSheet/">CheatSheet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chi-Squared-test/">Chi_Squared_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cluster/">Cluster</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/">DL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL-NLP/">DL, NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataFrame/">DataFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EC2/">EC2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EMR/">EMR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Equal-Var-test/">Equal_Var_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ftest/">Ftest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFS/">GFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPT/">GPT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDFS/">HDFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Host/">Host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IP/">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intergragted/">Intergragted</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/">MapReduce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Normality-test/">Normality_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark-install/">Pyspark_install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDD/">RDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDS/">RDS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rack/">Rack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redshift/">Redshift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Regression/">Regression</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Replica/">Replica</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/S3/">S3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server-Client/">Server/Client</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shard/">Shard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SparkSQL/">SparkSQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SparkSession/">SparkSession</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-Stage/">Spark_Stage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-Task/">Spark_Task</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-component/">Spark_component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat/">Stat</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat-test/">Stat_test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study-LSTM-NLP/">Study, LSTM, NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study-Python/">Study, Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPC/">VPC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAN/">WAN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/main/">__main__</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alias/">alias</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/batch-mini-batch-SGD-gradient-discent/">batch, mini_batch, SGD, gradient_discent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bigram-word-presentation-language-model/">bigram, word_presentation, language_model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-strage/">block_strage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdf/">cdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conv1d/">conv1d</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/correlation/">correlation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/covariance/">covariance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/derivative/">derivative</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvalue/">eigenvalue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvector/">eigenvector</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kinesis/">kinesis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lemmatization/">lemmatization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logging/">logging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net-tools/">net-tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netstat/">netstat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-storage/">object_storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p-value/">p-value</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">pdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/">pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch-pytorch-concat-pytorch-stack/">pytorch, pytorch_concat, pytorch_stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/r-squared/">r_squared</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random-variable/">random_variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regression/">regression</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/softmax/">softmax</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark-resource/">spark_resource</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statistical-power/">statistical_power</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stemming/">stemming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subnet/">subnet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/t-test/">t-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-clustering/">text_clustering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-ranking/">text_ranking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tf-idf/">tf_idf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/">transformer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/고유값분해/">고유값분해</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/대각화/">대각화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버킷/">버킷</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/압축/">압축</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잔차/">잔차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원감소/">차원감소</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원의저주/">차원의저주</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/표준오차/">표준오차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회귀분석가정/">회귀분석가정</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ACF/">ACF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ANOVA/">ANOVA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API-gateway/">API_gateway</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AR/">AR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARIMA/">ARIMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARMA/">ARMA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AURORA/">AURORA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-glue/">AWS_glue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BM25/">BM25</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BP/">BP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binomial-test/">Binomial_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bracket/">Bracket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cache/">Cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CheatSheet/">CheatSheet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Chi-Squared-test/">Chi_Squared_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cluster/">Cluster</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Curse-of-Dimensionality/">Curse_of_Dimensionality</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAG/">DAG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL/">DL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DL-NLP/">DL, NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataFrame/">DataFrame</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EC2/">EC2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EMR/">EMR</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Equal-Var-test/">Equal_Var_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ftest/">Ftest</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GFS/">GFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GPT/">GPT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/">Github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HDFS/">HDFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/">Hadoop</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Host/">Host</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IP/">IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intergragted/">Intergragted</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jupyter-notebook/">Jupyter notebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/">Kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MA/">MA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/">MapReduce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Normality-test/">Normality_test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Preprocessing/">Preprocessing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyenv/">Pyenv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyspark-install/">Pyspark_install</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3/">Python3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDD/">RDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RDS/">RDS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Rack/">Rack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redshift/">Redshift</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Regression/">Regression</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Replica/">Replica</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/S3/">S3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SVD/">SVD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server-Client/">Server/Client</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shard/">Shard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Snippets/">Snippets</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SparkSQL/">SparkSQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SparkSession/">SparkSession</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-Stage/">Spark_Stage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-Task/">Spark_Task</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark-component/">Spark_component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat/">Stat</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stat-test/">Stat_test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study/">Study</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study-LSTM-NLP/">Study, LSTM, NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Study-Python/">Study, Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Text/">Text</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries/">Timeseries</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-log-transform/">Timeseries_log_transform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timeseries-process/">Timeseries_process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPC/">VPC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAN/">WAN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/main/">__main__</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alias/">alias</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/batch-mini-batch-SGD-gradient-discent/">batch, mini_batch, SGD, gradient_discent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bigram-word-presentation-language-model/">bigram, word_presentation, language_model</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-strage/">block_strage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdf/">cdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cmd/">cmd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conv1d/">conv1d</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-layer/">convolutional_layer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/correlation/">correlation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/covariance/">covariance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/derivative/">derivative</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvalue/">eigenvalue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eigenvector/">eigenvector</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kinesis/">kinesis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lemmatization/">lemmatization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logging/">logging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net-tools/">net-tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netstat/">netstat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/object-storage/">object_storage</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/p-value/">p-value</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">pdf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/">pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch-pytorch-concat-pytorch-stack/">pytorch, pytorch_concat, pytorch_stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/r-squared/">r_squared</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/random-variable/">random_variable</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/regression/">regression</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/softmax/">softmax</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark-resource/">spark_resource</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statistical-power/">statistical_power</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stemming/">stemming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subnet/">subnet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/t-test/">t-test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-clustering/">text_clustering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/text-ranking/">text_ranking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tf-idf/">tf_idf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transformer/">transformer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/계절성/">계절성</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/고유값분해/">고유값분해</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/대각화/">대각화</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/랜덤워크/">랜덤워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/모수추정/">모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백색잡음/">백색잡음</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/버킷/">버킷</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/베이지안-모수-추정/">베이지안 모수 추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/비정상확률과정/">비정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/시계열모수추정/">시계열모수추정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/압축/">압축</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/일반선형확률과정/">일반선형확률과정</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잔차/">잔차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/잠재변수분석LAV/">잠재변수분석LAV</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/정상확률과정/">정상확률과정</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원감소/">차원감소</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/차원의저주/">차원의저주</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최대가능도/">최대가능도</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소자승법/">최소자승법</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/추세/">추세</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/표준오차/">표준오차</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/확률과정/">확률과정</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회귀분석가정/">회귀분석가정</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -3137,7 +3230,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/ANOVA/" style="font-size: 10px;">ANOVA</a> <a href="/tags/API-gateway/" style="font-size: 10px;">API_gateway</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/AURORA/" style="font-size: 10px;">AURORA</a> <a href="/tags/AWS/" style="font-size: 14px;">AWS</a> <a href="/tags/AWS-glue/" style="font-size: 10px;">AWS_glue</a> <a href="/tags/BM25/" style="font-size: 10px;">BM25</a> <a href="/tags/BP/" style="font-size: 10px;">BP</a> <a href="/tags/Binomial-test/" style="font-size: 10px;">Binomial_test</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/CheatSheet/" style="font-size: 10px;">CheatSheet</a> <a href="/tags/Chi-Squared-test/" style="font-size: 10px;">Chi_Squared_test</a> <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Curse-of-Dimensionality/" style="font-size: 10px;">Curse_of_Dimensionality</a> <a href="/tags/DAG/" style="font-size: 12px;">DAG</a> <a href="/tags/DL/" style="font-size: 14px;">DL</a> <a href="/tags/DL-NLP/" style="font-size: 10px;">DL, NLP</a> <a href="/tags/DataFrame/" style="font-size: 10px;">DataFrame</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/EMR/" style="font-size: 10px;">EMR</a> <a href="/tags/Equal-Var-test/" style="font-size: 10px;">Equal_Var_test</a> <a href="/tags/Ftest/" style="font-size: 10px;">Ftest</a> <a href="/tags/GFS/" style="font-size: 10px;">GFS</a> <a href="/tags/GPT/" style="font-size: 10px;">GPT</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/HDFS/" style="font-size: 10px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 12px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Host/" style="font-size: 10px;">Host</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Intergragted/" style="font-size: 10px;">Intergragted</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/Math/" style="font-size: 18px;">Math</a> <a href="/tags/NLP/" style="font-size: 14px;">NLP</a> <a href="/tags/Normality-test/" style="font-size: 10px;">Normality_test</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Pyspark-install/" style="font-size: 10px;">Pyspark_install</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/RDD/" style="font-size: 10px;">RDD</a> <a href="/tags/RDS/" style="font-size: 10px;">RDS</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Rack/" style="font-size: 10px;">Rack</a> <a href="/tags/Redshift/" style="font-size: 10px;">Redshift</a> <a href="/tags/Regression/" style="font-size: 12px;">Regression</a> <a href="/tags/Replica/" style="font-size: 10px;">Replica</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/Server-Client/" style="font-size: 10px;">Server/Client</a> <a href="/tags/Shard/" style="font-size: 10px;">Shard</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Spark/" style="font-size: 14px;">Spark</a> <a href="/tags/SparkSQL/" style="font-size: 10px;">SparkSQL</a> <a href="/tags/SparkSession/" style="font-size: 10px;">SparkSession</a> <a href="/tags/Spark-Stage/" style="font-size: 10px;">Spark_Stage</a> <a href="/tags/Spark-Task/" style="font-size: 10px;">Spark_Task</a> <a href="/tags/Spark-component/" style="font-size: 10px;">Spark_component</a> <a href="/tags/Stat/" style="font-size: 14px;">Stat</a> <a href="/tags/Stat-test/" style="font-size: 12px;">Stat_test</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Study-LSTM-NLP/" style="font-size: 10px;">Study, LSTM, NLP</a> <a href="/tags/Study-Python/" style="font-size: 10px;">Study, Python</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 16px;">Timeseries</a> <a href="/tags/Timeseries-log-transform/" style="font-size: 10px;">Timeseries_log_transform</a> <a href="/tags/Timeseries-process/" style="font-size: 10px;">Timeseries_process</a> <a href="/tags/VPC/" style="font-size: 10px;">VPC</a> <a href="/tags/WAN/" style="font-size: 10px;">WAN</a> <a href="/tags/main/" style="font-size: 10px;">__main__</a> <a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/atom/" style="font-size: 10px;">atom</a> <a href="/tags/batch-mini-batch-SGD-gradient-discent/" style="font-size: 10px;">batch, mini_batch, SGD, gradient_discent</a> <a href="/tags/bigram-word-presentation-language-model/" style="font-size: 10px;">bigram, word_presentation, language_model</a> <a href="/tags/block-strage/" style="font-size: 10px;">block_strage</a> <a href="/tags/cdf/" style="font-size: 10px;">cdf</a> <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/conv1d/" style="font-size: 10px;">conv1d</a> <a href="/tags/correlation/" style="font-size: 10px;">correlation</a> <a href="/tags/covariance/" style="font-size: 10px;">covariance</a> <a href="/tags/derivative/" style="font-size: 10px;">derivative</a> <a href="/tags/eigenvalue/" style="font-size: 10px;">eigenvalue</a> <a href="/tags/eigenvector/" style="font-size: 10px;">eigenvector</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kinesis/" style="font-size: 10px;">kinesis</a> <a href="/tags/lemmatization/" style="font-size: 10px;">lemmatization</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/logging/" style="font-size: 10px;">logging</a> <a href="/tags/net-tools/" style="font-size: 10px;">net-tools</a> <a href="/tags/netstat/" style="font-size: 10px;">netstat</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/object-storage/" style="font-size: 10px;">object_storage</a> <a href="/tags/p-value/" style="font-size: 10px;">p-value</a> <a href="/tags/pdf/" style="font-size: 10px;">pdf</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/pytorch-pytorch-concat-pytorch-stack/" style="font-size: 10px;">pytorch, pytorch_concat, pytorch_stack</a> <a href="/tags/r-squared/" style="font-size: 10px;">r_squared</a> <a href="/tags/random-variable/" style="font-size: 10px;">random_variable</a> <a href="/tags/regression/" style="font-size: 10px;">regression</a> <a href="/tags/softmax/" style="font-size: 12px;">softmax</a> <a href="/tags/spark-resource/" style="font-size: 10px;">spark_resource</a> <a href="/tags/statistical-power/" style="font-size: 10px;">statistical_power</a> <a href="/tags/stemming/" style="font-size: 10px;">stemming</a> <a href="/tags/subnet/" style="font-size: 10px;">subnet</a> <a href="/tags/t-test/" style="font-size: 10px;">t-test</a> <a href="/tags/text-clustering/" style="font-size: 10px;">text_clustering</a> <a href="/tags/text-ranking/" style="font-size: 10px;">text_ranking</a> <a href="/tags/tf-idf/" style="font-size: 10px;">tf_idf</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/고유값분해/" style="font-size: 10px;">고유값분해</a> <a href="/tags/대각화/" style="font-size: 10px;">대각화</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/버킷/" style="font-size: 10px;">버킷</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/시계열모수추정/" style="font-size: 10px;">시계열모수추정</a> <a href="/tags/압축/" style="font-size: 10px;">압축</a> <a href="/tags/일반선형확률과정/" style="font-size: 14px;">일반선형확률과정</a> <a href="/tags/잔차/" style="font-size: 10px;">잔차</a> <a href="/tags/잠재변수분석LAV/" style="font-size: 10px;">잠재변수분석LAV</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/차원감소/" style="font-size: 10px;">차원감소</a> <a href="/tags/차원의저주/" style="font-size: 10px;">차원의저주</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/표준오차/" style="font-size: 10px;">표준오차</a> <a href="/tags/확률과정/" style="font-size: 12px;">확률과정</a> <a href="/tags/회귀분석가정/" style="font-size: 10px;">회귀분석가정</a>
+      <a href="/tags/ACF/" style="font-size: 10px;">ACF</a> <a href="/tags/ANOVA/" style="font-size: 10px;">ANOVA</a> <a href="/tags/API-gateway/" style="font-size: 10px;">API_gateway</a> <a href="/tags/AR/" style="font-size: 10px;">AR</a> <a href="/tags/ARIMA/" style="font-size: 10px;">ARIMA</a> <a href="/tags/ARMA/" style="font-size: 10px;">ARMA</a> <a href="/tags/AURORA/" style="font-size: 10px;">AURORA</a> <a href="/tags/AWS/" style="font-size: 14px;">AWS</a> <a href="/tags/AWS-glue/" style="font-size: 10px;">AWS_glue</a> <a href="/tags/BM25/" style="font-size: 10px;">BM25</a> <a href="/tags/BP/" style="font-size: 10px;">BP</a> <a href="/tags/Binomial-test/" style="font-size: 10px;">Binomial_test</a> <a href="/tags/Bracket/" style="font-size: 10px;">Bracket</a> <a href="/tags/CNN/" style="font-size: 10px;">CNN</a> <a href="/tags/Cache/" style="font-size: 10px;">Cache</a> <a href="/tags/CheatSheet/" style="font-size: 10px;">CheatSheet</a> <a href="/tags/Chi-Squared-test/" style="font-size: 10px;">Chi_Squared_test</a> <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Curse-of-Dimensionality/" style="font-size: 10px;">Curse_of_Dimensionality</a> <a href="/tags/DAG/" style="font-size: 12px;">DAG</a> <a href="/tags/DL/" style="font-size: 14px;">DL</a> <a href="/tags/DL-NLP/" style="font-size: 10px;">DL, NLP</a> <a href="/tags/DataFrame/" style="font-size: 10px;">DataFrame</a> <a href="/tags/EC2/" style="font-size: 10px;">EC2</a> <a href="/tags/EMR/" style="font-size: 10px;">EMR</a> <a href="/tags/Equal-Var-test/" style="font-size: 10px;">Equal_Var_test</a> <a href="/tags/Ftest/" style="font-size: 10px;">Ftest</a> <a href="/tags/GFS/" style="font-size: 10px;">GFS</a> <a href="/tags/GPT/" style="font-size: 10px;">GPT</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/HDFS/" style="font-size: 10px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 12px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Host/" style="font-size: 10px;">Host</a> <a href="/tags/IP/" style="font-size: 10px;">IP</a> <a href="/tags/Intergragted/" style="font-size: 10px;">Intergragted</a> <a href="/tags/Jupyter-notebook/" style="font-size: 10px;">Jupyter notebook</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/MA/" style="font-size: 10px;">MA</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/Math/" style="font-size: 18px;">Math</a> <a href="/tags/NLP/" style="font-size: 14px;">NLP</a> <a href="/tags/Normality-test/" style="font-size: 10px;">Normality_test</a> <a href="/tags/Preprocessing/" style="font-size: 10px;">Preprocessing</a> <a href="/tags/Pyenv/" style="font-size: 10px;">Pyenv</a> <a href="/tags/Pyspark-install/" style="font-size: 10px;">Pyspark_install</a> <a href="/tags/Python3/" style="font-size: 10px;">Python3</a> <a href="/tags/RDD/" style="font-size: 10px;">RDD</a> <a href="/tags/RDS/" style="font-size: 10px;">RDS</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Rack/" style="font-size: 10px;">Rack</a> <a href="/tags/Redshift/" style="font-size: 10px;">Redshift</a> <a href="/tags/Regression/" style="font-size: 12px;">Regression</a> <a href="/tags/Replica/" style="font-size: 10px;">Replica</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/Server-Client/" style="font-size: 10px;">Server/Client</a> <a href="/tags/Shard/" style="font-size: 10px;">Shard</a> <a href="/tags/Snippets/" style="font-size: 10px;">Snippets</a> <a href="/tags/Spark/" style="font-size: 14px;">Spark</a> <a href="/tags/SparkSQL/" style="font-size: 10px;">SparkSQL</a> <a href="/tags/SparkSession/" style="font-size: 10px;">SparkSession</a> <a href="/tags/Spark-Stage/" style="font-size: 10px;">Spark_Stage</a> <a href="/tags/Spark-Task/" style="font-size: 10px;">Spark_Task</a> <a href="/tags/Spark-component/" style="font-size: 10px;">Spark_component</a> <a href="/tags/Stat/" style="font-size: 14px;">Stat</a> <a href="/tags/Stat-test/" style="font-size: 12px;">Stat_test</a> <a href="/tags/Study/" style="font-size: 20px;">Study</a> <a href="/tags/Study-LSTM-NLP/" style="font-size: 10px;">Study, LSTM, NLP</a> <a href="/tags/Study-Python/" style="font-size: 10px;">Study, Python</a> <a href="/tags/Text/" style="font-size: 10px;">Text</a> <a href="/tags/Timeseries/" style="font-size: 16px;">Timeseries</a> <a href="/tags/Timeseries-log-transform/" style="font-size: 10px;">Timeseries_log_transform</a> <a href="/tags/Timeseries-process/" style="font-size: 10px;">Timeseries_process</a> <a href="/tags/VPC/" style="font-size: 10px;">VPC</a> <a href="/tags/WAN/" style="font-size: 10px;">WAN</a> <a href="/tags/main/" style="font-size: 10px;">__main__</a> <a href="/tags/alias/" style="font-size: 10px;">alias</a> <a href="/tags/atom/" style="font-size: 10px;">atom</a> <a href="/tags/batch-mini-batch-SGD-gradient-discent/" style="font-size: 10px;">batch, mini_batch, SGD, gradient_discent</a> <a href="/tags/bigram-word-presentation-language-model/" style="font-size: 10px;">bigram, word_presentation, language_model</a> <a href="/tags/block-strage/" style="font-size: 10px;">block_strage</a> <a href="/tags/cdf/" style="font-size: 10px;">cdf</a> <a href="/tags/cmd/" style="font-size: 10px;">cmd</a> <a href="/tags/conv1d/" style="font-size: 10px;">conv1d</a> <a href="/tags/convolutional-layer/" style="font-size: 10px;">convolutional_layer</a> <a href="/tags/correlation/" style="font-size: 10px;">correlation</a> <a href="/tags/covariance/" style="font-size: 10px;">covariance</a> <a href="/tags/derivative/" style="font-size: 10px;">derivative</a> <a href="/tags/eigenvalue/" style="font-size: 10px;">eigenvalue</a> <a href="/tags/eigenvector/" style="font-size: 10px;">eigenvector</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kinesis/" style="font-size: 10px;">kinesis</a> <a href="/tags/lemmatization/" style="font-size: 10px;">lemmatization</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/logging/" style="font-size: 10px;">logging</a> <a href="/tags/net-tools/" style="font-size: 10px;">net-tools</a> <a href="/tags/netstat/" style="font-size: 10px;">netstat</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/object-storage/" style="font-size: 10px;">object_storage</a> <a href="/tags/p-value/" style="font-size: 10px;">p-value</a> <a href="/tags/pdf/" style="font-size: 10px;">pdf</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/pytorch-pytorch-concat-pytorch-stack/" style="font-size: 10px;">pytorch, pytorch_concat, pytorch_stack</a> <a href="/tags/r-squared/" style="font-size: 10px;">r_squared</a> <a href="/tags/random-variable/" style="font-size: 10px;">random_variable</a> <a href="/tags/regression/" style="font-size: 10px;">regression</a> <a href="/tags/softmax/" style="font-size: 12px;">softmax</a> <a href="/tags/spark-resource/" style="font-size: 10px;">spark_resource</a> <a href="/tags/statistical-power/" style="font-size: 10px;">statistical_power</a> <a href="/tags/stemming/" style="font-size: 10px;">stemming</a> <a href="/tags/subnet/" style="font-size: 10px;">subnet</a> <a href="/tags/t-test/" style="font-size: 10px;">t-test</a> <a href="/tags/text-clustering/" style="font-size: 10px;">text_clustering</a> <a href="/tags/text-ranking/" style="font-size: 10px;">text_ranking</a> <a href="/tags/tf-idf/" style="font-size: 10px;">tf_idf</a> <a href="/tags/transformer/" style="font-size: 10px;">transformer</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/계절성/" style="font-size: 10px;">계절성</a> <a href="/tags/고유값분해/" style="font-size: 10px;">고유값분해</a> <a href="/tags/대각화/" style="font-size: 10px;">대각화</a> <a href="/tags/랜덤워크/" style="font-size: 10px;">랜덤워크</a> <a href="/tags/모수추정/" style="font-size: 10px;">모수추정</a> <a href="/tags/백색잡음/" style="font-size: 10px;">백색잡음</a> <a href="/tags/버킷/" style="font-size: 10px;">버킷</a> <a href="/tags/베이지안-모수-추정/" style="font-size: 10px;">베이지안 모수 추정</a> <a href="/tags/비정상확률과정/" style="font-size: 10px;">비정상확률과정</a> <a href="/tags/시계열모수추정/" style="font-size: 10px;">시계열모수추정</a> <a href="/tags/압축/" style="font-size: 10px;">압축</a> <a href="/tags/일반선형확률과정/" style="font-size: 14px;">일반선형확률과정</a> <a href="/tags/잔차/" style="font-size: 10px;">잔차</a> <a href="/tags/잠재변수분석LAV/" style="font-size: 10px;">잠재변수분석LAV</a> <a href="/tags/정상확률과정/" style="font-size: 10px;">정상확률과정</a> <a href="/tags/차원감소/" style="font-size: 10px;">차원감소</a> <a href="/tags/차원의저주/" style="font-size: 10px;">차원의저주</a> <a href="/tags/최대가능도/" style="font-size: 10px;">최대가능도</a> <a href="/tags/최소자승법/" style="font-size: 10px;">최소자승법</a> <a href="/tags/추세/" style="font-size: 10px;">추세</a> <a href="/tags/표준오차/" style="font-size: 10px;">표준오차</a> <a href="/tags/확률과정/" style="font-size: 12px;">확률과정</a> <a href="/tags/회귀분석가정/" style="font-size: 10px;">회귀분석가정</a>
     </div>
   </div>
 
@@ -3146,7 +3239,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -3156,6 +3249,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/02/15/convolutional-layer/">Convolutional Layer 간단한 정리</a>
+          </li>
         
           <li>
             <a href="/2020/02/02/gpt-review/">[NLP] GPT(Improving Language Understanding by Generative Pre-Training) 정리</a>
@@ -3171,10 +3268,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2020/01/09/regression-basic/">회귀분석 기본개념(작성중)</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/01/seq2seq-code/">seq2seq code 구현 예시</a>
           </li>
         
       </ul>
