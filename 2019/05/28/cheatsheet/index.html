@@ -14,7 +14,7 @@
 <meta property="og:description" content="Data science CheatSheet참고 사이트: 데이터사이언스 스쿨 https://datascienceschool.net/개인 참고 정리용도">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://pbs.twimg.com/media/D-Gu7E0WsAANhLY?format=png&name=900x900">
-<meta property="og:updated_time" content="2019-11-16T05:46:30.096Z">
+<meta property="og:updated_time" content="2020-02-15T07:17:26.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Data Science] ML CheatSheet(수정중)">
 <meta name="twitter:description" content="Data science CheatSheet참고 사이트: 데이터사이언스 스쿨 https://datascienceschool.net/개인 참고 정리용도">
@@ -250,7 +250,14 @@ ga('send', 'pageview');
 <li>Elastic Net: 계수의 절대값 &amp; 제곱 합 동시에 제약조건</li>
 </ul>
 </li>
-<li>Lasso vs Ridge: Ridge는 feature 하나의 feature 계수를 급격히 줄임.Lasso는 feature 전체의 계수값을 다같이 줄임.</li>
+<li>Lasso vs Ridge:<ul>
+<li>Ridge는 하나의 feature coef를 급격히 줄임</li>
+<li>Lasso는 feature 전체의 coef를 다같이 줄임</li>
+</ul>
+</li>
+<li>Ridge(L1 regulrization):$cost=\sum e_i^2 + \lambda \sum |w_i|^2$</li>
+<li>Lasson(L2 regulrization):$cost=\sum e_i^2 + \lambda \sum |w_i|$</li>
+<li>Elastic Net(L1 + L2 regulrization):$cost=\sum e_i^2 + \lambda_1 \sum |w_i| + \lambda_2 \sum w_i^2$</li>
 </ul>
 <hr>
 <h1 id="선형회귀의-가정"><a href="#선형회귀의-가정" class="headerlink" title="선형회귀의 가정"></a>선형회귀의 가정</h1><ul>
@@ -639,7 +646,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/05/28/cheatsheet/" data-id="ck6n48wr0001yiw09n68eab1q" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/05/28/cheatsheet/" data-id="ck6x4thkm001vw409jnoxz2kg" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CheatSheet/">CheatSheet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/statistical-power/">statistical_power</a></li></ul>

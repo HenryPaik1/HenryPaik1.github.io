@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/img/cnn_img.png">
 <meta property="og:image" content="https://henrypaik1.github.io/img/cnn_map.png">
-<meta property="og:updated_time" content="2020-02-15T04:43:21.703Z">
+<meta property="og:updated_time" content="2020-02-15T07:13:00.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convolutional Layer 간단한 정리">
 <meta name="twitter:description" content="reference: cs231n (링크:http://cs231n.github.io/convolutional-networks/) fully connected layer는 앞 layer의 모든 neuron과, 다음 layer의 모든 neuron이 dependent neuron은 일종의 feature라고 생각하면, neuron 갯수는 feature 갯수. e">
@@ -167,8 +167,14 @@ ga('send', 'pageview');
 <p><img src="/img/cnn_img.png" width="300">        </p>
 <ul>
 <li>기타<ul>
-<li>one filter, one activation map: 예시 이미지들에서 activation map은 filter를 통과한 이미지</li>
+<li>receptive field(<a href="https://www.quora.com/What-is-a-receptive-field-in-a-convolutional-neural-network" target="_blank" rel="noopener">link</a>): next layer의 neuron의 입장에서 receptive field는, 합성곱에 사용된 previous layer의 neuron.(“The receptive field in a convolutional neural network refers to the part of the image that is visible to one filter at a time.”)<ul>
+<li>상기 그림을 예로 들면, convolved feature에서 4의 receptive field는, 주홍색으로 표시된 영역</li>
+</ul>
+</li>
+<li>one filter, one activation map: 예시 이미지들에서 activation map은 filter를 통과한 이미지<ul>
 <li>하기 이미지: cs231n 수업 캡처<br><img src="/img/cnn_map.png" width="400"></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -177,7 +183,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/02/15/convolutional-layer/" data-id="ck6n48wr20021iw099jy5msk7" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/02/15/convolutional-layer/" data-id="ck6x4thkr0021w409asozc8y1" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study/">Study</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/convolutional-layer/">convolutional_layer</a></li></ul>
