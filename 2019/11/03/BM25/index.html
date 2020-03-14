@@ -5,20 +5,21 @@
   
   <title>Okapi BM25: TF-IDF를 개선한 Ranking Function | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Okapi BM25: TF-IDF의 개선 version">
+  <meta name="description" content="Okapi BM25 참고: https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/ BM25는 ranking function으로서, query가 주어졌을 때, query와 document 간 연관의 정도를 추정함.">
 <meta name="keywords" content="BM25,text_clustering,text_ranking,tf_idf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Okapi BM25: TF-IDF를 개선한 Ranking Function">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/11/03/BM25/index.html">
 <meta property="og:site_name" content="Henry&#39;s blog">
-<meta property="og:description" content="Okapi BM25: TF-IDF의 개선 version">
+<meta property="og:description" content="Okapi BM25 참고: https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/ BM25는 ranking function으로서, query가 주어졌을 때, query와 document 간 연관의 정도를 추정함.">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://opensourceconnections.com/blog/uploads/2015/TF1.png">
-<meta property="og:updated_time" content="2019-11-02T17:44:17.697Z">
+<meta property="og:image" content="https://henrypaik1.github.io/img/tf_score1.png">
+<meta property="og:image" content="https://henrypaik1.github.io/img/tf_idf2.png">
+<meta property="og:updated_time" content="2020-03-14T15:08:55.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Okapi BM25: TF-IDF를 개선한 Ranking Function">
-<meta name="twitter:description" content="Okapi BM25: TF-IDF의 개선 version">
-<meta name="twitter:image" content="https://opensourceconnections.com/blog/uploads/2015/TF1.png">
+<meta name="twitter:description" content="Okapi BM25 참고: https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/ BM25는 ranking function으로서, query가 주어졌을 때, query와 document 간 연관의 정도를 추정함.">
+<meta name="twitter:image" content="https://henrypaik1.github.io/img/tf_score1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -124,37 +125,77 @@ ga('send', 'pageview');
       
         <!-- add by yurixu 2016/1/3 添加文章目录 -->
         
-        <h1 id="Okapi-BM25-TF-IDF의-개선-version"><a href="#Okapi-BM25-TF-IDF의-개선-version" class="headerlink" title="Okapi BM25: TF-IDF의 개선 version"></a>Okapi BM25: TF-IDF의 개선 version</h1><a id="more"></a>
-<h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><script type="math/tex; mode=display">W_{i, d} = tf_{i, d} \times \log{\dfrac{N}{df_i}}</script><ul>
+        <h1 id="Okapi-BM25"><a href="#Okapi-BM25" class="headerlink" title="Okapi BM25"></a>Okapi BM25</h1><ul>
+<li>참고: <a href="https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/" target="_blank" rel="noopener">https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/</a></li>
+<li>BM25는 ranking function으로서, query가 주어졌을 때, query와 document 간 연관의 정도를 추정함.<a id="more"></a>
+</li>
+</ul>
+<h2 id="1-TF-IDF"><a href="#1-TF-IDF" class="headerlink" title="1. TF-IDF"></a>1. TF-IDF</h2><script type="math/tex; mode=display">W_{i, d} = tf_{i, d} \times \log{\dfrac{N}{df_i}}</script><ul>
 <li>$W_{i, d}$은 doc_d의 word_i</li>
 <li>$tf_{i, d}$는 doc_d에서 word_i의 frequency 값</li>
 <li>$df_i$는 word_i의 df, document frequency 값</li>
 <li>TF-IDF로 doc를 벡터화하면, row는 doc1, doc2, …, col은 term1, term2, … value는 TF-IDF score</li>
-<li>문장간 유사도를 구할 때</li>
-<li>기존 TF-IDF의 문제점: 1) TF의 경우 freq에 따라 지속 증가 2) 해당 doc의 길이가 길수록 TF freq가 많은 가능성이 있음(해당 문제는 doc_len으로 TF값을 나눠줌으로써 normalize하여 어느정도 해결가능)</li>
-<li>BM25는 TF에서 성능향상을 보여줌</li>
+<li>기존 TF-IDF의 문제점<ul>
+<li>1) TF의 경우 freq에 따라 지속 증가 -&gt; square root(tf) 사용하기도 함 -&gt; BM25는 이를 더 개선</li>
+<li>2) 해당 doc의 길이가 길수록 Term freq가 높을 가능성이 있음(해당 문제는 doc_len으로 Term frequency를 나눠줌으로써 normalize하여 어느정도 해결가능)</li>
 </ul>
-<h2 id="BM25"><a href="#BM25" class="headerlink" title="BM25"></a>BM25</h2><ul>
-<li><a href="https://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/" target="_blank" rel="noopener">하기 내용 및 그림 출처</a></li>
+</li>
+<li>BM25는 특히 TF score를 개선</li>
+</ul>
+<h2 id="2-BM25"><a href="#2-BM25" class="headerlink" title="2. BM25"></a>2. BM25</h2><ul>
+<li>기존 TF-IDF보다 term frequency의 영향력을 더 줄임</li>
+<li>일정 수준 이상의 TF 값은, score에 미치는 영향이 비슷</li>
+<li>해당 텍스트의 길이가, <strong>평균적인 텍스트 길이</strong>보다 짧을수록 해당 term의 score가 높아짐</li>
 </ul>
 <script type="math/tex; mode=display">
 score(query, doc_d) = \Sigma_{i=1}^n (IDF_i \dfrac{n_i(k_1 + 1)}{n_i+k_i(1-b+b \dfrac{\text{len of doc_d}}{\text{total doc avg len}})})</script><ul>
-<li>i는 query에 포함된 단어만의 idx를 뜻함.</li>
-<li>$n_i$는 word_i의 frequency(term frequency)</li>
-<li>hyper param인 k1과 b는 각각 2.0, 0.75가 자주 사용됨</li>
-<li>k1은 TF가 일정 값이상 올라가지 못하게 함<ul>
-<li><img src="https://opensourceconnections.com/blog/uploads/2015/TF1.png" width="500"></li>
+<li>i는 query에 포함된 단어의 idx</li>
+<li>$n_i$는 query word_i의 frequency(term frequency)</li>
+<li>k1은 TF가 일정 값이상 올라가지 못하게 함(sqrt(tf) vs BM25 tf)</li>
+</ul>
+<h4 id="2-1-TF-part-1"><a href="#2-1-TF-part-1" class="headerlink" title="2.1 TF part(1)"></a>2.1 TF part(1)</h4><ul>
+<li>상수 k 추가: 일정 frequency 이상은 saturate<ul>
+<li><code>((k + 1) * sqrt(tf_score)) / (k + sqrt(tf_score))</code></li>
 </ul>
 </li>
-<li>scoring: TF-IDF와 달리, Doc1(query) 입력시, Doc2 단어 중 Doc1단어만, 개선된 TF-IDF 값으로 합산하여 scoring<ul>
-<li>예컨대, Doc1:[outdoor sports]라고 했다면, Doc2:[best selling outdoor wear]에서 outdoor 단어의 개선된 TF-IDF 값을 BM25 score로 return</li>
+<li><code>sqrt(tf)</code>: red line vs <code>BM25_tf</code>: blue line<ul>
+<li><code>BM25_tf</code>은 일정 <code>tf_score</code>이상은 빠르게 saturate<br><img src="/img/tf_score1.png" width="500"></li>
 </ul>
 </li>
-<li><p>TF, IDF 계산 code</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># TF</span><br><span class="line">((k + 1) * tf) / (k * (1.0 - b + b * L) + tf)</span><br><span class="line">where L = doc_d / avg(total len of target docs)</span><br><span class="line"></span><br><span class="line"># IDF: negative방지위해 +1</span><br><span class="line">log ( numDocs / docFreq + 1) + 1</span><br></pre></td></tr></table></figure>
+</ul>
+<h4 id="2-2-TF-part-2"><a href="#2-2-TF-part-2" class="headerlink" title="2.2 TF part(2)"></a>2.2 TF part(2)</h4><ul>
+<li>변수 L추가: 해당 텍스트 길이로만 tf를 normalize하는 것이 아니라, 전체 텍스트들의 길이를 반영. L은 <em>전체 텍스트들의 평균 길이</em>의 배수<ul>
+<li><code>L = doc_d / avg(total len of target docs)</code></li>
+</ul>
 </li>
-<li><p>활용</p>
-<ul>
+<li>L과 k를 모두 반영한 tf_score<ul>
+<li><code>((k + 1) * sqrt(tf_score)) / (k * (1.0 - b + b * L) + sqrt(tf_score))</code></li>
+</ul>
+</li>
+<li>hyper param은 <strong>k1, b는 각각 2.0, 0.75</strong>가 자주 사용됨</li>
+<li>k1=2, b=0.75 일 때, L=0.5, 2, 5(각각 전체 텍스트 길이의 n배)에 대한 비교<ul>
+<li>L이 커질수록(평균 대비 text길이가 길수록) tf_score 천천히 saturate<br><img src="/img/tf_idf2.png" width="500"></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-3-IDF-part"><a href="#2-3-IDF-part" class="headerlink" title="2.3 IDF part"></a>2.3 IDF part</h4><ul>
+<li>IDF part는 log시 smoothing 1<ul>
+<li><code>log ( num of texts / term_i freq through texts  + 1)</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="2-4-scoring"><a href="#2-4-scoring" class="headerlink" title="2.4 scoring"></a>2.4 scoring</h4><ul>
+<li>scoring: query 입력 -&gt; BM25 value합산<ul>
+<li>eg. query: <code>[outdoor sports]</code>라고 했다면<ul>
+<li>Doc1: <code>[best selling outdoor sports wear]</code>에서 outdoor, sports의 BM25 tf_idf 값을 합산</li>
+<li>Doc2: <code>[best outdoor wear]</code>에서 outdoor의 BM25 tf_idf 값을 합산</li>
+<li>Doc1, Doc2의 score(relevance) 비교</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-활용"><a href="#3-활용" class="headerlink" title="3. 활용"></a>3. 활용</h2><ul>
 <li>검색 엔진 text similarity score에 사용됨. (IR, Information Retrieval modeling)<ul>
 <li>관련slide: <a href="https://www.slideshare.net/MinsubYim/ir-modeling" target="_blank" rel="noopener">https://www.slideshare.net/MinsubYim/ir-modeling</a>)</li>
 </ul>
@@ -168,15 +209,12 @@ score(query, doc_d) = \Sigma_{i=1}^n (IDF_i \dfrac{n_i(k_1 + 1)}{n_i+k_i(1-b+b \
 <li>“1) it limited the word set to those that occur in <strong>less than 0.99% of the documents</strong> instead of using the full word-document matrix, and</li>
 <li>2) it used the BM25 similarity approach in place of the standard tf-idf. The effect of the first change (truncating the word distribution) was to <strong>remove a large amount of noise from the solution space.</strong> The effect of the second change (BM25) was to use a <strong>superior similarity approach</strong>, as has been established in the literature. Combined, these two changes had an enormous positive effect on the accuracy of the cluster solution.”</li>
 </ul>
-</li>
-<li><a href="https://github.com/HenryPaik1/NLP_study/blob/master/BM25_implementation.py" target="_blank" rel="noopener">BM25 구현코드</a></li>
-</ul>
-
+<h2 id="4-BM25-구현코드"><a href="#4-BM25-구현코드" class="headerlink" title="4. BM25 구현코드"></a>4. <a href="https://github.com/HenryPaik1/NLP_study/blob/master/BM25_implementation.py" target="_blank" rel="noopener">BM25 구현코드</a></h2>
       
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/11/03/BM25/" data-id="ck7gn4hf60009hm0937e6mtcc" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/11/03/BM25/" data-id="ck7rqwwrj0003q1099i0i941g" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BM25/">BM25</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-clustering/">text_clustering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-ranking/">text_ranking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tf-idf/">tf_idf</a></li></ul>
