@@ -3,21 +3,21 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>BERT review | Henry&#39;s blog</title>
+  <title>BERT 메모 | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="0. Architecture">
 <meta name="keywords" content="NLP, BERT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BERT review">
+<meta property="og:title" content="BERT 메모">
 <meta property="og:url" content="https://henrypaik1.github.io/2020/03/15/bert-review/index.html">
 <meta property="og:site_name" content="Henry&#39;s blog">
 <meta property="og:description" content="0. Architecture">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/img/bert_input.png">
 <meta property="og:image" content="https://henrypaik1.github.io/img/bert_fine_tuning.png">
-<meta property="og:updated_time" content="2020-03-21T01:38:41.447Z">
+<meta property="og:updated_time" content="2020-04-05T16:48:12.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BERT review">
+<meta name="twitter:title" content="BERT 메모">
 <meta name="twitter:description" content="0. Architecture">
 <meta name="twitter:image" content="https://henrypaik1.github.io/img/bert_input.png">
   
@@ -104,7 +104,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      BERT review
+      BERT 메모
     </h1>
   
 
@@ -142,7 +142,7 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h3 id="1-0-Embedding"><a href="#1-0-Embedding" class="headerlink" title="1.0 Embedding"></a>1.0 Embedding</h3><ul>
+<h3 id="1-1-Embedding"><a href="#1-1-Embedding" class="headerlink" title="1.1. Embedding"></a>1.1. Embedding</h3><ul>
 <li>embedding input data<ul>
 <li>token embedding</li>
 <li>segment embedding: 문장A or B</li>
@@ -151,14 +151,14 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<h3 id="1-1-Masked-Language-Model"><a href="#1-1-Masked-Language-Model" class="headerlink" title="1.1 Masked Language Model"></a>1.1 Masked Language Model</h3><ul>
+<h3 id="1-2-Masked-Language-Model"><a href="#1-2-Masked-Language-Model" class="headerlink" title="1.2. Masked Language Model"></a>1.2. Masked Language Model</h3><ul>
 <li>문장 전체를 input(not LTR). 중간중간 masking.</li>
 <li>문장의 15% masking, 실제 정답 맞추기</li>
 <li>masking 80%는 blank([MASK]) -&gt; 기대효과: 문맥파악</li>
 <li>masking 10%는 random 단어([wrong_token]) -&gt; 기대효과: 비문판별</li>
 <li>masking 10%는 원래 단어 그대로([answer_token]) -&gt; 기대효과: 비문판별</li>
 </ul>
-<h3 id="1-2-NSP"><a href="#1-2-NSP" class="headerlink" title="1.2 NSP"></a>1.2 NSP</h3><ul>
+<h3 id="1-3-NSP"><a href="#1-3-NSP" class="headerlink" title="1.3. NSP"></a>1.3. NSP</h3><ul>
 <li>문장 순서 맞추는 훈련. (A 다음 문장은? B)</li>
 <li>일련의 두 문장을 뽑음</li>
 <li>10%는 실제 문장을 truncate하여 짧게 구성</li>
@@ -171,7 +171,7 @@ ga('send', 'pageview');
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2020/03/15/bert-review/" data-id="ck80y24h9001wz009cfxmqhhi" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2020/03/15/bert-review/" data-id="ck8nalaln00221x095wtxo1ye" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP-BERT/">NLP, BERT</a></li></ul>
@@ -188,7 +188,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -227,7 +227,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/2020/03/15/bert-review/">BERT review</a>
+            <a href="/2020/03/15/bert-review/">BERT 메모</a>
           </li>
         
           <li>

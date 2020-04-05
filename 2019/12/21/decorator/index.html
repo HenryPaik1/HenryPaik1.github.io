@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Henry&#39;s blog">
 <meta property="og:description" content="ref: https://www.datacamp.com/community/tutorials/decorators-python">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-06T18:28:53.142Z">
+<meta property="og:updated_time" content="2020-04-05T16:50:48.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Decorator 정리 및 예시">
 <meta name="twitter:description" content="ref: https://www.datacamp.com/community/tutorials/decorators-python">
@@ -122,7 +122,10 @@ ga('send', 'pageview');
       
         <!-- add by yurixu 2016/1/3 添加文章目录 -->
         
-        <p>ref: <a href="https://www.datacamp.com/community/tutorials/decorators-python" target="_blank" rel="noopener">https://www.datacamp.com/community/tutorials/decorators-python</a><br><a id="more"></a></p>
+        <ul>
+<li>ref: <a href="https://www.datacamp.com/community/tutorials/decorators-python" target="_blank" rel="noopener">https://www.datacamp.com/community/tutorials/decorators-python</a><a id="more"></a>
+</li>
+</ul>
 <h1 id="1-decorator-기본구성"><a href="#1-decorator-기본구성" class="headerlink" title="1. decorator 기본구성"></a>1. decorator 기본구성</h1><ul>
 <li>A: enclosing func</li>
 <li>B: nested func</li>
@@ -134,14 +137,14 @@ ga('send', 'pageview');
 <li>A return B</li>
 <li>B do something using C</li>
 </ul>
-<h1 id="3-code-example"><a href="#3-code-example" class="headerlink" title="3. code example"></a>3. code example</h1><h3 id="3-1-prerequisite"><a href="#3-1-prerequisite" class="headerlink" title="3.1 prerequisite"></a>3.1 prerequisite</h3><ul>
+<h1 id="3-code-example"><a href="#3-code-example" class="headerlink" title="3. code example"></a>3. code example</h1><ul>
 <li><p>func basic</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plus_one</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> num + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">plus_one(<span class="number">5</span>)</span><br><span class="line">&gt;&gt; <span class="number">6</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>func as arg</p>
+<li><p>func call another func</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plus_one</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_one</span><span class="params">(num)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> num + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    result = add_one(num)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">plus_one(<span class="number">1</span>)</span><br><span class="line">&gt;&gt; <span class="number">2</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>func call another func</p>
+<li><p>func as arg</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plus_one</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> num + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_call</span><span class="params">(func)</span>:</span></span><br><span class="line">    num_to_add = <span class="number">5</span></span><br><span class="line">    <span class="keyword">return</span> func(num_to_add)</span><br><span class="line"></span><br><span class="line">func_call(plus_one)</span><br><span class="line">&gt;&gt; <span class="number">6</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>func nesting another func</p>
@@ -194,7 +197,7 @@ multiply_nums 4.982948303222656e-05
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/12/21/decorator/" data-id="ck80y24hp002ez009xe46vi4f" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/12/21/decorator/" data-id="ck8nalam2002j1x09ksy8fdrb" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Study-Python-decorator/">Study, Python, decorator</a></li></ul>
@@ -211,7 +214,7 @@ multiply_nums 4.982948303222656e-05
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -250,7 +253,7 @@ multiply_nums 4.982948303222656e-05
       <ul>
         
           <li>
-            <a href="/2020/03/15/bert-review/">BERT review</a>
+            <a href="/2020/03/15/bert-review/">BERT 메모</a>
           </li>
         
           <li>

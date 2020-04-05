@@ -3,23 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>[ML] 자연어 처리(1) | Henry&#39;s blog</title>
+  <title>[ML] WordCloud with NLTK | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="index자연어 처리(1)">
+  <meta name="description" content="목차1. 말뭉치(corpus)2. 토큰생성(tokenizing) sentence unit sent_tokenize: return sentence   word unit word_tokenize= TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer    3. 형태소 분석 어간 추출 stemming: 단순 어미">
 <meta name="keywords" content="Text,Preprocessing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[ML] 자연어 처리(1)">
+<meta property="og:title" content="[ML] WordCloud with NLTK">
 <meta property="og:url" content="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/index.html">
 <meta property="og:site_name" content="Henry&#39;s blog">
-<meta property="og:description" content="index자연어 처리(1)">
+<meta property="og:description" content="목차1. 말뭉치(corpus)2. 토큰생성(tokenizing) sentence unit sent_tokenize: return sentence   word unit word_tokenize= TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer    3. 형태소 분석 어간 추출 stemming: 단순 어미">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_45_0.png">
 <meta property="og:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_65_0.png">
-<meta property="og:updated_time" content="2019-03-11T09:59:39.463Z">
+<meta property="og:updated_time" content="2020-04-05T16:47:23.629Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[ML] 자연어 처리(1)">
-<meta name="twitter:description" content="index자연어 처리(1)">
+<meta name="twitter:title" content="[ML] WordCloud with NLTK">
+<meta name="twitter:description" content="목차1. 말뭉치(corpus)2. 토큰생성(tokenizing) sentence unit sent_tokenize: return sentence   word unit word_tokenize= TreebankWordTokenizer WordPunctTokenizer RegexpTokenizer    3. 형태소 분석 어간 추출 stemming: 단순 어미">
 <meta name="twitter:image" content="https://henrypaik1.github.io/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_files/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC%281%29_43_0.png">
   
   
@@ -105,7 +105,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      [ML] 자연어 처리(1)
+      [ML] WordCloud with NLTK
     </h1>
   
 
@@ -118,7 +118,7 @@ ga('send', 'pageview');
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/ML/">ML</a>
+    <a class="article-category-link" href="/categories/ML/">ML</a>►<a class="article-category-link" href="/categories/NLP/">NLP</a>
   </div>
 
     </div>
@@ -126,12 +126,8 @@ ga('send', 'pageview');
       
         <!-- add by yurixu 2016/1/3 添加文章目录 -->
         
-        <h2 id="index"><a href="#index" class="headerlink" title="index"></a>index</h2><p>자연어 처리(1)<br><a id="more"></a></p>
-<ol>
-<li>말뭉치(corpus)</li>
-<li>토큰생성(tokenizing)</li>
-</ol>
-<ul>
+        <a id="more"></a>
+<h1 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h1><h3 id="1-말뭉치-corpus"><a href="#1-말뭉치-corpus" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h3><h3 id="2-토큰생성-tokenizing"><a href="#2-토큰생성-tokenizing" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h3><ul>
 <li>sentence unit<ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
@@ -143,19 +139,13 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<ol>
-<li>형태소 분석</li>
-</ol>
-<ul>
+<h3 id="3-형태소-분석"><a href="#3-형태소-분석" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h3><ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
 <li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
 </ul>
 </li>
 <li>품사 부착 part-of-speech tagging</li>
-</ul>
-<p>cf. pos tagging</p>
-<ul>
 <li>품사 POS 구분: 낱말을 문법적 기능, 형태, 뜻에 따라 구분</li>
 <li>NLTK는 Penn Treebank Tagset 채택<ul>
 <li>NNP: 단수 고유명사</li>
@@ -175,10 +165,7 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<ol>
-<li>text class</li>
-</ol>
-<ul>
+<h4 id="4-text-class"><a href="#4-text-class" class="headerlink" title="4. text class"></a>4. text class</h4><ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
 <li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
@@ -187,37 +174,25 @@ ga('send', 'pageview');
 <li><code>concordance</code>: lines 입력 갯수만큼 해당 문장 display</li>
 <li><code>similar</code>: 해당 단어와 비슷한 문맥에서 사용된 단어</li>
 </ul>
-<ol>
-<li>FreqDist</li>
-</ol>
-<ul>
+<h3 id="5-FreqDist"><a href="#5-FreqDist" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h3><ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
 <li>return: <code>{&#39;word&#39;: frequency}</code></li>
 <li><code>N()</code>: 전체 단어수</li>
 <li><code>freq(&quot;word&quot;)</code>: 확률</li>
-<li><code>most_common</code>: 출현빈도 높은 단어</li>
-</ul>
-<p>5.1 사용법1)</p>
-<ul>
-<li><code>Text</code> class의 vocab으로 추출</li>
-</ul>
-<p>5.2 사용법2)</p>
-<ul>
+<li><code>most_common</code>: 출현빈도 높은 단어<h4 id="5-1-사용법1"><a href="#5-1-사용법1" class="headerlink" title="5.1 사용법1)"></a>5.1 사용법1)</h4></li>
+<li><code>Text</code> class의 vocab으로 추출<h4 id="5-2-사용법2"><a href="#5-2-사용법2" class="headerlink" title="5.2 사용법2)"></a>5.2 사용법2)</h4></li>
 <li>말뭉치에서 추려낸 단어로 <code>FreqDist</code> class 객체 생성<ul>
 <li>예) Emma.txt corpus에서 사람(NNP, 고유대명사)만 추출 &amp; apply stop words</li>
 </ul>
 </li>
 <li><code>most_common</code>: 출현빈도 높은 단어</li>
 </ul>
-<ol>
-<li>wordcloud</li>
-</ol>
-<ul>
+<h3 id="6-wordcloud"><a href="#6-wordcloud" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h3><ul>
 <li><code>FreqDist</code> 활용</li>
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
 <hr>
-<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><h3 id="1-말뭉치-corpus"><a href="#1-말뭉치-corpus" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="내용"><a href="#내용" class="headerlink" title="내용"></a>내용</h1><h3 id="1-말뭉치-corpus-1"><a href="#1-말뭉치-corpus-1" class="headerlink" title="1. 말뭉치(corpus)"></a>1. 말뭉치(corpus)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk</span><br><span class="line">nltk.download(<span class="string">'book'</span>, quiet=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>True
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.book <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
 <pre><code>*** Introductory Examples for the NLTK Book ***
@@ -268,7 +243,7 @@ TWO LITTLE RIDDLES IN RHYME
      From house to house he goes,
      A me
 </code></pre><hr>
-<h3 id="2-토큰생성-tokenizing"><a href="#2-토큰생성-tokenizing" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h3><h4 id="sentence-unit"><a href="#sentence-unit" class="headerlink" title="sentence unit"></a>sentence unit</h4><ul>
+<h3 id="2-토큰생성-tokenizing-1"><a href="#2-토큰생성-tokenizing-1" class="headerlink" title="2. 토큰생성(tokenizing)"></a>2. 토큰생성(tokenizing)</h3><h4 id="sentence-unit"><a href="#sentence-unit" class="headerlink" title="sentence unit"></a>sentence unit</h4><ul>
 <li><code>sent_tokenize</code>: return sentence</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> sent_tokenize</span><br><span class="line">sent_tokenize(raw[:<span class="number">300</span>])</span><br></pre></td></tr></table></figure>
@@ -293,7 +268,7 @@ TWO LITTLE RIDDLES IN RHYME
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> RegexpTokenizer</span><br><span class="line">pattern = <span class="string">"[\w]+"</span></span><br><span class="line">retokenize = RegexpTokenizer(pattern)</span><br><span class="line">retokenize.tokenize(raw[<span class="number">50</span>:<span class="number">100</span>])</span><br></pre></td></tr></table></figure>
 <pre><code>[&#39;918&#39;, &#39;TWO&#39;, &#39;LITTLE&#39;, &#39;RIDDLES&#39;, &#39;IN&#39;, &#39;RHYME&#39;, &#39;T&#39;]
 </code></pre><hr>
-<h3 id="3-형태소-분석"><a href="#3-형태소-분석" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h3><ul>
+<h3 id="3-형태소-분석-1"><a href="#3-형태소-분석-1" class="headerlink" title="3. 형태소 분석"></a>3. 형태소 분석</h3><ul>
 <li>어간 추출 stemming: 단순 어미 제거, 즉 정확한 어간 아님</li>
 <li>원형 복원 lemmatizing: 같은 의미 지니는 여러 단어를 사전형으로 통일.<ul>
 <li>품사 part of speech 지정시, 더 정확</li>
@@ -404,7 +379,7 @@ TWO LITTLE RIDDLES IN RHYME
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenizer</span><span class="params">(doc)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">"/"</span>.join(p) <span class="keyword">for</span> p <span class="keyword">in</span> tagged_list]</span><br><span class="line"></span><br><span class="line">tokenizer(sentence)</span><br></pre></td></tr></table></figure>
 <pre><code>[&#39;And/CC&#39;, &#39;green/JJ&#39;, &#39;ribbons/NNS&#39;, &#39;,/,&#39;, &#39;very/RB&#39;, &#39;fair/JJ&#39;, &#39;./.&#39;]
 </code></pre><hr>
-<h3 id="4-text-class"><a href="#4-text-class" class="headerlink" title="4. text class"></a>4. text class</h3><ul>
+<h3 id="4-text-class-1"><a href="#4-text-class-1" class="headerlink" title="4. text class"></a>4. text class</h3><ul>
 <li><code>plot</code>: 단어token의 사용 빈도 그래프화</li>
 <li><code>dispersion_plot</code>: 단어가 사용된 위치 시각화<ul>
 <li>eg. 소설의 등장인물 등장 위치</li>
@@ -443,7 +418,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text.similar(<span class="string">'Emma'</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <pre><code>she it he i harriet you her jane him that
 </code></pre><hr>
-<h3 id="5-FreqDist"><a href="#5-FreqDist" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h3><ul>
+<h3 id="5-FreqDist-1"><a href="#5-FreqDist-1" class="headerlink" title="5. FreqDist"></a>5. FreqDist</h3><ul>
 <li><code>FreqDist</code>: 문서에 사용된 단어의 사용빈도 정보 담는 class</li>
 <li>return: <code>{&#39;word&#39;: frequency}</code></li>
 </ul>
@@ -484,7 +459,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
  (&#39;Knightley&#39;, 389),
  (&#39;Elton&#39;, 385)]
 </code></pre><hr>
-<h3 id="6-wordcloud"><a href="#6-wordcloud" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h3><ul>
+<h3 id="6-wordcloud-1"><a href="#6-wordcloud-1" class="headerlink" title="6. wordcloud"></a>6. wordcloud</h3><ul>
 <li><code>FreqDist</code> 활용</li>
 <li>단어 빈도수에 따른 시각화</li>
 </ul>
@@ -495,7 +470,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
     </div>
 
     <footer class="article-footer">
-      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="ck80y24jk005az009hvs6iifh" class="article-share-link">share</a>
+      <a data-url="https://henrypaik1.github.io/2019/01/28/자연어 처리(1)/" data-id="ck8nalao1005g1x09ua6yxj5q" class="article-share-link">share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Preprocessing/">Preprocessing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Text/">Text</a></li></ul>
@@ -512,7 +487,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AWS/">AWS</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DL/">DL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ML/">ML</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Net-Web/">Net/Web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Spark/">Spark</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pytorch/">pytorch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/sth/">sth</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -551,7 +526,7 @@ nd friend very mutually attached and Emma doing just what she liked highly est
       <ul>
         
           <li>
-            <a href="/2020/03/15/bert-review/">BERT review</a>
+            <a href="/2020/03/15/bert-review/">BERT 메모</a>
           </li>
         
           <li>
