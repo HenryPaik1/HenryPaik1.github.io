@@ -3,18 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Tag: Stat | Henry&#39;s blog</title>
+  <title>Probability Notation | Henry&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Henry&apos;s blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Henry&#39;s blog">
-<meta property="og:url" content="https://henrypaik1.github.io/tags/Stat/index.html">
+  <meta name="description" content="reference:      https://math.stackexchange.com/questions/967316/confusion-about-notation-for-bayesian-statistics https://stats.stackexchange.com/questions/10234/meaning-of-probability-notations-pzd-w">
+<meta name="keywords" content="prob_notation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Probability Notation">
+<meta property="og:url" content="https://henrypaik1.github.io/2020/04/11/probability-notation/index.html">
 <meta property="og:site_name" content="Henry&#39;s blog">
-<meta property="og:description" content="Henry&apos;s blog">
+<meta property="og:description" content="reference:      https://math.stackexchange.com/questions/967316/confusion-about-notation-for-bayesian-statistics https://stats.stackexchange.com/questions/10234/meaning-of-probability-notations-pzd-w">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-11T05:23:22.141Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Henry&#39;s blog">
-<meta name="twitter:description" content="Henry&apos;s blog">
+<meta name="twitter:title" content="Probability Notation">
+<meta name="twitter:description" content="reference:      https://math.stackexchange.com/questions/967316/confusion-about-notation-for-bayesian-statistics https://stats.stackexchange.com/questions/10234/meaning-of-probability-notations-pzd-w">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -88,78 +90,95 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-probability-notation" class="article article-type-post" itemscope="" itemprop="blogPost">
+
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/13/recap-annova/" class="archive-article-date">
-  <time datetime="2019-03-13T04:12:00.000Z" itemprop="datePublished">Mar 13</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/13/recap-annova/">[Stat_Test_1] ANOVA_집단간 비교</a>
+    <h1 class="article-title" itemprop="name">
+      Probability Notation
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/02/23/Recap_rsquareok/" class="archive-article-date">
-  <time datetime="2019-02-23T00:22:57.000Z" itemprop="datePublished">Feb 23</time>
+    <!-- add by yurixu 2016/1/3 将文章时间放在标题下 -->
+    <div class="article-meta">
+      <a href="/2020/04/11/probability-notation/" class="article-date">
+  <time datetime="2020-04-11T05:03:58.000Z" itemprop="datePublished">2020-4-11 Sat  14:03</time>
 </a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/23/Recap_rsquareok/">[Stat] 결정계수(Coefficient of Determination, r squared)</a>
-    </h1>
-  
-
-    </header>
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Math/">Math</a>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/02/08/pvalue/" class="archive-article-date">
-  <time datetime="2019-02-08T10:55:41.000Z" itemprop="datePublished">Feb 8</time>
-</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/08/pvalue/">[Stat] p-value</a>
-    </h1>
-  
+        <!-- add by yurixu 2016/1/3 添加文章目录 -->
+        
+        <ul>
+<li>reference:     <ul>
+<li><a href="https://math.stackexchange.com/questions/967316/confusion-about-notation-for-bayesian-statistics" target="_blank" rel="noopener">https://math.stackexchange.com/questions/967316/confusion-about-notation-for-bayesian-statistics</a></li>
+<li><a href="https://stats.stackexchange.com/questions/10234/meaning-of-probability-notations-pzd-w-and-pzd-w" target="_blank" rel="noopener">https://stats.stackexchange.com/questions/10234/meaning-of-probability-notations-pzd-w-and-pzd-w</a><a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Basic-Notation"><a href="#Basic-Notation" class="headerlink" title="Basic Notation"></a>Basic Notation</h1><ul>
+<li><strong>대문자X</strong>는 확률변수random variable. <strong>소문자x</strong>는 density fucntion의 인자argument.</li>
+<li>$f(x;\theta)$: random variable X의 pdf로서, parameter가 $\theta$일 때 실수값 x의 상대적 값 출력</li>
+<li>$f(x, \theta)$: joint density로서, <strong>확률변수 X와 확률변수 $\Theta$ </strong>가 각각 $(x, \theta)$일 때 상대적 값 출력</li>
+<li>$f(x|\theta)$: conditional dist로서 <strong>확률변수</strong> $\Theta$가 주어졌을 때 <strong>확률변수 X</strong>의 분포</li>
+<li><strong> $f_X(x)$ </strong>는 확률변수 X의 밀도함수<ul>
+<li>eg. $Pr(X \ge x) = F(x)$</li>
+<li><strong>X가 확률변수</strong>이고 <strong>x는 어떤 실수값</strong>이라면, $Pr(2 \le x \le 5) = \int_2^5 f_{X}(x) \,dx$ 라고 적을 수 있음</li>
+</ul>
+</li>
+<li>실수값(constant로 주어진)과 random variable을 구분할 필요가 있음<ul>
+<li>f(X|Y): <strong>conditional</strong> on some random event occurring</li>
+<li>$f(x; \mu, \sigma)$: f(x) <strong>given</strong> $\mu$ and $\sigma$</li>
+</ul>
+</li>
+<li><strong>$f_X(x|X, \mu, \sigma)$</strong>: X density function에 argment로 $X, \mu, \sigma$를 받음</li>
+</ul>
+<h1 id="Likelihood-notation"><a href="#Likelihood-notation" class="headerlink" title="Likelihood notation"></a>Likelihood notation</h1><ul>
+<li>$f_X(x;\theta) \text{where } \theta=(\mu, \sigma^2)$<ul>
+<li>x: random variable <strong>X가 가질 수 있는 실수값</strong></li>
+<li>$\theta$는 <strong>확률모형의 모수(parameter)</strong> 집합을 대표하는 기호</li>
+</ul>
+</li>
+<li>Gaussian Random Variable의 pdf는:<ul>
+<li>eg. $f_X(x;\theta) = f_X(x; \mu, \sigma^2) = \dfrac{1}{\sqrt{2 \pi \sigma^2}} \exp \left( {-\frac{ (x-\mu)^2 }{ 2 \sigma^2} } \right )$<ul>
+<li>일반적인 확률변수 모형에서는 $\theta$ 고정, x는 변수</li>
+<li>즉, 모형$f_X$은 정해져있고, 실수값x가 발생할 상대적 값을 출력</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>반대로 우도 추정문제에서는, x는 실현되었고(알고 있는 값), $\theta$를 모르기 때문에, <strong>$\theta$에 대한 함수임을 notation에 반영</strong><ul>
+<li>$\mathcal{L}(\theta;x) = f_X(x|\theta)$</li>
+</ul>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-</section>
+      
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="https://henrypaik1.github.io/2020/04/11/probability-notation/" data-id="ck8v6bop8003y3p09dx3tae7y" class="article-share-link">share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prob-notation/">prob_notation</a></li></ul>
+
+    </footer>
+
+
+
+</div></article></section>
         
           <aside id="sidebar">
   
